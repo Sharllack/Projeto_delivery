@@ -20,7 +20,8 @@
                 session_start();
             }
 
-            $_SESSION['user'] = $usuario['user']; // session é uma variável que continua válida em mais de uma tela.
+            $_SESSION['user'] = $usuario['usuario']; // session é uma variável que continua válida em mais de uma tela.
+            $_SESSION['nome'] = $usuario['nome'];
 
             header("Location: ./index.php"); //para redirecionar a pág.
 
