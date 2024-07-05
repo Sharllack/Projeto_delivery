@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+@media screen and (max-width: 600px){
+
+    body {
+        overflow: hidden;
+    }
+
+    .img {
+        display: none;
+    }
+
+    main {
+        width: 100%;
+        height: 100%;
+    }
+
+    section {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    form {
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
+
+    input {
+        width: 90%;
+    }
+
+    .inpu {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    button[type='reset'] {
+        margin-right: 15px;
+    }
+    
+}
+
+@media screen and (max-width: 1124px) {
+    .img {
+        display: none;
+    }
+
+    section {
+        width: 100%;
+    }
+}
