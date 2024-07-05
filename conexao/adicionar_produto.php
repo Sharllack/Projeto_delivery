@@ -100,6 +100,7 @@ $result = $mysqli->query($sql_query);
 
         <table>
             <thead>
+                <th>Disponibilidade</th>
                 <th>id</th>
                 <th>Nome</th>
                 <th>Descrição</th>
@@ -107,10 +108,13 @@ $result = $mysqli->query($sql_query);
                 <th>Imagem</th>
                 <th>Editar</th>
                 <th>Deletar</th>
+                <th>Disponível</th>
+                <th>Indisponível</th>
             </thead>
             <tbody>
                 <?php while($row = $result->fetch_assoc()) { ?>
                     <tr>
+                        <td><input type="checkbox" name="ativo" value="1" <?php echo ($row['ativo'] == 1) ? 'checked' : ''; ?>></td>
                         <td><?php echo $row['id'];?></td>
                         <td><?php echo $row['nome'];?></td>
                         <td><?php echo $row['descricao'];?></td>
@@ -118,6 +122,8 @@ $result = $mysqli->query($sql_query);
                         <td><img height="50px" src="<?php echo $row['imagem'];?>" alt=""></td>
                         <td><a href="./editar_produto.php?editar=<?php echo $row['id'];?>" class="editar">Editar</a></td>
                         <td><a href="./deletar_produto.php?deletar=<?php echo $row['id'];?>" class="deletar">Deletar</a></td>
+                        <td><a href="./ativar_produto.php?atualizar=<?php echo $row['id'];?>" class="editar">Disponível</a></td>
+                        <td><a href="./desativar_produto.php?atualizar=<?php echo $row['id'];?>" class="deletar">Indisponível</a></td>
                     </tr>
                 <?php } ?>
             </tbody>

@@ -30,11 +30,14 @@ body {
 }
 
 header {
+    position: fixed;
+    width: 100%;
+    z-index: 9998;
     background-color: rgb(29, 48, 48);
     color: white;
     padding: 10px;
     text-align: center;
-    box-shadow: 2px 2px 10px black;
+    box-shadow: 2px 8px 10px black;
 }
 
 header h1 {
@@ -46,13 +49,15 @@ main {
     margin: auto;
     height: 100vh;
     width: 1000px;
+    box-shadow: 3px 3px 10px black;
 }
 
 .agarra {
     margin: auto;
     background-color: #5a3f2f86;
-    height: 100px;
+    height: 200px;
     width: 1000px;
+    box-shadow: 3px 8px 10px black;
 }
 
 .logBtn {

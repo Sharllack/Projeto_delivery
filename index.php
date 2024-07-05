@@ -20,7 +20,7 @@ if(!isset($_SESSION)) {
 </head>
 <body>
 
-    <div style="position: absolute; right:15px; top:20px;"><span class="openOrClosed">fechado</span></div>
+    <div style="position: fixed; right:15px; top:20px; z-index: 9999;"><span class="openOrClosed">fechado</span></div>
     <?php if(!isset($_SESSION['user'])):?>
         <div class="logout" style="display: none;"><a href="./logout_usuario.php" style="color: white; padding: 10px 20px; font-weight: bold; text-decoration: none;">Sair</a></div>
     <?php else: ?>
@@ -35,8 +35,8 @@ if(!isset($_SESSION)) {
 
     </section>
     <main>
-        <div style="left: 45%; top: 15%; margin: auto; position: absolute;">
-            <img src="./imagens/imagens_pincipal/comida-criolla-peru-peruvian-food-260nw-2191344515.webp" style="border-radius: 50%; height: 150px; width: 150px; border: 1px solid white;" alt="">
+        <div style="left: 45%; top: 20%; margin: auto; position: absolute;">
+            <img src="./imagens/imagens_pincipal/comida-criolla-peru-peruvian-food-260nw-2191344515.webp" style="border-radius: 50%; height: 150px; width: 150px; border: 1px solid white; box-shadow: 2px 2px 8px black;" alt="Logo do Restaurante">
             <p style="transform: translate(-50px, 0);">Restaurante • 20-90 min • <span class="sit"></span></p>
             <p style="transform: translate(-40px, 25px);">Horário de funcionamento hoje:</p>
             <p style="transform: translate(20px, 30px);"><strong>11:00 às 15:00</strong></p>
