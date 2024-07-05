@@ -2,6 +2,11 @@
 include('./protect.php');
 include('./conexao.php');
 
+if(!isset($_SESSION)){
+    session_name('admin_session');
+    session_start();
+}
+
 if(isset($_GET['deletar'])) {
     $protocolo = intval($_GET['deletar']);
     // Preparando a consulta com prepared statement
