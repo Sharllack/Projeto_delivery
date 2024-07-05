@@ -51,7 +51,7 @@ form {
 h1 {
     color: white;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.733);
-    margin-bottom: 25px;
+    margin-bottom: 5px;
 }
 
 input {
@@ -78,7 +78,7 @@ form a {
     display: block;
     color: white;
     text-decoration: none;
-    margin-bottom: 5%;
+    margin-bottom: 5px;
 }
 
 form a:hover {
@@ -88,7 +88,7 @@ form a:hover {
 button[type="submit"] {
     width: 100%;
     padding: 10px;
-    font-size: 1.2em;
+    font-weight: bold;
     cursor: pointer;
     background-color: blue;
     color: white;
@@ -98,13 +98,33 @@ button[type="submit"] {
     transition: .3s;
 }
 
-button[type="submit"]:hover {
+button[type="submit"]:hover, button[type="button"]:hover {
     transform: scale(1.05);
     box-shadow: 10px 10px 10px black;
 }
 
 
-button[type="submit"]:active {
+button[type="submit"]:active, button[type="button"]:active {
     transform: scale(.9);
     box-shadow: 3px 3px 10px black;
+}
+
+button[type="button"] {
+    width: 100%;
+    margin-top: 5px;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 3px 3px 10px black;
+    transition: .3s;
+    cursor: pointer;
+}
+
+button[type="button"] a {
+    color: black;
+}
+
+button[type="button"] a:hover {
+    text-decoration: none;
 }

@@ -51,6 +51,7 @@
             <a href="#">Esqueci a senha</a>
             <div class="btn">
                 <button type="submit">Entrar</button>
+                <button type="button"><a href="./cadastro_usuario.php">Cadastre-se</a></button>
             </div>
         </form>
         <div class="img">

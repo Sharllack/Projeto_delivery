@@ -33,20 +33,22 @@ if(!isset($_SESSION)) {
     <section class="agarra">
 
     </section>
-    <div style="left: 45%; top: 15%; margin: auto; position: absolute;">
-        <img src="./imagens/imagens_pincipal/comida-criolla-peru-peruvian-food-260nw-2191344515.webp" style="border-radius: 50%; height: 150px; width: 150px; border: 1px solid white;" alt="">
-        <p style="transform: translate(-50px, 0);">Restaurante • 20-90 min • <span class="sit"></span></p>
-        <p style="transform: translate(-40px, 25px);">Horário de funcionamento hoje:</p>
-        <p style="transform: translate(20px, 30px);"><strong>11:00 às 15:00</strong></p>
-        <hr style="transform: translate(-80px, 30px);">
-        <?php if(!isset($_SESSION['user'])):?>
-            <a href="./login_usuario.php" class="logBtn">FAÇA LOGIN</a>
-        <?php else: ?>
-            <p style="transform: translate(35px, 35px); font-weight: bold;"> Olá, <?php echo $_SESSION['nome']?>!</p>
-        <?php endif; ?>
-    </div>
     <main>
-        <section>
+        <div style="left: 45%; top: 15%; margin: auto; position: absolute;">
+            <img src="./imagens/imagens_pincipal/comida-criolla-peru-peruvian-food-260nw-2191344515.webp" style="border-radius: 50%; height: 150px; width: 150px; border: 1px solid white;" alt="">
+            <p style="transform: translate(-50px, 0);">Restaurante • 20-90 min • <span class="sit"></span></p>
+            <p style="transform: translate(-40px, 25px);">Horário de funcionamento hoje:</p>
+            <p style="transform: translate(20px, 30px);"><strong>11:00 às 15:00</strong></p>
+            <hr style="transform: translate(-80px, 30px);">
+            <?php if(!isset($_SESSION['user'])):?>
+                <a href="./login_usuario.php" class="logBtn">FAÇA LOGIN</a>
+            <?php else: ?>
+                <p style="transform: translate(35px, 35px); font-weight: bold;"> Olá, <?php echo $_SESSION['nome']?>!</p>
+            <?php endif; ?>
+        </div>
+        <section style="padding: 15px; color: darkslategray;">
+            <h1 style="padding-top: 250px;">ESCOLHA O SEU PRATO</h1>
+            
         </section>
     </main>
     <script src="./js_pincipal/funcoes.js"></script>
