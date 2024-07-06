@@ -53,14 +53,19 @@ main {
 }
 
 .home {
+    display: flex;
     position: fixed; 
     z-index: 9999; 
     left: 15px; 
-    top: 12px; 
-    background-color: #5A3F2F; 
-    box-shadow: 2px 2px 10px black; 
-    border-radius: 5px;
+    top: 5px; 
     transition: .3s;
+}
+
+.home a {
+    background-color: #5A3F2F; 
+    box-shadow: 2px 2px 10px black;
+    padding: 5px 25px;
+    border-radius: 5px;
 }
 
 .home:hover {
@@ -69,19 +74,32 @@ main {
 }
 
 .shopCart {
+    display: flex;
     position: fixed;
     z-index: 9999;
-    right: 200px; 
-    top: 12px; 
-    background-color: #5A3F2F; 
-    box-shadow: 2px 2px 10px black; 
-    border-radius: 5px;
+    right: 50px; 
+    bottom: 50px;
+    border-radius: 50%;
     transition: .3s;
+}
+
+.shopCart a {
+    background-color: #5A3F;
+    box-shadow: 2px 2px 10px black;
+    border-radius: 50%;
+    padding: 25px;
 }
 
 .shopCart:hover {
     box-shadow: 8px 8px 10px black;
     transform: scale(1.05);
+}
+
+.openOrClosedDiv {
+    position: fixed; 
+    right:15px; 
+    top:20px; 
+    z-index: 9999;
 }
 
 .logout {
@@ -132,15 +150,6 @@ main {
     font-size: 1.3em;
 }
 
-.complementoOpc {
-    font-weight: bold;
-}
-
-input[type="checkbox"] {
-    margin-top: 10px;
-    margin-right: 5px;
-}
-
 .text {
     margin-top: 15px;
 }
@@ -178,4 +187,39 @@ input[type="checkbox"] {
 .btn:active{
     transform: scale(.95);
     box-shadow: 1px 1px 10px black;
+}
+
+.titleText {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.qtd {
+    display: flex;
+    align-items: center;
+}
+
+#qtd {
+    margin: 0 10px;
+}
+
+.soma button{
+    color: white;
+    background-color: #27A143;
+    padding: 10px 5px;
+    border: none;
+    font-size: 1.3em;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+}
+
+.subtrai button {
+    color: white;
+    background-color: red;
+    padding: 10px 7px;
+    border: none;
+    font-size: 1.3em;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
 }

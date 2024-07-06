@@ -47,6 +47,7 @@
     }
 
     .infoPrincipal {
+        transform: translate(0, -50px);
         width: 100%;
     }
 
@@ -89,6 +90,10 @@
     .titleBebidas {
         margin-left: 3px;
         font-size: 1em;
+    }
+
+    .descricaoDoPrato {
+        font-size: .8em;
     }
 
 }
@@ -141,6 +146,7 @@
     }
 
     .infoPrincipal {
+        transform: translate(0, -50px);
         width: 100%;
     }
 
@@ -183,6 +189,10 @@
     .titleBebidas {
         margin-left: 3px;
         font-size: 1em;
+    }
+
+    .descricaoDoPrato {
+        font-size: .9em;
     }
 
 }

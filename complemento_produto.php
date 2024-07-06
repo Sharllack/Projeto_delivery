@@ -40,30 +40,15 @@ $result_bebibas = $mysqli->query($sql);
 <body>
 
     <div class="home">
-        <a href="./index.php" style="padding: 10px 20px;">
+        <a href="./index.php">
             <img src="./imagens/imagens_pincipal/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Home">
         </a>
     </div>
-    <div class="shopCart">
-        <a href="./carrinho.php" style="padding: 10px 20px;">
-            <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
-        </a>
-    </div>
-    <div style="position: fixed; right:15px; top:20px; z-index: 9999;">
+    <div class="openOrClosedDiv">
         <span class="openOrClosed">fechado</span>
     </div>
-    <?php if(!isset($_SESSION['user'])):?>
-        <div class="logout" style="display: none;">
-            <a href="./logout_usuario.php" style="color: white; padding: 10px 20px; font-weight: bold; text-decoration: none;">Sair</a>
-        </div>
-    <?php else: ?>
-        <div class="logout" style=" position: fixed; z-index: 9999;">
-            <a href="./logout_usuario.php" style="color: white; padding: 10px 20px; font-weight: bold; text-decoration: none;">Sair</a>
-        </div>
-    <?php endif; ?>
-
     <header>
-        <h1>Quentinhas da Vanessa</h1>
+        <h1 class="nomeLoja">Quentinhas da Vanessa</h1>
     </header>
     <main>
         <section style="padding: 15px;" class="produtoContainer">
@@ -74,10 +59,28 @@ $result_bebibas = $mysqli->query($sql);
                 <p class="preco"><?php echo "R$" . number_format($preco, 2, "," , "."); ?></p>
             </div>
         </section>
-        <h2 class="text">Alguma observação?</h2>
+        <div class="titleText">
+            <h2 class="text">Alguma observação?</h2>
+            <div class="qtd">
+                <div class="soma">
+                    <button type="button" onclick="adicionar()">+</button>
+                </div>
+                <div class="valor">
+                    <input type="number" name="qtd" id="qtd" value="0" style="width: 40px; text-align: center; height: 30px">
+                </div>
+                <div class="subtrai">
+                    <button type="button" onclick="subtrair()">-</button>
+                </div>
+            </div>
+        </div>
         <textarea name="obs" id="obs" placeholder="Ex.: Ponto da carne, mudar complemento, etc.."></textarea>
         <a href="./carrinho.php?adicionar=<?php echo $protocolo; ?>" class="btn">ADICIONAR</a>
     </main>
+    <div class="shopCart">
+        <a href="./carrinho.php" style="padding: 10px 20px;">
+            <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
+        </a>
+    </div>
     <script src="./js_complemento_produto/funcoes.js"></script>
 </body>
 </html>

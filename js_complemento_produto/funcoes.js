@@ -13,3 +13,21 @@ function atualizarSituacao() {
 
 atualizarSituacao(); // Chama a função imediatamente ao carregar a página
 setInterval(atualizarSituacao, 60000); // Chama a função a cada minuto
+
+function adicionar() {
+    let soma = document.querySelector("#qtd");
+    let novoValor = parseInt(soma.value);
+
+    novoValor = novoValor + 1;
+
+    soma.value = novoValor;
+}
+
+function subtrair() {
+    let soma = document.querySelector("#qtd");
+    let novoValor = parseInt(soma.value);
+
+    novoValor = novoValor - 1;
+
+    soma.value = novoValor;
+}

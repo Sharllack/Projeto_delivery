@@ -59,7 +59,7 @@ $result_bebibas = $mysqli->query($sql);
             <?php if(!isset($_SESSION['user'])):?>
                 <a href="./login_usuario.php" class="logBtn">FAÇA LOGIN</a>
             <?php else: ?>
-                <p class="nomeDoCliente"> Olá, <strong><?php echo $_SESSION['nome']?></strong>!</p>
+                <p class="nomeDoCliente"> Seja Bem-Vindo(a), <strong><?php echo $_SESSION['nome']?></strong>!</p>
             <?php endif; ?>
         </div>
         <section style="padding: 15px;" class="secPratos">
