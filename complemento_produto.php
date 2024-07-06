@@ -74,15 +74,9 @@ $result_bebibas = $mysqli->query($sql);
                 <p class="preco"><?php echo "R$" . number_format($preco, 2, "," , "."); ?></p>
             </div>
         </section>
-        <section>
-            <h1>Selecione 1 Complemento</h1>
-            <input type="checkbox" name="fritas" id="fritas"><span class="complementoOpc">Fritas</span><br><br>
-            <input type="checkbox" name="purê" id="purê"><span class="complementoOpc">Purê</span><br><br>
-            <input type="checkbox" name="salada" id="salada"><span class="complementoOpc">Salada</span><br><br>
-        </section>
         <h2 class="text">Alguma observação?</h2>
-        <textarea name="obs" id="obs" placeholder="Ex.: Ponto da carne, retire o arroz, etc.."></textarea>
-        <a href="#" class="btn">ADICIONAR</a>
+        <textarea name="obs" id="obs" placeholder="Ex.: Ponto da carne, mudar complemento, etc.."></textarea>
+        <a href="./carrinho.php?adicionar=<?php echo $protocolo; ?>" class="btn">ADICIONAR</a>
     </main>
     <script src="./js_complemento_produto/funcoes.js"></script>
 </body>
