@@ -25,11 +25,27 @@ $result_bebibas = $mysqli->query($sql);
 </head>
 <body>
 
-    <div style="position: fixed; right:15px; top:20px; z-index: 9999;"><span class="openOrClosed">fechado</span></div>
+    <div class="home">
+        <a href="./index.php" style="padding: 10px 20px;">
+            <img src="./imagens/imagens_pincipal/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Home">
+        </a>
+    </div>
+    <div class="shopCart">
+        <a href="./carrinho.php" style="padding: 10px 20px;">
+            <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
+        </a>
+    </div>
+    <div style="position: fixed; right:15px; top:20px; z-index: 9999;">
+        <span class="openOrClosed">fechado</span>
+    </div>
     <?php if(!isset($_SESSION['user'])):?>
-        <div class="logout" style="display: none;"><a href="./logout_usuario.php" style="color: white; padding: 10px 20px; font-weight: bold; text-decoration: none;">Sair</a></div>
+        <div class="logout" style="display: none;">
+            <a href="./logout_usuario.php" style="color: white; padding: 10px 20px; font-weight: bold; text-decoration: none;">Sair</a>
+        </div>
     <?php else: ?>
-        <div class="logout" style=" position: fixed; z-index: 9999;"><a href="./logout_usuario.php" style="color: white; padding: 10px 20px; font-weight: bold; text-decoration: none;">Sair</a></div>
+        <div class="logout" style=" position: fixed; z-index: 9999;">
+            <a href="./logout_usuario.php" style="color: white; padding: 10px 20px; font-weight: bold; text-decoration: none;">Sair</a>
+        </div>
     <?php endif; ?>
 
     <header>
@@ -56,14 +72,17 @@ $result_bebibas = $mysqli->query($sql);
             <h1 style="padding-top: 250px; margin-bottom: 15px; color: darkslategray; margin-left: 15px">ESCOLHA O SEU PRATO</h1>
             <div class="pratosContainer">
                 <?php while($row = $result->fetch_assoc()) { ?>
-                    <a href="#" class="linkPratos">
+                    <a href="./complemento_produto.php?comprar=<?php echo $row['id'];?>" class="linkPratos">
                         <div class="pratos">
                             <div class="imgPrato">
                                 <img height="80px" width="80px" src="./conexao/<?php echo $row['imagem'];?>" alt="">
                             </div>
                             <div class="info">
                                 <h1><?php echo $row['nome']?></h1>
-                                <p><?php echo $row['descricao']?></p>
+                                <p style="color: rgb(119, 119, 119);">(<?php echo $row['descricao']?>)</p>
+                            </div>
+                            <div class="preco" style="display: block; width: 100%; font-weight: bold; color: #27A143; font-size: 1.3em;">
+                                <p style="float: right;"><?php echo "R$" . number_format($row['preco'], 2, "," , ".")?></p>
                             </div>
                         </div>
                     </a>
@@ -73,19 +92,22 @@ $result_bebibas = $mysqli->query($sql);
         <section style="padding: 15px;">
             <h1 style="margin-bottom: 15px; color: darkslategray; margin-left: 15px">BEBIDAS</h1>
                 <div class="pratosContainer">
-                    <?php while($row = $result_bebibas->fetch_assoc()) { ?>
-                        <a href="#" class="linkPratos">
-                            <div class="pratos">
-                                <div class="imgPrato">
-                                    <img height="80px" width="80px" src="./conexao/<?php echo $row['imagem'];?>" alt="">
-                                </div>
-                                <div class="info">
-                                    <h1><?php echo $row['nome']?></h1>
-                                    <p><?php echo $row['descricao']?></p>
-                                </div>
+                <?php while($row = $result_bebibas->fetch_assoc()) { ?>
+                    <a href="./complemento_produto.php?comprar=<?php echo $row['id'];?>" class="linkPratos">
+                        <div class="pratos">
+                            <div class="imgPrato">
+                                <img height="80px" width="80px" src="./conexao/<?php echo $row['imagem'];?>" alt="">
                             </div>
-                        </a>
-                    <?php } ?>
+                            <div class="info">
+                                <h1><?php echo $row['nome']?></h1>
+                                <p style="color: rgb(119, 119, 119);">(<?php echo $row['descricao']?>)</p>
+                            </div>
+                            <div class="preco" style="display: block; width: 100%; font-weight: bold; color: #27A143; font-size: 1.3em;">
+                                <p style="float: right;"><?php echo "R$" . number_format($row['preco'], 2, "," , ".")?></p>
+                            </div>
+                        </div>
+                    </a>
+                <?php } ?>
                 </div>
         </section>
     </main>
