@@ -28,7 +28,8 @@ if(isset($_GET['deletar'])) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if (isset($_FILES['imagem']) && isset($_POST['nome']) && isset($_POST['preco']) && isset($_POST['descricao'])) {
+    if (isset($_FILES['imagem']) && isset($_POST['nome']) && isset($_POST['preco']) && isset($_POST['descricao']) && isset($_POST['opcoes'])) {
+        $categoria = $_POST['opcoes'];
         $nomeDoProduto = $_POST['nome'];
         $preco = $_POST['preco'];
         $descricao = $_POST['descricao'];
@@ -48,8 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if($deuCerto) {
             // Inserindo o produto com prepared statement
-            $stmt = $mysqli->prepare("INSERT INTO produtos (nome, descricao, preco, imagem) VALUES (?, ?, ?, ?)");
-            $stmt->bind_param("ssds", $nomeDoProduto, $descricao, $preco, $path);
+            $stmt = $mysqli->prepare("INSERT INTO produtos (nome, descricao, preco, imagem, categoria) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssdss", $nomeDoProduto, $descricao, $preco, $path, $categoria);
             $stmt->execute();
             $stmt->close();
         } else {
@@ -61,8 +62,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Consulta para obter todos os produtos
-$sql_query = "SELECT * FROM produtos";
+$sql_query = "SELECT * FROM produtos WHERE categoria = 'prato'";
 $result = $mysqli->query($sql_query);
+
+$sql = "SELECT * FROM produtos WHERE categoria = 'bebida'";
+$result_bebida = $mysqli->query($sql);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -83,6 +89,11 @@ $result = $mysqli->query($sql_query);
     <main>
         <form action="" method="post" enctype="multipart/form-data">
             <h1>Cadastre</h1>
+            <select name="opcoes" id="opcoes" style="padding: 15px; margin-bottom: 15px; border-radius: 25px; border: none; box-shadow: inset 2px 2px 10px lightgray; outline: none; font-weight: bold;">
+                <option value="" style="text-align: center;">Selecione a Categoria</option>
+                <option value="prato">Pratos</option>
+                <option value="bebida">Bebidas</option>
+            </select>
             <input type="text" name="nome" id="nome" placeholder="Nome do Produto" required>
             <input type="text" name="descricao" id="descricao" placeholder="Descrição do Produto" required>
             <input type="number" name="preco" id="preco" placeholder="Valor do Produto" step="0.01" required>
@@ -99,6 +110,7 @@ $result = $mysqli->query($sql_query);
         </form>
 
         <table>
+            <h1 style="text-align: center;">Pratos</h1>
             <thead>
                 <th>Disponibilidade</th>
                 <th>id</th>
@@ -113,6 +125,37 @@ $result = $mysqli->query($sql_query);
             </thead>
             <tbody>
                 <?php while($row = $result->fetch_assoc()) { ?>
+                    <tr>
+                        <td><input type="checkbox" name="ativo" value="1" <?php echo ($row['ativo'] == 1) ? 'checked' : ''; ?>></td>
+                        <td><?php echo $row['id'];?></td>
+                        <td><?php echo $row['nome'];?></td>
+                        <td><?php echo $row['descricao'];?></td>
+                        <td id="desc"><?php echo "R$" . number_format($row['preco'], 2, "," , ".")?></td>
+                        <td><img height="50px" src="<?php echo $row['imagem'];?>" alt=""></td>
+                        <td><a href="./editar_produto.php?editar=<?php echo $row['id'];?>" class="editar">Editar</a></td>
+                        <td><a href="./deletar_produto.php?deletar=<?php echo $row['id'];?>" class="deletar">Deletar</a></td>
+                        <td><a href="./ativar_produto.php?atualizar=<?php echo $row['id'];?>" class="editar">Disponível</a></td>
+                        <td><a href="./desativar_produto.php?atualizar=<?php echo $row['id'];?>" class="deletar">Indisponível</a></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+        <table>
+            <h1 style="text-align: center;">Bebidas</h1>
+            <thead>
+                <th>Disponibilidade</th>
+                <th>id</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Imagem</th>
+                <th>Editar</th>
+                <th>Deletar</th>
+                <th>Disponível</th>
+                <th>Indisponível</th>
+            </thead>
+            <tbody>
+                <?php while($row = $result_bebida->fetch_assoc()) { ?>
                     <tr>
                         <td><input type="checkbox" name="ativo" value="1" <?php echo ($row['ativo'] == 1) ? 'checked' : ''; ?>></td>
                         <td><?php echo $row['id'];?></td>

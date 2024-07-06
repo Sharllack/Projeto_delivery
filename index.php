@@ -7,6 +7,11 @@ if(!isset($_SESSION)) {
     session_start();
 };
 
+$sql_query = "SELECT * FROM produtos WHERE ativo = 1 AND categoria = 'prato'";
+$result = $mysqli->query($sql_query);
+
+$sql = "SELECT * FROM produtos WHERE ativo = 1 AND categoria = 'bebida'";
+$result_bebibas = $mysqli->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -47,9 +52,41 @@ if(!isset($_SESSION)) {
                 <p style="transform: translate(35px, 35px); font-weight: bold;"> Olá, <?php echo $_SESSION['nome']?>!</p>
             <?php endif; ?>
         </div>
-        <section style="padding: 15px; color: darkslategray;">
-            <h1 style="padding-top: 250px;">ESCOLHA O SEU PRATO</h1>
-            
+        <section style="padding: 15px;">
+            <h1 style="padding-top: 250px; margin-bottom: 15px; color: darkslategray; margin-left: 15px">ESCOLHA O SEU PRATO</h1>
+            <div class="pratosContainer">
+                <?php while($row = $result->fetch_assoc()) { ?>
+                    <a href="#" class="linkPratos">
+                        <div class="pratos">
+                            <div class="imgPrato">
+                                <img height="80px" width="80px" src="./conexao/<?php echo $row['imagem'];?>" alt="">
+                            </div>
+                            <div class="info">
+                                <h1><?php echo $row['nome']?></h1>
+                                <p><?php echo $row['descricao']?></p>
+                            </div>
+                        </div>
+                    </a>
+                <?php } ?>
+            </div>
+        </section>
+        <section style="padding: 15px;">
+            <h1 style="margin-bottom: 15px; color: darkslategray; margin-left: 15px">BEBIDAS</h1>
+                <div class="pratosContainer">
+                    <?php while($row = $result_bebibas->fetch_assoc()) { ?>
+                        <a href="#" class="linkPratos">
+                            <div class="pratos">
+                                <div class="imgPrato">
+                                    <img height="80px" width="80px" src="./conexao/<?php echo $row['imagem'];?>" alt="">
+                                </div>
+                                <div class="info">
+                                    <h1><?php echo $row['nome']?></h1>
+                                    <p><?php echo $row['descricao']?></p>
+                                </div>
+                            </div>
+                        </a>
+                    <?php } ?>
+                </div>
         </section>
     </main>
     <script src="./js_pincipal/funcoes.js"></script>
