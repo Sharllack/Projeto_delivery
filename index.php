@@ -43,7 +43,7 @@ $result_bebibas = $mysqli->query($sql);
     <?php endif; ?>
 
     <header>
-        <h1 class="nomeLoja">Quentinhas da Vanessa</h1>
+        <h1 class="nomeLoja">Quentinhas do Lucas</h1>
     </header>
 
     <section class="agarra">
