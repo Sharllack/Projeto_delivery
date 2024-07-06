@@ -17,6 +17,7 @@
         $usuario = $sql_query->fetch_assoc();
         if(password_verify($sen, $usuario['pass'])) {
             if(!isset($_SESSION)) {
+                session_name('admin_session');
                 session_start();
             }
 

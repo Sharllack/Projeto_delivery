@@ -29,7 +29,7 @@ $result_bebibas = $mysqli->query($sql);
     <?php if(!isset($_SESSION['user'])):?>
         <div class="logout" style="display: none;"><a href="./logout_usuario.php" style="color: white; padding: 10px 20px; font-weight: bold; text-decoration: none;">Sair</a></div>
     <?php else: ?>
-        <div class="logout"><a href="./logout_usuario.php" style="color: white; padding: 10px 20px; font-weight: bold; text-decoration: none;">Sair</a></div>
+        <div class="logout" style=" position: fixed; z-index: 9999;"><a href="./logout_usuario.php" style="color: white; padding: 10px 20px; font-weight: bold; text-decoration: none;">Sair</a></div>
     <?php endif; ?>
 
     <header>

@@ -1,6 +1,7 @@
 <?php 
 
 if(!isset($_SESSION)) {
+    session_name('admin_session');
     session_start();
 }
 
