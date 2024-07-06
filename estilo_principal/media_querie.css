@@ -47,20 +47,12 @@
     }
 
     .infoPrincipal {
-        left: 35%;
-        top: 17%;
+        width: 100%;
     }
 
     .logoRestaurante {
         width: 100px;
         height: 100px;
-    }
-
-    .tempoDeEntrega {
-        display: block;
-        width: 100%;
-        transform: translate(-100px, 0);
-        width: 100%;
     }
 
     .open, .closed {
@@ -69,16 +61,13 @@
     }
 
     .horarioDeFuncionamento {
-        transform: translate(-60px, 25px);
     }
 
     .hora {
-        transform: translate(-5px, 30px);
     }
 
     .hr {
         width: 90%;
-        transform: translate(-90px, 30px);
     }
 
     .nomeDoCliente {

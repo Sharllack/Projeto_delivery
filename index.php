@@ -53,13 +53,13 @@ $result_bebibas = $mysqli->query($sql);
         <div class="infoPrincipal">
             <img src="./imagens/imagens_pincipal/comida-criolla-peru-peruvian-food-260nw-2191344515.webp" alt="Logo do Restaurante" class="logoRestaurante">
             <p class="tempoDeEntrega">Restaurante • 20-90 min • <span class="sit"></span></p>
-            <p class="horarioDeFuncionamento">Horário de funcionamento hoje:</p>
+            <p class="horarioDeFuncionamento"><strong>Horário de funcionamento hoje:</strong></p>
             <p class="hora"><strong>11:00 às 15:00</strong></p>
             <hr class="hr">
             <?php if(!isset($_SESSION['user'])):?>
                 <a href="./login_usuario.php" class="logBtn">FAÇA LOGIN</a>
             <?php else: ?>
-                <p class="nomeDoCliente"> Olá, <?php echo $_SESSION['nome']?>!</p>
+                <p class="nomeDoCliente"> Olá, <strong><?php echo $_SESSION['nome']?></strong>!</p>
             <?php endif; ?>
         </div>
         <section style="padding: 15px;" class="secPratos">

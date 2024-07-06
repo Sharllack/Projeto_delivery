@@ -120,8 +120,12 @@ main {
     box-shadow: 2px 2px 8px black;
 }
 
-.tempoDeEntrega, .hora, .horarioDeFuncionamento, .hr, .nomeDoCliente{
+.tempoDeEntrega, .hora, .horarioDeFuncionamento{
     margin-top: 15px;
+}
+
+.hr, .nomeDoCliente {
+    margin-top: 10px;
 }
 
 .hr {
