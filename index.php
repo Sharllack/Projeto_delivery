@@ -30,7 +30,7 @@ $result_bebibas = $mysqli->query($sql);
             <img src="./imagens/imagens_pincipal/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Home">
         </a>
     </div>
-    <div style="position: fixed; right:15px; top:20px; z-index: 9999;" class="openOrClosedDiv">
+    <div class="openOrClosedDiv">
         <span class="openOrClosed">fechado</span>
     </div>
     <?php if(!isset($_SESSION['user'])):?>

@@ -29,6 +29,13 @@ body {
     border-radius: 5px;
 }
 
+.openOrClosedDiv {
+    position: fixed; 
+    right:15px; 
+    top:20px; 
+    z-index: 9999;
+}
+
 header {
     position: fixed;
     width: 100%;
@@ -103,9 +110,9 @@ main {
 }
 
 .infoPrincipal {
-    width: 74.2%;
-    top: 20%; 
-    position: absolute;
+    width: 100%;
+    top: 20%;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -173,7 +180,7 @@ main {
 }
 
 .pratosTitle {
-    padding-top: 250px; 
+    margin-top: 15px; 
     margin-bottom: 15px;
     color: darkslategray; 
     margin-left: 15px;
