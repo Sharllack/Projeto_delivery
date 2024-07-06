@@ -52,14 +52,19 @@ main {
 }
 
 .home {
+    display: flex;
     position: fixed; 
     z-index: 9999; 
     left: 15px; 
-    top: 12px; 
-    background-color: #5A3F2F; 
-    box-shadow: 2px 2px 10px black; 
-    border-radius: 5px;
+    top: 5px; 
     transition: .3s;
+}
+
+.home a {
+    background-color: #5A3F2F; 
+    box-shadow: 2px 2px 10px black;
+    padding: 5px 25px;
+    border-radius: 5px;
 }
 
 .home:hover {
@@ -68,14 +73,20 @@ main {
 }
 
 .shopCart {
+    display: flex;
     position: fixed;
     z-index: 9999;
-    right: 200px; 
-    top: 12px; 
-    background-color: #5A3F2F; 
-    box-shadow: 2px 2px 10px black; 
-    border-radius: 5px;
+    right: 50px; 
+    bottom: 50px;
+    border-radius: 50%;
     transition: .3s;
+}
+
+.shopCart a {
+    background-color: #5A3F;
+    box-shadow: 2px 2px 10px black;
+    border-radius: 50%;
+    padding: 25px;
 }
 
 .shopCart:hover {
@@ -91,9 +102,34 @@ main {
     box-shadow: 3px 8px 10px black;
 }
 
+.infoPrincipal {
+    width: 74.2%;
+    top: 20%; 
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoRestaurante {
+    border-radius: 50%; 
+    height: 150px; 
+    width: 150px; 
+    border: 1px solid white;
+    box-shadow: 2px 2px 8px black;
+}
+
+.tempoDeEntrega, .hora, .horarioDeFuncionamento, .hr, .nomeDoCliente{
+    margin-top: 15px;
+}
+
+.hr {
+    width: 300px;
+}
+
 .logBtn {
     display: block;
-    transform: translate(10px, 40px);
     background-color: #5A3F2F;
     color: white;
     text-decoration: none;
@@ -110,19 +146,33 @@ main {
 }
 
 .logout {
+    display: flex;
     position: absolute;
     right:180px;
     top:10px;
-    padding: 10px 15px;
-    background-color: red;
-    border-radius: 5px;
-    box-shadow: 3px 3px 8px black;
     transition: .3s;
+}
+
+.logout a {
+    box-shadow: 3px 3px 8px black;
+    background-color: red;
+    color: white; 
+    padding: 10px 25px;
+    font-weight: bold; 
+    text-decoration: none;
+    border-radius: 5px;
 }
 
 .logout:hover {
     box-shadow: 10px 10px 10px black;
     transform: scale(1.05);
+}
+
+.pratosTitle {
+    padding-top: 250px; 
+    margin-bottom: 15px;
+    color: darkslategray; 
+    margin-left: 15px;
 }
 
 .linkPratos {
@@ -154,6 +204,12 @@ main {
     text-decoration: none;
 }
 
+.infoGeral {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
 .pratosContainer {
     width: 100%;
     height: 80%;
@@ -164,4 +220,28 @@ main {
 
 .info {
     margin-left: 25px;
+}
+
+.preco {
+    display: block; 
+    width: 100%; 
+    font-weight: bold; 
+    color: #27A143; 
+    font-size: 1.3em;
+}
+
+.preco p {
+    float: right;
+}
+
+.descricaoDoPrato {
+    width: 80%;
+    word-break: break-all;
+    text-align: justify;
+}
+
+.titleBebidas {
+    margin-bottom: 15px; 
+    color: darkslategray; 
+    margin-left: 15px;
 }
