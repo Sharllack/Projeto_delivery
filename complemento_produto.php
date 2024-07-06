@@ -77,7 +77,7 @@ $result_bebibas = $mysqli->query($sql);
         <a href="./carrinho.php?adicionar=<?php echo $protocolo; ?>" class="btn">ADICIONAR</a>
     </main>
     <div class="shopCart">
-        <a href="./carrinho.php" style="padding: 10px 20px;">
+        <a href="./carrinho.php">
             <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
         </a>
     </div>
