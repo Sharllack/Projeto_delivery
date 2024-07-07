@@ -237,7 +237,6 @@ main {
 
 .preco {
     display: block; 
-    width: 100%; 
     font-weight: bold; 
     color: #27A143; 
     font-size: 1.3em;
@@ -248,7 +247,7 @@ main {
 }
 
 .descricaoDoPrato {
-    width: 80%;
+    width: 90%;
     word-break: break-all;
     text-align: justify;
 }
