@@ -104,7 +104,6 @@ main {
 
 .secPratos {
     width: 100%;
-    padding: 15px;
 }
 
 .pratosTitle {
@@ -150,7 +149,7 @@ main {
     margin-left: 15px;
 }
 
-#qtd {
+.quantidade {
     background-color: lightgray;
     border-radius: 50%;
     margin: 0 5px;

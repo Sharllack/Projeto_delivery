@@ -53,17 +53,17 @@ $total = 0;
                                         <p style="color: rgb(119, 119, 119);" class="descricaoDoPrato">(<?php echo $row['descricao']?>)</p>
                                     </div>
                                     <div class="preco">
-                                        <p><?php echo "R$" . number_format($row['preco'], 2, "," , ".")?></p>
+                                        <p class="precoProduto"><?php echo "R$" . number_format($row['preco'], 2, "," , ".")?></p>
                                         <div class="qtd">
                                             <div class="qtd">
                                                 <div class="soma">
-                                                    <button type="button" onclick="adicionar(this)">+</button>
+                                                    <button type="button" >+</button>
                                                 </div>
                                                 <div class="valor">
-                                                    <input type="number" name="qtd" id="qtd" value="<?php echo $row['quantidade']?>" style="font-weight: bold; text-align:center;">
+                                                    <input type="number" name="qtd" class="quantidade" value="<?php echo $row['quantidade']?>" data-preco="<?php echo $row['preco']?>" style="font-weight: bold; text-align:center;">
                                                 </div>
                                                 <div class="subtrai">
-                                                    <button type="button" onclick="subtrair(this)">-</button>
+                                                    <button type="button" >-</button>
                                                 </div>
                                                 <div>
                                                     <a href="./remover_produto.php?remover=<?php echo $row['idCarrinho']; ?>" style="display:none;" class="btnRemove">REMOVER</a>
