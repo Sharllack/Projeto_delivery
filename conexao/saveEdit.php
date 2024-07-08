@@ -23,7 +23,7 @@
         $deuCerto = move_uploaded_file($imgPrin['tmp_name'], $path);
 
         if($deuCerto) {
-            $sqlUpdate = "UPDATE produtos SET nome='$nomeDoProduto', descricao='$descricao', preco='$preco', imagem='$path' WHERE id='$protocolo'";
+            $sqlUpdate = "UPDATE produtos SET nome='$nomeDoProduto', descricao='$descricao', preco='$preco', imagem='$path' WHERE idProdutos ='$protocolo'";
         }
 
         $result = $mysqli->query($sqlUpdate);

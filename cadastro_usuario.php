@@ -18,7 +18,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"); {
         $usuario = $_POST['user'];
         $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
-        $mysqli->query("INSERT INTO usuarios (nome, cell, estado, cidade, bairro, rua, numero, complemento, referencia, cep, usuario, senha) VALUES('$nome', '$cell', '$estado', '$cidade', '$bairro', '$rua', '$numero', '$complemento', '$referencia', '$cep', '$usuario', '$senha')") or die($mysqli->error);
+        $mysqli->query("INSERT INTO usuarios (nomeCliente, cell, estado, cidade, bairro, rua, numero, complemento, referencia, cep, usuario, senha) VALUES('$nome', '$cell', '$estado', '$cidade', '$bairro', '$rua', '$numero', '$complemento', '$referencia', '$cep', '$usuario', '$senha')") or die($mysqli->error);
 
         sleep(2);
 

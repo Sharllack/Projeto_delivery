@@ -6,7 +6,7 @@ include('./conexao.php');
 if(isset($_GET['editar'])) {
     
     $protocolo = intval($_GET['editar']);
-    $sql_query = "SELECT * FROM produtos WHERE id = '$protocolo'" or die($mysqli->error);
+    $sql_query = "SELECT * FROM produtos WHERE idProdutos = '$protocolo'" or die($mysqli->error);
     $arquivo = $mysqli->query($sql_query);
 
     while($user_data = mysqli_fetch_assoc($arquivo)) {

@@ -10,8 +10,8 @@ if(!isset($_SESSION)) {
 if(isset($_GET['comprar'])) {
     
     $protocolo = intval($_GET['comprar']);
-    $sql_query = "SELECT * FROM produtos WHERE id = '$protocolo'" or die($mysqli->error);
-    $arquivo = $mysqli->query($sql_query);
+    $sql_query = "SELECT * FROM produtos WHERE idProdutos = '$protocolo'";
+    $arquivo = $mysqli->query($sql_query) or die ($mysqli->error);
 
     while($user_data = mysqli_fetch_assoc($arquivo)) {
         $nomeDoProduto = $user_data['nome'];
@@ -59,22 +59,24 @@ $result_bebibas = $mysqli->query($sql);
                 <p class="preco"><?php echo "R$" . number_format($preco, 2, "," , "."); ?></p>
             </div>
         </section>
-        <div class="titleText">
-            <h2 class="text">Alguma observação?</h2>
-            <div class="qtd">
-                <div class="soma">
-                    <button type="button" onclick="adicionar()">+</button>
-                </div>
-                <div class="valor">
-                    <input type="number" name="qtd" id="qtd" value="0" style="width: 40px; text-align: center; height: 30px">
-                </div>
-                <div class="subtrai">
-                    <button type="button" onclick="subtrair()">-</button>
+        <form action="./adicionar_ao_carrinho.php?adicionar=<?php echo $protocolo; ?>" method="POST">
+            <div class="titleText">
+                <h2 class="text">Alguma observação?</h2>
+                <div class="qtd">
+                    <div class="soma">
+                        <button type="button" onclick="adicionar()">+</button>
+                    </div>
+                    <div class="valor">
+                        <input type="number" name="qtd" id="qtd" value="0" style="font-weight: bold; text-align:center;">
+                    </div>
+                    <div class="subtrai">
+                        <button type="button" onclick="subtrair()">-</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <textarea name="obs" id="obs" placeholder="Ex.: Ponto da carne, mudar complemento, etc.."></textarea>
-        <a href="./carrinho.php?adicionar=<?php echo $protocolo; ?>" class="btn">ADICIONAR</a>
+            <textarea name="obs" id="obs" placeholder="Ex.: Ponto da carne, mudar complemento, etc.."></textarea>
+            <button type="submit" class="btn">ADICIONAR <span class="span" style="background-color: white; color: black; padding: 5px; border-radius: 50%;">0</span></button>
+        </form>
     </main>
     <div class="shopCart">
         <a href="./carrinho.php">

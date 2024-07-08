@@ -5,8 +5,8 @@ include('./conexao.php');
 if($_SERVER["REQUEST_METHOD"] == "POST"); {
     if(isset($_POST['user']) && isset($_POST['pass'])) {
 
-        // $usu = $mysqli->real_escape_string($_POST['user']); //para limpar a str
-        // $sen = $mysqli->real_escape_string($_POST['pass']);
+        $usu = $mysqli->real_escape_string($_POST['user']);
+        $sen = $mysqli->real_escape_string($_POST['pass']);
 
         $user = $_POST['user'];
         $pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);

@@ -66,7 +66,7 @@ $result_bebibas = $mysqli->query($sql);
             <h1 class="pratosTitle">ESCOLHA O SEU PRATO</h1>
             <div class="pratosContainer">
                 <?php while($row = $result->fetch_assoc()) { ?>
-                    <a href="./complemento_produto.php?comprar=<?php echo $row['id'];?>" class="linkPratos">
+                    <a href="./complemento_produto.php?comprar=<?php echo $row['idProdutos'];?>" class="linkPratos">
                         <div class="pratos">
                             <div class="imgPrato">
                                 <img height="80px" width="80px" src="./conexao/<?php echo $row['imagem'];?>" alt="">
@@ -89,7 +89,7 @@ $result_bebibas = $mysqli->query($sql);
             <h1 class="titleBebidas">BEBIDAS</h1>
                 <div class="pratosContainer">
                 <?php while($row = $result_bebibas->fetch_assoc()) { ?>
-                    <a href="./complemento_produto.php?comprar=<?php echo $row['id'];?>" class="linkPratos">
+                    <a href="./complemento_produto.php?comprar=<?php echo $row['idProdutos'];?>" class="linkPratos">
                         <div class="pratos">
                             <div class="imgPrato">
                                 <img height="80px" width="80px" src="./conexao/<?php echo $row['imagem'];?>" alt="">

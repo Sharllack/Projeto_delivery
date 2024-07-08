@@ -5,8 +5,8 @@
 
     if(isset($_POST['user']) || isset($_POST['pass'])) { //Verificar se existe a variável.
 
-         $usu = $mysqli->real_escape_string($_POST['user']); //para limpar a str
-         $sen = $mysqli->real_escape_string($_POST['pass']); //para limpar a str
+        $usu = $mysqli->real_escape_string($_POST['user']);
+        $sen = $mysqli->real_escape_string($_POST['pass']);
 
         $usu = $_POST['user'];
         $sen = $_POST['pass'];

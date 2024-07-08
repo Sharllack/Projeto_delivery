@@ -5,8 +5,8 @@
 
     if(isset($_POST['user']) || isset($_POST['pass'])) { //Verificar se existe a variável.
 
-         $usu = $mysqli->real_escape_string($_POST['user']); //para limpar a str
-         $sen = $mysqli->real_escape_string($_POST['pass']); //para limpar a str
+         $usu = $mysqli->real_escape_string($_POST['user']);
+         $sen = $mysqli->real_escape_string($_POST['pass']);
 
         $usu = $_POST['user'];
         $sen = $_POST['pass'];
@@ -21,8 +21,18 @@
                 session_start();
             }
 
-            $_SESSION['user'] = $usuario['usuario']; // session é uma variável que continua válida em mais de uma tela.
-            $_SESSION['nome'] = $usuario['nome'];
+            $_SESSION['idUsuario'] = $usuario['idUsuarios']; // session é uma variável que continua válida em mais de uma tela.
+            $_SESSION['user'] = $usuario['usuario'];
+            $_SESSION['nome'] = $usuario['nomeCliente'];
+            $_SESSION['contato'] = $usuario['cell'];
+            $_SESSION['estado'] = $usuario['estado'];
+            $_SESSION['cidade'] = $usuario['cidade'];
+            $_SESSION['bairro'] = $usuario['bairro'];
+            $_SESSION['rua'] = $usuario['rua'];
+            $_SESSION['numero'] = $usuario['numero'];
+            $_SESSION['complemento'] = $usuario['complemento'];
+            $_SESSION['referencia'] = $usuario['referencia'];
+            $_SESSION['cep'] = $usuario['cep'];
 
             header("Location: ./index.php"); //para redirecionar a pág.
 

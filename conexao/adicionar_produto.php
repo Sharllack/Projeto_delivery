@@ -10,7 +10,7 @@ if(!isset($_SESSION)){
 if(isset($_GET['deletar'])) {
     $protocolo = intval($_GET['deletar']);
     // Preparando a consulta com prepared statement
-    $stmt = $mysqli->prepare("SELECT imagem FROM produtos WHERE id = ?");
+    $stmt = $mysqli->prepare("SELECT imagem FROM produtos WHERE idProdutos = ?");
     $stmt->bind_param("i", $protocolo);
     $stmt->execute();
     $stmt->bind_result($imagem);
@@ -19,7 +19,7 @@ if(isset($_GET['deletar'])) {
 
     // Deletando o produto e a imagem se existir
     if(file_exists($imagem) && unlink($imagem)) {
-        $stmt = $mysqli->prepare("DELETE FROM produtos WHERE id = ?");
+        $stmt = $mysqli->prepare("DELETE FROM produtos WHERE idProdutos = ?");
         $stmt->bind_param("i", $protocolo);
         $stmt->execute();
         $stmt->close();
@@ -127,15 +127,15 @@ $result_bebida = $mysqli->query($sql);
                 <?php while($row = $result->fetch_assoc()) { ?>
                     <tr>
                         <td><input type="checkbox" name="ativo" value="1" <?php echo ($row['ativo'] == 1) ? 'checked' : ''; ?>></td>
-                        <td><?php echo $row['id'];?></td>
+                        <td><?php echo $row['idProdutos'];?></td>
                         <td><?php echo $row['nome'];?></td>
                         <td><?php echo $row['descricao'];?></td>
                         <td id="desc"><?php echo "R$" . number_format($row['preco'], 2, "," , ".")?></td>
                         <td><img height="50px" src="<?php echo $row['imagem'];?>" alt=""></td>
-                        <td><a href="./editar_produto.php?editar=<?php echo $row['id'];?>" class="editar">Editar</a></td>
-                        <td><a href="./deletar_produto.php?deletar=<?php echo $row['id'];?>" class="deletar">Deletar</a></td>
-                        <td><a href="./ativar_produto.php?atualizar=<?php echo $row['id'];?>" class="editar">Disponível</a></td>
-                        <td><a href="./desativar_produto.php?atualizar=<?php echo $row['id'];?>" class="deletar">Indisponível</a></td>
+                        <td><a href="./editar_produto.php?editar=<?php echo $row['idProdutos'];?>" class="editar">Editar</a></td>
+                        <td><a href="./deletar_produto.php?deletar=<?php echo $row['idProdutos'];?>" class="deletar">Deletar</a></td>
+                        <td><a href="./ativar_produto.php?atualizar=<?php echo $row['idProdutos'];?>" class="editar">Disponível</a></td>
+                        <td><a href="./desativar_produto.php?atualizar=<?php echo $row['idProdutos'];?>" class="deletar">Indisponível</a></td>
                     </tr>
                 <?php } ?>
             </tbody>
@@ -158,15 +158,15 @@ $result_bebida = $mysqli->query($sql);
                 <?php while($row = $result_bebida->fetch_assoc()) { ?>
                     <tr>
                         <td><input type="checkbox" name="ativo" value="1" <?php echo ($row['ativo'] == 1) ? 'checked' : ''; ?>></td>
-                        <td><?php echo $row['id'];?></td>
+                        <td><?php echo $row['idProdutos'];?></td>
                         <td><?php echo $row['nome'];?></td>
                         <td><?php echo $row['descricao'];?></td>
                         <td id="desc"><?php echo "R$" . number_format($row['preco'], 2, "," , ".")?></td>
                         <td><img height="50px" src="<?php echo $row['imagem'];?>" alt=""></td>
-                        <td><a href="./editar_produto.php?editar=<?php echo $row['id'];?>" class="editar">Editar</a></td>
-                        <td><a href="./deletar_produto.php?deletar=<?php echo $row['id'];?>" class="deletar">Deletar</a></td>
-                        <td><a href="./ativar_produto.php?atualizar=<?php echo $row['id'];?>" class="editar">Disponível</a></td>
-                        <td><a href="./desativar_produto.php?atualizar=<?php echo $row['id'];?>" class="deletar">Indisponível</a></td>
+                        <td><a href="./editar_produto.php?editar=<?php echo $row['idProdutos'];?>" class="editar">Editar</a></td>
+                        <td><a href="./deletar_produto.php?deletar=<?php echo $row['idProdutos'];?>" class="deletar">Deletar</a></td>
+                        <td><a href="./ativar_produto.php?atualizar=<?php echo $row['idProdutos'];?>" class="editar">Disponível</a></td>
+                        <td><a href="./desativar_produto.php?atualizar=<?php echo $row['idProdutos'];?>" class="deletar">Indisponível</a></td>
                     </tr>
                 <?php } ?>
             </tbody>

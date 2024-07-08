@@ -1,6 +1,6 @@
 <?php
 $usuario = 'root';
-$senha = '';
+$senha = 'LoideMartha12*';
 $database = 'venda_produtos';
 $host = 'localhost';
 
