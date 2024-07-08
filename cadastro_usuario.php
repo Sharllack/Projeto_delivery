@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"); {
 
         sleep(2);
 
-        header("Location: login_adm.php");
+        header("Location: ./login_usuario.php");
         exit;
     }
 }

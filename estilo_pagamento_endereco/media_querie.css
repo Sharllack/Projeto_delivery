@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+@media screen and (max-width: 1015px) {
+    .nomeLoja {
+        font-size: 1em;
+    }
+
+    .home {
+        top: 5px;
+        left: 5px;
+    }
+
+    .home a {
+        padding: 5px 15px;
+    }
+
+    .home a img {
+        height: 15px;
+        width: 15px;
+    }
+
+    .open, .closed {
+        font-size: .6em;
+        padding: 5px 10px;
+    }
+
+    .openOrClosedDiv {
+        top: 9px;
+        right: 5px;
+    }
+
+    .shopCart {
+        right: 5px;
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .shopCart a {
+        padding: 10px;
+    }
+
+    .produtoInfo img {
+        margin-top: -25px;
+        height: 200px;
+        width: 200px;
+    }
+
+    .text {
+        font-size: 1em;
+    }
+
+    #obs {
+        font-size: .8em;
+        height: 70px;
+    }
+
+    #qtd {
+        width: 30px; 
+        height: 30px;
+    }
+}

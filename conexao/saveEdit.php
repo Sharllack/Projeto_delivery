@@ -23,7 +23,11 @@
         $deuCerto = move_uploaded_file($imgPrin['tmp_name'], $path);
 
         if($deuCerto) {
-            $sqlUpdate = "UPDATE produtos SET nome='$nomeDoProduto', descricao='$descricao', preco='$preco', imagem='$path' WHERE idProdutos ='$protocolo'";
+            $sqlUpdate = "UPDATE produtos SET nome='?', descricao='?', preco='?', imagem='?' WHERE idProdutos ='?'";
+            $stmt = $mysqli->prepare($sqlUpdate);
+            $stmt->bind_param("ssdsi", $nomeDoProduto, $descricao, $preco, $path, $protocolo);
+            $stmti->execute();
+            $stmti->close();
         }
 
         $result = $mysqli->query($sqlUpdate);
