@@ -53,11 +53,4 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-document.querySelector('form').addEventListener('submit', function(event) {
-    let input = document.querySelector(".qtd");
-
-    if(input.value < 1) {
-        event.preventDefault();
-    }
-})
 
