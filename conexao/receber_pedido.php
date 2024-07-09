@@ -76,6 +76,7 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                 <th>Data/Hora</th>
                 <th>Pedido</th>
                 <th>Observação</th>
+                <th>Pagamento</th>
                 <th>Total</th>
                 <th>Cliente</th>
                 <th>Contato</th>
@@ -116,6 +117,7 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                             ?>
                         </td>
                         <td><?php echo $row['obs'];?></td>
+                        <td><?php echo $row['pagamento']?></td>
                         <td><?php echo "R$" . number_format($row['valorTotal'], 2, "," , ".")?></td>
                         <td><?php echo $row['nomeCliente']?></td>
                         <td><?php echo $row['cell']?></td>

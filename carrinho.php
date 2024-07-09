@@ -43,10 +43,10 @@ $total = 0;
     <main>
     <h1 class="pratosTitle">FINALIZE O SEU PEDIDO</h1>
     <?php while($row = $result->fetch_assoc()) { ?>
-        <form action="./adicionar_total.php?finalizar=<?php echo $row['idProdutos']; ?>" method="post">
+        <form action="./adicionar_total.php?finalizar=<?php echo $row['idProduto']; ?>" method="post">
             <section class="secPratos">
                 <div class="pratosContainer">
-                        <section href="./complemento_produto.php?comprar=<?php echo $row['idProdutos'];?>" class="linkPratos">
+                        <section href="./complemento_produto.php?comprar=<?php echo $row['idProduto'];?>" class="linkPratos">
                             <div class="pratos">
                                 <div class="imgPrato">
                                     <img height="80px" width="80px" src="./conexao/<?php echo $row['imagem'];?>" alt="">
@@ -64,7 +64,7 @@ $total = 0;
                                                 <div class="soma">
                                                     <button type="button">+</button>
                                                 </div>
-                                                    <input type="number" name="qtd" readonly class="quantidade" value="1" data-preco="<?php echo $row['preco']?>" style="font-weight: bold; text-align:center;">
+                                                    <input type="number" name="quantidade[<?php echo $row['idProduto']; ?>]" readonly class="quantidade" value="1" data-preco="<?php echo $row['preco']?>" style="font-weight: bold; text-align:center;">
                                                 </div>
                                                 <div class="subtrai">
                                                     <button type="button" >-</button>
@@ -83,9 +83,15 @@ $total = 0;
                     $total += $row['preco'];
             
                     ?>
+                    <?php 
+                    
+                    $produtos = $row['idProduto'];
+                    
+                    ?>
                     <?php } ?>
                 </div>
             </section>
+            <input type="hidden" name="idProduto" value="<?php echo $produtos ?>">
             <input type="hidden" name="total" value="<?php echo $total ?>">
             <button type="submit" class="button">Forma de Pagamento <span class="valorTotal">R$<?php echo number_format($total, 2, ',', '.');?></span></button>
         </form>

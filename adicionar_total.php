@@ -8,14 +8,22 @@ if(!isset($_SESSION)) {
 include('./conexao/conexao.php');
 
 if(isset($_GET['finalizar'])) {
-    $idProdutos = intval($_GET['finalizar']);
+    $idProdutos = intval($_POST['idProduto']);
     $idUsuario = $_SESSION['idUsuario'];
-    $quantidade = intval($_POST['qtd']);
+    $quantidade = intval($_POST['qtd_' . $idProdutos]);
 
+    // Prepare para atualizar as quantidades
     $stmt = $mysqli->prepare("UPDATE itenscarrinho SET qtd = ? WHERE idProduto = ? AND idUsuario = ?");
-    $stmt->bind_param("iii", $quantidade, $idProdutos, $idUsuario);
-    $stmt->execute();
-    $stmt->close();
+
+    foreach($_POST['quantidade'] as $idProduto => $quantidade) {
+        // Certifique-se de que os valores são inteiros
+        $idProduto = intval($idProduto);
+        $quantidade = intval($quantidade);
+
+        // Atualize a quantidade no banco de dados
+        $stmt->bind_param("iii", $quantidade, $idProduto, $idUsuario);
+        $stmt->execute();
+    }
 
     // Calcula o valor total do carrinho
     $sql = "SELECT SUM(qtd * precouni) AS total FROM itenscarrinho WHERE idUsuario = ?";
@@ -39,25 +47,25 @@ if(isset($_GET['finalizar'])) {
     $stmt->fetch();
     $stmt->close();
 
-    // Verifica se o produto já está no carrinho
-    $stmt = $mysqli->prepare("SELECT produtos_concatenados, preco_conc, qtd_cont FROM carrinho WHERE idUsuario = ?");
+    $stmt = $mysqli->prepare("SELECT GROUP_CONCAT(idProduto SEPARATOR ', ') AS produtos, GROUP_CONCAT(qtd SEPARATOR ', ') AS quantidade, GROUP_CONCAT(precouni SEPARATOR ', ') AS precouni  FROM itenscarrinho WHERE idUsuario = ?");
     $stmt->bind_param("i", $idUsuario);
     $stmt->execute();
-    $stmt->bind_result($produtos_concatenados, $preco_conc, $qtd_conc);
+    $stmt->bind_result($produtos_conca, $qtd_conca, $preco_conca,);
     $stmt->fetch();
     $stmt->close();
 
-    if($produtos_concatenados === null) {
-        // Se o produto já estiver no carrinho, atualiza apenas a coluna produtos_concatenados
-        $novos_produtos_concatenados = $produtos_concatenados . ", " . $idProdutos;
-        $novas_qtds_concatenados = $qtd_conc . ", " . $quantidade;
-        $novos_precos_conc = $preco_conc . ", " . $valor;
+    // Verifica se o produto já está no carrinho
+    $stmt = $mysqli->prepare("SELECT produtos_concatenados FROM carrinho WHERE idUsuario = ?");
+    $stmt->bind_param("i", $idUsuario);
+    $stmt->execute();
+    $stmt->bind_result($produtos_concatenados);
+    $stmt->fetch();
+    $stmt->close();
 
-        $stmt = $mysqli->prepare("UPDATE carrinho SET produtos_concatenados = ?, preco_conc = ?, qtd_cont = ? WHERE idUsuario = ?");
-        $stmt->bind_param("sssi", $novos_produtos_concatenados, $novos_precos_conc, $novas_qtds_concatenados, $idUsuario);
-        $stmt->execute();
-        $stmt->close();
-    }
+    $stmt = $mysqli->prepare("UPDATE carrinho SET produtos_concatenados = ?, preco_conc = ?, qtd_cont = ? WHERE idUsuario = ?");
+    $stmt->bind_param("sssi", $produtos_conca, $preco_conca, $qtd_conca, $idUsuario);
+    $stmt->execute();
+    $stmt->close();
 
     header("Location: ./pagamento_endereco.php");
     exit();
