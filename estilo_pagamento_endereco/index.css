@@ -102,9 +102,57 @@ main {
     z-index: 9999;
 }
 
-section {
+.pratosTitle {
+    margin-top: 70px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#opcoes {
     width: 100%;
     padding: 15px;
+    margin-bottom: 15px;
+}
+
+.location {
+    width: 40px;
+    height: 40px;
+}
+
+.enderecoCont {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.end {
+    display: flex;
+    align-items: center;
+}
+
+.trocar {
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px 15px;
+    background-color: #5A3F2F;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.418);
+    transition: .3s;
+}
+
+.trocar:hover {
+    transform: scale(1.05);
+    box-shadow: 8px 8px 10px rgb(0, 0, 0);
+}
+
+.trocar:active {
+    transform: scale(.9);
+    box-shadow: 1px 1px 8px rgb(0, 0, 0);
 }
 
 .button {

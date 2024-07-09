@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    text-align: center;
+    padding: 15px 0 100px 0;
+    background-color: darkslategray;
+    height: 100px;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.295);
+    font-size: 1.5em;
+    box-shadow: 2px 2px 8px black;
+}
+
+.titlePedidos {
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+table {
+    margin: 15px auto;
+    border-collapse: collapse;
+    max-width: 1000px;
+    box-shadow: 2px 2px 8px black;
+    }
+
+tr, th, td {
+    border: 2px solid rgb(0, 0, 0);
+    text-align: center;
+    padding: 5px;
+    }
+
+.verde {
+    display: block;
+    text-decoration: none;
+    background-color: green;
+    color: white;
+    padding: 10px 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.534);
+    transition: .3s
+}
+
+.vermelho {
+    display: block;
+    text-decoration: none;
+    background-color: red;
+    color: white;
+    padding: 10px 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.534);
+    transition: .3s
+}
+
+.verde:hover, .vermelho:hover {
+    transform: scale(1.05);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.788);
+}
+
+.verde:active, .vermelho:active {
+    transform: scale(.9);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.788);
+}

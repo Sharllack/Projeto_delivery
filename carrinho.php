@@ -10,7 +10,7 @@ if(!isset($_SESSION)) {
 $usuario = $_SESSION['idUsuario'];
 
 $sql_query = "SELECT * FROM itenscarrinho 
-              JOIN produtos ON itenscarrinho.idProduto = produtos.idProdutos 
+              JOIN produtos ON itenscarrinho.idProduto = produtos.idProdutos
               WHERE idUsuario = $usuario";
 $result = $mysqli->query($sql_query);
 
@@ -44,7 +44,6 @@ $total = 0;
     <h1 class="pratosTitle">FINALIZE O SEU PEDIDO</h1>
     <?php while($row = $result->fetch_assoc()) { ?>
         <form action="./adicionar_total.php?finalizar=<?php echo $row['idProdutos']; ?>" method="post">
-            <input type="hidden" name="valor" value="<?php echo $row['preco']; ?>">
             <section class="secPratos">
                 <div class="pratosContainer">
                         <section href="./complemento_produto.php?comprar=<?php echo $row['idProdutos'];?>" class="linkPratos">
@@ -61,17 +60,17 @@ $total = 0;
                                         <div class="qtd">
                                             <div class="qtd">
                                                 <div class="valor">
-                                                    <span class="valorProduto">R$<?php echo number_format($row['preco'] * $row['qtd'], 2, ',', '.'); ?></span>
+                                                    <span class="valorProduto">R$<?php echo number_format($row['preco'], 2, ',', '.'); ?></span>
                                                 <div class="soma">
                                                     <button type="button">+</button>
                                                 </div>
-                                                    <input type="number" name="qtd" class="quantidade" value="<?php echo $row['qtd']?>" data-preco="<?php echo $row['preco']?>" style="font-weight: bold; text-align:center;">
+                                                    <input type="number" name="qtd" readonly class="quantidade" value="1" data-preco="<?php echo $row['preco']?>" style="font-weight: bold; text-align:center;">
                                                 </div>
                                                 <div class="subtrai">
                                                     <button type="button" >-</button>
                                                 </div>
                                                 <div>
-                                                    <a href="./remover_produto.php?remover=<?php echo $row['idCarrinho']; ?>" style="display:none;" class="btnRemove">REMOVER</a>
+                                                    <a href="./remover_produto.php?remover=<?php echo $row['idProduto']; ?>" style="display:none;" class="btnRemove">REMOVER</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -87,7 +86,7 @@ $total = 0;
                     <?php } ?>
                 </div>
             </section>
-                <input type="hidden" name="valor" value="<?php echo $row['preco'] * $row['qtd']; ?>">
+            <input type="hidden" name="total" value="<?php echo $total ?>">
             <button type="submit" class="button">Forma de Pagamento <span class="valorTotal">R$<?php echo number_format($total, 2, ',', '.');?></span></button>
         </form>
     </main>

@@ -7,10 +7,20 @@ if(!isset($_SESSION)) {
     session_start();
 };
 
-$sql_query = "SELECT * FROM usuarios JOIN carrinho on usuarios.idUsuarios = carrinho.idUsuario JOIN produtos on produtos.idProdutos = carrinho.idProdutos";
-$result = $mysqli->query($sql_query);
+$sql_query = "SELECT * FROM itenscarrinho 
+            JOIN carrinho ON itenscarrinho.idCarrinho = carrinho.idCarrinho
+            JOIN produtos ON itenscarrinho.idProduto = produtos.idProdutos
+            JOIN usuarios ON itenscarrinho.idUsuario = usuarios.idUsuarios";
+$result = $mysqli->query($sql_query) or die ($mysqli->error);
 
-
+while($row = mysqli_fetch_assoc($result)) {
+    $total = $row['valorTotal'];
+    $rua = $row['rua'];
+    $numero = $row['numero'];
+    $bairro = $row['bairro'];
+    $idUsuario = $row['idUsuarios'];
+    $idCarrinho = $row['idCarrinho'];
+}
 
 ?>
 
@@ -37,13 +47,26 @@ $result = $mysqli->query($sql_query);
         <h1 class="nomeLoja">Quentinhas da Vanessa</h1>
     </header>
     <main>
-    <h1 class="pratosTitle">Forma de Pagamento</h1>
-        <form action="./situacao_pedido.php?finalizar=<?php echo $row['idCarrinho']; ?>" method="post">
-            <select name="opcoes" id="opcoes">
+    <h1 class="pratosTitle">Finalize seu Pedido</h1>
+        <form action="./cadastrar_pedido.php?finalizar=<?php echo $idCarrinho; ?>" method="post">
+            <h2 class="formaTitle">Formas de Pagamento</h2>
+            <select name="opcoes" id="opcoes" style="font-weight: bold;">
+                <option value="#" style="text-align: center;">-----Selecione uma Opção-----</option>
                 <option value="cartao">CARTÃO</option>
                 <option value="dinheiro">DINHEIRO</option>
                 <option value="pix">PIX</option>
             </select>
+            <h2 class="enderecoTitle">Endereço</h2>
+            <section class="enderecoCont">
+                <div class="end">
+                    <img src="./imagens/location_on_24dp_00000_FILL0_wght400_GRAD0_opsz24.png" alt="localização" class="location">
+                    <div class="endereco">
+                        <p><strong><?php echo $rua?>, <?php echo $numero?></strong></p>
+                        <p><?php echo $bairro?></p>
+                    </div>
+                </div>
+                <a href="./editar_endereco.php?editar=<?php echo $idUsuario ?>" type="button" class="trocar">Trocar</a>
+            </section>
             <button type="submit" class="button">Finalizar Pedido <span class="valorTotal">R$<?php echo number_format($total, 2, ',', '.');?></span></button>
         </form>
     </main>

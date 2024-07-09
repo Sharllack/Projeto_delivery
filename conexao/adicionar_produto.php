@@ -81,6 +81,7 @@ $result_bebida = $mysqli->query($sql);
     <title>Adicionar Produtos</title>
 </head>
 <body>
+    <div style="position: absolute; left: 15px; margin: 15px 15px 0 0; font-size:1.2em;"><a href="./receber_pedido.php" style="color: white;">Meus pedidos</a></div>
     <div class="logout" style="position: absolute; right: 0; margin: 15px 15px 0 0; font-size:1.2em;"><a href="./logout.php" style="color: white;">Sair</a></div>
     <header>
         <h1>Adicionar Produtos</h1>

@@ -60,22 +60,12 @@ $result_bebibas = $mysqli->query($sql);
             </div>
         </section>
         <form action="./adicionar_ao_carrinho.php?adicionar=<?php echo $protocolo; ?>" method="POST">
+            <input type="hidden" name="valor" value="<?php echo $preco; ?>">
             <div class="titleText">
                 <h2 class="text">Alguma observação?</h2>
-                <div class="qtd">
-                    <div class="soma">
-                        <button type="button" onclick="adicionar()">+</button>
-                    </div>
-                    <div class="valor">
-                        <input type="number" name="qtd" id="qtd" value="0" style="font-weight: bold; text-align:center;">
-                    </div>
-                    <div class="subtrai">
-                        <button type="button" onclick="subtrair()">-</button>
-                    </div>
-                </div>
             </div>
             <textarea name="obs" id="obs" placeholder="Ex.: Ponto da carne, mudar complemento, etc.."></textarea>
-            <button type="submit" class="btn">ADICIONAR <span class="span" style="background-color: white; color: black; padding: 5px; border-radius: 50%;">0</span></button>
+            <button type="submit" class="btn">ADICIONAR</button>
         </form>
     </main>
     <div class="shopCart">
