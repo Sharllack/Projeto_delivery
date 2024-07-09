@@ -10,10 +10,10 @@ include('./conexao/conexao.php');
 if(isset($_GET['finalizar'])) {
     $idProdutos = intval($_GET['finalizar']);
     $idUsuario = $_SESSION['idUsuario'];
-    $quantidade = $_POST['qtd'];
+    $quantidade = intval($_POST['qtd']);
 
-    $stmt = $mysqli->prepare("UPDATE itenscarrinho SET qtd = ? WHERE idUsuario = ?");
-    $stmt->bind_param("ii", $quantidade, $idUsuario);
+    $stmt = $mysqli->prepare("UPDATE itenscarrinho SET qtd = ? WHERE idProduto = ? AND idUsuario = ?");
+    $stmt->bind_param("iii", $quantidade, $idProdutos, $idUsuario);
     $stmt->execute();
     $stmt->close();
 
