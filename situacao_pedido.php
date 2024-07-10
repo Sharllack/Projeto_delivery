@@ -7,7 +7,7 @@ if(!isset($_SESSION)) {
     session_start();
 };
 
-if (!isset($_SESSION['pedido_finalizado'])) {
+if (!isset($_SESSION['pedido_finalizado'][$_SESSION['idUsuario']])) {
     
     header('Location: ./index.php');
     exit;

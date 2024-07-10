@@ -5,13 +5,15 @@ include('./conexao/conexao.php');
 if(!isset($_SESSION)) {
     session_name('user_session');
     session_start();
+
+    
 };
 
-if (isset($_SESSION['pedido_finalizado']) && $_SESSION['pedido_finalizado'] === true) {
-    // Redireciona para a página de acompanhamento do pedido
-    header('Location: ./situacao_pedido.php');
-    exit;
-}
+if (isset($_SESSION['pedido_finalizado'][$_SESSION['idUsuario']]) && $_SESSION['pedido_finalizado'][$_SESSION['idUsuario']] === true) {
+        // Redireciona para a página de acompanhamento do pedido
+        header('Location: ./situacao_pedido.php');
+        exit;
+    };
 
 $usuario = $_SESSION['idUsuario'];
 
