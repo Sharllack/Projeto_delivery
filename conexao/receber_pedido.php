@@ -33,7 +33,29 @@ if(isset($_GET['finalizar'])) {
     $stmt->execute();
     $stmt->close();
 
-    unset($_SESSION['pedido_finalizado']);
+    $stmt = $mysqli->prepare("SELECT idUsuario FROM pedidos WHERE idPedido = ?");
+    $stmt->bind_param("i", $idPedido);
+    $stmt->execute();
+    $stmt->bind_result($idUsuario);
+    $stmt->fetch();
+    $stmt->close();
+
+    $stmt = $mysqli->prepare("DELETE FROM pedidos WHERE idPedido = ?");
+    $stmt->bind_param("i", $idPedido);
+    $stmt->execute();
+    $stmt->close();
+
+    $stmt = $mysqli->prepare("DELETE FROM itenscarrinho WHERE idUsuario = ?");
+    $stmt->bind_param("i", $idUsuario);
+    $stmt->execute();
+    $stmt->close();
+
+    $stmt = $mysqli->prepare("DELETE FROM carrinho WHERE idUsuario = ?");
+    $stmt->bind_param("i", $idUsuario);
+    $stmt->execute();
+    $stmt->close();
+
+    header('Location: ../unset.php');
 }
 
 if(isset($_GET['recusar'])) {
@@ -44,7 +66,29 @@ if(isset($_GET['recusar'])) {
     $stmt->execute();
     $stmt->close();
 
-    unset($_SESSION['pedido_finalizado']);
+    $stmt = $mysqli->prepare("SELECT idUsuario FROM pedidos WHERE idPedido = ?");
+    $stmt->bind_param("i", $idPedido);
+    $stmt->execute();
+    $stmt->bind_result($idUsuario);
+    $stmt->fetch();
+    $stmt->close();
+
+    $stmt = $mysqli->prepare("DELETE FROM pedidos WHERE idPedido = ?");
+    $stmt->bind_param("i", $idPedido);
+    $stmt->execute();
+    $stmt->close();
+
+    $stmt = $mysqli->prepare("DELETE FROM itenscarrinho WHERE idUsuario = ?");
+    $stmt->bind_param("i", $idUsuario);
+    $stmt->execute();
+    $stmt->close();
+
+    $stmt = $mysqli->prepare("DELETE FROM carrinho WHERE idUsuario = ?");
+    $stmt->bind_param("i", $idUsuario);
+    $stmt->execute();
+    $stmt->close();
+
+    header('Location: ../unset.php');
 }
 
 $sql_query = "SELECT * FROM pedidos
@@ -85,7 +129,7 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                 <th>Cliente</th>
                 <th>Contato</th>
                 <th>Endereço</th>
-                <th>Preparando</th>
+                <th>Aceitar</th>
                 <th>Rota</th>
                 <th>Finalizar</th>
                 <th>Recusar</th>
@@ -126,7 +170,7 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                         <td><?php echo $row['nomeCliente']?></td>
                         <td><?php echo $row['cell']?></td>
                         <td><?php echo $row['rua'] . ',' . $row['numero']?></td>
-                        <td><a href="./receber_pedido.php?preparando=<?php echo $row['idPedido'] ?>" class="verde">Preparando</a></td>
+                        <td><a href="./receber_pedido.php?preparando=<?php echo $row['idPedido'] ?>" class="verde">Aceitar</a></td>
                         <td><a href="./receber_pedido.php?rota=<?php echo $row['idPedido'] ?>" class="verde">Rota</a></td>
                         <td><a href="./receber_pedido.php?finalizar=<?php echo $row['idPedido'] ?>" class="vermelho">Finalizar</a></td>
                         <td><a href="./receber_pedido.php?recusar=<?php echo $row['idPedido'] ?>" class="vermelho">Recusar</a></td>

@@ -45,7 +45,7 @@ while($row = mysqli_fetch_assoc($result)) {
         <span class="openOrClosed">fechado</span>
     </div>
     <header>
-        <h1 class="nomeLoja">Quentinhas da Vanessa</h1>
+        <h1 class="nomeLoja">Quentinhas do Lucas</h1>
     </header>
     <main>
     <h1 class="pratosTitle">Finalize seu Pedido</h1>

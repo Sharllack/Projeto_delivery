@@ -48,7 +48,7 @@ $result_bebibas = $mysqli->query($sql);
         <span class="openOrClosed">fechado</span>
     </div>
     <header>
-        <h1 class="nomeLoja">Quentinhas da Vanessa</h1>
+        <h1 class="nomeLoja">Quentinhas do Lucas</h1>
     </header>
     <main>
         <section style="padding: 15px;" class="produtoContainer">

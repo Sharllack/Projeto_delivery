@@ -7,6 +7,13 @@ if(!isset($_SESSION)) {
     session_start();
 };
 
+if (!isset($_SESSION['pedido_finalizado'])) {
+    // Redireciona para a página de acompanhamento do pedido
+    echo ('<script>alert("Não foi possível concluir o seu pedido.")</script>');
+    header('Location: ./index.php');
+    exit;
+}
+
 $idUsuario = $_SESSION['idUsuario'];
 
 $sql_query = "SELECT * FROM pedidos WHERE idUsuario = $idUsuario";
@@ -38,7 +45,7 @@ while($row = mysqli_fetch_assoc($result)) {
         <span class="openOrClosed">fechado</span>
     </div>
     <header>
-        <h1 class="nomeLoja">Quentinhas da Vanessa</h1>
+        <h1 class="nomeLoja">Quentinhas do Lucas</h1>
     </header>
     <main>
         <h1 class="titleSit">Situação do Pedido</h1>
