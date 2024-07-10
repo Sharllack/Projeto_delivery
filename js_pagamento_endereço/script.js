@@ -13,3 +13,13 @@ function atualizarSituacao() {
 
 atualizarSituacao(); // Chama a função imediatamente ao carregar a página
 setInterval(atualizarSituacao, 60000); // Chama a função a cada minuto
+
+document.querySelector('form').addEventListener('submit', function(event) {
+    var opc = document.querySelector('#opcoes').value;
+    var res = document.querySelector('.selectError');
+
+    if(opc === '#') {
+        res.style.display = 'block'
+        event.preventDefault();
+    }
+})

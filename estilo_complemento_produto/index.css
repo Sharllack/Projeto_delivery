@@ -179,3 +179,26 @@ main {
     justify-content: space-between;
     align-items: center;
 }
+
+.wpp {
+    display: flex;
+    position: fixed;
+    z-index: 9999;
+    right: 50px; 
+    bottom: 170px;
+    border-radius: 50%;
+    transition: .3s;
+}
+
+.wpp a img{
+    height: 80px;
+    width: 80px;
+    background-color: #2AB318;
+    box-shadow: 2px 2px 10px black;
+    border-radius: 50%;
+}
+
+.wpp:hover {
+    box-shadow: 8px 8px 10px black;
+    transform: scale(1.05);
+}

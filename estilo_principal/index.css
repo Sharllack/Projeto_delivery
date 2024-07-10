@@ -79,28 +79,6 @@ main {
     transform: scale(1.05);
 }
 
-.shopCart {
-    display: flex;
-    position: fixed;
-    z-index: 9999;
-    right: 50px; 
-    bottom: 50px;
-    border-radius: 50%;
-    transition: .3s;
-}
-
-.shopCart a {
-    background-color: #5A3F;
-    box-shadow: 2px 2px 10px black;
-    border-radius: 50%;
-    padding: 25px;
-}
-
-.shopCart:hover {
-    box-shadow: 8px 8px 10px black;
-    transform: scale(1.05);
-}
-
 .agarra {
     margin: auto;
     background-color: #5a3f2f86;
@@ -256,4 +234,49 @@ main {
     margin-bottom: 15px; 
     color: darkslategray; 
     margin-left: 15px;
+}
+
+.wpp {
+    display: flex;
+    position: fixed;
+    z-index: 9999;
+    right: 50px; 
+    bottom: 170px;
+    border-radius: 50%;
+    transition: .3s;
+}
+
+.wpp a img{
+    height: 80px;
+    width: 80px;
+    background-color: #2AB318;
+    box-shadow: 2px 2px 10px black;
+    border-radius: 50%;
+}
+
+.wpp:hover {
+    box-shadow: 8px 8px 10px black;
+    transform: scale(1.05);
+}
+
+.shopCart {
+    display: flex;
+    position: fixed;
+    z-index: 9999;
+    right: 50px; 
+    bottom: 50px;
+    border-radius: 50%;
+    transition: .3s;
+}
+
+.shopCart a {
+    background-color: #5A3F;
+    box-shadow: 2px 2px 10px black;
+    border-radius: 50%;
+    padding: 25px;
+}
+
+.shopCart:hover {
+    box-shadow: 8px 8px 10px black;
+    transform: scale(1.05);
 }

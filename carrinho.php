@@ -106,6 +106,9 @@ $total = 0;
             <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
         </a>
     </div>
+    <div class="wpp">
+        <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!"><img src="./imagens/whats_logo.png" alt="whatsapp"></a>
+    </div>
     <script>
         document.querySelector('form').addEventListener('submit', function(event) {
             let inputs = document.querySelectorAll('.qtd input[type="number"]');

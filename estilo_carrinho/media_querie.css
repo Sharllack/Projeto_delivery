@@ -29,6 +29,16 @@
         right: 5px;
     }
 
+    .wpp {
+        right: 15px; 
+        bottom: 80px;
+    }
+    
+    .wpp a img{
+        height: 52px;
+        width: 52px;
+    }
+
     .shopCart {
         right: 5px;
         bottom: 15px;

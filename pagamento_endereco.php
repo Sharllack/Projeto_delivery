@@ -59,6 +59,7 @@ while($row = mysqli_fetch_assoc($result)) {
                 <option value="dinheiro">DINHEIRO</option>
                 <option value="pix">PIX</option>
             </select>
+            <p class="selectError">Selecione uma forma de pagamento</p>
             <h2 class="enderecoTitle">Endereço</h2>
             <section class="enderecoCont">
                 <div class="end">
@@ -83,6 +84,9 @@ while($row = mysqli_fetch_assoc($result)) {
         <a href="#">
             <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
         </a>
+    </div>
+    <div class="wpp">
+        <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!"><img src="./imagens/whats_logo.png" alt="whatsapp"></a>
     </div>
     <script src="./js_pagamento_endereço/script.js"></script>
 </body>

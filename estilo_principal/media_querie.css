@@ -32,6 +32,16 @@
         padding: 10px;
     }
 
+    .wpp {
+        right: 15px; 
+        bottom: 80px;
+    }
+    
+    .wpp a img{
+        height: 52px;
+        width: 52px;
+    }
+
     .logout {
         right: 5px;
         top: 5px;
@@ -119,6 +129,16 @@
     .home a img {
         height: 15px;
         width: 15px;
+    }
+
+    .wpp {
+        right: 15px; 
+        bottom: 80px;
+    }
+    
+    .wpp a img{
+        height: 52px;
+        width: 52px;
     }
 
     .shopCart {

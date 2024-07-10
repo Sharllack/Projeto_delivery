@@ -111,7 +111,7 @@ main {
 #opcoes {
     width: 100%;
     padding: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 .location {
@@ -129,6 +129,10 @@ main {
 .end {
     display: flex;
     align-items: center;
+}
+
+.enderecoTitle {
+    margin-top: 15px;
 }
 
 .pedidoTitle {
@@ -194,4 +198,34 @@ main {
     color: black;
     padding: 5px;
     border-radius: 50%;
+}
+
+.selectError {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+    display: none;
+}
+
+.wpp {
+    display: flex;
+    position: fixed;
+    z-index: 9999;
+    right: 50px; 
+    bottom: 170px;
+    border-radius: 50%;
+    transition: .3s;
+}
+
+.wpp a img{
+    height: 80px;
+    width: 80px;
+    background-color: #2AB318;
+    box-shadow: 2px 2px 10px black;
+    border-radius: 50%;
+}
+
+.wpp:hover {
+    box-shadow: 8px 8px 10px black;
+    transform: scale(1.05);
 }
