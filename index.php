@@ -5,6 +5,7 @@ include('./conexao/conexao.php');
 if(!isset($_SESSION)) {
     session_name('user_session');
     session_start();
+
 };
 
 $sql_query = "SELECT * FROM produtos WHERE ativo = 1 AND categoria = 'prato'";
@@ -109,11 +110,19 @@ $result_bebibas = $mysqli->query($sql);
                 </div>
         </section>
     </main>
+    <?php if(isset($_SESSION['user'])):?>
     <div class="shopCart">
         <a href="./carrinho.php">
             <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
         </a>
     </div>
+    <?php else: ?>
+        <div class="shopCart">
+        <a href="./login_usuario.php">
+            <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
+        </a>
+    </div>
+    <?php endif; ?>
     <script src="./js_pincipal/funcoes.js"></script>
 </body>
 </html>

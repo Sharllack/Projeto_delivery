@@ -82,6 +82,6 @@ while($row = mysqli_fetch_assoc($result)) {
             <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
         </a>
     </div>
-    <script src="./js_pagamento_endereco/script.js"></script>
+    <script src="./js_pagamento_endereço/script.js"></script>
 </body>
 </html>

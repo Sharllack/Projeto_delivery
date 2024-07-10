@@ -13,3 +13,7 @@ function atualizarSituacao() {
 
 atualizarSituacao(); // Chama a função imediatamente ao carregar a página
 setInterval(atualizarSituacao, 60000); // Chama a função a cada minuto
+
+setInterval(function() {
+    location.reload();
+}, 10000);

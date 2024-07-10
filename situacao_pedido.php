@@ -8,8 +8,7 @@ if(!isset($_SESSION)) {
 };
 
 if (!isset($_SESSION['pedido_finalizado'])) {
-    // Redireciona para a página de acompanhamento do pedido
-    echo ('<script>alert("Não foi possível concluir o seu pedido.")</script>');
+    
     header('Location: ./index.php');
     exit;
 }

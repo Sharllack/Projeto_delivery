@@ -106,3 +106,9 @@ main {
     margin-top: 60px;
     text-align: center;
 }
+
+.situProd {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+}

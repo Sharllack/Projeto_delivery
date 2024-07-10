@@ -179,5 +179,10 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
             </tbody>
         </table>
     </main>
+    <script>
+        setInterval(function() {
+            location.reload();
+        }, 10000);
+    </script>
 </body>
 </html>
