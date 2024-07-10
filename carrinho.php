@@ -3,10 +3,7 @@
 include('./conexao/conexao.php');
 
 if(!isset($_SESSION)) {
-    session_name('user_session');
-    session_start();
-
-    
+    session_start(); 
 };
 
 if (isset($_SESSION['pedido_finalizado'][$_SESSION['idUsuario']]) && $_SESSION['pedido_finalizado'][$_SESSION['idUsuario']] === true) {

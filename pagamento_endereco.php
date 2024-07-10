@@ -3,14 +3,16 @@
 include('./conexao/conexao.php');
 
 if(!isset($_SESSION)) {
-    session_name('user_session');
     session_start();
 };
+
+$usuario = $_SESSION['idUsuario'];
 
 $sql_query = "SELECT * FROM itenscarrinho 
             JOIN carrinho ON itenscarrinho.idCarrinho = carrinho.idCarrinho
             JOIN produtos ON itenscarrinho.idProduto = produtos.idProdutos
-            JOIN usuarios ON itenscarrinho.idUsuario = usuarios.idUsuarios";
+            JOIN usuarios ON itenscarrinho.idUsuario = usuarios.idUsuarios
+            WHERE idUsuarios = $usuario";
 $result = $mysqli->query($sql_query) or die ($mysqli->error);
 
 while($row = mysqli_fetch_assoc($result)) {

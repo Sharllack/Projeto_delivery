@@ -3,7 +3,6 @@
 include('./conexao/conexao.php');
 
 if(!isset($_SESSION)) {
-    session_name("user_session");
     session_start();
 }
 

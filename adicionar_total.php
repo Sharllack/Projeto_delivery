@@ -1,11 +1,11 @@
 <?php
 
-if(!isset($_SESSION)) {
-    session_name("user_session");
-    session_start();
-}
 
 include('./conexao/conexao.php');
+
+if(!isset($_SESSION)) {
+    session_start();
+}
 
 if(isset($_GET['finalizar'])) {
     $idProdutos = intval($_POST['idProduto']);

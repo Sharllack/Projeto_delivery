@@ -3,9 +3,7 @@
 include('./conexao/conexao.php');
 
 if(!isset($_SESSION)) {
-    session_name('user_session');
     session_start();
-
 };
 
 $sql_query = "SELECT * FROM produtos WHERE ativo = 1 AND categoria = 'prato'";
