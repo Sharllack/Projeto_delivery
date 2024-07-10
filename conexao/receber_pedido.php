@@ -7,9 +7,12 @@ if(!isset($_SESSION)){
     session_start();
 }
 
+$situ = 'Aguardando';
+
 if(isset($_GET['preparando'])) {
     $idPedido = intval($_GET['preparando']);
     $situacao = 'O seu pedido está sendo preparado!';
+    $situ = 'Aceito!';
     $stmt = $mysqli->prepare("UPDATE pedidos SET situacao = ? WHERE idPedido = ?");
     $stmt->bind_param("si", $situacao, $idPedido);
     $stmt->execute();
@@ -19,6 +22,7 @@ if(isset($_GET['preparando'])) {
 if(isset($_GET['rota'])) {
     $idPedido = intval($_GET['rota']);
     $situacao = 'O seu pedido já saiu para a entrega!';
+    $situ = 'Em Rota!';
     $stmt = $mysqli->prepare("UPDATE pedidos SET situacao = ? WHERE idPedido = ?");
     $stmt->bind_param("si", $situacao, $idPedido);
     $stmt->execute();
@@ -120,6 +124,7 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
         <table>
             <h1 style="text-align: center;" class="titlePedidos">Pedidos</h1>
             <thead>
+                <th>Situacao</th>
                 <th>Nº Pedido</th>
                 <th>Data/Hora</th>
                 <th>Pedido</th>
@@ -137,6 +142,7 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
             <tbody>
                 <?php while($row = $result->fetch_assoc()) { ?>
                     <tr>
+                        <td><?php echo $situ ?></td>
                         <td><?php echo $row['idPedido'];?></td>
                         <td><?php echo date("d/m/Y H:i", strtotime($row['dataHora']))?></td>
                         <td>
