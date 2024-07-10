@@ -9,7 +9,7 @@ if(!isset($_SESSION)){
 
 if(isset($_GET['preparando'])) {
     $idPedido = intval($_GET['preparando']);
-    $situacao = 'Preparando';
+    $situacao = 'O seu pedido está sendo preparado!';
     $stmt = $mysqli->prepare("UPDATE pedidos SET situacao = ? WHERE idPedido = ?");
     $stmt->bind_param("si", $situacao, $idPedido);
     $stmt->execute();
@@ -18,7 +18,7 @@ if(isset($_GET['preparando'])) {
 
 if(isset($_GET['rota'])) {
     $idPedido = intval($_GET['rota']);
-    $situacao = 'Saiu Para Entrega';
+    $situacao = 'O seu pedido já saiu para a entrega!';
     $stmt = $mysqli->prepare("UPDATE pedidos SET situacao = ? WHERE idPedido = ?");
     $stmt->bind_param("si", $situacao, $idPedido);
     $stmt->execute();
@@ -27,20 +27,24 @@ if(isset($_GET['rota'])) {
 
 if(isset($_GET['finalizar'])) {
     $idPedido = intval($_GET['finalizar']);
-    $situacao = 'Finalizado';
+    $situacao = 'O seu pedido foi finalizado!';
     $stmt = $mysqli->prepare("UPDATE pedidos SET situacao = ? WHERE idPedido = ?");
     $stmt->bind_param("si", $situacao, $idPedido);
     $stmt->execute();
     $stmt->close();
+
+    unset($_SESSION['pedido_finalizado']);
 }
 
 if(isset($_GET['recusar'])) {
     $idPedido = intval($_GET['recusar']);
-    $situacao = 'Recusado';
+    $situacao = 'O seu pedido não foi aceito!';
     $stmt = $mysqli->prepare("UPDATE pedidos SET situacao = ? WHERE idPedido = ?");
     $stmt->bind_param("si", $situacao, $idPedido);
     $stmt->execute();
     $stmt->close();
+
+    unset($_SESSION['pedido_finalizado']);
 }
 
 $sql_query = "SELECT * FROM pedidos

@@ -131,6 +131,14 @@ main {
     align-items: center;
 }
 
+.pedidoTitle {
+    margin-top: 15px;
+}
+
+.pedido {
+    padding: 15px;
+}
+
 .trocar {
     text-decoration: none;
     font-size: 1.1em;

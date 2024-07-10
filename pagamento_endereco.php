@@ -14,6 +14,7 @@ $sql_query = "SELECT * FROM itenscarrinho
 $result = $mysqli->query($sql_query) or die ($mysqli->error);
 
 while($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
     $total = $row['valorTotal'];
     $rua = $row['rua'];
     $numero = $row['numero'];
@@ -67,11 +68,17 @@ while($row = mysqli_fetch_assoc($result)) {
                 </div>
                 <a href="./editar_endereco.php?editar=<?php echo $idUsuario ?>" type="button" class="trocar">Trocar</a>
             </section>
+            <h2 class="pedidoTitle">Pedido</h2>
+            <section class="pedido">
+                <?php foreach($rows as $row): ?>
+                    <p><strong><?php echo $row['qtd'] . "x " . $row['nome'] . "<br>" . "Obs.:" . $row['obs']?></strong></p>
+                <?php endforeach; ?>
+            </section>
             <button type="submit" class="button">Finalizar Pedido <span class="valorTotal">R$<?php echo number_format($total, 2, ',', '.');?></span></button>
         </form>
     </main>
     <div class="shopCart">
-        <a href="./carrinho.php">
+        <a href="#">
             <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
         </a>
     </div>

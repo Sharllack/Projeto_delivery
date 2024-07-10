@@ -7,6 +7,12 @@ if(!isset($_SESSION)) {
     session_start();
 };
 
+if (isset($_SESSION['pedido_finalizado']) && $_SESSION['pedido_finalizado'] === true) {
+    // Redireciona para a página de acompanhamento do pedido
+    header('Location: ./situacao_pedido.php');
+    exit;
+}
+
 $usuario = $_SESSION['idUsuario'];
 
 $sql_query = "SELECT * FROM itenscarrinho 
@@ -64,7 +70,7 @@ $total = 0;
                                                 <div class="soma">
                                                     <button type="button">+</button>
                                                 </div>
-                                                    <input type="number" name="quantidade[<?php echo $row['idProduto']; ?>]" readonly class="quantidade" value="1" data-preco="<?php echo $row['preco']?>" style="font-weight: bold; text-align:center;">
+                                                    <input type="number" name="quantidade[<?php echo $row['idProduto']; ?>]" readonly class="quantidade" value="<?php echo $row['qtd']; ?>" data-preco="<?php echo $row['preco']?>" style="font-weight: bold; text-align:center;">
                                                 </div>
                                                 <div class="subtrai">
                                                     <button type="button" >-</button>
