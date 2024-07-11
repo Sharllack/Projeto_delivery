@@ -7,13 +7,6 @@ if(!isset($_SESSION)){
     session_start();
 }
 
-    $stmt = $mysqli->prepare("SELECT idUsuario FROM pedidos WHERE idPedido = ?");
-    $stmt->bind_param("i", $idPedido);
-    $stmt->execute();
-    $stmt->bind_result($idUsuario);
-    $stmt->fetch();
-    $stmt->close();
-
 if(isset($_GET['preparando'])) {
     $idPedido = intval($_GET['preparando']);
     $situacao = 'O seu pedido está sendo preparado!';
@@ -42,6 +35,13 @@ if(isset($_GET['finalizar'])) {
     $stmt->execute();
     $stmt->close();
 
+    $stmt = $mysqli->prepare("SELECT idUsuario FROM pedidos WHERE idPedido = ?");
+    $stmt->bind_param("i", $idPedido);
+    $stmt->execute();
+    $stmt->bind_result($idUsuario);
+    $stmt->fetch();
+    $stmt->close();
+
     $stmt = $mysqli->prepare("DELETE FROM pedidos WHERE idPedido = ?");
     $stmt->bind_param("i", $idPedido);
     $stmt->execute();
@@ -66,6 +66,13 @@ if(isset($_GET['recusar'])) {
     $stmt = $mysqli->prepare("UPDATE pedidos SET situacao = ? WHERE idPedido = ?");
     $stmt->bind_param("si", $situacao, $idPedido);
     $stmt->execute();
+    $stmt->close();
+
+    $stmt = $mysqli->prepare("SELECT idUsuario FROM pedidos WHERE idPedido = ?");
+    $stmt->bind_param("i", $idPedido);
+    $stmt->execute();
+    $stmt->bind_result($idUsuario);
+    $stmt->fetch();
     $stmt->close();
 
     $stmt = $mysqli->prepare("DELETE FROM pedidos WHERE idPedido = ?");

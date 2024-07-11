@@ -1,44 +1,46 @@
-<?php 
-    include('./conexao/conexao.php');
+<?php
+// Inclui o arquivo de conexão
+include('./conexao/conexao.php');
 
-    $erro = '';
+$erro = '';
 
-    if(isset($_POST['user']) || isset($_POST['pass'])) { //Verificar se existe a variável.
+// Define configurações de session
+ini_set('session.cookie_httponly', 1); // Apenas acessível via HTTP
+ini_set('session.cookie_secure', 1);   // Apenas em conexões HTTPS
 
-         $usu = $mysqli->real_escape_string($_POST['user']);
-         $sen = $mysqli->real_escape_string($_POST['pass']);
+// Inicia a sessão (se ainda não estiver iniciada)
+if (!isset($_SESSION)) {
+    session_start();
+}
 
-        $usu = $_POST['user'];
-        $sen = $_POST['pass'];
+if (isset($_POST['user']) && isset($_POST['pass'])) {
+    $usu = $mysqli->real_escape_string($_POST['user']);
+    $sen = $mysqli->real_escape_string($_POST['pass']);
 
-        $sql_code = "SELECT * FROM usuarios WHERE usuario = '$usu' LIMIT 1";
-        $sql_query = $mysqli->query($sql_code) or die ("Falha na execução do código SQL: " . $mysqli->error);
+    $sql_code = "SELECT * FROM usuarios WHERE usuario = '$usu' LIMIT 1";
+    $sql_query = $mysqli->query($sql_code) or die ("Falha na execução do código SQL: " . $mysqli->error);
     
-        $usuario = $sql_query->fetch_assoc();
-        if(password_verify($sen, $usuario['senha'])) {
-            if(!isset($_SESSION)) {
-                session_start();
-            }
+    $usuario = $sql_query->fetch_assoc();
+    if (password_verify($sen, $usuario['senha'])) {
+        $_SESSION['idUsuario'] = $usuario['idUsuarios'];
+        $_SESSION['user'] = $usuario['usuario'];
+        $_SESSION['nome'] = $usuario['nomeCliente'];
+        $_SESSION['contato'] = $usuario['cell'];
+        $_SESSION['estado'] = $usuario['estado'];
+        $_SESSION['cidade'] = $usuario['cidade'];
+        $_SESSION['bairro'] = $usuario['bairro'];
+        $_SESSION['rua'] = $usuario['rua'];
+        $_SESSION['numero'] = $usuario['numero'];
+        $_SESSION['complemento'] = $usuario['complemento'];
+        $_SESSION['referencia'] = $usuario['referencia'];
+        $_SESSION['cep'] = $usuario['cep'];
 
-            $_SESSION['idUsuario'] = $usuario['idUsuarios']; // session é uma variável que continua válida em mais de uma tela.
-            $_SESSION['user'] = $usuario['usuario'];
-            $_SESSION['nome'] = $usuario['nomeCliente'];
-            $_SESSION['contato'] = $usuario['cell'];
-            $_SESSION['estado'] = $usuario['estado'];
-            $_SESSION['cidade'] = $usuario['cidade'];
-            $_SESSION['bairro'] = $usuario['bairro'];
-            $_SESSION['rua'] = $usuario['rua'];
-            $_SESSION['numero'] = $usuario['numero'];
-            $_SESSION['complemento'] = $usuario['complemento'];
-            $_SESSION['referencia'] = $usuario['referencia'];
-            $_SESSION['cep'] = $usuario['cep'];
-
-            header("Location: ./index.php"); //para redirecionar a pág.
-
-        } else {
-            $erro = 'Usuário ou senha incorretos!';
-        }
+        header("Location: ./index.php"); // Redireciona para a página inicial após o login
+        exit();
+    } else {
+        $erro = 'Usuário ou senha incorretos!';
     }
+}
 ?>
 
 <!DOCTYPE html>
