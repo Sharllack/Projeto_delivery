@@ -6,13 +6,13 @@ if(!isset($_SESSION)) {
     session_start();
 };
 
-if (!isset($_SESSION['pedido_finalizado_' . $_SESSION['idUsuario']])) {
+$idUsuario = $_SESSION['idUsuario'];
+
+if (!isset($_SESSION['pedido_finalizado'])) {
     // Redireciona para a página de acompanhamento do pedido
     header('Location: ./index.php');
     exit;
 };
-
-$idUsuario = $_SESSION['idUsuario'];
 
 $sql_query = "SELECT * FROM pedidos WHERE idUsuario = $idUsuario";
 $result = $mysqli->query($sql_query) or die ($mysqli->error);

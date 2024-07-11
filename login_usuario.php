@@ -20,6 +20,7 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
     $sql_code = "SELECT * FROM usuarios WHERE usuario = '$usu' LIMIT 1";
     $sql_query = $mysqli->query($sql_code) or die ("Falha na execução do código SQL: " . $mysqli->error);
     
+if($sql_query->num_rows > 0) {
     $usuario = $sql_query->fetch_assoc();
     if (password_verify($sen, $usuario['senha'])) {
         $_SESSION['idUsuario'] = $usuario['idUsuarios'];
@@ -40,6 +41,10 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
     } else {
         $erro = 'Usuário ou senha incorretos!';
     }
+} else {
+    $erro = 'Usuário não encontrado!';
+}
+
 }
 ?>
 

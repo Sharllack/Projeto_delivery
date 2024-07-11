@@ -6,13 +6,13 @@ if(!isset($_SESSION)) {
     session_start(); 
 };
 
-if (isset($_SESSION['pedido_finalizado_' . $_SESSION['idUsuario']]) && $_SESSION['pedido_finalizado_' . $_SESSION['idUsuario']] === true) {
+$usuario = $_SESSION['idUsuario'];
+
+if (isset($_SESSION['pedido_finalizado']) && $_SESSION['pedido_finalizado'] === true) {
     // Redireciona para a página de acompanhamento do pedido
     header('Location: ./situacao_pedido.php');
     exit;
 };
-
-$usuario = $_SESSION['idUsuario'];
 
 $sql_query = "SELECT * FROM itenscarrinho 
               JOIN produtos ON itenscarrinho.idProduto = produtos.idProdutos

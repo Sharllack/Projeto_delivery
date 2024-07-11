@@ -57,7 +57,7 @@ if(isset($_GET['finalizar'])) {
     $stmt->execute();
     $stmt->close();
 
-    header('Location: ../unset.php?idUsuario=' . $idUsuario);
+    header('Location: ../unset.php');
 }
 
 if(isset($_GET['recusar'])) {
@@ -90,7 +90,7 @@ if(isset($_GET['recusar'])) {
     $stmt->execute();
     $stmt->close();
 
-    header('Location: ../unset.php?idUsuario=' . $idUsuario);
+    header('Location: ../unset.php');
 }
 
 $sql_query = "SELECT * FROM pedidos

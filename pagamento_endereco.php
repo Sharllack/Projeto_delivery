@@ -51,7 +51,7 @@ while($row = mysqli_fetch_assoc($result)) {
     </header>
     <main>
     <h1 class="pratosTitle">Finalize seu Pedido</h1>
-        <form action="./cadastrar_pedido.php?finalizar=<?php echo $idCarrinho; ?>" method="post">
+        <form action="./cadastrar_pedido.php?finalizar=<?php echo $idCarrinho;?>" method="post">
             <h2 class="formaTitle">Formas de Pagamento</h2>
             <select name="opcoes" id="opcoes" style="font-weight: bold;">
                 <option value="#" style="text-align: center;">-----Selecione uma Opção-----</option>

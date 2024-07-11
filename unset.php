@@ -10,8 +10,8 @@ if(isset($_GET['idUsuario'])) {
     $idUsuario = intval($_GET['idUsuario']);
     
     // Limpe a variável de sessão específica para este usuário, se existir
-    if (isset($_SESSION['pedido_finalizado_' . $idUsuario])) {
-        unset($_SESSION['pedido_finalizado_' . $idUsuario]);
+    if (isset($_SESSION['pedido_finalizado'])) {
+        unset($_SESSION['pedido_finalizado']);
 
         header("Location: ./conexao/receber_pedido.php");
     }
