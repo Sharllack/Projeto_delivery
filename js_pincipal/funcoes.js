@@ -2,9 +2,11 @@ function atualizarSituacao() {
     const saudacao = document.querySelector('.openOrClosed');
     const sit = document.querySelector('.sit');
     const carrinho = document.querySelector('.carrinho');
+    const link = document.querySelectorAll('.linkPratos');
+    const log = document.querySelector('.logBtn')
     const hora = new Date().getHours();
 
-    if (hora >= 1 && hora < 15) {
+    if (hora >= 11 && hora < 15) {
         saudacao.textContent = 'Aberto';
         saudacao.className = 'open';
         sit.textContent = 'Aberto';
@@ -15,7 +17,11 @@ function atualizarSituacao() {
         sit.textContent = 'Fechado';
         sit.className = 'closed';
 
+        link.forEach(function(link){
+            link.href = "#";
+        })
         carrinho.href = '#';
+        log.href = '#';
     }
 }
 

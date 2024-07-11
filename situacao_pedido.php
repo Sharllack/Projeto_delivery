@@ -6,7 +6,7 @@ if(!isset($_SESSION)) {
     session_start();
 };
 
-if (!isset($_SESSION['pedido_finalizado_' . $_SESSION['idUsuario']]) && $_SESSION['pedido_finalizado_' . $_SESSION['idUsuario']] !== true) {
+if (!isset($_SESSION['pedido_finalizado_' . $_SESSION['idUsuario']])) {
     // Redireciona para a página de acompanhamento do pedido
     header('Location: ./index.php');
     exit;
