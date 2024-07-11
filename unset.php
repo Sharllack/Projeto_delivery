@@ -6,11 +6,11 @@ if(!isset($_SESSION)) {
     session_start();
 }
 
-$idUsuario = $_SESSION['idUsuario'];
-
-// Verifique se o usuário atual é o mesmo do pedido sendo manipulado
-if ($_SESSION['idUsuario'] == $idUsuario) {
-    unset($_SESSION['pedido_finalizado_' . $_SESSION['idUsuario']]);
+if(isset($_GET['idUsuario'])) {
+    $idUsuario = intval($_GET['idUsuario']);
+    
+    // Limpe a variável de sessão específica para este usuário
+    unset($_SESSION['pedido_finalizado_' . $idUsuario]);
     header('Location: ./conexao/receber_pedido.php');
 }
 
