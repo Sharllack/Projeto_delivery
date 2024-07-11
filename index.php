@@ -65,7 +65,16 @@ $result_bebibas = $mysqli->query($sql);
             <h1 class="pratosTitle">ESCOLHA O SEU PRATO</h1>
             <div class="pratosContainer">
                 <?php while($row = $result->fetch_assoc()) { ?>
-                    <a href="./complemento_produto.php?comprar=<?php echo $row['idProdutos'];?>" class="linkPratos">
+                    <?php 
+                    
+                    if(!isset($_SESSION['idUsuario'])) {
+                        $off = '#';
+                    } else {
+                        $off = './complemento_produto.php?comprar=' . $row["idProdutos"];
+                    }
+                    
+                    ?>
+                    <a href="<?php echo $off; ?>" class="linkPratos">
                         <div class="pratos">
                             <div class="imgPrato">
                                 <img height="80px" width="80px" src="./conexao/<?php echo $row['imagem'];?>" alt="">

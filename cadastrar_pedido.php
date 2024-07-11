@@ -31,9 +31,9 @@ if(isset($_GET['finalizar'])) {
     $stmt->execute();
     $stmt->close();
 
-    $_SESSION['pedido_finalizado'] = true;
+    $_SESSION['pedido_finalizado'][$_SESSION['idUsuario']] = true;
 
-    header('Location: ./situacao_pedido.php');
+    header('Location: ./situacao_pedido.php?idUsuario=' . $idUsuario);
     exit();
 
 }

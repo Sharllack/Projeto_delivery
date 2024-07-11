@@ -8,7 +8,7 @@ if(!isset($_SESSION)) {
 
 $idUsuario = $_SESSION['idUsuario'];
 
-if (!isset($_SESSION['pedido_finalizado']) && $_SESSION['pedido_finalizado'] !== true) {
+if (!isset($_SESSION['pedido_finalizado'][$_SESSION['idUsuario']]) && $_SESSION['pedido_finalizado'][$_SESSION['idUsuario']] !== true) {
     // Redireciona para a página de acompanhamento do pedido
     header('Location: ./index.php');
     exit;
