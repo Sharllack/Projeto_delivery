@@ -86,7 +86,7 @@ if($bairro == 'Vila Centenário') {
                     <?php 
                     
                     if(!isset($_SESSION['idUsuario'])) {
-                        $off = '#';
+                        $off = './login_usuario.php';
                     } else {
                         $off = './complemento_produto.php?comprar=' . $row["idProdutos"];
                     }
@@ -118,7 +118,7 @@ if($bairro == 'Vila Centenário') {
                     <?php 
                     
                     if(!isset($_SESSION['idUsuario'])) {
-                        $off = '#';
+                        $off = './login_usuario.php';
                     } else {
                         $off = './complemento_produto.php?comprar=' . $row["idProdutos"];
                     }

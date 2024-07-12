@@ -23,14 +23,12 @@
         $deuCerto = move_uploaded_file($imgPrin['tmp_name'], $path);
 
         if($deuCerto) {
-            $sqlUpdate = "UPDATE produtos SET nome='?', descricao='?', preco='?', imagem='?' WHERE idProdutos ='?'";
+            $sqlUpdate = "UPDATE produtos SET nome= ?, descricao= ?, preco= ?, imagem= ? WHERE idProdutos = ?";
             $stmt = $mysqli->prepare($sqlUpdate);
             $stmt->bind_param("ssdsi", $nomeDoProduto, $descricao, $preco, $path, $protocolo);
-            $stmti->execute();
-            $stmti->close();
+            $stmt->execute();
+            $stmt->close();
         }
-
-        $result = $mysqli->query($sqlUpdate);
     }
 
     header('Location: adicionar_produto.php');
