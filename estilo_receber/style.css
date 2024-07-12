@@ -25,8 +25,6 @@ header {
 }
 
 table {
-    font-size: 1em;
-    writing-mode: vertical-lr;
     margin: 15px auto;
     border-collapse: collapse;
     max-width: 1000px;
@@ -34,7 +32,6 @@ table {
 }
 
 tr, th, td {
-    writing-mode: horizontal-tb;
     border: 2px solid rgb(0, 0, 0);
     text-align: center;
     padding: 5px;
