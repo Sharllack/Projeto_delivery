@@ -8,4 +8,20 @@
     form h1 {
         font-size: 1.8em;
     }
+
+    table {
+        font-size: .8em;
+        writing-mode: vertical-lr;
+        margin: 15px auto;
+        border-collapse: collapse;
+        max-width: 1000px;
+        box-shadow: 2px 2px 8px black;
+    }
+    
+    tr, th, td {
+        writing-mode: horizontal-tb;
+        border: 2px solid rgb(0, 0, 0);
+        text-align: center;
+        padding: 5px;
+    }
 }
