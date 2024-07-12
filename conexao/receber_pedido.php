@@ -140,6 +140,11 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
             </thead>
             <tbody>
                 <?php while($row = $result->fetch_assoc()) { ?>
+                    <?php 
+                        
+                    $total = $row['valorTotal'] + $row['taxa'];
+                        
+                    ?>
                     <tr>
                         <td><?php echo $row['situ']; ?></td>
                         <td><?php echo $row['idPedido'];?></td>
@@ -171,7 +176,7 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                         </td>
                         <td><?php echo $row['obs'];?></td>
                         <td><?php echo $row['pagamento']?></td>
-                        <td><?php echo "R$" . number_format($row['valorTotal'], 2, "," , "." . "<br>")?> <?php echo "Troco:" . "R$" . number_format($row['troco'], 2, "," , ".")?></td>
+                        <td><?php echo "R$" . number_format($total, 2, "," , "." . "<br>")?> <?php echo "Troco:" . "R$" . number_format($row['troco'], 2, "," , ".")?></td>
                         <td><?php echo $row['nomeCliente']?></td>
                         <td><?php echo $row['cell']?></td>
                         <td><?php echo $row['rua'] . ',' . $row['numero']?></td>

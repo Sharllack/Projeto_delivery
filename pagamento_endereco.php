@@ -80,9 +80,16 @@ while($row = mysqli_fetch_assoc($result)) {
             <h2 class="pedidoTitle">Pedido</h2>
             <section class="pedido">
                 <?php foreach($rows as $row): ?>
-                    <p><strong><?php echo $row['qtd'] . "x " . $row['nome'] . "<br>" . "Obs.:" . $row['obs']?></strong></p>
+                    <p><strong><?php echo $row['qtd'] . "x " . $row['nome'] . "<br>" . "Obs.:" . $row['obs'] . "<br>"?></strong></p>
                 <?php endforeach; ?>
             </section>
+            <?php 
+                
+                $total += $_SESSION['taxa'];
+
+            ?>
+            <h2>Taxa de Entrega</h2>
+            <p style="margin-left: 15px; margin-bottom: 15px"><strong>R$<?php echo $_SESSION['taxa']?>,00</strong></p>
             <button type="submit" class="button">Finalizar Pedido <span class="valorTotal">R$<?php echo number_format($total, 2, ',', '.');?></span></button>
         </form>
     </main>

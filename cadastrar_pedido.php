@@ -27,8 +27,11 @@ if(isset($_GET['finalizar'])) {
         $idUsuario = $row['idUsuarios'];
     };
 
-    $stmt = $mysqli->prepare("INSERT INTO pedidos (idProduto, idUsuario, idCarrinho, idItens, pagamento, troco) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("iiiisd", $idProduto, $idUsuario, $idCarrinho, $idItens, $pagamento, $troco);
+    $situacao = 'Aguardando a confirmação do restaurante!';
+    $situ = 'Aguardando!';
+
+    $stmt = $mysqli->prepare("INSERT INTO pedidos (idProduto, idUsuario, idCarrinho, idItens, pagamento, troco, situacao, situ, taxa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("iiiisdssd", $idProduto, $idUsuario, $idCarrinho, $idItens, $pagamento, $troco, $situacao, $situ, $_SESSION['taxa']);
     $stmt->execute();
     $stmt->close();
 

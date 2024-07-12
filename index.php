@@ -6,11 +6,28 @@ if(!isset($_SESSION)) {
     session_start();
 };
 
+$_SESSION['taxa'] = true;
+
+if(!isset($_SESSION['user'])) {
+    $bairro = '';
+} else {
+    $bairro = $_SESSION['bairro'];
+}
+
 $sql_query = "SELECT * FROM produtos WHERE ativo = 1 AND categoria = 'prato'";
 $result = $mysqli->query($sql_query);
 
 $sql = "SELECT * FROM produtos WHERE ativo = 1 AND categoria = 'bebida'";
 $result_bebibas = $mysqli->query($sql);
+
+if($bairro == 'Vila Centenário') {
+    $_SESSION['taxa'] = '3';
+} else if(!isset($_SESSION['user'])){
+    $_SESSION['taxa'] = '3 - 4';
+} else {
+    $_SESSION['taxa'] = '4';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -52,6 +69,7 @@ $result_bebibas = $mysqli->query($sql);
         <div class="infoPrincipal">
             <img src="./imagens/imagens_pincipal/comida-criolla-peru-peruvian-food-260nw-2191344515.webp" alt="Logo do Restaurante" class="logoRestaurante">
             <p class="tempoDeEntrega">Restaurante • 20-90 min • <span class="sit"></span></p>
+            <p style="margin-top: 15px;">Taxa de entrega: <strong>R$<?php echo $_SESSION['taxa']?>,00</strong></p>
             <p class="horarioDeFuncionamento"><strong>Horário de funcionamento hoje:</strong></p>
             <p class="hora"><strong>11:00 às 15:00</strong></p>
             <hr class="hr">
@@ -97,7 +115,16 @@ $result_bebibas = $mysqli->query($sql);
             <h1 class="titleBebidas">BEBIDAS</h1>
                 <div class="pratosContainer">
                 <?php while($row = $result_bebibas->fetch_assoc()) { ?>
-                    <a href="./complemento_produto.php?comprar=<?php echo $row['idProdutos'];?>" class="linkPratos">
+                    <?php 
+                    
+                    if(!isset($_SESSION['idUsuario'])) {
+                        $off = '#';
+                    } else {
+                        $off = './complemento_produto.php?comprar=' . $row["idProdutos"];
+                    }
+                    
+                    ?>
+                    <a href="<?php echo $off; ?>" class="linkPratos">
                         <div class="pratos">
                             <div class="imgPrato">
                                 <img height="80px" width="80px" src="./conexao/<?php echo $row['imagem'];?>" alt="">
