@@ -8,18 +8,19 @@ if(!isset($_SESSION)) {
 
 $idUsuario = $_SESSION['idUsuario'];
 
-if (!isset($_SESSION['pedido_finalizado'][$_SESSION['idUsuario']]) && $_SESSION['pedido_finalizado'][$_SESSION['idUsuario']] !== true) {
-    // Redireciona para a página de acompanhamento do pedido
-    header('Location: ./index.php');
-    exit;
-};
-
 $sql_query = "SELECT * FROM pedidos WHERE idUsuario = $idUsuario";
 $result = $mysqli->query($sql_query) or die ($mysqli->error);
 
 while($row = mysqli_fetch_assoc($result)) {
     $situacao = $row['situacao'];
+    $idCarrinho = $row['idCarrinho'];
 }
+
+if (!isset($_SESSION['pedido_finalizado'][$idCarrinho]) && $_SESSION['pedido_finalizado'][$idCarrinho] !== true) {
+    // Redireciona para a página de acompanhamento do pedido
+    header('Location: ./index.php');
+    exit;
+};
 
 ?>
 

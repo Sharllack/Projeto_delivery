@@ -23,3 +23,27 @@ document.querySelector('form').addEventListener('submit', function(event) {
         event.preventDefault();
     }
 })
+
+document.querySelector('#opcoes').addEventListener('change', function(){
+    const opc = document.querySelector('#opcoes').value;
+    const ask = document.querySelector('.contTroco');
+
+    if(opc === 'dinheiro'){
+        ask.style.display = 'block';
+    } else {
+        ask.style.display = 'none';
+    }
+})
+
+document.querySelectorAll('.askTroco').forEach(item => {
+    item.addEventListener('change', function() {
+        const askTr = document.querySelector('input[name="opcTroco"]:checked').value;
+        const troco = document.querySelector('.troco');
+
+        if (askTr === 'sim') {
+            troco.style.display = 'block';
+        } else {
+            troco.style.display = 'none';
+        }
+    });
+});

@@ -59,6 +59,12 @@ while($row = mysqli_fetch_assoc($result)) {
                 <option value="dinheiro">DINHEIRO</option>
                 <option value="pix">PIX</option>
             </select>
+            <div class="contTroco">
+                <p class="ask">Vai precisar de troco?</p>
+                <input type="radio" name="opcTroco" class="askTroco" value="sim">Sim
+                <input type="radio" name="opcTroco" class="askTroco" value="nao">Não
+            </div>
+            <input type="number" name="troco" class="troco" placeholder="Troco para quanto?">
             <p class="selectError">Selecione uma forma de pagamento</p>
             <h2 class="enderecoTitle">Endereço</h2>
             <section class="enderecoCont">

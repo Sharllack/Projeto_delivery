@@ -229,3 +229,11 @@ main {
     box-shadow: 8px 8px 10px black;
     transform: scale(1.05);
 }
+
+.contTroco, .troco {
+    display: none;
+}
+
+.troco {
+    padding: 5px;
+}

@@ -8,15 +8,11 @@ if(!isset($_SESSION)) {
 
 $usuario = $_SESSION['idUsuario'];
 
-if (isset($_SESSION['pedido_finalizado'][$_SESSION['idUsuario']]) && $_SESSION['pedido_finalizado'][$_SESSION['idUsuario']] === true) {
-    // Redireciona para a página de acompanhamento do pedido
-    header('Location: ./situacao_pedido.php');
-    exit;
-};
-
 $sql_query = "SELECT * FROM itenscarrinho 
               JOIN produtos ON itenscarrinho.idProduto = produtos.idProdutos
-              WHERE idUsuario = $usuario";
+              JOIN carrinho ON itenscarrinho.idCarrinho = carrinho.idCarrinho
+              JOIN usuarios ON itenscarrinho.idUsuario = usuarios.idUsuarios
+              WHERE idUsuarios = $usuario";
 $result = $mysqli->query($sql_query);
 
 $total = 0;
@@ -48,6 +44,17 @@ $total = 0;
     <main>
     <h1 class="pratosTitle">FINALIZE O SEU PEDIDO</h1>
     <?php while($row = $result->fetch_assoc()) { ?>
+        <?php 
+
+            $idCarrinho = $row['idCarrinho'];
+            
+            if (isset($_SESSION['pedido_finalizado'][$idCarrinho]) && $_SESSION['pedido_finalizado'][$idCarrinho] === true) {
+                // Redireciona para a página de acompanhamento do pedido
+                header('Location: ./situacao_pedido.php');
+                exit;
+            };
+        
+        ?>
         <form action="./adicionar_total.php?finalizar=<?php echo $row['idProduto']; ?>" method="post">
             <section class="secPratos">
                 <div class="pratosContainer">

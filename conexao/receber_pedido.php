@@ -132,6 +132,7 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                 <th>Cliente</th>
                 <th>Contato</th>
                 <th>Endereço</th>
+                <th>Referência</th>
                 <th>Aceitar</th>
                 <th>Rota</th>
                 <th>Finalizar</th>
@@ -170,10 +171,11 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                         </td>
                         <td><?php echo $row['obs'];?></td>
                         <td><?php echo $row['pagamento']?></td>
-                        <td><?php echo "R$" . number_format($row['valorTotal'], 2, "," , ".")?></td>
+                        <td><?php echo "R$" . number_format($row['valorTotal'], 2, "," , "." . "<br>")?> <?php echo "Troco:" . "R$" . number_format($row['troco'], 2, "," , ".")?></td>
                         <td><?php echo $row['nomeCliente']?></td>
                         <td><?php echo $row['cell']?></td>
                         <td><?php echo $row['rua'] . ',' . $row['numero']?></td>
+                        <td><?php echo $row['referencia']; ?></td>
                         <td><a href="./receber_pedido.php?preparando=<?php echo $row['idPedido'] ?>" class="verde">Aceitar</a></td>
                         <td><a href="./receber_pedido.php?rota=<?php echo $row['idPedido'] ?>" class="verde">Rota</a></td>
                         <td><a href="./receber_pedido.php?finalizar=<?php echo $row['idPedido'] ?>" class="vermelho">Finalizar</a></td>

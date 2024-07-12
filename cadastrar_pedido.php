@@ -9,6 +9,7 @@ if(!isset($_SESSION)) {
 if(isset($_GET['finalizar'])) {
     $idCarrinho = intval($_GET['finalizar']);
     $pagamento = $_POST['opcoes'];
+    $troco = $_POST['troco'];
 
     $usuario = $_SESSION['idUsuario'];
 
@@ -26,12 +27,12 @@ if(isset($_GET['finalizar'])) {
         $idUsuario = $row['idUsuarios'];
     };
 
-    $stmt = $mysqli->prepare("INSERT INTO pedidos (idProduto, idUsuario, idCarrinho, idItens, pagamento) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("iiiis", $idProduto, $idUsuario, $idCarrinho, $idItens, $pagamento);
+    $stmt = $mysqli->prepare("INSERT INTO pedidos (idProduto, idUsuario, idCarrinho, idItens, pagamento, troco) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("iiiisd", $idProduto, $idUsuario, $idCarrinho, $idItens, $pagamento, $troco);
     $stmt->execute();
     $stmt->close();
 
-    $_SESSION['pedido_finalizado'][$_SESSION['idUsuario']] = true;
+    $_SESSION['pedido_finalizado'][$idCarrinho] = true;
 
     header('Location: ./situacao_pedido.php?idUsuario=' . $idUsuario);
     exit();
