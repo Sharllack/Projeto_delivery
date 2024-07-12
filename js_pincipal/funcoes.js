@@ -6,7 +6,7 @@ function atualizarSituacao() {
     const log = document.querySelector('.logBtn')
     const hora = new Date().getHours();
 
-    if (hora >= 11 && hora < 15) {
+    if (hora >= 11 && hora < 24) {
         saudacao.textContent = 'Aberto';
         saudacao.className = 'open';
         sit.textContent = 'Aberto';

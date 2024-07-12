@@ -14,6 +14,7 @@
         $sql_code = "SELECT * FROM host WHERE user = '$usu' LIMIT 1";
         $sql_query = $mysqli->query($sql_code) or die ("Falha na execução do código SQL: " . $mysqli->error);
     
+    if($sql_query -> num_rows > 0) {
         $usuario = $sql_query->fetch_assoc();
         if(password_verify($sen, $usuario['pass'])) {
             if(!isset($_SESSION)) {
@@ -28,7 +29,10 @@
         } else {
             $erro = 'Usuário ou senha incorretos!';
         }
+    } else {
+        $erro = 'Usuário não encontrado!';
     }
+}
 ?>
 
 <!DOCTYPE html>
