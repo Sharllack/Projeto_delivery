@@ -52,7 +52,6 @@
             <input type="text" name="user" id="user" placeholder="Usuário">
             <input type="password" name="pass" id="pass" placeholder="Senha"><br>
             <p id="erro" style="color: red; font-size:.8em; text-align:center;"><?php echo $erro; ?></p>
-            <a href="#">Esqueci a senha</a>
             <div class="btn">
                 <button type="submit">Entrar</button>
             </div>
