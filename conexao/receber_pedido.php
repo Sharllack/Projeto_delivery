@@ -179,7 +179,7 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                         <td><?php echo "R$" . number_format($total, 2, "," , "." . "<br>")?> <?php echo "Troco:" . "R$" . number_format($row['troco'], 2, "," , ".")?></td>
                         <td><?php echo $row['nomeCliente']?></td>
                         <td><?php echo $row['cell']?></td>
-                        <td><?php echo $row['rua'] . ',' . $row['numero']?></td>
+                        <td><?php echo $row['rua'] . ', ' . $row['numero'] . ', ' . $row['complemento']?></td>
                         <td><?php echo $row['referencia']; ?></td>
                         <td><a href="./receber_pedido.php?preparando=<?php echo $row['idPedido'] ?>" class="verde">Aceitar</a></td>
                         <td><a href="./receber_pedido.php?rota=<?php echo $row['idPedido'] ?>" class="verde">Rota</a></td>
