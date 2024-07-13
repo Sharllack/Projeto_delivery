@@ -111,7 +111,7 @@ $result_bebida = $mysqli->query($sql);
         </form>
 
         <table>
-            <h1 style="text-align: center;">Pratos</h1>
+            <h1 style="text-align: center; margin-top: 15px;">Pratos</h1>
             <thead>
                 <th>Disponibilidade</th>
                 <th>id</th>
