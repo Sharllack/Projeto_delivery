@@ -128,3 +128,7 @@ button[type="button"] a {
 button[type="button"] a:hover {
     text-decoration: none;
 }
+
+.btn {
+    margin-top: 15px;
+}
