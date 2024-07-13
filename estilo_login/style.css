@@ -108,3 +108,7 @@ button[type="submit"]:active {
     transform: scale(.9);
     box-shadow: 3px 3px 10px black;
 }
+
+.btn {
+    margin-top: 15px;
+}
