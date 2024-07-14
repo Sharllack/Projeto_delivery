@@ -57,40 +57,17 @@ if(isset($_GET['finalizar'])) {
     $stmt->execute();
     $stmt->close();
 
-    header('Location: ../unset.php?idPedido=' . $idPedido);
+    header('Location: ../unsetAdmin.php?idPedido=' . $idPedido);
 }
 
 if(isset($_GET['recusar'])) {
     $idPedido = intval($_GET['recusar']);
     $situacao = 'O seu pedido não foi aceito!';
-    $stmt = $mysqli->prepare("UPDATE pedidos SET situacao = ? WHERE idPedido = ?");
-    $stmt->bind_param("si", $situacao, $idPedido);
+    $situ = 'Recusado!';
+    $stmt = $mysqli->prepare("UPDATE pedidos SET situacao = ?, situ = ? WHERE idPedido = ?");
+    $stmt->bind_param("ssi", $situacao, $situ, $idPedido);
     $stmt->execute();
     $stmt->close();
-
-    $stmt = $mysqli->prepare("SELECT idUsuario FROM pedidos WHERE idPedido = ?");
-    $stmt->bind_param("i", $idPedido);
-    $stmt->execute();
-    $stmt->bind_result($idUsuario);
-    $stmt->fetch();
-    $stmt->close();
-
-    $stmt = $mysqli->prepare("DELETE FROM pedidos WHERE idPedido = ?");
-    $stmt->bind_param("i", $idPedido);
-    $stmt->execute();
-    $stmt->close();
-
-    $stmt = $mysqli->prepare("DELETE FROM itenscarrinho WHERE idUsuario = ?");
-    $stmt->bind_param("i", $idUsuario);
-    $stmt->execute();
-    $stmt->close();
-
-    $stmt = $mysqli->prepare("DELETE FROM carrinho WHERE idUsuario = ?");
-    $stmt->bind_param("i", $idUsuario);
-    $stmt->execute();
-    $stmt->close();
-
-    header('Location: ../unset.php?idPedido=' . $idPedido);
 }
 
 $sql_query = "SELECT * FROM pedidos
@@ -135,8 +112,8 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                 <th>Referência</th>
                 <th>Aceitar</th>
                 <th>Rota</th>
-                <th>Finalizar</th>
                 <th>Recusar</th>
+                <th>Finalizar</th>
             </thead>
             <tbody>
                 <?php while($row = $result->fetch_assoc()) { ?>
@@ -183,8 +160,8 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                         <td><?php echo $row['referencia']; ?></td>
                         <td><a href="./receber_pedido.php?preparando=<?php echo $row['idPedido'] ?>" class="verde">Aceitar</a></td>
                         <td><a href="./receber_pedido.php?rota=<?php echo $row['idPedido'] ?>" class="verde">Rota</a></td>
-                        <td><a href="./receber_pedido.php?finalizar=<?php echo $row['idPedido'] ?>" class="vermelho">Finalizar</a></td>
                         <td><a href="./receber_pedido.php?recusar=<?php echo $row['idPedido'] ?>" class="vermelho">Recusar</a></td>
+                        <td><a href="./receber_pedido.php?finalizar=<?php echo $row['idPedido'] ?>" class="vermelho">Finalizar</a></td>
                     </tr>
                 <?php } ?>
             </tbody>

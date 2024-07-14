@@ -23,7 +23,7 @@ if(isset($_GET['idPedido'])) {
     }
 
     // Redirecionamento após limpar a variável de sessão
-    header("Location: ./index.php");
+    header("Location: ./conexao/receber_pedido.php");
     exit();
 }
 

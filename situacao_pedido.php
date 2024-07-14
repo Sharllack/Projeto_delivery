@@ -14,6 +14,7 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
 while($row = mysqli_fetch_assoc($result)) {
     $situacao = $row['situacao'];
     $idCarrinho = $row['idCarrinho'];
+    $idPedido = $row['idPedido'];
 }
 
 if (!isset($_SESSION['pedido_finalizado'][$idCarrinho]) && $_SESSION['pedido_finalizado'][$idCarrinho] !== true) {
@@ -36,7 +37,7 @@ if (!isset($_SESSION['pedido_finalizado'][$idCarrinho]) && $_SESSION['pedido_fin
 <body>
 
     <div class="home">
-        <a href="./index.php">
+        <a href="./index.php" class="inicio">
             <img src="./imagens/imagens_pincipal/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Home">
         </a>
     </div>
@@ -60,5 +61,14 @@ if (!isset($_SESSION['pedido_finalizado'][$idCarrinho]) && $_SESSION['pedido_fin
         <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!" target="_blank"><img src="./imagens/whats_logo.png" alt="whatsapp"></a>
     </div>
     <script src="./js_situacao_produto/funcoes.js"></script>
+    <script>
+        const link = document.querySelector('.inicio');
+        const situ = document.querySelector('.situProd');
+        const idPedido = <?php echo $idPedido; ?>; // Aqui está a correção
+
+        if(situ.textContent == 'O seu pedido não foi aceito!'){
+            link.href = './refresh_carrinho.php?idPedido=' + idPedido;
+        }
+    </script>
 </body>
 </html>
