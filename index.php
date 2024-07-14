@@ -158,7 +158,7 @@ if($bairro == 'Vila Centenário') {
     </div>
     <?php endif; ?>
     <div class="wpp">
-        <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!"><img src="./imagens/whats_logo.png" alt="whatsapp"></a>
+        <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!" target="_blank"><img src="./imagens/whats_logo.png" alt="whatsapp"></a>
     </div>
     <script src="./js_pincipal/funcoes.js"></script>
 </body>

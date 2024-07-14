@@ -57,7 +57,7 @@ if (!isset($_SESSION['pedido_finalizado'][$idCarrinho]) && $_SESSION['pedido_fin
         </a>
     </div>
     <div class="wpp">
-        <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!"><img src="./imagens/whats_logo.png" alt="whatsapp"></a>
+        <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!" target="_blank"><img src="./imagens/whats_logo.png" alt="whatsapp"></a>
     </div>
     <script src="./js_situacao_produto/funcoes.js"></script>
 </body>
