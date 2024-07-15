@@ -25,6 +25,14 @@ while($row = mysqli_fetch_assoc($result)) {
     $idCarrinho = $row['idCarrinho'];
 }
 
+if($bairro == 'Vila Centenário') {
+    $_SESSION['taxa'] = '3';
+} else if(!isset($_SESSION['user'])){
+    $_SESSION['taxa'] = '3,00 - R$4';
+} else {
+    $_SESSION['taxa'] = '4';
+}
+
 ?>
 
 <!DOCTYPE html>

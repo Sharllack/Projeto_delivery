@@ -2,7 +2,7 @@
 
 include('./conexao/conexao.php');
 
-$usu_error = $cell_error = '';
+$usu_error = $cell_error = $email_error = '';
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST['nome']) 
@@ -17,10 +17,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     && isset($_POST['referencia']) 
     && isset($_POST['user']) 
     && isset($_POST['senha']) 
-    && isset($_POST['cSenha'])) {
+    && isset($_POST['cSenha'])
+    && isset($_POST['email'])) {
 
         $nome = $_POST['nome'];
         $cell = $_POST['cell'];
+        $email = $_POST['email'];
         $cep = $_POST['cep'];
         $estado = $_POST['estado'];
         $cidade = $_POST['cidade'];
@@ -39,6 +41,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $cell_error = "Celular já cadastrado.";
        }
 
+       $sql_email = "SELECT * FROM usuarios WHERE email = '$email' LIMIT 1";
+       $result_email = $mysqli->query($sql_email);
+
+       if($result_email->num_rows > 0) {
+        $email_error = "Celular já cadastrado.";
+       }
+
        $sql_user = "SELECT * FROM usuarios WHERE usuario = '$usuario' LIMIT 1";
        $result_user = $mysqli->query($sql_user);
 
@@ -46,8 +55,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $usu_error = "Usuario já cadastrado.";
        }
 
-       if(empty($usu_error) && empty($cell_error)){
-        $mysqli->query("INSERT INTO usuarios (nomeCliente, cell, estado, cidade, bairro, rua, numero, complemento, referencia, cep, usuario, senha) VALUES('$nome', '$cell', '$estado', '$cidade', '$bairro', '$rua', '$numero', '$complemento', '$referencia', '$cep', '$usuario', '$senha')") or die($mysqli->error);
+       if(empty($usu_error) && empty($cell_error) && empty($email_error)){
+        $stmt = $mysqli->prepare("INSERT INTO usuarios (nomeCliente, cell, email, estado, cidade, bairro, rua, numero, complemento, referencia, cep, usuario, senha) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssssssssss",$nome, $cell, $email, $estado, $cidade, $bairro, $rua, $numero, $complemento, $referencia, $cep, $usuario, $senha);
+        $stmt->execute();
+        $stmt->close();
 
         sleep(2);
 
@@ -80,6 +92,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="inpu">
                     <input type="text" name="cell" id="cell" placeholder="Número para Contato" required value="<?php echo isset($_POST['cell']) ? $_POST['cell'] : ''; ?>">
                     <p style="font-size: .8em; color: red; margin-left: 15px;"><?php echo $cell_error?></p>
+                </div>
+                <div class="inpu">
+                    <input type="text" name="email" id="email" placeholder="E-mail" required value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>">
+                    <p style="font-size: .8em; color: red; margin-left: 15px;"><?php echo $email_error?></p>
                 </div>
                 <div class="inpu">
                     <input type="text" name="cep" id="cep" placeholder="CEP" required value="<?php echo isset($_POST['cep']) ? $_POST['cep'] : ''; ?>">

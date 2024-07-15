@@ -27,6 +27,7 @@ if($sql_query->num_rows > 0) {
         $_SESSION['user'] = $usuario['usuario'];
         $_SESSION['nome'] = $usuario['nomeCliente'];
         $_SESSION['contato'] = $usuario['cell'];
+        $_SESSION['email'] = $usuario['email'];
         $_SESSION['estado'] = $usuario['estado'];
         $_SESSION['cidade'] = $usuario['cidade'];
         $_SESSION['bairro'] = $usuario['bairro'];
@@ -65,6 +66,7 @@ if($sql_query->num_rows > 0) {
             <input type="text" name="user" id="user" placeholder="Usuário">
             <input type="password" name="pass" id="pass" placeholder="Senha"><br>
             <p id="erro" style="color: red; font-size:.8em; text-align:center;"><?php echo $erro; ?></p>
+            <a href="pass_reco">Esqueci a senha</a>
             <div class="btn">
                 <button type="submit">Entrar</button>
                 <button type="button"><a href="./cadastro_usuario.php">Cadastre-se</a></button>
