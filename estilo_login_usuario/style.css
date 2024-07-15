@@ -12,6 +12,20 @@ body {
     background-image: linear-gradient(45deg, #5A3F2F, darkslategray);
 }
 
+.voltar {
+    padding: 15px;
+}
+
+.voltar a {
+    color: white;
+    font-size: 1.2em;
+    text-decoration: none;
+}
+
+.voltar a:hover {
+    text-decoration: underline;
+}
+
 main {
     height: 300px;
     width: 600px;

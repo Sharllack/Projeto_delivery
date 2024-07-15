@@ -59,14 +59,16 @@ if($sql_query->num_rows > 0) {
     <title>Login</title>
 </head>
 <body>
-    
+    <div class="voltar">
+        <a href="./index.php">Voltar</a>
+    </div>
     <main>
         <form action="" method="post">
             <h1>Login</h1>
             <input type="text" name="user" id="user" placeholder="Usuário">
             <input type="password" name="pass" id="pass" placeholder="Senha"><br>
             <p id="erro" style="color: red; font-size:.8em; text-align:center;"><?php echo $erro; ?></p>
-            <a href="pass_reco">Esqueci a senha</a>
+            <a href="./pass_reco.php">Esqueci a senha</a>
             <div class="btn">
                 <button type="submit">Entrar</button>
                 <button type="button"><a href="./cadastro_usuario.php">Cadastre-se</a></button>

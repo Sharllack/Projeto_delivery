@@ -81,6 +81,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Cadastre-se</title>
 </head>
 <body>
+
+    <div class="voltar">
+        <a href="./login_usuario.php">Voltar</a>
+    </div>
     
     <main>
         <section>
