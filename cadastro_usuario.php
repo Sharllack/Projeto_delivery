@@ -137,6 +137,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" name="cSenha" id="cSenha" placeholder="Confirme a Senha" required>
                     <span class="resPass"></span>
                 </div>
+                <p class="resposta" style="color: white;"></p>
                 <div class="btn">
                     <button type="submit">Cadastrar</button>
                     <button type="reset">Limpar</button>

@@ -32,12 +32,13 @@ document.querySelector('#senha').addEventListener('keyup', function() {
 document.querySelector('form').addEventListener('submit', function(event) {
     let pass = document.querySelector('#senha').value;
     let cPass = document.querySelector('#cSenha').value;
-    let sPass = (pass.length <= 8);
+    let res = document.querySelector('.resposta');
+    let sPass = (pass.length >= 8);
     let passwordsMatch = (pass === cPass);
 
     if(!passwordsMatch || !sPass) {
         event.preventDefault(); // Impede o envio do formulário
     } else {
-
+        res.textContent = 'Cadastro Efetuado!';
     }
 });
