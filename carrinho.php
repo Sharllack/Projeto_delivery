@@ -61,7 +61,7 @@ $total = 0;
                         <section href="./complemento_produto.php?comprar=<?php echo $row['idProduto'];?>" class="linkPratos">
                             <div class="pratos">
                                 <div class="imgPrato">
-                                    <img height="80px" width="80px" src="./conexao/<?php echo $row['imagem'];?>" alt="">
+                                    <img src="./conexao/<?php echo $row['imagem'];?>" alt="">
                                 </div>
                                 <div class="infoGeral">
                                     <div class="info">
@@ -70,20 +70,22 @@ $total = 0;
                                     </div>
                                     <div class="preco">
                                         <div class="qtd">
-                                            <div class="qtd">
-                                                <div class="valor">
-                                                    <span class="valorProduto">R$<?php echo number_format($row['preco'], 2, ',', '.'); ?></span>
+                                            <div class="valor">
+                                                <span class="valorProduto">R$<?php echo number_format($row['preco'], 2, ',', '.'); ?></span>
+                                            </div>
+                                            <div class="oper">
                                                 <div class="soma">
                                                     <button type="button">+</button>
                                                 </div>
+                                                <div>
                                                     <input type="number" name="quantidade[<?php echo $row['idProduto']; ?>]" readonly class="quantidade" value="<?php echo $row['qtd']; ?>" data-preco="<?php echo $row['preco']?>" style="font-weight: bold; text-align:center;">
                                                 </div>
                                                 <div class="subtrai">
                                                     <button type="button" >-</button>
                                                 </div>
-                                                <div>
-                                                    <a href="./remover_produto.php?remover=<?php echo $row['idProduto']; ?>" style="display:none;" class="btnRemove">REMOVER</a>
-                                                </div>
+                                            </div>
+                                            <div>
+                                                <a href="./remover_produto.php?remover=<?php echo $row['idProduto']; ?>" style="display:none;" class="btnRemove">REMOVER</a>
                                             </div>
                                         </div>
                                     </div>

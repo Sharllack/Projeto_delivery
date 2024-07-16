@@ -128,6 +128,11 @@ main {
     margin-right: 15px;
 }
 
+.imgPrato img {
+    height: 80px;
+    width: 80px;
+}
+
 .infoGeral {
     display: flex;
     align-items: center;
@@ -258,4 +263,8 @@ input[type="number"]::-webkit-inner-spin-button {
 .wpp:hover {
     box-shadow: 8px 8px 10px black;
     transform: scale(1.05);
+}
+
+.oper {
+    display: flex;
 }
