@@ -2,22 +2,18 @@
 
 @media screen and (max-width: 600px){
 
-    body {
-        overflow: hidden;
-    }
-
     .img {
         display: none;
     }
 
     main {
         width: 100%;
+        margin-top: 15px;
         height: 100%;
     }
 
     section {
         width: 100%;
-        border-radius: 0;
     }
 
     form {
@@ -25,27 +21,32 @@
         flex-direction: column;
     }
 
-    input {
-        width: 90%;
-    }
-
     .inpu {
         width: 100%;
-        margin-bottom: 5px;
-    }
-
-    button[type='reset'] {
-        margin-right: 15px;
     }
     
 }
 
-@media screen and (max-width: 1124px) {
+@media screen and (min-width: 600px) and (max-width: 1219px) {
     .img {
         display: none;
     }
 
+    main {
+        width: 100%;
+        margin-top: 15px;
+        height: 100%;
+    }
+
     section {
         width: 100%;
+    }
+
+    form {
+        flex-wrap: wrap;
+    }
+
+    .inpu {
+        width: 48%;
     }
 }

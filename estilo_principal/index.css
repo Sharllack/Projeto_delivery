@@ -130,6 +130,8 @@ main {
     border-radius: 5px;
     font-weight: bold;
     transition: .3s;
+
+    text-align: center;
 }
 
 .logBtn:hover {

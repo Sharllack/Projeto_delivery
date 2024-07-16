@@ -34,7 +34,6 @@ form {
 
     background-color: darkslategray;
     width: 350px;
-    height: 50%;
     border-radius: 15px;
     box-shadow: 2px 2px 8px black;
 
@@ -67,6 +66,7 @@ form input:focus {
 }
 
 .btn {
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
 }

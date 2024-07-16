@@ -85,15 +85,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="voltar">
         <a href="./login_usuario.php">Voltar</a>
     </div>
-    
     <main>
         <section>
-        <h1>Cadastre-se</h1>
+        <h1 class="titleForm">Cadastre-se</h1>
             <form action="" method="post">
-                <div class="inpu">
+                <div class="inpu" id="in">
                     <input type="text" name="nome" id="nome" placeholder="nome" required value="<?php echo isset($_POST['nome']) ? $_POST['nome'] : ''; ?>">
                 </div>
-                <div class="inpu">
+                <div class="inpu" id="im">
                     <input type="text" name="cell" id="cell" placeholder="Número para Contato" required value="<?php echo isset($_POST['cell']) ? $_POST['cell'] : ''; ?>">
                     <p style="font-size: .8em; color: red; margin-left: 15px;"><?php echo $cell_error?></p>
                 </div>
@@ -144,9 +143,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </form>
         </section>
-
         <div class="img">
-            <img src="./imagens/imagens_cadastro_usuario/culinaria-mineira-cpt.jpg" alt="imagem de comida">
+            <img src="./imagens/imagens_cadastro_usuario/comida-brasileira-simples-com-espaco-de-copia_23-2148739186.avif" alt="">
         </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
