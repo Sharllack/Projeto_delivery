@@ -19,7 +19,19 @@ if(isset($_GET['preparando'])) {
 
 if(isset($_GET['rota'])) {
     $idPedido = intval($_GET['rota']);
-    $situacao = 'O seu pedido já saiu para a entrega!';
+
+    $stmt = $mysqli->prepare("SELECT entrega FROM pedidos WHERE idPedido = ?");
+    $stmt->bind_param("i", $idPedido);
+    $stmt->execute();
+    $stmt->bind_result($entrega);
+    $stmt->fetch();
+    $stmt->close();
+
+    if($entrega == 'retirada') {
+        $situacao = 'Pedido aguardando retirada!';
+    } else {
+        $situacao = 'O seu pedido já saiu para a entrega!';
+    }
     $situ = 'Em Rota!';
     $stmt = $mysqli->prepare("UPDATE pedidos SET situacao = ?, situ = ? WHERE idPedido = ?");
     $stmt->bind_param("ssi", $situacao, $situ, $idPedido);
@@ -104,6 +116,7 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                 <th>Data/Hora</th>
                 <th>Pedido</th>
                 <th>Observação</th>
+                <th>Entrega</th>
                 <th>Pagamento</th>
                 <th>Total</th>
                 <th>Cliente</th>
@@ -152,6 +165,7 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                             ?>
                         </td>
                         <td><?php echo $row['obs'];?></td>
+                        <td><?php echo $row['entrega'];?></td>
                         <td><?php echo $row['pagamento']?></td>
                         <td><?php echo "R$" . number_format($total, 2, "," , "." . "<br>")?> <?php echo "Troco:" . "R$" . number_format($row['troco'], 2, "," , ".")?></td>
                         <td><?php echo $row['nomeCliente']?></td>

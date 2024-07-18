@@ -50,7 +50,6 @@ if (!isset($_SESSION['pedido_finalizado'][$idCarrinho]) && $_SESSION['pedido_fin
     <main>
         <h1 class="titleSit">Situação do Pedido</h1>
         <p class="situProd"><?php echo $situacao; ?></p>
-
     </main>
     <div class="shopCart">
         <a href="#">
