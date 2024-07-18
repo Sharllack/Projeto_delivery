@@ -114,6 +114,12 @@ main {
     margin-bottom: 5px;
 }
 
+#opcEntrega {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 5px;
+}
+
 .location {
     width: 40px;
     height: 40px;
@@ -200,7 +206,7 @@ main {
     border-radius: 50%;
 }
 
-.selectError {
+.selectError, .selectErro {
     text-align: center;
     color: red;
     font-weight: bold;

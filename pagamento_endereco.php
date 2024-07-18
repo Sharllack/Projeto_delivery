@@ -74,13 +74,20 @@ if($bairro == 'Vila Centenário') {
             </div>
             <input type="number" name="troco" class="troco" placeholder="Troco para quanto?">
             <p class="selectError">Selecione uma forma de pagamento</p>
-            <h2 class="enderecoTitle">Endereço</h2>
+            <h2>Entrega</h2>
+            <select name="opcEntrega" id="opcEntrega" style="font-weight: bold;">
+                <option value="#" style="text-align: center;">-----Selecione uma Opção-----</option>
+                <option value="entrega">ENTREGA</option>
+                <option value="retirada">RETIRAR NA LOJA</option>
+            </select>
+            <p class="selectErro">Selecione o Tipo de Entrega</p>
+            <h2 class="enderecoTitle">Endereço Para Entrega</h2>
             <section class="enderecoCont">
                 <div class="end">
                     <img src="./imagens/location_on_24dp_00000_FILL0_wght400_GRAD0_opsz24.png" alt="localização" class="location">
                     <div class="endereco">
-                        <p><strong><?php echo $rua?>, <?php echo $numero?></strong></p>
-                        <p><?php echo $bairro?></p>
+                        <p class="logra"><strong><?php echo $rua?>, <?php echo $numero?></strong></p>
+                        <p class="bai"><?php echo $bairro?></p>
                     </div>
                 </div>
                 <a href="./editar_endereco.php?editar=<?php echo $idUsuario ?>" type="button" class="trocar">Trocar</a>
@@ -97,7 +104,7 @@ if($bairro == 'Vila Centenário') {
 
             ?>
             <h2>Taxa de Entrega</h2>
-            <p style="margin-left: 15px; margin-bottom: 15px"><strong>R$<?php echo $_SESSION['taxa']?>,00</strong></p>
+            <p style="margin-left: 15px; margin-bottom: 15px" class="valorTaxa"><strong>R$<?php echo $_SESSION['taxa']?>,00</strong></p>
             <button type="submit" class="button">Finalizar Pedido <span class="valorTotal">R$<?php echo number_format($total, 2, ',', '.');?></span></button>
         </form>
     </main>
