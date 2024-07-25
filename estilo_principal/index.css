@@ -275,6 +275,29 @@ main {
     bottom: 50px;
     border-radius: 50%;
     transition: .3s;
+
+    animation: treme 5s infinite;
+}
+
+@keyframes treme {
+    0% {
+        transform: rotate(0deg);
+        transform: scale(1);
+    }
+    1% {
+        transform: rotate(10deg);
+    }
+    3% {
+        transform: rotate(-10deg);
+        transform: scale(1.1);
+    }
+    5% {
+        transform: rotate(10deg);
+    }
+    7% {
+        transform: rotate(0deg);
+        transform: scale(1);
+    }
 }
 
 .shopCart a {
