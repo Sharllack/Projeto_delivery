@@ -23,6 +23,8 @@
             }
 
             $_SESSION['user'] = $usuario['user']; // session é uma variável que continua válida em mais de uma tela.
+            $_SESSION['idUsuario'] = $usuario['idAdmin'];
+            $_SESSION['situacao'] = $usuario['situacao'];
 
             header("Location: adicionar_produto.php"); //para redirecionar a pág.
 

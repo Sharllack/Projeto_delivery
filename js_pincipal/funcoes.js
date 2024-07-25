@@ -3,10 +3,11 @@ function atualizarSituacao() {
     const sit = document.querySelector('.sit');
     const carrinho = document.querySelector('.carrinho');
     const link = document.querySelectorAll('.linkPratos');
-    const log = document.querySelector('.logBtn')
+    const log = document.querySelector('.logBtn');
+    const situ = document.querySelector('.situ').innerHTML;
     const hora = new Date().getHours();
 
-    if (hora >= 0 && hora < 24) {
+    if (hora >= 11 && hora < 15 || situ === "Aberto") {
         saudacao.textContent = 'Aberto';
         saudacao.className = 'open';
         sit.textContent = 'Aberto';

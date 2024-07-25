@@ -7,6 +7,44 @@ if(!isset($_SESSION)){
     session_start();
 }
 
+if(isset($_GET['aberto'])) {
+    $protocolo = intval($_GET['aberto']);
+    $stmt = $mysqli->prepare("SELECT situacao FROM host");
+    $stmt->execute();
+    $stmt->bind_result($situacao);
+    $stmt->fetch();
+    $stmt->close();
+
+    if($situacao == 0){
+        $situacao = 1;
+        $_SESSION['situacao'] = $situacao;
+        $sqlUpdate = "UPDATE host SET situacao= ? ";
+        $stmt = $mysqli->prepare($sqlUpdate);
+        $stmt->bind_param("i", $situacao);
+        $stmt->execute();
+        $stmt->close();
+    }
+}
+
+if(isset($_GET['fechado'])) {
+    $protocolo = intval($_GET['fechado']);
+    $stmt = $mysqli->prepare("SELECT situacao FROM host");
+    $stmt->execute();
+    $stmt->bind_result($situacao);
+    $stmt->fetch();
+    $stmt->close();
+
+    if($situacao == 1){
+        $situacao = 0;
+        $_SESSION['situacao'] = $situacao;
+        $sqlUpdate = "UPDATE host SET situacao= ? ";
+        $stmt = $mysqli->prepare($sqlUpdate);
+        $stmt->bind_param("i", $situacao);
+        $stmt->execute();
+        $stmt->close();
+    }
+}
+
 if(isset($_GET['deletar'])) {
     $protocolo = intval($_GET['deletar']);
     // Preparando a consulta com prepared statement
@@ -83,6 +121,19 @@ $result_bebida = $mysqli->query($sql);
 <body>
     <div style="position: absolute; left: 15px; margin: 15px 15px 0 0; font-size:1.2em;"><a href="./receber_pedido.php" style="color: white;">Meus pedidos</a></div>
     <div class="logout" style="position: absolute; right: 0; margin: 15px 15px 0 0; font-size:1.2em;"><a href="./logout.php" style="color: white;">Sair</a></div>
+    <div class="openClose">
+        <a href="./adicionar_produto.php?aberto=<?php echo $_SESSION['situacao']?>" class="abrir">Abrir</a>
+        <a href="./adicionar_produto.php?fechado=<?php echo $_SESSION['situacao']?>" class="fechar">Fechar</a>
+    </div>
+    <div class="situacao">
+        <span class="abertoFechado">
+            <?php if($_SESSION['situacao'] == 1): ?>
+                <span class="aberto">Aberto</span>
+            <?php else :?>
+                <span class="fechado">Fechado</span>
+            <?php endif; ?>
+        </span>
+    </div>
     <header>
         <h1>Adicionar Produtos</h1>
         <p>Olá, <?= $_SESSION['user']?>! Vamos adicionar novos produtos!</p>

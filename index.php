@@ -6,6 +6,12 @@ if(!isset($_SESSION)) {
     session_start();
 };
 
+$stmt = $mysqli->prepare("SELECT situacao FROM host");
+$stmt->execute();
+$stmt->bind_result($situacao);
+$stmt->fetch();
+$stmt->close();
+
 $_SESSION['taxa'] = true;
 
 if(!isset($_SESSION['user'])) {
@@ -47,7 +53,15 @@ if($bairro == 'Vila Centenário') {
         </a>
     </div>
     <div class="openOrClosedDiv">
-        <span class="openOrClosed">fechado</span>
+        <span class="openOrClosed">
+
+            <?php if($situacao == 1): ?>
+                <span class="aberto">Aberto</span>
+            <?php else :?>
+                <span class="fechado">Fechado</span>
+            <?php endif; ?>
+
+        </span>
     </div>
     <?php if(!isset($_SESSION['user'])):?>
         <div class="logout" style="display: none;">
@@ -68,7 +82,15 @@ if($bairro == 'Vila Centenário') {
     <main>
         <div class="infoPrincipal">
             <img src="./imagens/imagens_pincipal/comida-criolla-peru-peruvian-food-260nw-2191344515.webp" alt="Logo do Restaurante" class="logoRestaurante">
-            <p class="tempoDeEntrega">Restaurante • 20-90 min • <span class="sit"></span></p>
+            <p class="tempoDeEntrega">Restaurante • 20-90 min • 
+                <span class="sit">
+                    <?php if($situacao == 1): ?>
+                        <span class="situ">Aberto</span>
+                    <?php else :?>
+                        <span class="situ">Fechado</span>
+                    <?php endif; ?>
+                </span>
+            </p>
             <p style="margin-top: 20px;">Taxa de entrega: <strong>R$<?php echo $_SESSION['taxa']?>,00</strong></p>
             <p class="horarioDeFuncionamento"><strong>Horário de funcionamento hoje:</strong></p>
             <p class="hora"><strong>11:00 às 15:00</strong></p>

@@ -18,6 +18,65 @@ header {
     box-shadow: 2px 2px 8px black;
 }
 
+.openClose {
+    position: absolute;
+    right: 15px;
+    top: 90px;
+
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.abrir {
+    background-color: #55AA33;
+}
+
+.fechar {
+    background-color: red;
+}
+
+.abrir, .fechar {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    box-shadow: 2px 2px 8px black;
+    border-radius: 5px;
+    transition: .3s;
+}
+
+.abrir:hover, .fechar:hover {
+    display: block;
+    transform: scale(1.05);
+    box-shadow: 10px 10px 10px black;
+}
+
+.situacao {
+    position: absolute;
+    top: 15px;
+    right: 200px;
+}
+
+.abertoFechado {
+    color: white;
+}
+
+.aberto {
+    background-color: #55AA33;
+}
+
+.fechado {
+    background-color: red;
+}
+
+.aberto, .fechado {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    box-shadow: 2px 2px 8px black;
+    border-radius: 5px;
+    transition: .3s;
+}
 
 form {
     max-width: 800px;
