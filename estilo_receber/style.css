@@ -29,6 +29,7 @@ table {
     border-collapse: collapse;
     max-width: 1000px;
     box-shadow: 2px 2px 8px black;
+    font-size: .9em;
 }
 
 tr, th, td {

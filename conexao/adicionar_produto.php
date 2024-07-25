@@ -96,7 +96,7 @@ $result_bebida = $mysqli->query($sql);
                 <option value="bebida">Bebidas</option>
             </select>
             <input type="text" name="nome" id="nome" placeholder="Nome do Produto" required>
-            <input type="text" name="descricao" id="descricao" placeholder="Descrição do Produto" required>
+            <input type="text" name="descricao" id="descricao" placeholder="Descrição do Produto">
             <input type="number" name="preco" id="preco" placeholder="Valor do Produto" step="0.01" required>
             <label for="imagem" class="file">
                 <span class="span1">Selecione a Imagem</span>
