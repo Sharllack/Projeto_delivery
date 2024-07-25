@@ -9,7 +9,7 @@ if(!isset($_SESSION)){
 
 if(isset($_GET['aberto'])) {
     $protocolo = intval($_GET['aberto']);
-    $stmt = $mysqli->prepare("SELECT situacao FROM host");
+    $stmt = $mysqli->prepare("SELECT situacao FROM host WHERE idAdmin = '" . $_SESSION['idUsuario'] . "'");
     $stmt->execute();
     $stmt->bind_result($situacao);
     $stmt->fetch();
@@ -28,7 +28,7 @@ if(isset($_GET['aberto'])) {
 
 if(isset($_GET['fechado'])) {
     $protocolo = intval($_GET['fechado']);
-    $stmt = $mysqli->prepare("SELECT situacao FROM host");
+    $stmt = $mysqli->prepare("SELECT situacao FROM host WHERE idAdmin = '" . $_SESSION['idUsuario'] . "'");
     $stmt->execute();
     $stmt->bind_result($situacao);
     $stmt->fetch();
@@ -87,8 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if($deuCerto) {
             // Inserindo o produto com prepared statement
-            $stmt = $mysqli->prepare("INSERT INTO produtos (nome, descricao, preco, imagem, categoria) VALUES (?, ?, ?, ?, ?)");
-            $stmt->bind_param("ssdss", $nomeDoProduto, $descricao, $preco, $path, $categoria);
+            $stmt = $mysqli->prepare("INSERT INTO produtos (nome, descricao, preco, imagem, categoria, idAdmin) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssdssi", $nomeDoProduto, $descricao, $preco, $path, $categoria, $_SESSION['idUsuario']);
             $stmt->execute();
             $stmt->close();
         } else {
@@ -100,10 +100,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Consulta para obter todos os produtos
-$sql_query = "SELECT * FROM produtos WHERE categoria = 'prato'";
+$sql_query = "SELECT * FROM produtos WHERE categoria = 'prato' AND idAdmin = '" . $_SESSION['idUsuario'] . "'";
 $result = $mysqli->query($sql_query);
 
-$sql = "SELECT * FROM produtos WHERE categoria = 'bebida'";
+$sql = "SELECT * FROM produtos WHERE categoria = 'bebida' AND idAdmin = '" . $_SESSION['idUsuario'] . "'";
 $result_bebida = $mysqli->query($sql);
 
 
