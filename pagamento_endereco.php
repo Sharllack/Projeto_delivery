@@ -74,7 +74,7 @@ if($bairro == 'Vila Centenário') {
             </div>
             <input type="number" name="troco" class="troco" placeholder="Troco para quanto?">
             <p class="selectError">Selecione uma forma de pagamento</p>
-            <h2>Entrega</h2>
+            <h2 class="entTitle">Entrega</h2>
             <select name="opcEntrega" id="opcEntrega" style="font-weight: bold;">
                 <option value="#" style="text-align: center;">-----Selecione uma Opção-----</option>
                 <option value="entrega">ENTREGA</option>
@@ -103,7 +103,7 @@ if($bairro == 'Vila Centenário') {
                 $total += $_SESSION['taxa'];
 
             ?>
-            <h2>Taxa de Entrega</h2>
+            <h2 class="taxaTitle">Taxa de Entrega</h2>
             <p style="margin-left: 15px; margin-bottom: 15px" class="valorTaxa"><strong>R$<?php echo $_SESSION['taxa']?>,00</strong></p>
             <button type="submit" class="button">Finalizar Pedido <span class="valorTotal">R$<?php echo number_format($total, 2, ',', '.');?></span></button>
         </form>

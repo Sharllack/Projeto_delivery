@@ -68,4 +68,21 @@
         width: 30px; 
         height: 30px;
     }
+
+    .button, .formaTitle, .enderecoTitle, .entTitle, .pedidoTitle, .taxaTitle, .trocar {
+        font-size: 1em;
+    }
+
+    .pratosTitle {
+        font-size: 1.8em;
+    }
+
+    .endereco, .pedido, .valorTaxa {
+        font-size: .8em;
+    }
+
+    .location {
+        width: 30px;
+        height: 30px;
+    }
 }
