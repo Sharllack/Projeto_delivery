@@ -252,6 +252,26 @@ main {
     bottom: 170px;
     border-radius: 50%;
     transition: .3s;
+
+    animation: tremewpp 5s infinite alternate;
+}
+
+@keyframes tremewpp {
+    0% {
+        transform: rotate(0deg);
+    }
+    1% {
+        transform: rotate(10deg);
+    }
+    2% {
+        transform: rotate(-10deg);
+    }
+    3% {
+        transform: rotate(10deg);
+    }
+    4% {
+        transform: rotate(0deg);
+    }
 }
 
 .wpp a img{
@@ -276,23 +296,23 @@ main {
     border-radius: 50%;
     transition: .3s;
 
-    animation: treme 5s infinite;
+    animation: treme 5s infinite alternate;
 }
 
 @keyframes treme {
     0% {
         transform: rotate(0deg);
     }
-    1% {
-        transform: rotate(15deg);
+    2% {
+        transform: rotate(20deg);
     }
-    3% {
-        transform: rotate(-15deg);
+    4% {
+        transform: rotate(-20deg);
     }
-    5% {
-        transform: rotate(15deg);
+    6% {
+        transform: rotate(20deg);
     }
-    7% {
+    8% {
         transform: rotate(0deg);
     }
 }
