@@ -1,7 +1,7 @@
 <?php
 $usuario = 'root';
 $senha = 'LoideMartha12*';
-$database = 'venda_produtos';
+$database = 'delivery';
 $host = 'localhost';
 
 $mysqli = new mysqli($host, $usuario, $senha, $database);

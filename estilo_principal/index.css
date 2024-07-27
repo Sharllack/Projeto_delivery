@@ -253,7 +253,7 @@ main {
     border-radius: 50%;
     transition: .3s;
 
-    animation: tremewpp 5s infinite alternate;
+    animation: tremewpp 5s infinite;
 }
 
 @keyframes tremewpp {
@@ -270,6 +270,9 @@ main {
         transform: rotate(10deg);
     }
     4% {
+        transform: rotate(-10deg);
+    }
+    5% {
         transform: rotate(0deg);
     }
 }
@@ -296,7 +299,7 @@ main {
     border-radius: 50%;
     transition: .3s;
 
-    animation: treme 5s infinite alternate;
+    animation: treme 5s infinite;
 }
 
 @keyframes treme {
@@ -313,6 +316,9 @@ main {
         transform: rotate(20deg);
     }
     8% {
+        transform: rotate(-20deg);
+    }
+    10% {
         transform: rotate(0deg);
     }
 }
