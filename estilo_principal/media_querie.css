@@ -42,6 +42,22 @@
         width: 52px;
     }
 
+    .wppBallon {
+        position: absolute;
+        background-color: #2AB318;
+        display: flex;
+        align-items: center;
+        width: 200px;
+        padding: 15px;
+        color: white;
+        z-index: 9999;
+        right: 40px;
+        top: 40px;
+        box-shadow: 2px 2px 8px black;
+        border-radius: 15px 0 15px 15px;
+        display: none;
+    }
+
     .logout {
         right: 5px;
         top: 5px;
@@ -140,6 +156,22 @@
     .wpp a img{
         height: 52px;
         width: 52px;
+    }
+
+    .wppBallon {
+        position: absolute;
+        background-color: #2AB318;
+        display: flex;
+        align-items: center;
+        width: 200px;
+        padding: 15px;
+        color: white;
+        z-index: 9999;
+        right: 40px;
+        top: 40px;
+        box-shadow: 2px 2px 8px black;
+        border-radius: 15px 0 15px 15px;
+        display: none;
     }
 
     .shopCart {
