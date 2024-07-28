@@ -6,6 +6,8 @@ if(!isset($_SESSION)) {
     session_start();
 };
 
+$usuario = $_SESSION['idUsuario'];
+
 if(isset($_GET['comprar'])) {
     
     $protocolo = intval($_GET['comprar']);
@@ -19,6 +21,13 @@ if(isset($_GET['comprar'])) {
         $imgPrin = $user_data['imagem'];
     }
 }
+
+$sql_que = "SELECT * FROM itenscarrinho 
+              JOIN produtos ON itenscarrinho.idProduto = produtos.idProdutos
+              JOIN carrinho ON itenscarrinho.idCarrinho = carrinho.idCarrinho
+              JOIN usuarios ON itenscarrinho.idUsuario = usuarios.idUsuarios
+              WHERE idUsuarios = $usuario";
+$resulta = $mysqli->query($sql_que);
 
 $sql_query = "SELECT * FROM produtos WHERE ativo = 1 AND categoria = 'prato'";
 $result = $mysqli->query($sql_query);
@@ -37,6 +46,20 @@ $result_bebibas = $mysqli->query($sql);
     <title>Document</title>
 </head>
 <body>
+
+    <?php while($row = $resulta->fetch_assoc()) { ?>
+            <?php 
+
+                $idCarrinho = $row['idCarrinho'];
+                
+                if (isset($_SESSION['pedido_finalizado'][$idCarrinho]) && $_SESSION['pedido_finalizado'][$idCarrinho] === true) {
+                    // Redireciona para a página de acompanhamento do pedido
+                    header('Location: ./situacao_pedido.php');
+                    exit;
+                };
+            
+            ?>
+    <?php } ?>
 
     <div class="home">
         <a href="./index.php">
