@@ -163,7 +163,7 @@ main {
     box-shadow: 2px 2px 10px black;
     transition: .3s;
 
-    animation: treme 5s infinite;
+    animation: treme 5s 1s infinite;
 }
 
 @keyframes treme {
