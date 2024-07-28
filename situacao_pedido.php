@@ -50,6 +50,11 @@ if (!isset($_SESSION['pedido_finalizado'][$idCarrinho]) && $_SESSION['pedido_fin
     <main>
         <h1 class="titleSit">Situação do Pedido</h1>
         <p class="situProd"><?php echo $situacao; ?></p>
+        <div class="load">
+            <div id="btn1"></div>
+            <div id="btn2"></div>
+            <div id="btn3"></div>
+        </div>
     </main>
     <div class="shopCart">
         <a href="#">
@@ -63,10 +68,12 @@ if (!isset($_SESSION['pedido_finalizado'][$idCarrinho]) && $_SESSION['pedido_fin
     <script>
         const link = document.querySelector('.inicio');
         const situ = document.querySelector('.situProd');
+        const load = document.querySelector('.load');
         const idPedido = <?php echo $idPedido; ?>; // Aqui está a correção
 
-        if(situ.textContent == 'O seu pedido não foi aceito!'){
+        if(situ.textContent == 'O seu pedido não foi aceito!' || situ.textContent == 'O seu pedido já saiu para a entrega!' || situ.textContent == 'Pedido aguardando retirada!'){
             link.href = './refresh_carrinho.php?idPedido=' + idPedido;
+            load.style.display = 'none';
         }
     </script>
 </body>

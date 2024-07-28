@@ -290,6 +290,22 @@ main {
     transform: scale(1.05);
 }
 
+.wppBallon {
+    position: absolute;
+    background-color: #2AB318;
+    display: flex;
+    align-items: center;
+    width: 200px;
+    padding: 15px;
+    color: white;
+    z-index: 9999;
+    right: 65px;
+    top: 65px;
+    box-shadow: 2px 2px 8px black;
+    border-radius: 15px 0 15px 15px;
+    display: none;
+}
+
 .shopCart {
     display: flex;
     position: fixed;

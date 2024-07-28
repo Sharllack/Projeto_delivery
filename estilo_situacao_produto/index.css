@@ -109,7 +109,7 @@ main {
 
 .situProd {
     text-align: center;
-    margin-top: 15px;
+    margin-top: 50px;
     font-weight: bold;
 }
 
@@ -134,4 +134,85 @@ main {
 .wpp:hover {
     box-shadow: 8px 8px 10px black;
     transform: scale(1.05);
+}
+
+.load {
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    width: 70px;
+}
+
+#btn1, #btn2, #btn3 {
+    background-color: black;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+}
+
+#btn1 {
+    animation: appear1 3s 1s infinite ease-out;
+}
+
+@keyframes appear1 {
+    5% {
+        transform: translateY(0px);
+    }
+
+    10% {
+        transform: translateY(-10px);
+    }
+
+    15%{
+        transform: translateY(2px);
+    }
+
+    20% {
+        transform: translateY(0px);
+    }
+}
+
+#btn2 {
+    animation: appear2 3s 1s infinite ease-out;
+}
+
+@keyframes appear2 {
+    10% {
+        transform: translateY(0px);
+    }
+
+    15% {
+        transform: translateY(-10px);
+    }
+
+    20%{
+        transform: translateY(2px);
+    }
+
+    25% {
+        transform: translateY(0px);
+    }
+}
+
+#btn3 {
+    animation: appear3 3s 1s infinite ease-out;
+}
+
+@keyframes appear3 {
+    15% {
+        transform: translateY(0px);
+    }
+
+    20% {
+        transform: translateY(-10px);
+    }
+
+    25% {
+        transform: translateY(2px);
+    }
+
+    30% {
+        transform: translateY(0px);
+    }
 }

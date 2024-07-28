@@ -26,6 +26,18 @@ function atualizarSituacao() {
     }
 }
 
+document.querySelector('#wpp').addEventListener('mouseenter', function(){
+    const wppBallon = document.querySelector('.wppBallon');
+
+    wppBallon.style.display = 'block';
+});
+
+document.querySelector('#wpp').addEventListener('mouseout', function(){
+    const wppBallon = document.querySelector('.wppBallon');
+
+    wppBallon.style.display = 'none';
+});
+
 atualizarSituacao(); // Chama a função imediatamente ao carregar a página
 setInterval(atualizarSituacao, 60000); // Chama a função a cada minuto
 
