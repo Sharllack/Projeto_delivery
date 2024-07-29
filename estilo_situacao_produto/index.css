@@ -219,6 +219,7 @@ main {
 
 .darkMode {
     position: fixed;
+    z-index: 9999;
     top: 12.5px;
     right: 200px;
 }
