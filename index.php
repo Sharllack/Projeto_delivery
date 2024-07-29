@@ -47,22 +47,6 @@ if($bairro == 'Vila Centenário') {
 </head>
 <body>
 
-    <div class="home">
-        <a href="./index.php">
-            <img src="./imagens/imagens_pincipal/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Home">
-        </a>
-    </div>
-    <div class="openOrClosedDiv">
-        <span class="openOrClosed">
-
-            <?php if($situacao === 1): ?>
-                <span class="situ">Aberto</span>
-            <?php else :?>
-                <span class="situ">Fechado</span>
-            <?php endif; ?>
-
-        </span>
-    </div>
     <?php if(!isset($_SESSION['user'])):?>
         <div class="logout" style="display: none;">
         </div>
@@ -74,6 +58,17 @@ if($bairro == 'Vila Centenário') {
 
     <header>
         <h1 class="nomeLoja">Quentinhas do Lucas</h1>
+        <div class="darkMode">
+            <label id="toggle-button">
+                <input type="checkbox" id="toggle">
+                <span class="slider1 round"></span>
+            </label>
+        </div>
+        <div class="home">
+            <a href="./index.php">
+                <img src="./imagens/imagens_pincipal/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Home">
+            </a>
+        </div>
     </header>
 
     <section class="agarra">
@@ -133,8 +128,8 @@ if($bairro == 'Vila Centenário') {
                 <?php } ?>
             </div>
         </section>
-        <section style="padding: 15px;">
-            <h1 class="titleBebidas">BEBIDAS</h1>
+        <section style="padding: 15px;" class="secBebidas">
+            <h1 class="titleBebidas">ESCOLHA A SUA BEBIDA</h1>
                 <div class="pratosContainer">
                 <?php while($row = $result_bebibas->fetch_assoc()) { ?>
                     <?php 
@@ -166,24 +161,23 @@ if($bairro == 'Vila Centenário') {
                 </div>
         </section>
     </main>
-    <?php if(isset($_SESSION['user'])):?>
-    <div class="shopCart">
-        <a href="./carrinho.php" class="carrinho">
-            <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
-        </a>
-    </div>
-    <?php else: ?>
+    <div class="btns">
+        <?php if(isset($_SESSION['user'])):?>
         <div class="shopCart">
-        <a href="./login_usuario.php" class="carrinho">
-            <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
-        </a>
-    </div>
-    <?php endif; ?>
-    <div class="wpp">
-        <div class="wppBallon">
-            <p>Mande Mensagem ou nos ligue: (21)99042-0932</p>
+            <a href="./carrinho.php" class="carrinho">
+                <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
+            </a>
         </div>
-        <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!" target="_blank"><img src="./imagens/whats_logo.png" alt="whatsapp" id="wpp"></a>
+        <?php else: ?>
+            <div class="shopCart">
+            <a href="./login_usuario.php" class="carrinho">
+                <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
+            </a>
+        </div>
+        <?php endif; ?>
+        <div class="wpp">
+            <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!" target="_blank"><img src="./imagens/whats_logo.png" alt="whatsapp" id="wpp"></a>
+        </div>
     </div>
     <script src="./js_pincipal/funcoes.js"></script>
 </body>
