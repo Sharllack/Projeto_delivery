@@ -359,3 +359,11 @@ main {
   .slider1.round:before {
     border-radius: 50%;
   }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #5A3F2F;
+}

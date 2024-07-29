@@ -146,3 +146,11 @@ button[type="button"] a:hover {
 .btn {
     margin-top: 15px;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #5A3F2F;
+}

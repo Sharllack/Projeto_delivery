@@ -117,3 +117,11 @@ button[type="reset"]:hover, button[type="submit"]:hover{
     height: 100%;
     border-radius: 0 15px 15px 0;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #5A3F2F;
+}

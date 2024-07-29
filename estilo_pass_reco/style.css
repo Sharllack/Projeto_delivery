@@ -95,3 +95,11 @@ button:not(:last-child) {
     background-color: blue;
     color: white;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #5A3F2F;
+}

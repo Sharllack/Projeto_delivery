@@ -99,3 +99,11 @@ button:not(:last-child) {
 .resSen, .resCsen {
     display: none;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #5A3F2F;
+}
