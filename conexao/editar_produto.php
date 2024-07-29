@@ -45,7 +45,7 @@ $result = $mysqli->query($sql_query);
                 <span class="span1">Selecione a Imagem</span>
                 <span class="span">SELECIONAR</span>
             </label>
-            <input type="file" name="imagem" id="imagem" required>
+            <input type="file" name="imagem" id="imagem">
             <input type="hidden" name="protocolo" value="<?php echo $protocolo ?>">
             <div class="botoes">
                 <button type="submit" name="update" id="update">CADASTRAR</button>
