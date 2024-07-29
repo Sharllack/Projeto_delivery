@@ -1,19 +1,3 @@
-function atualizarSituacao() {
-    const saudacao = document.querySelector('.openOrClosed');
-    const hora = new Date().getHours();
-
-    if (hora >= 11 && hora < 15) {
-        saudacao.textContent = 'Aberto';
-        saudacao.className = 'open';
-    } else {
-        saudacao.textContent = 'Fechado';
-        saudacao.className = 'closed';
-    }
-}
-
-atualizarSituacao(); // Chama a função imediatamente ao carregar a página
-setInterval(atualizarSituacao, 60000); // Chama a função a cada minuto
-
 document.addEventListener('DOMContentLoaded', function() {
     const inputs = document.querySelectorAll('.quantidade');
     const valorTotalElement = document.querySelector('.valorTotal');
@@ -82,13 +66,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 //------------ DARK MODE -------------
-const slidePref = localStorage.getItem('slide');
+const toggle = document.querySelector('#toggle');
 const main = document.querySelector('main');
 const pratos = document.querySelectorAll('.pratos');
 
-const darkModePreference = localStorage.getItem('darkMode');
-if (darkModePreference === 'on') {
-    pratos.forEach(function(elemento) {
+toggle.addEventListener('change', function() {
+  if (this.checked) {
+      console.log('Toggle ON');
+      pratos.forEach(function(elemento) {
         elemento.style.backgroundColor = "black";
         elemento.style.boxShadow = "2px 2px 10px rgba(70, 70, 70)";
         elemento.style.border = "rgba(65, 65, 65)";
@@ -100,6 +85,41 @@ if (darkModePreference === 'on') {
     main.style.color = "white";
 
     localStorage.setItem('darkMode', 'on');
+      
+  } else {
+      console.log('Toggle OFF');
+      pratos.forEach(function(elemento) {
+        elemento.style.backgroundColor = "";
+        elemento.style.boxShadow = "2px 2px 10px rgba(0, 0, 0, 0.199)";
+        elemento.style.border = "silver";
+        elemento.style.transition = ".5s";
+        elemento.style.color = "black";
+      });
+      main.style.backgroundColor = "white";
+      main.style.transition = '.5s';
+      main.style.color = "black";
+
+      localStorage.setItem('darkMode', 'off');
+
+};
+});
+
+const darkModePreference = localStorage.getItem('darkMode');
+if (darkModePreference === 'on') {
+    pratos.forEach(function(elemento) {
+        elemento.style.backgroundColor = "black";
+        elemento.style.boxShadow = "2px 2px 10px rgba(70, 70, 70)";
+        elemento.style.border = "rgba(65, 65, 65)";
+        elemento.style.transition = ".5s";
+        elemento.style.color = "white";
+      });
+    main.style.backgroundColor = "black";
+    main.style.transition = '.5s';
+    main.style.color = "white";
+
+    localStorage.setItem('darkMode', 'on');
+
+    toggle.checked = true;
     
 } else {
     pratos.forEach(function(elemento) {
@@ -109,7 +129,7 @@ if (darkModePreference === 'on') {
         elemento.style.transition = ".5s";
         elemento.style.color = "black";
       });
-    main.style.backgroundColor = "";
+    main.style.backgroundColor = "white";
     main.style.transition = '.5s';
     main.style.color = "black";
 }

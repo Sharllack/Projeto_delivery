@@ -149,4 +149,19 @@
     .qtd {
         flex-direction: column;
     }
+
+    .slider1 {
+        width: 52px;
+        height: 28px;
+      }
+
+      .slider1:before {
+        height: 19px;
+        width: 19px;
+      }
+
+      .darkMode {
+        top: 5px;
+        right: 40px;
+    }
 }

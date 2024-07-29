@@ -104,4 +104,20 @@
         width: 30px; 
         height: 30px;
     }
+
+    .slider1 {
+        width: 52px;
+        height: 28px;
+      }
+
+      .slider1:before {
+        height: 19px;
+        width: 19px;
+      }
+
+      .darkMode {
+        z-index: 9999;
+        top: 5px;
+        right: 40px;
+    }
 }

@@ -1,19 +1,3 @@
-function atualizarSituacao() {
-    const saudacao = document.querySelector('.openOrClosed');
-    const hora = new Date().getHours();
-
-    if (hora >= 11 && hora < 15) {
-        saudacao.textContent = 'Aberto';
-        saudacao.className = 'open';
-    } else {
-        saudacao.textContent = 'Fechado';
-        saudacao.className = 'closed';
-    }
-}
-
-atualizarSituacao(); // Chama a função imediatamente ao carregar a página
-setInterval(atualizarSituacao, 60000); // Chama a função a cada minuto
-
 document.querySelector('form').addEventListener('submit', function(event) {
     var opc = document.querySelector('#opcoes').value;
     var res = document.querySelector('.selectError');
@@ -104,11 +88,41 @@ document.querySelector('#opcEntrega').addEventListener('change', function() {
 });
 
 //------------ DARK MODE -------------
-const slidePref = localStorage.getItem('slide');
+const toggle = document.querySelector('#toggle');
 const main = document.querySelector('main');
 const opcoes = document.querySelector('#opcoes');
 const opcEntrega = document.querySelector('#opcEntrega');
 const img = document.querySelector('.location');
+
+toggle.addEventListener('change', function() {
+  if (this.checked) {
+      console.log('Toggle ON');
+      opcoes.style.backgroundColor = "black";
+      opcoes.style.color = "white";
+      opcEntrega.style.backgroundColor = "black";
+      opcEntrega.style.color = "white";
+      main.style.backgroundColor = "#000000e8";
+      main.style.transition = '.5s';
+      main.style.color = "white";
+      img.src = './imagens/location_on_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png';
+
+      localStorage.setItem('darkMode', 'on');
+      
+  } else {
+      console.log('Toggle OFF');
+      opcoes.style.backgroundColor = "";
+      opcoes.style.color = "";
+      opcEntrega.style.backgroundColor = "";
+      opcEntrega.style.color = "";
+      main.style.backgroundColor = "";
+      main.style.transition = '.5s';
+      main.style.color = "black";
+      img.src = './imagens/location_on_24dp_00000_FILL0_wght400_GRAD0_opsz24.png';   
+
+      localStorage.setItem('darkMode', 'off');
+
+};
+});
 
 const darkModePreference = localStorage.getItem('darkMode');
 if (darkModePreference === 'on') {
@@ -122,6 +136,8 @@ if (darkModePreference === 'on') {
     img.src = './imagens/location_on_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png';
 
     localStorage.setItem('darkMode', 'on');
+
+    toggle.checked = true;
     
 } else {
     opcoes.style.backgroundColor = "";

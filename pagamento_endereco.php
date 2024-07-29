@@ -51,11 +51,14 @@ if($bairro == 'Vila Centenário') {
             <img src="./imagens/imagens_pincipal/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Home">
         </a>
     </div>
-    <div class="openOrClosedDiv">
-        <span class="openOrClosed">fechado</span>
-    </div>
     <header>
         <h1 class="nomeLoja">Quentinhas do Lucas</h1>
+        <div class="darkMode">
+            <label id="toggle-button">
+                <input type="checkbox" id="toggle">
+                <span class="slider1 round"></span>
+            </label>
+        </div>
     </header>
     <main>
     <h1 class="pratosTitle">Finalize seu Pedido</h1>
