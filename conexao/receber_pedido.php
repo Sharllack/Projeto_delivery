@@ -168,7 +168,7 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                         <td><?php echo $row['entrega'];?></td>
                         <td><?php echo $row['pagamento']?></td>
                         <td><?php echo "R$" . number_format($total, 2, "," , "." . "<br>")?> <?php echo "Troco:" . "R$" . number_format($row['troco'], 2, "," , ".")?></td>
-                        <td><?php echo $row['nomeCliente']?></td>
+                        <td><?php echo $row['nome']?> <?php echo $row[ 'sobrenome']?></td>
                         <td><?php echo $row['cell']?></td>
                         <td><?php echo $row['rua'] . ', ' . $row['numero'] . ', ' . $row['complemento']?></td>
                         <td><?php echo $row['referencia']; ?></td>
