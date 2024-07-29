@@ -102,3 +102,34 @@ document.querySelector('#opcEntrega').addEventListener('change', function() {
         trocar.style.display = 'block';
     }
 });
+
+//------------ DARK MODE -------------
+const slidePref = localStorage.getItem('slide');
+const main = document.querySelector('main');
+const opcoes = document.querySelector('#opcoes');
+const opcEntrega = document.querySelector('#opcEntrega');
+const img = document.querySelector('.location');
+
+const darkModePreference = localStorage.getItem('darkMode');
+if (darkModePreference === 'on') {
+    opcoes.style.backgroundColor = "black";
+    opcoes.style.color = "white";
+    opcEntrega.style.backgroundColor = "black";
+    opcEntrega.style.color = "white";
+    main.style.backgroundColor = "#000000e8";
+    main.style.transition = '.5s';
+    main.style.color = "white";
+    img.src = './imagens/location_on_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png';
+
+    localStorage.setItem('darkMode', 'on');
+    
+} else {
+    opcoes.style.backgroundColor = "";
+    opcoes.style.color = "";
+    opcEntrega.style.backgroundColor = "";
+    opcEntrega.style.color = "";
+    main.style.backgroundColor = "";
+    main.style.transition = '.5s';
+    main.style.color = "black";
+    img.src = './imagens/location_on_24dp_00000_FILL0_wght400_GRAD0_opsz24.png';
+}

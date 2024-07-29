@@ -100,8 +100,6 @@ if (darkModePreference === 'on') {
     main.style.color = "white";
 
     localStorage.setItem('darkMode', 'on');
-
-    toggle.checked = true;
     
 } else {
     pratos.forEach(function(elemento) {

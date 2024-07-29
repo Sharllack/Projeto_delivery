@@ -60,6 +60,31 @@
         box-shadow: 0px 0px 0px;
     }
 
+    .btns {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        animation: tremeu 5s 1s infinite;
+    }
+    
+    @keyframes tremeu {
+        0% {
+            transform: translateX(0px);
+        }
+        1% {
+            transform: translateX(10px);
+        }
+        3% {
+            transform: translateX(-10px);
+        }
+        5% {
+            transform: translateX(10px);
+        }
+        7% {
+            transform: translateX(0px);
+        }
+    }
+
     .produtoInfo img {
         margin-top: -25px;
         height: 200px;

@@ -108,13 +108,23 @@ if($bairro == 'Vila Centenário') {
             <button type="submit" class="button">Finalizar Pedido <span class="valorTotal">R$<?php echo number_format($total, 2, ',', '.');?></span></button>
         </form>
     </main>
-    <div class="shopCart">
-        <a href="#">
-            <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
-        </a>
-    </div>
-    <div class="wpp">
-        <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!" target="_blank"><img src="./imagens/whats_logo.png" alt="whatsapp"></a>
+    <div class="btns">
+        <?php if(isset($_SESSION['user'])):?>
+        <div class="shopCart">
+            <a href="./carrinho.php" class="carrinho">
+                <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
+            </a>
+        </div>
+        <?php else: ?>
+            <div class="shopCart">
+            <a href="./login_usuario.php" class="carrinho">
+                <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
+            </a>
+        </div>
+        <?php endif; ?>
+        <div class="wpp">
+            <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!" target="_blank"><img src="./imagens/whats_logo.png" alt="whatsapp" id="wpp"></a>
+        </div>
     </div>
     <script src="./js_pagamento_endereço/script.js"></script>
 </body>

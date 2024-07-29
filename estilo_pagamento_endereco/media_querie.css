@@ -1,6 +1,10 @@
 @charset "UTF-8";
 
 @media screen and (max-width: 1015px) {
+    main {
+        margin-bottom: 50px;
+    }
+
     .nomeLoja {
         font-size: 1em;
     }
@@ -29,24 +33,60 @@
         right: 5px;
     }
 
+    .shopCart {
+        border-radius: 0;
+        width: 50%;
+        bottom: 0;
+        right: 0;
+    }
+
+    .shopCart a {
+        text-align: center;
+        border-radius: 0;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .btns {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        animation: tremeu 5s 1s infinite;
+    }
+    
+    @keyframes tremeu {
+        0% {
+            transform: translateX(0px);
+        }
+        1% {
+            transform: translateX(10px);
+        }
+        3% {
+            transform: translateX(-10px);
+        }
+        5% {
+            transform: translateX(10px);
+        }
+        7% {
+            transform: translateX(0px);
+        }
+    }
+
     .wpp {
-        right: 15px; 
-        bottom: 80px;
+        background-color: #2AB318;
+        left: 0;
+        bottom: 0;
+        height: 54px;
+        width: 50%;
+        border-radius: 0;
+        display: flex;
+        justify-content: center;
     }
     
     .wpp a img{
         height: 52px;
         width: 52px;
-    }
-
-    .shopCart {
-        right: 5px;
-        bottom: 15px;
-        right: 15px;
-    }
-
-    .shopCart a {
-        padding: 10px;
+        box-shadow: 0px 0px 0px;
     }
 
     .produtoInfo img {
