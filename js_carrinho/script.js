@@ -81,6 +81,41 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+//------------ DARK MODE -------------
+const slidePref = localStorage.getItem('slide');
+const main = document.querySelector('main');
+const pratos = document.querySelectorAll('.pratos');
+
+const darkModePreference = localStorage.getItem('darkMode');
+if (darkModePreference === 'on') {
+    pratos.forEach(function(elemento) {
+        elemento.style.backgroundColor = "black";
+        elemento.style.boxShadow = "2px 2px 10px rgba(70, 70, 70)";
+        elemento.style.border = "rgba(65, 65, 65)";
+        elemento.style.transition = ".5s";
+        elemento.style.color = "white";
+      });
+    main.style.backgroundColor = "#000000e8";
+    main.style.transition = '.5s';
+    main.style.color = "white";
+
+    localStorage.setItem('darkMode', 'on');
+
+    toggle.checked = true;
+    
+} else {
+    pratos.forEach(function(elemento) {
+        elemento.style.backgroundColor = "";
+        elemento.style.boxShadow = "2px 2px 10px rgba(0, 0, 0, 0.199)";
+        elemento.style.border = "silver";
+        elemento.style.transition = ".5s";
+        elemento.style.color = "black";
+      });
+    main.style.backgroundColor = "";
+    main.style.transition = '.5s';
+    main.style.color = "black";
+}
+
 
 
 
