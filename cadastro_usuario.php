@@ -5,7 +5,8 @@ include('./conexao/conexao.php');
 $usu_error = $cell_error = $email_error = '';
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-    if(isset($_POST['nome']) 
+    if(isset($_POST['nome'])
+    && isset($_POST['sNome'])
     && isset($_POST['cell']) 
     && isset($_POST['cep']) 
     && isset($_POST['estado']) 
@@ -21,6 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     && isset($_POST['email'])) {
 
         $nome = $_POST['nome'];
+        $sNome = $_POST['sNome'];
         $cell = $_POST['cell'];
         $email = $_POST['email'];
         $cep = $_POST['cep'];
@@ -56,8 +58,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
        }
 
        if(empty($usu_error) && empty($cell_error) && empty($email_error)){
-        $stmt = $mysqli->prepare("INSERT INTO usuarios (nomeCliente, cell, email, estado, cidade, bairro, rua, numero, complemento, referencia, cep, usuario, senha) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssssssssss",$nome, $cell, $email, $estado, $cidade, $bairro, $rua, $numero, $complemento, $referencia, $cep, $usuario, $senha);
+        $stmt = $mysqli->prepare("INSERT INTO usuarios (nome, sobrenome, cell, email, estado, cidade, bairro, rua, numero, complemento, referencia, cep, usuario, senha) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssssssssssss",$nome, $sNome, $cell, $email, $estado, $cidade, $bairro, $rua, $numero, $complemento, $referencia, $cep, $usuario, $senha);
         $stmt->execute();
         $stmt->close();
 
@@ -90,7 +92,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <h1 class="titleForm">Cadastre-se</h1>
             <form action="" method="post">
                 <div class="inpu" id="in">
-                    <input type="text" name="nome" id="nome" placeholder="nome" required value="<?php echo isset($_POST['nome']) ? $_POST['nome'] : ''; ?>">
+                    <input type="text" name="nome" id="pNome" placeholder="Nome" required value="<?php echo isset($_POST['nome']) ? $_POST['nome'] : ''; ?>">
+                </div>
+                <div class="inpu">
+                    <input type="text" name="sNome" id="sNome" placeholder="Sobrenome" required value="<?php echo isset($_POST['sNome']) ? $_POST['sNome'] : ''; ?>">
                 </div>
                 <div class="inpu" id="im">
                     <input type="text" name="cell" id="cell" placeholder="Número para Contato" required value="<?php echo isset($_POST['cell']) ? $_POST['cell'] : ''; ?>">

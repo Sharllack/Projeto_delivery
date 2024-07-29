@@ -25,7 +25,8 @@ if($sql_query->num_rows > 0) {
     if (password_verify($sen, $usuario['senha'])) {
         $_SESSION['idUsuario'] = $usuario['idUsuarios'];
         $_SESSION['user'] = $usuario['usuario'];
-        $_SESSION['nome'] = $usuario['nomeCliente'];
+        $_SESSION['nome'] = $usuario['nome'];
+        $_SESSION['sobrenome'] = $usuario['sobrenome'];
         $_SESSION['contato'] = $usuario['cell'];
         $_SESSION['email'] = $usuario['email'];
         $_SESSION['estado'] = $usuario['estado'];

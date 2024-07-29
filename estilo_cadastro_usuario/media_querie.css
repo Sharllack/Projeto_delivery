@@ -24,6 +24,10 @@
     .inpu {
         width: 100%;
     }
+
+    input {
+        margin-bottom: 5px;
+    }
     
 }
 
@@ -48,5 +52,9 @@
 
     .inpu {
         width: 48%;
+    }
+
+    input {
+        margin-bottom: 5px;
     }
 }

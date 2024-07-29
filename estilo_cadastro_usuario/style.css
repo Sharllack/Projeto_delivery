@@ -73,6 +73,7 @@ input {
     border: none;
     border-bottom: 2px solid darkslategray;
     outline: none;
+    box-shadow: inset 2px 2px 8px rgb(36, 36, 36);
 }
 
 .btn {
