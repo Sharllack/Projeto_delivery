@@ -58,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
        }
 
        if(empty($usu_error) && empty($cell_error) && empty($email_error)){
-        $stmt = $mysqli->prepare("INSERT INTO usuarios (nome, sobrenome, cell, email, estado, cidade, bairro, rua, numero, complemento, referencia, cep, usuario, senha) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $mysqli->prepare("INSERT INTO usuarios (pnome, sobrenome, cell, email, estado, cidade, bairro, rua, numero, complemento, referencia, cep, usuario, senha) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssssssssssssss",$nome, $sNome, $cell, $email, $estado, $cidade, $bairro, $rua, $numero, $complemento, $referencia, $cep, $usuario, $senha);
         $stmt->execute();
         $stmt->close();
