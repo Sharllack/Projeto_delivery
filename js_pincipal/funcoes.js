@@ -7,7 +7,7 @@ function atualizarSituacao() {
     const situ = document.querySelector('.situ').innerHTML;
     const hora = new Date().getHours();
 
-    if (hora >= 11 && hora < 15 || situ === "Aberto") {
+    if (hora >= 11 && hora < 15 && situ === "Aberto") {
         saudacao.textContent = 'Aberto';
         saudacao.className = 'open';
         sit.textContent = 'Aberto';

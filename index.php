@@ -55,10 +55,10 @@ if($bairro == 'Vila Centenário') {
     <div class="openOrClosedDiv">
         <span class="openOrClosed">
 
-            <?php if($situacao == 1): ?>
-                <span class="aberto">Aberto</span>
+            <?php if($situacao === 1): ?>
+                <span class="situ">Aberto</span>
             <?php else :?>
-                <span class="fechado">Fechado</span>
+                <span class="situ">Fechado</span>
             <?php endif; ?>
 
         </span>
@@ -84,7 +84,7 @@ if($bairro == 'Vila Centenário') {
             <img src="./imagens/imagens_pincipal/comida-criolla-peru-peruvian-food-260nw-2191344515.webp" alt="Logo do Restaurante" class="logoRestaurante">
             <p class="tempoDeEntrega">Restaurante • 20-90 min • 
                 <span class="sit">
-                    <?php if($situacao == 1): ?>
+                    <?php if($situacao === 1): ?>
                         <span class="situ">Aberto</span>
                     <?php else :?>
                         <span class="situ">Fechado</span>
