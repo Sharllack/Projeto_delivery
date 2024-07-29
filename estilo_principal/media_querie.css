@@ -82,18 +82,18 @@
     }
 
     .slider1 {
-        width: 52px;
-        height: 28px;
+        width: 60px;
+        height: 36px;
       }
 
       .slider1:before {
-        height: 19px;
-        width: 19px;
+        height: 27px;
+        width: 27px;
       }
 
       .darkMode {
         top: 50px;
-        right: 40px;
+        right: 50px;
     }
 
     .logout {
