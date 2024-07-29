@@ -68,12 +68,17 @@ form {
 
 input {
     width: 100%;
-    padding: 10px;
-    border-radius: 25px;
+    padding: 15px;
+    border-radius: 15px;
     border: none;
     border-bottom: 2px solid darkslategray;
     outline: none;
     box-shadow: inset 2px 2px 8px rgb(36, 36, 36);
+    transition: .3s;
+}
+
+input:focus {
+    border-bottom: 2px solid brown;
 }
 
 .btn {
@@ -81,6 +86,7 @@ input {
     padding: 30px;
     display: flex;
     justify-content: space-between;
+    margin-top: -35px;
 }
 
 button[type="submit"] {
@@ -89,7 +95,7 @@ button[type="submit"] {
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 5px 15px;
+    padding: 10px 20px;
     box-shadow: 3px 3px 0px rgb(0, 0, 0);
     transition: .3s
 }
@@ -98,7 +104,7 @@ button[type="reset"] {
     cursor: pointer;
     border: none;
     border-radius: 5px;
-    padding: 5px 15px;
+    padding: 10px 20px;
     box-shadow: 3px 3px 0px rgb(0, 0, 0);
     transition: .3s
 }

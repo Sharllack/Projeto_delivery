@@ -28,6 +28,10 @@
     input {
         margin-bottom: 5px;
     }
+
+    .btn {
+        margin-top: 0px;
+    }
     
 }
 
