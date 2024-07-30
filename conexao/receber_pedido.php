@@ -115,7 +115,6 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                 <th>Nº Pedido</th>
                 <th>Data/Hora</th>
                 <th>Pedido</th>
-                <th>Observação</th>
                 <th>Entrega</th>
                 <th>Pagamento</th>
                 <th>Total</th>
@@ -154,17 +153,23 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                                 echo $qtd . "X";
                                 $stmt->close();
 
+                                $stmt = $mysqli->prepare("SELECT obs FROM itenscarrinho WHERE idProduto = ?");
+                                $stmt->bind_param("i", $id);
+                                $stmt->execute();
+                                $stmt->bind_result($observacoes);
+                                $stmt->fetch();
+                                $stmt->close();
+
                                 $stmt = $mysqli->prepare("SELECT nome FROM produtos WHERE idProdutos = ?");
                                 $stmt->bind_param("i", $id);
                                 $stmt->execute();
                                 $stmt->bind_result($nomeProduto);
                                 $stmt->fetch();
-                                echo $nomeProduto . "<br>";
+                                echo $nomeProduto . "(" . $observacoes . ")" . "<br> <br>";
                                 $stmt->close();
                             }
                             ?>
                         </td>
-                        <td><?php echo $row['obs'];?></td>
                         <td><?php echo $row['entrega'];?></td>
                         <td><?php echo $row['pagamento']?></td>
                         <td><?php echo "R$" . number_format($total, 2, "," , "." . "<br>")?> <?php echo "Troco:" . "R$" . number_format($row['troco'], 2, "," , ".")?></td>

@@ -47,10 +47,10 @@ if(isset($_GET['finalizar'])) {
     $stmt->fetch();
     $stmt->close();
 
-    $stmt = $mysqli->prepare("SELECT GROUP_CONCAT(idProduto SEPARATOR ', ') AS produtos, GROUP_CONCAT(qtd SEPARATOR ', ') AS quantidade, GROUP_CONCAT(precouni SEPARATOR ', ') AS precouni  FROM itenscarrinho WHERE idUsuario = ?");
+    $stmt = $mysqli->prepare("SELECT GROUP_CONCAT(idProduto SEPARATOR ', ') AS produtos, GROUP_CONCAT(qtd SEPARATOR ', ') AS quantidade, GROUP_CONCAT(precouni SEPARATOR ', ') AS precouni, GROUP_CONCAT(obs SEPARATOR ', ') AS obs FROM itenscarrinho WHERE idUsuario = ?");
     $stmt->bind_param("i", $idUsuario);
     $stmt->execute();
-    $stmt->bind_result($produtos_conca, $qtd_conca, $preco_conca,);
+    $stmt->bind_result($produtos_conca, $qtd_conca, $preco_conca, $obs_conca);
     $stmt->fetch();
     $stmt->close();
 
@@ -62,8 +62,8 @@ if(isset($_GET['finalizar'])) {
     $stmt->fetch();
     $stmt->close();
 
-    $stmt = $mysqli->prepare("UPDATE carrinho SET produtos_concatenados = ?, preco_conc = ?, qtd_cont = ? WHERE idUsuario = ?");
-    $stmt->bind_param("sssi", $produtos_conca, $preco_conca, $qtd_conca, $idUsuario);
+    $stmt = $mysqli->prepare("UPDATE carrinho SET produtos_concatenados = ?, preco_conc = ?, qtd_cont = ?, obs_conc = ? WHERE idUsuario = ?");
+    $stmt->bind_param("ssssi", $produtos_conca, $preco_conca, $qtd_conca, $obs_conca, $idUsuario);
     $stmt->execute();
     $stmt->close();
 
