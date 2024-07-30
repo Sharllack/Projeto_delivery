@@ -107,7 +107,7 @@ if ($bairro == 'Vila Centenário') {
             <h2 class="pedidoTitle">Pedido</h2>
             <section class="pedido">
                 <?php foreach($rows as $row): ?>
-                    <p><strong><?php echo $row['qtd'] . "x " . $row['nome'] . "<br>" . "Obs.:" . $obs . "<br>"?></strong></p>
+                    <p><strong><?php echo $row['qtd'] . "x " . $row['nome'] . "<br>" . "Obs.:" . $row['obs'] . "<br>"?></strong></p>
                 <?php endforeach; ?>
             </section>
             <?php 
