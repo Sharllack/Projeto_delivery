@@ -227,7 +227,7 @@ main {
     border-radius: 50%;
 }
 
-.selectError, .selectErro {
+.selectError, .selectErro, .error {
     text-align: center;
     color: red;
     font-weight: bold;
@@ -345,4 +345,8 @@ main {
 
 ::-webkit-scrollbar-thumb {
     background-color: #5A3F2F;
+}
+
+.entTitle {
+    margin-top: 15px;
 }

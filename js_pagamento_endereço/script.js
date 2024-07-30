@@ -38,6 +38,19 @@ document.querySelectorAll('.askTroco').forEach(item => {
 
         if (askTr === 'sim') {
             troco.style.display = 'block';
+            document.querySelector('form').addEventListener('submit', function(event) {
+                const troco = parseFloat(document.querySelector('.troco').value) || 0;
+                const total = parseFloat(document.querySelector(".valorTotal").textContent.replace('R$', '').replace(',', '.')) || 0;
+                const error = document.querySelector(".error");
+            
+                if (troco <= total) {
+                    error.style.display = "block";
+                    event.preventDefault();
+            
+                } else {
+            
+                }
+            });
         } else {
             troco.style.display = 'none';
         }

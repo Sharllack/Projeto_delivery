@@ -2,22 +2,31 @@
 
 include('./conexao/conexao.php');
 
-if(!isset($_SESSION)) {
+if (!isset($_SESSION)) {
     session_start();
-};
+}
 
 $usuario = $_SESSION['idUsuario'];
 
+// Usando consultas preparadas para evitar SQL Injection
 $sql_query = "SELECT * FROM itenscarrinho 
-            JOIN carrinho ON itenscarrinho.idCarrinho = carrinho.idCarrinho
-            JOIN produtos ON itenscarrinho.idProduto = produtos.idProdutos
-            JOIN usuarios ON itenscarrinho.idUsuario = usuarios.idUsuarios
-            WHERE idUsuarios = $usuario";
-$result = $mysqli->query($sql_query) or die ($mysqli->error);
+              JOIN carrinho ON itenscarrinho.idCarrinho = carrinho.idCarrinho
+              JOIN produtos ON itenscarrinho.idProduto = produtos.idProdutos
+              JOIN usuarios ON itenscarrinho.idUsuario = usuarios.idUsuarios
+              WHERE idUsuarios = ?";
 
-while($row = mysqli_fetch_assoc($result)) {
+$stmt = $mysqli->prepare($sql_query);
+$stmt->bind_param("i", $usuario);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$rows = [];
+$total = 0;
+$rua = $numero = $bairro = $idUsuario = $idCarrinho = '';
+
+while ($row = $result->fetch_assoc()) {
     $rows[] = $row;
-    $total = $row['valorTotal'];
+    $total = $row['valorTotal']; // Assume o último valor é o total
     $rua = $row['rua'];
     $numero = $row['numero'];
     $bairro = $row['bairro'];
@@ -25,14 +34,13 @@ while($row = mysqli_fetch_assoc($result)) {
     $idCarrinho = $row['idCarrinho'];
 }
 
-if($bairro == 'Vila Centenário') {
+if ($bairro == 'Vila Centenário') {
     $_SESSION['taxa'] = '3';
-} else if(!isset($_SESSION['user'])){
+} elseif (!isset($_SESSION['user'])) {
     $_SESSION['taxa'] = '3,00 - R$4';
 } else {
     $_SESSION['taxa'] = '4';
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -76,6 +84,7 @@ if($bairro == 'Vila Centenário') {
                 <input type="radio" name="opcTroco" class="askTroco" value="nao">Não
             </div>
             <input type="number" name="troco" class="troco" placeholder="Troco para quanto?">
+            <p class="error">O troco deve ser maior que o valor total</p>
             <p class="selectError">Selecione uma forma de pagamento</p>
             <h2 class="entTitle">Entrega</h2>
             <select name="opcEntrega" id="opcEntrega" style="font-weight: bold;">
@@ -102,9 +111,7 @@ if($bairro == 'Vila Centenário') {
                 <?php endforeach; ?>
             </section>
             <?php 
-                
-                $total += $_SESSION['taxa'];
-
+                $total += (float) str_replace(',', '.', $_SESSION['taxa']);
             ?>
             <h2 class="taxaTitle">Taxa de Entrega</h2>
             <p style="margin-left: 15px; margin-bottom: 15px" class="valorTaxa"><strong>R$<?php echo $_SESSION['taxa']?>,00</strong></p>

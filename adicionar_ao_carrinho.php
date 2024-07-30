@@ -31,10 +31,28 @@ if(isset($_GET['adicionar'])) {
         $stmt->close();
     }
 
-    $stmt = $mysqli->prepare("INSERT INTO itenscarrinho (idProduto, obs, idUsuario, precouni, idCarrinho) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("isids", $idProduto, $observacao, $idUsuario, $valor, $idCarrinho,);
-    $stmt->execute();
-    $stmt->close();
+    $sql_prod = "SELECT * FROM itenscarrinho WHERE idProduto = '$idProduto' LIMIT 1";
+    $result_prod = $mysqli->query($sql_prod);
+
+    if($result_prod->num_rows > 0) {
+        $row = $result_prod->fetch_assoc();
+        $quantidadeAtual = $row['qtd'];
+
+        $novaQtd = $quantidadeAtual + 1;
+
+        $stmt = $mysqli->prepare("UPDATE itenscarrinho SET qtd = ? WHERE idProduto = ? AND idUsuario = ?");
+        $stmt->bind_param("iii", $novaQtd, $idProduto, $idUsuario);
+        $stmt->execute();
+        $stmt->close();
+
+    } else {
+
+        $stmt = $mysqli->prepare("INSERT INTO itenscarrinho (idProduto, obs, idUsuario, precouni, idCarrinho) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("isids", $idProduto, $observacao, $idUsuario, $valor, $idCarrinho,);
+        $stmt->execute();
+        $stmt->close();
+        
+    }
 
     header("Location: ./index.php");
     exit();
