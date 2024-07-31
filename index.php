@@ -179,6 +179,23 @@ if($bairro == 'Vila Centenário') {
             <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!" target="_blank"><img src="./imagens/whats_logo.png" alt="whatsapp" id="wpp"></a>
         </div>
     </div>
+    <footer>
+        <div class="outrasInfos">
+            <h1 style="font-size: 2em; color: white;">Contatos</h1>
+            <div class="redes">
+                <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!" target="_blank"><img src="./imagens/logos/sm_5b321c98efaa6.png" alt="logo WhatsApp" class="logos" id="logoWpp"></img>+55(21)99042-0932</a>
+            </div>
+            <div class="redes">
+                <a href="https://www.instagram.com/lucas_mnzs_/" target="_blank"><img src="./imagens/logos/images-removebg-preview.png" alt="Logo instagram" class="logos" id="logoInsta"></img>Instagram</a>
+            </div>
+        </div>
+        <div class="endereco">
+            <h1 style="font-size: 2em; color: white;">Endereço</h1>
+            <p>Nos visite em nossa loja física no endereço:</p>
+            <p>Rua Dr. Furquim Mendes, 990/Vila Centenário, Duque de Caxias/RJ</p>
+        </div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3678.8321513755886!2d-43.316062925162875!3d-22.771609533053063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997aa3bcff72fb%3A0x77d5c3defa357629!2sR.%20Dr.%20Furquim%20Mendes%2C%20990%20-%20Vila%20Centenario%2C%20Duque%20de%20Caxias%20-%20RJ%2C%2025030-170!5e0!3m2!1spt-BR!2sbr!4v1722418653219!5m2!1spt-BR!2sbr" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </footer>
     <script src="./js_pincipal/funcoes.js"></script>
 </body>
 </html>
