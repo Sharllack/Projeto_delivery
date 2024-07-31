@@ -165,7 +165,7 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                                 $stmt->execute();
                                 $stmt->bind_result($nomeProduto);
                                 $stmt->fetch();
-                                echo $nomeProduto . "(" . $observacoes . ")" . "<br> <br>";
+                                echo $nomeProduto . "<br>" . "(" . $observacoes . ")" . "<br> <br>";
                                 $stmt->close();
                             }
                             ?>
