@@ -108,20 +108,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./estilo_cadastro_usuario/style.css">
-    <link rel="stylesheet" href="./estilo_cadastro_usuario/media_querie.css">
+    <link rel="stylesheet" href="./estilo_editar_end/style.css">
+    <link rel="stylesheet" href="./estilo_editar_end/media_querie.css">
     <title>Cadastre-se</title>
-    <style>
-        .btn {
-            margin-top: 5px;
-        }
-
-        .btn button {
-            padding: 0px 15px ;
-        }
-    </style>
 </head>
 <body>
+    <div class="voltar">
+        <a href="./login_usuario.php">Voltar</a>
+    </div>
     
     <main>
         <section>
@@ -153,8 +147,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <p style="color: red; font-weight: bold;"><?php echo $error?></p>
                 <div class="btn">
-                    <button type="submit">Cadastrar</button>
-                    <button type="reset">Limpar</button>
+                    <button type="submit">Editar</button>
+                    <a href="./pagamento_endereco.php"><button type="reset">Cancelar</button></a>
                 </div>
             </form>
         </section>
