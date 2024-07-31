@@ -61,4 +61,8 @@
     input {
         margin-bottom: 5px;
     }
+
+    .btn button {
+        padding: 10px 15px;
+    }
 }

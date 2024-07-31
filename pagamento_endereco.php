@@ -33,14 +33,6 @@ while ($row = $result->fetch_assoc()) {
     $idUsuario = $row['idUsuarios'];
     $idCarrinho = $row['idCarrinho'];
 }
-
-if ($bairro == 'Vila Centenário') {
-    $_SESSION['taxa'] = '3';
-} elseif (!isset($_SESSION['user'])) {
-    $_SESSION['taxa'] = '3,00 - R$4';
-} else {
-    $_SESSION['taxa'] = '4';
-}
 ?>
 
 <!DOCTYPE html>
