@@ -239,7 +239,7 @@ $stmt->close();
     </div>
     <footer>
         <div class="outrasInfos">
-            <h1 style="font-size: 2em; color: white;">Contatos</h1>
+            <h1 >Contatos</h1>
             <div class="redes">
                 <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!" target="_blank"><img src="./imagens/logos/sm_5b321c98efaa6.png" alt="logo WhatsApp" class="logos" id="logoWpp"></img>+55(21)99042-0932</a>
             </div>
@@ -248,7 +248,7 @@ $stmt->close();
             </div>
         </div>
         <div class="endereco">
-            <h1 style="font-size: 2em; color: white;">Endereço</h1>
+            <h1 >Endereço</h1>
             <p>Nos visite em nossa loja física no endereço:</p>
             <p>Rua Dr. Furquim Mendes, 990/Vila Centenário, Duque de Caxias/RJ</p>
         </div>

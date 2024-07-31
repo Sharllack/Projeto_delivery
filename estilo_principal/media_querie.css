@@ -161,6 +161,44 @@
         font-size: .8em;
     }
 
+    footer {
+        margin-bottom: 50px;
+    }
+    
+    iframe {
+        padding: 2px;
+        height: 100px;
+        width: 100px;
+    }
+    
+    .outrasInfos a {
+        font-size: .7em;
+    }
+    
+    .outrasInfos h1 {
+        font-size: 1em;
+    }
+    
+    #logoWpp {
+        width: 35px;
+        height: 35px;
+        margin-left: -15px;
+    }
+    
+    .logos {
+        width: 25px;
+        height: 25px;
+        margin-left: -10px;
+    }
+    
+    .endereco h1 {
+        font-size: 1em;
+    }
+    
+    .endereco p {
+        font-size: .7em;
+    }
+
 }
 
 @media screen and (max-width: 1360px) and (min-width: 1015px) {
@@ -321,3 +359,4 @@
         }
     }
 }
+

@@ -397,6 +397,11 @@ iframe {
     text-decoration: underline;
 }
 
+.outrasInfos h1 {
+    font-size: 2em;
+    color: white;
+}
+
 .redes a {
     display: flex;
     align-items: center;
@@ -417,6 +422,11 @@ iframe {
 .endereco {
     text-align: center;
     width: 250px;
+    color: white;
+}
+
+.endereco h1 {
+    font-size: 2em;
     color: white;
 }
 
