@@ -8,6 +8,9 @@ if(!isset($_SESSION)) {
 
 $idUser = '';
 
+$distanceKm = 0;
+$cost = 0;
+
 if(!isset($_SESSION['user'])) {
     $bairro = '';
 } else {
@@ -70,24 +73,19 @@ $result = $mysqli->query($sql_query);
 $sql = "SELECT * FROM produtos WHERE ativo = 1 AND categoria = 'bebida'";
 $result_bebibas = $mysqli->query($sql);
 
-if($bairro == 'Vila Centenário') {
+if (empty($bairro)) {
+    $_SESSION['taxa'] = 'Pendente de Verificação!';
+} elseif ($bairro != 'Vila Centenário') {
+    if ($distanceKm > 5) {
+        $_SESSION['taxa'] = 'Endereço não atendido!';
+    } else {
+        $fixedRate = 3.00; // Taxa fixa de R$3,00
+        $totalCost = $fixedRate + $cost; // Total em valor numérico
+        $_SESSION['taxa'] = "R$ " . number_format($totalCost, 2, ",", ".");
+    }
+} elseif ($bairro == 'Vila Centenário') {
     $_SESSION['taxa'] = 'R$ 3,00';
-} else if ($bairro == '') {
-    $_SESSION['taxa'] = 'A ser calculada!';
-} else if ($distance > 5){
-    $_SESSION['taxa'] = 'Endereço não atendido!';
-} else {
-    $fixedRate = 3.00; // Taxa fixa de R$3,00
-    $totalCost = $fixedRate + $cost; // Total em valor numérico
-    $_SESSION['taxa'] = "R$ " . number_format($totalCost, 2, ",", ".");;
 }
-
-$stmt = $mysqli->prepare("SELECT * FROM usuarios WHERE idUsuarios = ?");
-$stmt->bind_param("i", $idUser);
-$stmt->execute();
-$result = $stmt->get_result();
-$row = $result->fetch_assoc();
-$stmt->close();
 
 ?>
 
@@ -141,7 +139,7 @@ $stmt->close();
                     <?php endif; ?>
                 </span>
             </p>
-            <p class="taxa">Taxa de entrega: <strong><?php echo $_SESSION['taxa']?></strong></p>
+            <p class="taxa">Taxa de entrega: <strong id="taxa"><?php echo $_SESSION['taxa']?></strong></p>
             <p class="horarioDeFuncionamento"><strong>Horário de funcionamento hoje:</strong></p>
             <p class="hora"><strong>11:00 às 15:00</strong></p>
             <hr class="hr">
@@ -149,7 +147,7 @@ $stmt->close();
                 <a href="./login_usuario.php" class="logBtn">FAÇA LOGIN</a>
             <?php else: ?>
                 <div class="saudacao">
-                    <p class="nomeDoCliente"> Seja Bem-Vindo(a), <strong><?php echo $row['pnome']?></strong>!</p>
+                    <p class="nomeDoCliente"> Seja Bem-Vindo(a), <strong><?php echo $_SESSION['nome']?></strong>!</p>
                     <a href="./perfil.php"><img src="./imagens/person_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" alt="Perfil"></a>
                 </div>
             <?php endif; ?>

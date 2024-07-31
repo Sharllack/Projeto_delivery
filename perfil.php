@@ -36,6 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $complemento = $_POST['complemento'];
         $referencia = $_POST['referencia'];
 
+        $_SESSION['rua'] = $rua;
+        $_SESSION['numero'] = $numero;
+        $_SESSION['bairro'] = $bairro;
+        $_SESSION['nome'] = $nome;
+
         // Verifica se o celular já está cadastrado, excluindo o usuário atual
         $sql_cell = "SELECT * FROM usuarios WHERE cell = ? AND idUsuarios != ? LIMIT 1";
         $stmt = $mysqli->prepare($sql_cell);

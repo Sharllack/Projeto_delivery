@@ -108,3 +108,22 @@ if (darkModePreference === 'on') {
       secBebidas.style.color = "darkslategray";
       secPratos.style.color = "darkslategray";
 }
+
+function atualizarTaxa() {
+    const taxa = document.querySelector('#taxa').innerHTML;
+    const carrinho = document.querySelector('.carrinho');
+    const link = document.querySelectorAll('.linkPratos');
+    const log = document.querySelector('.logBtn');
+
+
+    if (taxa === "Endereço não atendido!") {
+
+        link.forEach(function(link){
+            link.href = "#";
+        })
+        carrinho.href = '#';
+        log.href = '#';
+    }
+}
+
+atualizarTaxa(); // Chama a função imediatamente ao carregar a página
