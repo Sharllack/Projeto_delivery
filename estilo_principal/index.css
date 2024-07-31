@@ -99,7 +99,7 @@ main {
     box-shadow: 2px 2px 8px black;
 }
 
-.tempoDeEntrega, .hora, .horarioDeFuncionamento{
+.tempoDeEntrega, .hora, .horarioDeFuncionamento, .taxa{
     margin-top: 15px;
 }
 
@@ -418,4 +418,26 @@ iframe {
     text-align: center;
     width: 250px;
     color: white;
+}
+
+.saudacao {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.saudacao a {
+    background-color: #5A3F2F;
+    margin-left: 5px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px black;
+    transition: .3s;
+}
+
+.saudacao a:hover {
+    transform: scale(1.05);
+}
+
+.saudacao a img {
+    width: 30px;
 }

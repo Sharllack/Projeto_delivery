@@ -58,6 +58,13 @@ if(isset($_GET['adicionar'])) {
         $stmt->close();
     }
 
+    $taxa = str_replace(['R$', ' ', ','], ['', '', '.'], $_SESSION['taxa']);
+
+    $stmt = $mysqli->prepare("UPDATE usuarios SET taxa = ? WHERE idUsuarios = ?");
+    $stmt->bind_param("di", $taxa, $idUsuario);
+    $stmt->execute();
+    $stmt->close();
+
     header("Location: ./index.php");
     exit();
 }

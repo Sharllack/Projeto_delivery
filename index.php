@@ -6,6 +6,56 @@ if(!isset($_SESSION)) {
     session_start();
 };
 
+$idUser = '';
+
+if(!isset($_SESSION['user'])) {
+    $bairro = '';
+} else {
+    $idUser = $_SESSION['idUsuario'];
+    $bairro = $_SESSION['bairro'];
+    $idusuario = $_SESSION['user'];
+    // Sua chave de API do Google Maps
+    $apiKey = 'AIzaSyD-IguGuEzPE2sUOy-MB3QK_lp7udCM7Eo';
+
+    // Endereços de origem e destino
+    $origin = 'Rua João Ribeiro, 40, Vila Centenário';
+    $destination = $_SESSION['rua'] . ", " . $_SESSION['numero'] . ", " . $_SESSION['bairro'];
+
+    // Codifica os endereços para uso na URL
+    $originEncoded = urlencode($origin);
+    $destinationEncoded = urlencode($destination);
+
+    // Monta a URL da requisição
+    $url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=$originEncoded&destinations=$destinationEncoded&key=$apiKey";
+
+    // Inicializa o cURL
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+    // Executa a requisição e obtém a resposta
+    $response = curl_exec($ch);
+
+    // Fecha o cURL
+    curl_close($ch);
+
+    // Decodifica a resposta JSON
+    $data = json_decode($response, true);
+
+    // Verifica se a requisição foi bem-sucedida
+    if ($data['status'] === 'OK') {
+        // Obtém a distância
+        $distance = $data['rows'][0]['elements'][0]['distance']['text'];
+        $distanceKm = $data['rows'][0]['elements'][0]['distance']['value']/1000;
+
+        // Define a taxa por quilômetro
+        $ratePerKm = 1.00; // $1.00 por quilômetro
+
+        // Calcula o custo
+        $cost = $distanceKm * $ratePerKm;
+    }
+}
+
 $stmt = $mysqli->prepare("SELECT situacao FROM host");
 $stmt->execute();
 $stmt->bind_result($situacao);
@@ -14,12 +64,6 @@ $stmt->close();
 
 $_SESSION['taxa'] = true;
 
-if(!isset($_SESSION['user'])) {
-    $bairro = '';
-} else {
-    $bairro = $_SESSION['bairro'];
-}
-
 $sql_query = "SELECT * FROM produtos WHERE ativo = 1 AND categoria = 'prato'";
 $result = $mysqli->query($sql_query);
 
@@ -27,12 +71,23 @@ $sql = "SELECT * FROM produtos WHERE ativo = 1 AND categoria = 'bebida'";
 $result_bebibas = $mysqli->query($sql);
 
 if($bairro == 'Vila Centenário') {
-    $_SESSION['taxa'] = '3';
-} else if(!isset($_SESSION['user'])){
-    $_SESSION['taxa'] = '3,00 - R$4';
+    $_SESSION['taxa'] = 'R$ 3,00';
+} else if ($bairro == '') {
+    $_SESSION['taxa'] = 'A ser calculada!';
+} else if ($distance > 5){
+    $_SESSION['taxa'] = 'Endereço não atendido!';
 } else {
-    $_SESSION['taxa'] = '4';
+    $fixedRate = 3.00; // Taxa fixa de R$3,00
+    $totalCost = $fixedRate + $cost; // Total em valor numérico
+    $_SESSION['taxa'] = "R$ " . number_format($totalCost, 2, ",", ".");;
 }
+
+$stmt = $mysqli->prepare("SELECT * FROM usuarios WHERE idUsuarios = ?");
+$stmt->bind_param("i", $idUser);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
+$stmt->close();
 
 ?>
 
@@ -86,14 +141,17 @@ if($bairro == 'Vila Centenário') {
                     <?php endif; ?>
                 </span>
             </p>
-            <p style="margin-top: 20px;">Taxa de entrega: <strong>R$<?php echo $_SESSION['taxa']?>,00</strong></p>
+            <p class="taxa">Taxa de entrega: <strong><?php echo $_SESSION['taxa']?></strong></p>
             <p class="horarioDeFuncionamento"><strong>Horário de funcionamento hoje:</strong></p>
             <p class="hora"><strong>11:00 às 15:00</strong></p>
             <hr class="hr">
             <?php if(!isset($_SESSION['user'])):?>
                 <a href="./login_usuario.php" class="logBtn">FAÇA LOGIN</a>
             <?php else: ?>
-                <p class="nomeDoCliente"> Seja Bem-Vindo(a), <strong><?php echo $_SESSION['nome']?></strong>!</p>
+                <div class="saudacao">
+                    <p class="nomeDoCliente"> Seja Bem-Vindo(a), <strong><?php echo $row['pnome']?></strong>!</p>
+                    <a href="./perfil.php"><img src="./imagens/person_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" alt="Perfil"></a>
+                </div>
             <?php endif; ?>
         </div>
         <section style="padding: 15px;" class="secPratos">

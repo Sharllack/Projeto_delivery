@@ -112,10 +112,10 @@ if ($bairro == 'Vila Centenário') {
                 <?php endforeach; ?>
             </section>
             <?php 
-                $total += (float) str_replace(',', '.', $_SESSION['taxa']);
+                $total += (float) str_replace(',', '.', $row['taxa']);
             ?>
             <h2 class="taxaTitle">Taxa de Entrega</h2>
-            <p style="margin-left: 15px; margin-bottom: 15px" class="valorTaxa"><strong>R$<?php echo $_SESSION['taxa']?>,00</strong></p>
+            <p style="margin-left: 15px; margin-bottom: 15px" class="valorTaxa"><strong>R$<?php echo number_format($row['taxa'], 2, ",")?></strong></p>
             <button type="submit" class="button">Finalizar Pedido <span class="valorTotal">R$<?php echo number_format($total, 2, ',', '.');?></span></button>
         </form>
     </main>

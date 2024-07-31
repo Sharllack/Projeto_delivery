@@ -7,12 +7,11 @@ if(!isset($_SESSION)) {
 }
 
 $idUsuario = $_SESSION['idUsuario'];
+$error = '';
 
-if($_SERVER["REQUEST_METHOD"] == "POST"); {
-    if(isset($_POST['nome']) && isset($_POST['cell']) && isset($_POST['cep']) && isset($_POST['estado']) && isset($_POST['cidade']) && isset($_POST['bairro']) && isset($_POST['rua']) && isset($_POST['numero']) && isset($_POST['complemento']) && isset($_POST['referencia'])) {
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    if(isset($_POST['cep']) && isset($_POST['estado']) && isset($_POST['cidade']) && isset($_POST['bairro']) && isset($_POST['rua']) && isset($_POST['numero']) && isset($_POST['complemento']) && isset($_POST['referencia'])) {
 
-        $nome = $_POST['nome'];
-        $cell = $_POST['cell'];
         $cep = $_POST['cep'];
         $estado = $_POST['estado'];
         $cidade = $_POST['cidade'];
@@ -22,22 +21,83 @@ if($_SERVER["REQUEST_METHOD"] == "POST"); {
         $complemento = $_POST['complemento'];
         $referencia = $_POST['referencia'];
 
-        $stmt = $mysqli->prepare("UPDATE usuarios SET nomeCliente = ?, cell = ?, estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ?, referencia = ? WHERE idUsuarios = ?");
-        $stmt->bind_param("sssssssssi", $nome, $cell, $estado, $cidade, $bairro, $rua, $numero, $complemento, $referencia, $idUsuario);
-        $stmt->execute();
-        $stmt->close();
+        // Sua chave de API do Google Maps
+        $apiKey = 'AIzaSyD-IguGuEzPE2sUOy-MB3QK_lp7udCM7Eo';
+    
+        // Endereços de origem e destino
+        $origin = 'Rua João Ribeiro, 40, Vila Centenário';
+        $destination = $rua . ", " . $numero . ", " . $bairro;
+    
+        // Codifica os endereços para uso na URL
+        $originEncoded = urlencode($origin);
+        $destinationEncoded = urlencode($destination);
+    
+        // Monta a URL da requisição
+        $url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=$originEncoded&destinations=$destinationEncoded&key=$apiKey";
+    
+        // Inicializa o cURL
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    
+        // Executa a requisição e obtém a resposta
+        $response = curl_exec($ch);
+    
+        // Fecha o cURL
+        curl_close($ch);
+    
+        // Decodifica a resposta JSON
+        $data = json_decode($response, true);
+    
+        // Verifica se a requisição foi bem-sucedida
+        if ($data['status'] === 'OK') {
+            // Obtém a distância
+            $distance = $data['rows'][0]['elements'][0]['distance']['text'];
+            $distanceKm = $data['rows'][0]['elements'][0]['distance']['value']/1000;
+    
+            // Define a taxa por quilômetro
+            $ratePerKm = 1.00; // $1.00 por quilômetro
+    
+            // Calcula o custo
+            $cost = $distanceKm * $ratePerKm;
+    
+        }
 
-        sleep(2);
+        if($bairro != 'Vila Centenário') {
+            if($distanceKm > 5) {
+                $error = 'Endereço não atendido!';
+            } else {
+                $fixedRate = 3.00; // Taxa fixa de R$3,00
+                $totalCost = $fixedRate + $cost; // Total em valor numérico
+                $_SESSION['taxa'] = "R$ " . number_format($totalCost, 2, ",", ".");
 
-        header("Location: ./pagamento_endereco.php");
-        exit;
-    }
+                $taxa = str_replace(['R$', ' ', ','], ['', '', '.'], $_SESSION['taxa']);
 
-    $sql = "SELECT * FROM usuarios WHERE idUsuarios = $idUsuario";
-    $result = $mysqli->query($sql) or die ($mysqli->error);
-    while($row = mysqli_fetch_assoc($result)) {
-        $nome = $row['nomeCliente'];
-        $contato = $row['cell'];
+                $stmt = $mysqli->prepare("UPDATE usuarios SET estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ?, referencia = ?, taxa = ? WHERE idUsuarios = ?");
+                $stmt->bind_param("sssssssdi", $estado, $cidade, $bairro, $rua, $numero, $complemento, $referencia, $taxa, $idUsuario);
+                $stmt->execute();
+                $stmt->close();
+
+                sleep(2);
+
+                header("Location: ./pagamento_endereco.php");
+                exit;
+            }
+        } else {
+            $_SESSION['taxa'] = 'R$ 3,00';
+
+            $taxa = str_replace(['R$', ' ', ','], ['', '', '.'], $_SESSION['taxa']);
+
+            $stmt = $mysqli->prepare("UPDATE usuarios SET estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ?, referencia = ?, taxa = ? WHERE idUsuarios = ?");
+            $stmt->bind_param("sssssssdi", $estado, $cidade, $bairro, $rua, $numero, $complemento, $referencia, $taxa, $idUsuario);
+            $stmt->execute();
+            $stmt->close();
+
+            sleep(2);
+
+            header("Location: ./pagamento_endereco.php");
+            exit;
+        }
     }
 }
 
@@ -51,6 +111,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"); {
     <link rel="stylesheet" href="./estilo_cadastro_usuario/style.css">
     <link rel="stylesheet" href="./estilo_cadastro_usuario/media_querie.css">
     <title>Cadastre-se</title>
+    <style>
+        .btn {
+            margin-top: 5px;
+        }
+
+        .btn button {
+            padding: 0px 15px ;
+        }
+    </style>
 </head>
 <body>
     
@@ -59,13 +128,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"); {
         <h1>Atualize o seu endereço</h1>
             <form action="" method="post">
                 <div class="inpu">
-                    <input type="text" name="nome" id="nome" placeholder="nome" required value="<?php echo $nome?>">
-                </div>
-                <div class="inpu">
-                    <input type="text" name="cell" id="cell" placeholder="Número para Contato" required value="<?php echo $contato?>">
-                </div>
-                <div class="inpu">
-                    <input type="text" name="cep" id="cep" placeholder="CEP" required>
+                    <input type="text" name="cep" id="cep" placeholder="CEP" required value="<?php echo isset($_POST['cep']) ? $_POST['cep'] : ''; ?>">
                 </div>
                 <div class="inpu">
                     <input type="text" name="estado" id="estado" placeholder="Estado" required>
@@ -77,32 +140,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST"); {
                     <input type="text" name="bairro" id="bairro" placeholder="Bairro" required>
                 </div>
                 <div class="inpu">
-                    <input type="text" name="rua" id="rua" placeholder="Logradouro" required>
+                    <input type="text" name="rua" id="rua" placeholder="Logradouro" required value="<?php echo isset($_POST['rua']) ? $_POST['rua'] : ''; ?>">
                 </div>
                 <div class="inpu">
-                    <input type="text" name="numero" id="numero" placeholder="Número" required>
+                    <input type="text" name="numero" id="numero" placeholder="Número" required value="<?php echo isset($_POST['numero']) ? $_POST['numero'] : ''; ?>">
                 </div>
                 <div class="inpu">
-                    <input type="text" name="complemento" id="complemento" placeholder="Complemento(Opcional)">
+                    <input type="text" name="complemento" id="complemento" placeholder="Complemento(Opcional)" value="<?php echo isset($_POST['complemento']) ? $_POST['complemento'] : ''; ?>">
                 </div>
                 <div class="inpu">
-                    <input type="text" name="referencia" id="referencia" placeholder="Ponto de Referência" required>
+                    <input type="text" name="referencia" id="referencia" placeholder="Ponto de Referência" required value="<?php echo isset($_POST['referencia']) ? $_POST['referencia'] : ''; ?>">
                 </div>
+                <p style="color: red; font-weight: bold;"><?php echo $error?></p>
                 <div class="btn">
                     <button type="submit">Cadastrar</button>
                     <button type="reset">Limpar</button>
                 </div>
             </form>
         </section>
-
         <div class="img">
             <img src="./imagens/imagens_cadastro_usuario/culinaria-mineira-cpt.jpg" alt="imagem de comida">
         </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
-    <script src="./js_cadastro_usuario/cep.js"></script>
-    <script src="./js_cadastro_usuario/formatacao.js"></script>
-    <script src="./js_cadastro_usuario/funcoes.js"></script>
+    <script src="./js_editar_end/cep.js"></script>
+    <script src="./js_editar_end/formatacao.js"></script>
 </body>
 </html>

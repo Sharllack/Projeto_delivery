@@ -1,0 +1,135 @@
+@charset "UTF-8";
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-attachment: fixed;
+    background-image: linear-gradient(45deg, #5A3F2F, darkslategray);
+}
+
+.voltar {
+    padding: 15px;
+}
+
+.voltar a {
+    color: white;
+    font-size: 1.2em;
+    text-decoration: none;
+}
+
+.voltar a:hover {
+    text-decoration: underline;
+}
+
+main {
+    margin: auto;
+    margin-top: 35px;
+
+    height: 500px;
+    width: 1200px;
+    background-color: #5A3F2F;
+    display: flex;
+
+    border-radius: 15px;
+    box-shadow: 2px 2px 8px black;
+}
+
+section {
+    background-color: darkslategray;
+    width: 50%;
+    height: 100%;
+    padding: 15px;
+
+    border-radius: 15px 0 0 15px;
+}
+
+section h1 {
+    text-align: center;
+    color: white;
+}
+
+form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.inpu {
+    width: 48%;
+    margin: auto;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 15px;
+    border: none;
+    border-bottom: 2px solid darkslategray;
+    outline: none;
+    box-shadow: inset 2px 2px 8px rgb(36, 36, 36);
+    transition: .3s;
+}
+
+input:focus {
+    border-bottom: 2px solid brown;
+}
+
+.btn {
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+button[type="submit"] {
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    box-shadow: 3px 3px 0px rgb(0, 0, 0);
+    transition: .3s
+}
+
+.btn a {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+}
+
+.btn a:hover {
+    text-decoration: underline;
+}
+
+button[type="submit"]:hover{
+    transform: scale(1.05);
+    box-shadow: 5px 5px 0px rgb(0, 0, 0);
+}
+
+.img {
+    width: 50%;
+}
+
+.img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 0 15px 15px 0;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #5A3F2F;
+}
