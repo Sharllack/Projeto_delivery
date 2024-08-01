@@ -27,7 +27,7 @@ body {
 }
 
 main {
-    height: 300px;
+    height: 320px;
     width: 600px;
     border-radius: 15px;
     box-shadow: 2px 2px 8px black;
@@ -112,18 +112,18 @@ button[type="submit"] {
     transition: .3s;
 }
 
-button[type="submit"]:hover, button[type="button"]:hover {
+button[type="submit"]:hover, .btn a:hover {
     transform: scale(1.05);
     box-shadow: 10px 10px 10px black;
 }
 
 
-button[type="submit"]:active, button[type="button"]:active {
+button[type="submit"]:active, .btn a:active {
     transform: scale(.9);
     box-shadow: 3px 3px 10px black;
 }
 
-button[type="button"] {
+.btn a {
     width: 100%;
     margin-top: 5px;
     padding: 10px;
@@ -135,11 +135,12 @@ button[type="button"] {
     cursor: pointer;
 }
 
-button[type="button"] a {
+.btn a {
+    background-color: azure;
     color: black;
 }
 
-button[type="button"] a:hover {
+.btn a:hover {
     text-decoration: none;
 }
 

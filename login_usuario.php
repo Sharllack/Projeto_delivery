@@ -72,7 +72,7 @@ if($sql_query->num_rows > 0) {
             <a href="./pass_reco.php">Esqueci a senha</a>
             <div class="btn">
                 <button type="submit">Entrar</button>
-                <button type="button"><a href="./cadastro_usuario.php">Cadastre-se</a></button>
+                <a href="./cadastro_usuario.php">Cadastre-se</a>
             </div>
         </form>
         <div class="img">

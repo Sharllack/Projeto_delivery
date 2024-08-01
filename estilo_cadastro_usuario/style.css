@@ -30,7 +30,7 @@ main {
     margin: auto;
     margin-top: 35px;
 
-    height: 500px;
+    height: 550px;
     width: 1200px;
     background-color: #5A3F2F;
     display: flex;
@@ -86,7 +86,7 @@ input:focus {
     padding-bottom: 30px;
     display: flex;
     justify-content: space-between;
-    margin-top: -35px;
+    margin-top: 5px;
 }
 
 button[type="submit"] {
