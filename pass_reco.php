@@ -33,7 +33,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./estilo_pass_reco/style.css">
     <link rel="stylesheet" href="./estilo_pass_reco/media_query.css">
-    <title>Document</title>
+    <title>Recuperação de Senha</title>
 </head>
 <body>
     <div class="voltar">

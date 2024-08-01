@@ -29,7 +29,7 @@ $result = $mysqli->query($sql_query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../estilo_adicionar/index.css">
     <link rel="stylesheet" href="../estilo_adicionar/media_querie.css">
-    <title>Adicionar Produtos</title>
+    <title>Editar Produtos</title>
 </head>
 <body>
     <header>

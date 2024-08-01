@@ -26,7 +26,7 @@ $total = 0;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./estilo_carrinho/index.css">
     <link rel="stylesheet" href="./estilo_carrinho/media_querie.css">
-    <title>Document</title>
+    <title>Carrinho</title>
 </head>
 <body>
 

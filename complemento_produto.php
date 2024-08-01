@@ -43,7 +43,7 @@ $result_bebibas = $mysqli->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./estilo_complemento_produto/index.css">
     <link rel="stylesheet" href="./estilo_complemento_produto/media_querie.css">
-    <title>Document</title>
+    <title>Complemento</title>
 </head>
 <body>
 

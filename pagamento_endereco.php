@@ -45,7 +45,7 @@ while ($row = $result->fetch_assoc()) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./estilo_pagamento_endereco/index.css">
     <link rel="stylesheet" href="./estilo_pagamento_endereco/media_querie.css">
-    <title>Document</title>
+    <title>Forma de Pagamento</title>
 </head>
 <body>
 

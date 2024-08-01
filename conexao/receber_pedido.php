@@ -98,7 +98,7 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../estilo_receber/style.css">
     <link rel="stylesheet" href="../estilo_receber/media_query.css">
-    <title>Adicionar Produtos</title>
+    <title>Receber Pedidos</title>
 </head>
 <body>
     <div style="position: absolute; left: 15px; margin: 15px 15px 0 0; font-size:1.2em;"><a href="./adicionar_produto.php" style="color: white;">Voltar</a></div>
