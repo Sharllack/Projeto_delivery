@@ -10,7 +10,8 @@
 body {
     background-attachment: fixed;
     background-image: linear-gradient(45deg, #5A3F2F, darkslategray);
-    overflow: hidden;
+    overflow-x: hidden;
+    transition: filter 0.3s ease;
 }
 
 .voltar {
@@ -154,6 +155,7 @@ button[type="submit"]:hover{
 
 .opcoes {
     color: white;
+    z-index: 9999;
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -162,24 +164,33 @@ button[type="submit"]:hover{
     background-color: darkslategray;
     border-radius: 15px;
     box-shadow: 2px 2px 8px black;
-    max-width: 250px;
+    max-width: 500px;
     display: none;
+}
+
+.over {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Cor preta com opacidade */
+    display: none; /* Inicialmente escondido */
+    z-index: 9998; /* Deixa atrás da janela de opções */
 }
 
 @keyframes windowAppear {
     0% {
-        translate: 1000px 600px;
         scale: 0;
     }
 
     100% {
-        translate: 0 0;
         scale: 1;
     }
   }
   
   .animated {
-    animation: windowAppear .5s ease-in-out;
+    animation: windowAppear .2s ease-in-out;
   }
   
 
