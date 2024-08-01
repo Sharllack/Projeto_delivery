@@ -21,15 +21,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $complemento = $_POST['complemento'];
         $referencia = $_POST['referencia'];
 
-        $_SESSION['cep'] = $cep;
-        $_SESSION['rua'] = $rua;
-        $_SESSION['numero'] = $numero;
-        $_SESSION['bairro'] = $bairro;
-        $_SESSION['cidade'] = $cidade;
-        $_SESSION['estado'] = $estado;
-        $_SESSION['complemento'] = $complemento;
-        $_SESSION['referencia'] = $referencia;
-
         // Sua chave de API do Google Maps
         $apiKey = 'AIzaSyD-IguGuEzPE2sUOy-MB3QK_lp7udCM7Eo';
     
@@ -76,11 +67,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             if($distanceKm > 5) {
                 $error = 'Endereço não atendido!';
 
-                $stmt = $mysqli->prepare("UPDATE usuarios SET taxa = ? WHERE idUsuarios = ?");
-                $stmt->bind_param("si", $error, $idUser);
-                $stmt->execute();
-                $stmt->close();
             } else {
+                $_SESSION['cep'] = $cep;
+                $_SESSION['rua'] = $rua;
+                $_SESSION['numero'] = $numero;
+                $_SESSION['bairro'] = $bairro;
+                $_SESSION['cidade'] = $cidade;
+                $_SESSION['estado'] = $estado;
+                $_SESSION['complemento'] = $complemento;
+                $_SESSION['referencia'] = $referencia;
+
                 $fixedRate = 3.00; // Taxa fixa de R$3,00
                 $totalCost = $fixedRate + $cost; // Total em valor numérico
                 $_SESSION['taxa'] = "R$ " . number_format($totalCost, 2, ",", ".");
@@ -96,6 +92,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit;
             }
         } else {
+
+            $_SESSION['cep'] = $cep;
+            $_SESSION['rua'] = $rua;
+            $_SESSION['numero'] = $numero;
+            $_SESSION['bairro'] = $bairro;
+            $_SESSION['cidade'] = $cidade;
+            $_SESSION['estado'] = $estado;
+            $_SESSION['complemento'] = $complemento;
+            $_SESSION['referencia'] = $referencia;
+            
             $_SESSION['taxa'] = 'R$ 3,00';
 
             $stmt = $mysqli->prepare("UPDATE usuarios SET estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ?, referencia = ?, taxa = ? WHERE idUsuarios = ?");
