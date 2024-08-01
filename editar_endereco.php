@@ -86,7 +86,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['taxa'] = "R$ " . number_format($totalCost, 2, ",", ".");
 
                 $stmt = $mysqli->prepare("UPDATE usuarios SET estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ?, referencia = ?, taxa = ? WHERE idUsuarios = ?");
-                $stmt->bind_param("ssssssdsi", $estado, $cidade, $bairro, $rua, $numero, $complemento, $referencia, $_SESSION['taxa'], $idUsuario);
+                $stmt->bind_param("ssssssssi", $estado, $cidade, $bairro, $rua, $numero, $complemento, $referencia, $_SESSION['taxa'], $idUsuario);
                 $stmt->execute();
                 $stmt->close();
 

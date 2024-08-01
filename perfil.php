@@ -108,6 +108,21 @@ $stmt->close();
     <div class="voltar">
         <a href="./index.php">Voltar</a>
     </div>
+
+    <div class="opcoes">
+        <form action="./deletar_perfil.php" class="excl">
+            <div class="close">
+                <a href="#"><img src="./imagens/close_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" alt="Fechar"></a>
+            </div>
+            <h1>Excluir Perfil</h1>
+            <input type="password" name="pass" id="pass" placeholder="Confirme a Sua Senha">
+            <div class="btns">
+                <button type="submit">Excluir</button>
+                <a href="#">Cancelar</a>
+            </div>
+        </form>
+    </div>
+
     <main>
         <section>
         <h1 class="titleForm">Minhas Informações</h1>

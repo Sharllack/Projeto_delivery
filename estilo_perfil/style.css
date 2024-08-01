@@ -133,3 +133,47 @@ button[type="submit"]:hover{
 ::-webkit-scrollbar-thumb {
     background-color: #5A3F2F;
 }
+
+.opcoes {
+    color: white;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    padding: 15px;
+    background-color: darkslategray;
+    border-radius: 15px;
+    box-shadow: 2px 2px 8px black;
+    max-width: 250px;
+}
+
+.opcoes form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.excl input {
+    margin-top: 15px;
+}
+
+.btns {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btns a {
+    color: white;
+    text-decoration: none;
+}
+
+.btns a:hover {
+    text-decoration: underline;
+}
+
+.close a img {
+    width: 25px;
+    float: right;
+}   
