@@ -74,17 +74,45 @@ $sql = "SELECT * FROM produtos WHERE ativo = 1 AND categoria = 'bebida'";
 $result_bebibas = $mysqli->query($sql);
 
 if (empty($bairro)) {
-    $_SESSION['taxa'] = 'Pendente de Verificação!';
+    $taxaAtual = 'Pendente de Verificação!';
+
+    $stmt = $mysqli->prepare("UPDATE usuarios SET taxa = ? WHERE idUsuarios = ?");
+    $stmt->bind_param("si", $taxaAtual, $idUser);
+    $stmt->execute();
+    $stmt->close();
 } elseif ($bairro != 'Vila Centenário') {
     if ($distanceKm > 5) {
         $_SESSION['taxa'] = 'Endereço não atendido!';
+
+        $stmt = $mysqli->prepare("UPDATE usuarios SET taxa = ? WHERE idUsuarios = ?");
+        $stmt->bind_param("si", $_SESSION['taxa'], $idUser);
+        $stmt->execute();
+        $stmt->close();
     } else {
         $fixedRate = 3.00; // Taxa fixa de R$3,00
         $totalCost = $fixedRate + $cost; // Total em valor numérico
         $_SESSION['taxa'] = "R$ " . number_format($totalCost, 2, ",", ".");
+
+        $stmt = $mysqli->prepare("UPDATE usuarios SET taxa = ? WHERE idUsuarios = ?");
+        $stmt->bind_param("si", $_SESSION['taxa'], $idUser);
+        $stmt->execute();
+        $stmt->close();
     }
 } elseif ($bairro == 'Vila Centenário') {
     $_SESSION['taxa'] = 'R$ 3,00';
+
+    $stmt = $mysqli->prepare("UPDATE usuarios SET taxa = ? WHERE idUsuarios = ?");
+    $stmt->bind_param("si", $_SESSION['taxa'], $idUser);
+    $stmt->execute();
+    $stmt->close();
+}
+if (!empty($idUser)) {
+    $stmt = $mysqli->prepare("SELECT taxa FROM usuarios WHERE idUsuarios = ?");
+    $stmt->bind_param("i", $idUser);
+    $stmt->execute();
+    $stmt->bind_result($taxaAtual);
+    $stmt->fetch();
+    $stmt->close();
 }
 
 ?>
@@ -139,7 +167,8 @@ if (empty($bairro)) {
                     <?php endif; ?>
                 </span>
             </p>
-            <p class="taxa">Taxa de entrega: <strong id="taxa"><?php echo $_SESSION['taxa']?></strong></p>
+            <p class="taxa">Taxa de entrega: <strong id="taxa"><?php
+             echo $taxaAtual?></strong></p>
             <p class="horarioDeFuncionamento"><strong>Horário de funcionamento hoje:</strong></p>
             <p class="hora"><strong>11:00 às 15:00</strong></p>
             <hr class="hr">

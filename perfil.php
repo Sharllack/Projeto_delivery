@@ -36,10 +36,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $complemento = $_POST['complemento'];
         $referencia = $_POST['referencia'];
 
+        $_SESSION['cep'] = $cep;
         $_SESSION['rua'] = $rua;
         $_SESSION['numero'] = $numero;
         $_SESSION['bairro'] = $bairro;
+        $_SESSION['cidade'] = $cidade;
+        $_SESSION['estado'] = $estado;
+        $_SESSION['complemento'] = $complemento;
+        $_SESSION['referencia'] = $referencia;
         $_SESSION['nome'] = $nome;
+        $_SESSION['sobrenome'] = $sNome;
+        $_SESSION['contato'] = $cell;
+        $_SESSION['email'] = $email;
 
         // Verifica se o celular já está cadastrado, excluindo o usuário atual
         $sql_cell = "SELECT * FROM usuarios WHERE cell = ? AND idUsuarios != ? LIMIT 1";

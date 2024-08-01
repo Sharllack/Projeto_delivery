@@ -22,16 +22,19 @@ $result = $stmt->get_result();
 
 $rows = [];
 $total = 0;
-$rua = $numero = $bairro = $idUsuario = $idCarrinho = '';
+$rua = $numero = $bairro = $idUsuario = $idCarrinho = $taxa = '';
 
 while ($row = $result->fetch_assoc()) {
     $rows[] = $row;
-    $total = $row['valorTotal']; // Assume o último valor é o total
+    // Remove o símbolo da moeda e troca a vírgula por ponto para conversão
+    $valorTotal = str_replace(['R$', '.'], ['', ','], $row['valorTotal']); // Remove 'R$', troca '.' por ',' se necessário
+    $total += (float) str_replace(',', '.', $valorTotal); // Converte o valor para float
     $rua = $row['rua'];
     $numero = $row['numero'];
     $bairro = $row['bairro'];
     $idUsuario = $row['idUsuarios'];
     $idCarrinho = $row['idCarrinho'];
+    $taxa = $row['taxa']; // Obtém a taxa, mas não adicione ainda
 }
 ?>
 
@@ -103,11 +106,17 @@ while ($row = $result->fetch_assoc()) {
                     <p><strong><?php echo $row['qtd'] . "x " . $row['nome'] . "<br>" . "Obs.:" . "<br>" . $row['obs'] . "<br> <br>"?></strong></p>
                 <?php endforeach; ?>
             </section>
-            <?php 
-                $total += (float) str_replace(',', '.', $row['taxa']);
-            ?>
             <h2 class="taxaTitle">Taxa de Entrega</h2>
-            <p style="margin-left: 15px; margin-bottom: 15px" class="valorTaxa"><strong>R$<?php echo number_format($row['taxa'], 2, ",")?></strong></p>
+            <p style="margin-left: 15px; margin-bottom: 15px" class="valorTaxa"><strong><?php echo $taxa ?></strong></p>
+            <?php 
+            
+                    // Adicione a taxa ao total, se a taxa não estiver vazia
+                if (!empty($taxa)) {
+                    $taxa = str_replace(['R$', '.'], ['', ','], $taxa); // Remove 'R$', troca '.' por ',' se necessário
+                    $total += (float) str_replace(',', '.', $taxa); // Converte a taxa para float e adiciona ao total
+                }
+
+            ?>
             <button type="submit" class="button">Finalizar Pedido <span class="valorTotal">R$<?php echo number_format($total, 2, ',', '.');?></span></button>
         </form>
     </main>

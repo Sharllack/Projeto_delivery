@@ -21,6 +21,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $complemento = $_POST['complemento'];
         $referencia = $_POST['referencia'];
 
+        $_SESSION['cep'] = $cep;
+        $_SESSION['rua'] = $rua;
+        $_SESSION['numero'] = $numero;
+        $_SESSION['bairro'] = $bairro;
+        $_SESSION['cidade'] = $cidade;
+        $_SESSION['estado'] = $estado;
+        $_SESSION['complemento'] = $complemento;
+        $_SESSION['referencia'] = $referencia;
+
         // Sua chave de API do Google Maps
         $apiKey = 'AIzaSyD-IguGuEzPE2sUOy-MB3QK_lp7udCM7Eo';
     
@@ -66,15 +75,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         if($bairro != 'Vila Centenário') {
             if($distanceKm > 5) {
                 $error = 'Endereço não atendido!';
+
+                $stmt = $mysqli->prepare("UPDATE usuarios SET taxa = ? WHERE idUsuarios = ?");
+                $stmt->bind_param("si", $error, $idUser);
+                $stmt->execute();
+                $stmt->close();
             } else {
                 $fixedRate = 3.00; // Taxa fixa de R$3,00
                 $totalCost = $fixedRate + $cost; // Total em valor numérico
                 $_SESSION['taxa'] = "R$ " . number_format($totalCost, 2, ",", ".");
 
-                $taxa = str_replace(['R$', ' ', ','], ['', '', '.'], $_SESSION['taxa']);
-
                 $stmt = $mysqli->prepare("UPDATE usuarios SET estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ?, referencia = ?, taxa = ? WHERE idUsuarios = ?");
-                $stmt->bind_param("sssssssdi", $estado, $cidade, $bairro, $rua, $numero, $complemento, $referencia, $taxa, $idUsuario);
+                $stmt->bind_param("ssssssdsi", $estado, $cidade, $bairro, $rua, $numero, $complemento, $referencia, $_SESSION['taxa'], $idUsuario);
                 $stmt->execute();
                 $stmt->close();
 
@@ -86,10 +98,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $_SESSION['taxa'] = 'R$ 3,00';
 
-            $taxa = str_replace(['R$', ' ', ','], ['', '', '.'], $_SESSION['taxa']);
-
             $stmt = $mysqli->prepare("UPDATE usuarios SET estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ?, referencia = ?, taxa = ? WHERE idUsuarios = ?");
-            $stmt->bind_param("sssssssdi", $estado, $cidade, $bairro, $rua, $numero, $complemento, $referencia, $taxa, $idUsuario);
+            $stmt->bind_param("ssssssdsi", $estado, $cidade, $bairro, $rua, $numero, $complemento, $referencia, $_SESSION['taxa'], $idUsuario);
             $stmt->execute();
             $stmt->close();
 
@@ -114,7 +124,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="voltar">
-        <a href="./login_usuario.php">Voltar</a>
+        <a href="./pagamento_endereco.php">Voltar</a>
     </div>
     
     <main>
