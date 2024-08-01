@@ -32,6 +32,7 @@ if (!isset($_SESSION['pedido_finalizado'][$idCarrinho]) && $_SESSION['pedido_fin
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./estilo_situacao_produto/index.css">
     <link rel="stylesheet" href="./estilo_situacao_produto/media_querie.css">
+    <link rel="shortcut icon" href="./imagens/favicon.ico" type="image/x-icon">
     <title>Acompanhe o Seu Pedido</title>
 </head>
 <body>

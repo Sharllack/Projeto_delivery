@@ -102,6 +102,7 @@ $stmt->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./estilo_perfil/style.css">
     <link rel="stylesheet" href="./estilo_perfil/media_query.css">
+    <link rel="shortcut icon" href="./imagens/favicon.ico" type="image/x-icon">
     <title>Perfil</title>
 </head>
 <body>
