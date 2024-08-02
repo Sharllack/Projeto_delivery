@@ -370,6 +370,7 @@ main {
 
 footer {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     background-color: #5A3F2F;
     box-shadow: inset 2px 2px 10px black;
@@ -450,4 +451,26 @@ iframe {
 
 .saudacao a img {
     width: 30px;
+}
+
+.infosFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.devInfo {
+    text-align: center;
+    color: white;
+    font-size: .8em;
+}
+
+.devInfo a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.devInfo a:hover {
+    text-decoration: underline;
 }

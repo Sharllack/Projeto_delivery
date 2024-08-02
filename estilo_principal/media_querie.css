@@ -25,6 +25,10 @@
         width: 15px;
     }
 
+    .taxa, .hora, .horarioDeFuncionamento {
+        font-size: .9em;
+    }
+
     .btns {
         position: fixed;
         bottom: 0;
@@ -197,6 +201,11 @@
     
     .endereco p {
         font-size: .7em;
+    }
+
+    .devInfo {
+        font-size: .5em;
+        margin-top: 15px;
     }
 
 }
