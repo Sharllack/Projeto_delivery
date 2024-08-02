@@ -11,15 +11,35 @@ function updateButtonValue() {
     document.querySelector('.button').value = totalValue;
 }
 
-// Evento de submit do formulário
+// Função para atualizar a mensagem de erro de troco
+function validarTroco() {
+    const troco = document.querySelector('.troco');
+    const trocoValue = parseFloat(troco.value.replace(',', '.')) || 0;
+    const total = parseFloat(document.querySelector('.valorTotal').textContent.replace('R$', '').replace(',', '.')) || 0;
+    const error = document.querySelector('.error');
+    
+    // Verifica se o valor do troco é menor do que o valor total
+    if (trocoValue <= total) {
+        toggleError(error, true);
+        return false;
+    } else {
+        toggleError(error, false);
+        return true;
+    }
+}
+
+// Função auxiliar para exibir/ocultar mensagens de erro
+function toggleError(element, show) {
+    element.style.display = show ? 'block' : 'none';
+}
+
+// Atualize o evento de submit do formulário para incluir a validação de troco
 document.querySelector('form').addEventListener('submit', function(event) {
     var opc = document.querySelector('#opcoes').value;
     var opcEntrega = document.querySelector('#opcEntrega').value;
     var selectError = document.querySelector('.selectError');
     var selectErro = document.querySelector('.selectErro');
-    var troco = document.querySelector('.troco');
-    var error = document.querySelector('.error');
-
+    
     // Verificação da forma de pagamento
     if(opc === '#') {
         toggleError(selectError, true);
@@ -40,18 +60,13 @@ document.querySelector('form').addEventListener('submit', function(event) {
 
     // Verificação do troco
     if (document.querySelector('input[name="opcTroco"]:checked')?.value === 'sim') {
-        const trocoValue = parseFloat(troco.value) || 0;
-        const total = parseFloat(document.querySelector(".valorTotal").textContent.replace('R$', '').replace(',', '.')) || 0;
-        
-        if (trocoValue <= total) {
-            toggleError(error, true);
+        if (!validarTroco()) {
             event.preventDefault();
             return;
-        } else {
-            toggleError(error, false);
         }
     }
 });
+
 
 // Evento de mudança da forma de pagamento
 document.querySelector('#opcoes').addEventListener('change', function() {

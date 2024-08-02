@@ -153,7 +153,7 @@ main {
 }
 
 #btn1 {
-    animation: appear1 3s 1s infinite ease-out;
+    animation: appear1 2.5s 1s infinite linear;
 }
 
 @keyframes appear1 {
@@ -162,7 +162,7 @@ main {
     }
 
     10% {
-        transform: translateY(-10px);
+        transform: translateY(-15px);
     }
 
     15%{
@@ -175,7 +175,7 @@ main {
 }
 
 #btn2 {
-    animation: appear2 3s 1s infinite ease-out;
+    animation: appear2 2.5s 1s infinite linear;
 }
 
 @keyframes appear2 {
@@ -184,7 +184,7 @@ main {
     }
 
     15% {
-        transform: translateY(-10px);
+        transform: translateY(-15px);
     }
 
     20%{
@@ -197,7 +197,7 @@ main {
 }
 
 #btn3 {
-    animation: appear3 3s 1s infinite ease-out;
+    animation: appear3 2.5s 1s infinite linear;
 }
 
 @keyframes appear3 {
@@ -206,7 +206,7 @@ main {
     }
 
     20% {
-        transform: translateY(-10px);
+        transform: translateY(-15px);
     }
 
     25% {

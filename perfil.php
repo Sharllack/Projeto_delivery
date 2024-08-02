@@ -120,7 +120,7 @@ $stmt->close();
                 <p class="closeWindow"><img src="./imagens/close_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" alt="Fechar"></p>
             </div>
             <h1>Excluir Perfil</h1>
-            <input type="password" name="pass" id="pass" placeholder="Confirme a Sua Senha">
+            <input type="password" name="pass" id="pass" placeholder="Confirme a Sua Senha" required>
             <p style="color: red; font-weight: bold; font-size: .8em;"><?php echo htmlspecialchars($_SESSION['errorPass'] ?? '', ENT_QUOTES, 'UTF-8')?></p>
             <div class="btns">
                 <button type="submit">Excluir</button>

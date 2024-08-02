@@ -118,7 +118,7 @@ while ($row = $result->fetch_assoc()) {
                 }
 
             ?>
-            <button type="submit" class="button" name="button" value="<?php echo $total?>">Finalizar Pedido <span class="valorTotal">R$<?php echo number_format($total, 2, ',', '.');?></span></button>
+            <button type="submit" class="button" name="button" value="<?php echo $total?>">Finalizar Pedido <span class="valorTotal">R$ <?php echo number_format($total, 2, ',', '.');?></span></button>
         </form>
     </main>
     <div class="btns">
