@@ -1,36 +1,76 @@
+// Guarda os valores originais de total e taxa
+let valorTotalOriginal = parseFloat(document.querySelector('.valorTotal').textContent.replace('R$', '').replace(',', '.'));
+let valorTaxaOriginal = parseFloat(document.querySelector('.valorTaxa').textContent.replace('R$', '').replace(',', '.'));
+const lograOri = document.querySelector('.logra').textContent;
+const baiOri = document.querySelector('.bai').textContent;
+
+function updateButtonValue() {
+    const total = document.querySelector('.valorTotal').textContent;
+    // Remove 'R$', substitui ',' por '.' para obter o valor numérico
+    const totalValue = parseFloat(total.replace('R$', '').replace(',', '.'));
+    document.querySelector('.button').value = totalValue;
+}
+
+// Evento de submit do formulário
 document.querySelector('form').addEventListener('submit', function(event) {
     var opc = document.querySelector('#opcoes').value;
-    var res = document.querySelector('.selectError');
+    var opcEntrega = document.querySelector('#opcEntrega').value;
+    var selectError = document.querySelector('.selectError');
+    var selectErro = document.querySelector('.selectErro');
+    var troco = document.querySelector('.troco');
+    var error = document.querySelector('.error');
 
+    // Verificação da forma de pagamento
     if(opc === '#') {
-        res.style.display = 'block'
+        toggleError(selectError, true);
         event.preventDefault();
+        return;
+    } else {
+        toggleError(selectError, false);
     }
-})
 
-document.querySelector('form').addEventListener('submit', function(event) {
-    var opc = document.querySelector('#opcEntrega').value;
-    var res = document.querySelector('.selectErro');
-
-    if(opc === '#') {
-        res.style.display = 'block'
+    // Verificação do tipo de entrega
+    if(opcEntrega === '#') {
+        toggleError(selectErro, true);
         event.preventDefault();
+        return;
+    } else {
+        toggleError(selectErro, false);
     }
-})
 
-document.querySelector('#opcoes').addEventListener('change', function(){
-    const opc = document.querySelector('#opcoes').value;
+    // Verificação do troco
+    if (document.querySelector('input[name="opcTroco"]:checked')?.value === 'sim') {
+        const trocoValue = parseFloat(troco.value) || 0;
+        const total = parseFloat(document.querySelector(".valorTotal").textContent.replace('R$', '').replace(',', '.')) || 0;
+        
+        if (trocoValue <= total) {
+            toggleError(error, true);
+            event.preventDefault();
+            return;
+        } else {
+            toggleError(error, false);
+        }
+    }
+});
+
+// Evento de mudança da forma de pagamento
+document.querySelector('#opcoes').addEventListener('change', function() {
+    const opc = this.value;
     const ask = document.querySelector('.contTroco');
     const troco = document.querySelector('.troco');
 
-    if(opc === 'dinheiro'){
+    if(opc === 'dinheiro') {
         ask.style.display = 'block';
     } else {
         ask.style.display = 'none';
         troco.style.display = 'none';
     }
-})
 
+    // Atualiza o valor do botão após a mudança da forma de pagamento
+    updateButtonValue();
+});
+
+// Evento de mudança do tipo de troco
 document.querySelectorAll('.askTroco').forEach(item => {
     item.addEventListener('change', function() {
         const askTr = document.querySelector('input[name="opcTroco"]:checked').value;
@@ -38,33 +78,18 @@ document.querySelectorAll('.askTroco').forEach(item => {
 
         if (askTr === 'sim') {
             troco.style.display = 'block';
-            document.querySelector('form').addEventListener('submit', function(event) {
-                const troco = parseFloat(document.querySelector('.troco').value) || 0;
-                const total = parseFloat(document.querySelector(".valorTotal").textContent.replace('R$', '').replace(',', '.')) || 0;
-                const error = document.querySelector(".error");
-            
-                if (troco <= total) {
-                    error.style.display = "block";
-                    event.preventDefault();
-            
-                } else {
-            
-                }
-            });
         } else {
             troco.style.display = 'none';
         }
+        
+        // Atualiza o valor do botão após a mudança do tipo de troco
+        updateButtonValue();
     });
 });
 
-// Guarda os valores originais de total e taxa
-let valorTotalOriginal = document.querySelector('.valorTotal').textContent;
-let valorTaxaOriginal = document.querySelector('.valorTaxa').textContent;
-const lograOri = document.querySelector('.logra').textContent;
-const baiOri = document.querySelector('.bai').textContent;
-
+// Evento de mudança do tipo de entrega
 document.querySelector('#opcEntrega').addEventListener('change', function() {
-    const opc = document.querySelector('#opcEntrega').value;
+    const opc = this.value;
     const taxa = document.querySelector('.valorTaxa');
     const total = document.querySelector('.valorTotal');
     const endTitle = document.querySelector('.enderecoTitle');
@@ -73,34 +98,33 @@ document.querySelector('#opcEntrega').addEventListener('change', function() {
     const trocar = document.querySelector('.trocar');
 
     if (opc === 'retirada') {
-        // Remove o cifrão e converte para número
-        let valorTotal = parseFloat(total.textContent.replace('R$', '').replace(',', '.'));
-        let valorTaxa = parseFloat(taxa.textContent.replace('R$', '').replace(',', '.'));
+        const valorTotal = parseFloat(total.textContent.replace('R$', '').replace(',', '.'));
+        const valorTaxa = parseFloat(taxa.textContent.replace('R$', '').replace(',', '.'));
+        const novoTotal = valorTotal - valorTaxa;
 
-        let novoTotal = valorTotal - valorTaxa;
-
-        total.textContent = 'R$' + novoTotal.toFixed(2).replace('.', ','); // Formata o novo total
-        taxa.textContent = 'R$0,00';
+        total.textContent = 'R$ ' + novoTotal.toFixed(2).replace('.', ',');
+        taxa.textContent = 'R$ 0,00';
         taxa.style.fontWeight = 'bold';
         endTitle.textContent = 'Endereço Para Retirada';
         logra.textContent = 'Rua João Ribeiro, 40';
-        logra.style.fontWeight = 'bold';
         bai.textContent = 'Vila Centenário';
         trocar.style.display = 'none';
     } else {
         // Reverte para os valores originais
-        total.textContent = valorTotalOriginal;
-        taxa.textContent = valorTaxaOriginal;
+        total.textContent = 'R$ ' + valorTotalOriginal.toFixed(2).replace('.', ',');
+        taxa.textContent = 'R$ ' + valorTaxaOriginal.toFixed(2).replace('.', ',');
         taxa.style.fontWeight = 'bold';
         endTitle.textContent = 'Endereço Para Entrega';
         logra.textContent = lograOri;
-        logra.style.fontWeight = 'bold';
         bai.textContent = baiOri;
         trocar.style.display = 'block';
     }
+
+    // Atualiza o valor do botão conforme o valor total atualizado
+    updateButtonValue();
 });
 
-//------------ DARK MODE -------------
+// Dark Mode Toggle
 const toggle = document.querySelector('#toggle');
 const main = document.querySelector('main');
 const opcoes = document.querySelector('#opcoes');
@@ -108,35 +132,28 @@ const opcEntrega = document.querySelector('#opcEntrega');
 const img = document.querySelector('.location');
 
 toggle.addEventListener('change', function() {
-  if (this.checked) {
-      console.log('Toggle ON');
-      opcoes.style.backgroundColor = "black";
-      opcoes.style.color = "white";
-      opcEntrega.style.backgroundColor = "black";
-      opcEntrega.style.color = "white";
-      main.style.backgroundColor = "#000000e8";
-      main.style.transition = '.5s';
-      main.style.color = "white";
-      img.src = './imagens/location_on_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png';
-
-      localStorage.setItem('darkMode', 'on');
-      
-  } else {
-      console.log('Toggle OFF');
-      opcoes.style.backgroundColor = "";
-      opcoes.style.color = "";
-      opcEntrega.style.backgroundColor = "";
-      opcEntrega.style.color = "";
-      main.style.backgroundColor = "";
-      main.style.transition = '.5s';
-      main.style.color = "black";
-      img.src = './imagens/location_on_24dp_00000_FILL0_wght400_GRAD0_opsz24.png';   
-
-      localStorage.setItem('darkMode', 'off');
-
-};
+    if (this.checked) {
+        opcoes.style.backgroundColor = "black";
+        opcoes.style.color = "white";
+        opcEntrega.style.backgroundColor = "black";
+        opcEntrega.style.color = "white";
+        main.style.backgroundColor = "#000000e8";
+        main.style.color = "white";
+        img.src = './imagens/location_on_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png';
+        localStorage.setItem('darkMode', 'on');
+    } else {
+        opcoes.style.backgroundColor = "";
+        opcoes.style.color = "";
+        opcEntrega.style.backgroundColor = "";
+        opcEntrega.style.color = "";
+        main.style.backgroundColor = "";
+        main.style.color = "black";
+        img.src = './imagens/location_on_24dp_00000_FILL0_wght400_GRAD0_opsz24.png';
+        localStorage.setItem('darkMode', 'off');
+    }
 });
 
+// Aplicar preferências de Dark Mode
 const darkModePreference = localStorage.getItem('darkMode');
 if (darkModePreference === 'on') {
     opcoes.style.backgroundColor = "black";
@@ -144,21 +161,7 @@ if (darkModePreference === 'on') {
     opcEntrega.style.backgroundColor = "black";
     opcEntrega.style.color = "white";
     main.style.backgroundColor = "#000000e8";
-    main.style.transition = '.5s';
     main.style.color = "white";
     img.src = './imagens/location_on_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png';
-
-    localStorage.setItem('darkMode', 'on');
-
     toggle.checked = true;
-    
-} else {
-    opcoes.style.backgroundColor = "";
-    opcoes.style.color = "";
-    opcEntrega.style.backgroundColor = "";
-    opcEntrega.style.color = "";
-    main.style.backgroundColor = "";
-    main.style.transition = '.5s';
-    main.style.color = "black";
-    img.src = './imagens/location_on_24dp_00000_FILL0_wght400_GRAD0_opsz24.png';
 }

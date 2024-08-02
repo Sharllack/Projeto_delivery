@@ -109,7 +109,7 @@ while ($row = $result->fetch_assoc()) {
             </section>
             <h2 class="taxaTitle">Taxa de Entrega</h2>
             <p style="margin-left: 15px; margin-bottom: 15px" class="valorTaxa"><strong><?php echo $taxa ?></strong></p>
-            <?php 
+            <?php
             
                     // Adicione a taxa ao total, se a taxa não estiver vazia
                 if (!empty($taxa)) {
@@ -118,7 +118,7 @@ while ($row = $result->fetch_assoc()) {
                 }
 
             ?>
-            <button type="submit" class="button">Finalizar Pedido <span class="valorTotal">R$<?php echo number_format($total, 2, ',', '.');?></span></button>
+            <button type="submit" class="button" name="button" value="<?php echo $total?>">Finalizar Pedido <span class="valorTotal">R$<?php echo number_format($total, 2, ',', '.');?></span></button>
         </form>
     </main>
     <div class="btns">

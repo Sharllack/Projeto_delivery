@@ -129,11 +129,9 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
             </thead>
             <tbody>
                 <?php while($row = $result->fetch_assoc()) { ?>
-                    <?php 
-
-                    $taxa = str_replace(['R$', '.'], ['', ','], $row['taxa']); // Remove 'R$', troca '.' por ',' se necessário
+                    <?php
                         
-                    $total = $row['valorTotal'] + (float) str_replace(',', '.', $taxa);;
+                    $total = $row['valorTotal'];
                         
                     ?>
                     <tr>

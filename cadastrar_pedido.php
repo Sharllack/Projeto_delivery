@@ -11,6 +11,7 @@ if(isset($_GET['finalizar'])) {
     $pagamento = $_POST['opcoes'];
     $entrega = $_POST['opcEntrega'];
     $troco = $_POST['troco'];
+    $total = $_POST['button'];
 
     $usuario = $_SESSION['idUsuario'];
 
@@ -31,8 +32,13 @@ if(isset($_GET['finalizar'])) {
     $situacao = 'Aguardando a confirmação do restaurante!';
     $situ = 'Aguardando!';
 
-    $stmt = $mysqli->prepare("INSERT INTO pedidos (idProduto, idUsuario, idCarrinho, idItens, pagamento, troco, situacao, situ, taxa, entrega) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("iiiisdssds", $idProduto, $idUsuario, $idCarrinho, $idItens, $pagamento, $troco, $situacao, $situ, $taxa, $entrega);
+    $stmt = $mysqli->prepare("UPDATE carrinho SET valorTotal = ? WHERE idCarrinho = ?");
+    $stmt->bind_param('di', $total, $idCarrinho);
+    $stmt->execute();
+    $stmt->close();
+
+    $stmt = $mysqli->prepare("INSERT INTO pedidos (idProduto, idUsuario, idCarrinho, idItens, pagamento, troco, situacao, situ, entrega) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("iiiisdsss", $idProduto, $idUsuario, $idCarrinho, $idItens, $pagamento, $troco, $situacao, $situ, $entrega);
     $stmt->execute();
     $stmt->close();
 
