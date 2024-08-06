@@ -3,8 +3,9 @@
 @media screen and (max-width: 600px) {
 
     main {
-        width: 100%;
+        width: 90%;
         flex-direction: column;
+        border-radius: 15px;
     }
 
     main .img {
@@ -14,6 +15,7 @@
     form {
         width: 100%;
         height: 100%;
+        border-radius: 15px;
     }
 
     .btn {

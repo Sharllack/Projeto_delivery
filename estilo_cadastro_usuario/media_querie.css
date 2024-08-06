@@ -7,13 +7,15 @@
     }
 
     main {
-        width: 100%;
+        width: 90%;
         margin-top: 15px;
         height: 100%;
+        border-radius: 15px;
     }
 
     section {
         width: 100%;
+        border-radius: 15px;
     }
 
     form {
