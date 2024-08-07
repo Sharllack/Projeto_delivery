@@ -42,34 +42,11 @@ if(isset($_GET['rota'])) {
 if(isset($_GET['finalizar'])) {
     $idPedido = intval($_GET['finalizar']);
     $situacao = 'O seu pedido foi finalizado!';
-    $stmt = $mysqli->prepare("UPDATE pedidos SET situacao = ? WHERE idPedido = ?");
-    $stmt->bind_param("si", $situacao, $idPedido);
+    $situ = 'Finalizado!';
+    $stmt = $mysqli->prepare("UPDATE pedidos SET situacao = ?, situ = ? WHERE idPedido = ?");
+    $stmt->bind_param("ssi", $situacao, $situ, $idPedido);
     $stmt->execute();
     $stmt->close();
-
-    $stmt = $mysqli->prepare("SELECT idUsuario FROM pedidos WHERE idPedido = ?");
-    $stmt->bind_param("i", $idPedido);
-    $stmt->execute();
-    $stmt->bind_result($idUsuario);
-    $stmt->fetch();
-    $stmt->close();
-
-    $stmt = $mysqli->prepare("DELETE FROM pedidos WHERE idPedido = ?");
-    $stmt->bind_param("i", $idPedido);
-    $stmt->execute();
-    $stmt->close();
-
-    $stmt = $mysqli->prepare("DELETE FROM itenscarrinho WHERE idUsuario = ?");
-    $stmt->bind_param("i", $idUsuario);
-    $stmt->execute();
-    $stmt->close();
-
-    $stmt = $mysqli->prepare("DELETE FROM carrinho WHERE idUsuario = ?");
-    $stmt->bind_param("i", $idUsuario);
-    $stmt->execute();
-    $stmt->close();
-
-    header('Location: ../unsetAdmin.php?idPedido=' . $idPedido);
 }
 
 if(isset($_GET['recusar'])) {

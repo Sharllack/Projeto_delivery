@@ -17,12 +17,6 @@ while($row = mysqli_fetch_assoc($result)) {
     $idPedido = $row['idPedido'];
 }
 
-if (!isset($_SESSION['pedido_finalizado'][$idCarrinho]) && $_SESSION['pedido_finalizado'][$idCarrinho] !== true) {
-    // Redireciona para a página de acompanhamento do pedido
-    header('Location: ./index.php');
-    exit;
-};
-
 ?>
 
 <!DOCTYPE html>
@@ -83,9 +77,9 @@ if (!isset($_SESSION['pedido_finalizado'][$idCarrinho]) && $_SESSION['pedido_fin
         const link = document.querySelector('.inicio');
         const situ = document.querySelector('.situProd');
         const load = document.querySelector('.load');
-        const idPedido = <?php echo $idPedido; ?>; // Aqui está a correção
+        const idPedido = <?php echo $idPedido; ?>;
 
-        if(situ.textContent == 'O seu pedido não foi aceito!' || situ.textContent == 'O seu pedido já saiu para a entrega!' || situ.textContent == 'Pedido aguardando retirada!'){
+        if(situ.textContent == 'O seu pedido não foi aceito!' || situ.textContent =='O seu pedido foi finalizado!'){
             link.href = './refresh_carrinho.php?idPedido=' + idPedido;
             load.style.display = 'none';
         }
