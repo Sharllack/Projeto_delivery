@@ -51,7 +51,8 @@ if(isset($_GET['finalizar'])) {
 
 if(isset($_GET['recusar'])) {
     $idPedido = intval($_GET['recusar']);
-    $situacao = 'O seu pedido não foi aceito!';
+    $motivo = $_GET['motivo'];
+    $situacao = 'O seu pedido não foi aceito!' . '<br> <br>' . ' Motivo: ' . $motivo;
     $situ = 'Recusado!';
     $stmt = $mysqli->prepare("UPDATE pedidos SET situacao = ?, situ = ? WHERE idPedido = ?");
     $stmt->bind_param("ssi", $situacao, $situ, $idPedido);
@@ -78,6 +79,7 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
     <title>Receber Pedidos</title>
 </head>
 <body>
+    <div class="filter"></div>
     <div style="position: absolute; left: 15px; margin: 15px 15px 0 0; font-size:1.2em;"><a href="./adicionar_produto.php" style="color: white;">Voltar</a></div>
     <div class="logout" style="position: absolute; right: 0; margin: 15px 15px 0 0; font-size:1.2em;"><a href="./logout.php" style="color: white;">Sair</a></div>
     <header>
@@ -112,9 +114,15 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                         
                     ?>
                     <tr>
-                        <td><?php echo $row['situ']; ?></td>
-                        <td><?php echo $row['idPedido'];?></td>
-                        <td><?php echo date("d/m/Y H:i", strtotime($row['dataHora']))?></td>
+                        <td>
+                            <?php echo $row['situ']; ?>
+                        </td>
+                        <td>
+                            <?php echo $row['idPedido'];?>
+                        </td>
+                        <td>
+                            <?php echo date("d/m/Y H:i", strtotime($row['dataHora']))?>
+                        </td>
                         <td>
                             <?php 
                             // Recuperar os IDs dos produtos
@@ -122,19 +130,13 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                             
                             // Exibir os nomes dos produtos
                             foreach ($ids as $id) {
-                                $stmt = $mysqli->prepare("SELECT qtd FROM itenscarrinho WHERE idProduto = ?");
+                                $stmt = $mysqli->prepare("SELECT qtd, obs FROM itenscarrinho WHERE idProduto = ?");
                                 $stmt->bind_param("i", $id);
                                 $stmt->execute();
-                                $stmt->bind_result($qtd);
+                                $stmt->bind_result($qtd, $observacoes);
                                 $stmt->fetch();
                                 echo $qtd . "X";
-                                $stmt->close();
-
-                                $stmt = $mysqli->prepare("SELECT obs FROM itenscarrinho WHERE idProduto = ?");
-                                $stmt->bind_param("i", $id);
-                                $stmt->execute();
-                                $stmt->bind_result($observacoes);
-                                $stmt->fetch();
+                                echo $observacoes ? "(" . $observacoes . ")" : "";
                                 $stmt->close();
 
                                 $stmt = $mysqli->prepare("SELECT nome FROM produtos WHERE idProdutos = ?");
@@ -142,31 +144,75 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                                 $stmt->execute();
                                 $stmt->bind_result($nomeProduto);
                                 $stmt->fetch();
-                                echo $nomeProduto . "<br>" . "(" . $observacoes . ")" . "<br> <br>";
+                                echo $nomeProduto . "<br>";
                                 $stmt->close();
                             }
                             ?>
                         </td>
-                        <td><?php echo $row['entrega'];?></td>
-                        <td><?php echo $row['pagamento']?></td>
-                        <td><?php echo "R$" . number_format($total, 2, "," , "." . "<br>")?> <?php echo "Troco:" . "R$" . number_format($row['troco'], 2, "," , ".")?></td>
-                        <td><?php echo $row['pnome']?> <?php echo $row[ 'sobrenome']?></td>
-                        <td><?php echo $row['cell']?></td>
-                        <td><?php echo $row['rua'] . ', ' . $row['numero'] . ', ' . $row['complemento']?></td>
-                        <td><?php echo $row['referencia']; ?></td>
-                        <td><a href="./receber_pedido.php?preparando=<?php echo $row['idPedido'] ?>" class="verde">Aceitar</a></td>
-                        <td><a href="./receber_pedido.php?rota=<?php echo $row['idPedido'] ?>" class="verde">Rota</a></td>
-                        <td><a href="./receber_pedido.php?recusar=<?php echo $row['idPedido'] ?>" class="vermelho">Recusar</a></td>
-                        <td><a href="./receber_pedido.php?finalizar=<?php echo $row['idPedido'] ?>" class="vermelho">Finalizar</a></td>
+                        <td>
+                            <?php echo $row['entrega'];?>
+                        </td>
+                        <td>
+                            <?php echo $row['pagamento']?>
+                        </td>
+                        <td>
+                            <?php echo "R$" . number_format($total, 2, "," , "." . "<br>")?> <?php echo "Troco:" . "R$" . number_format($row['troco'], 2, "," , ".")?>
+                        </td>
+                        <td>
+                            <?php echo $row['pnome']?> <?php echo $row[ 'sobrenome']?>
+                        </td>
+                        <td>
+                            <?php echo $row['cell']?>
+                        </td>
+                        <td>
+                            <?php echo $row['rua'] . ', ' . $row['numero'] . ', ' . $row['complemento']?>
+                        </td>
+                        <td>
+                            <?php echo $row['referencia']; ?>
+                        </td>
+                        <td>
+                            <a href="./receber_pedido.php?preparando=<?php echo $row['idPedido'] ?>" class="verde">Aceitar</a>
+                        </td>
+                        <td>
+                            <a href="./receber_pedido.php?rota=<?php echo $row['idPedido'] ?>" class="verde">Rota</a>
+                        </td>
+                        <td>
+                            <button class="recusar vermelho" data-id="<?php echo $row['idPedido'] ?>">Recusar</button>
+                        </td>
+                        <td>
+                            <a href="./receber_pedido.php?finalizar=<?php echo $row['idPedido'] ?>" class="vermelho">Finalizar</a>
+                        </td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
     </main>
+    <div class="motivo" style="display:none;">
+        <h1 style="text-align: center;">Motivo</h1>
+        <input type="text" name="motivo" id="motivo" placeholder="motivo">
+        <button onclick="enviarMotivo()" style="width: 100%;">Enviar</button>
+    </div>
     <script>
         setInterval(function() {
             location.reload();
         }, 10000);
+
+        document.querySelectorAll('.recusar').forEach(button => {
+            button.addEventListener('click', function() {
+                const filter = document.querySelector('.filter');
+                const motivoDiv = document.querySelector('.motivo');
+                motivoDiv.style.display = 'block';
+                filter.style.display = 'block';
+                motivoDiv.dataset.idPedido = this.dataset.id;
+                motivoDiv.classList.add('animated');
+            });
+        });
+
+        function enviarMotivo() {
+            const motivo = document.querySelector('#motivo').value;
+            const idPedido = document.querySelector('.motivo').dataset.idPedido;
+            window.location.href = './receber_pedido.php?recusar=' + idPedido + '&motivo=' + encodeURIComponent(motivo);
+        }
     </script>
 </body>
 </html>
