@@ -34,7 +34,13 @@ while ($row = $result->fetch_assoc()) {
     $bairro = $row['bairro'];
     $idUsuario = $row['idUsuarios'];
     $idCarrinho = $row['idCarrinho'];
-    $taxa = $row['taxa']; // Obtém a taxa, mas não adicione ainda
+    $taxa = $row['taxa']; // Obtém a taxa, mas não adicione ainda        
+    if (isset($_SESSION['pedido_finalizado'][$idCarrinho]) && $_SESSION['pedido_finalizado'][$idCarrinho] === true) {
+        // Redireciona para a página de acompanhamento do pedido
+        header('Location: ./situacao_pedido.php');
+        exit;
+    };
+
 }
 ?>
 

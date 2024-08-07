@@ -52,7 +52,7 @@ if(isset($_GET['finalizar'])) {
 if(isset($_GET['recusar'])) {
     $idPedido = intval($_GET['recusar']);
     $motivo = $_GET['motivo'];
-    $situacao = 'O seu pedido não foi aceito!' . '<br> <br>' . ' Motivo: ' . $motivo;
+    $situacao = 'O seu pedido não foi aceito!' . '<br> <br>' . ' MOTIVO: ' . $motivo;
     $situ = 'Recusado!';
     $stmt = $mysqli->prepare("UPDATE pedidos SET situacao = ?, situ = ? WHERE idPedido = ?");
     $stmt->bind_param("ssi", $situacao, $situ, $idPedido);
@@ -195,7 +195,7 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
     <script>
         setInterval(function() {
             location.reload();
-        }, 10000);
+        }, 20000);
 
         document.querySelectorAll('.recusar').forEach(button => {
             button.addEventListener('click', function() {
