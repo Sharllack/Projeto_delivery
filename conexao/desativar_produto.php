@@ -1,6 +1,6 @@
 <?php
 
-include('./conexao.php');
+require_once './conexao.php';
 
 // Verifique se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "GET") {

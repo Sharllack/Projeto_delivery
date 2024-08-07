@@ -1,5 +1,5 @@
 <?php 
-    include('./conexao.php');
+    require_once './conexao.php';
 
     $erro = '';
 

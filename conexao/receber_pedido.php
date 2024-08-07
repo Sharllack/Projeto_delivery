@@ -1,6 +1,6 @@
 <?php
 include('./protect.php');
-include('./conexao.php');
+require_once './conexao.php';
 
 if(!isset($_SESSION)){
     session_name('admin_session');

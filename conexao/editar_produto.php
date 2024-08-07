@@ -1,7 +1,7 @@
 <?php 
 
 include('./protect.php');
-include('./conexao.php');
+require_once './conexao.php';
 
 if(isset($_GET['editar'])) {
     

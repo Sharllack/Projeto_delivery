@@ -1,6 +1,6 @@
 <?php 
 
-include('./conexao.php');
+require_once './conexao.php';
 
 if($_SERVER["REQUEST_METHOD"] == "POST"); {
     if(isset($_POST['user']) && isset($_POST['pass'])) {

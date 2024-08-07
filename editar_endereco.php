@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $referencia = $_POST['referencia'];
 
         // Sua chave de API do Google Maps
-        $apiKey = 'AIzaSyD-IguGuEzPE2sUOy-MB3QK_lp7udCM7Eo';
+        $apiKey = $_ENV['API_KEY'];
     
         // Endereços de origem e destino
         $origin = 'Rua João Ribeiro, 40, Vila Centenário';

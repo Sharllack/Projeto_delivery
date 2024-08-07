@@ -17,8 +17,9 @@ if(!isset($_SESSION['user'])) {
     $idUser = $_SESSION['idUsuario'];
     $bairro = $_SESSION['bairro'];
     $idusuario = $_SESSION['user'];
+
     // Sua chave de API do Google Maps
-    $apiKey = 'AIzaSyD-IguGuEzPE2sUOy-MB3QK_lp7udCM7Eo';
+    $apiKey = $_ENV['API_KEY'];
 
     // Endereços de origem e destino
     $origin = 'Rua João Ribeiro, 40, Vila Centenário';
