@@ -15,3 +15,8 @@ document.querySelectorAll('.closeWindow').forEach(closeElement => {
         document.querySelector('.opcoes').style.display = 'none';
     });
 });
+
+document.querySelector('.over').addEventListener('click', function(){
+    document.querySelector('.over').style.display = 'none';
+    document.querySelector('.opcoes').style.display = 'none';
+})

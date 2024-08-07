@@ -195,7 +195,7 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
     <script>
         setInterval(function() {
             location.reload();
-        }, 20000);
+        }, 30000);
 
         document.querySelectorAll('.recusar').forEach(button => {
             button.addEventListener('click', function() {
@@ -207,6 +207,13 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                 motivoDiv.classList.add('animated');
             });
         });
+
+        document.querySelector('.filter').addEventListener('click', function(){
+            const filter = document.querySelector('.filter');
+            const motivoDiv = document.querySelector('.motivo');
+            motivoDiv.style.display = 'none';
+            filter.style.display = 'none';
+        })
 
         function enviarMotivo() {
             const motivo = document.querySelector('#motivo').value;

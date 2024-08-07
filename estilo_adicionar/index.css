@@ -9,7 +9,7 @@
 
 header {
     text-align: center;
-    padding: 40px 0 100px 0;
+    padding: 40px 0 150px 0;
     background-color: darkslategray;
     height: 100px;
     color: rgb(255, 255, 255);
@@ -21,9 +21,8 @@ header {
 .openClose {
     position: absolute;
     right: 15px;
-    top: 90px;
-
-    width: 200px;
+    width: 170px;
+    top: 140px;
     display: flex;
     justify-content: space-between;
 }
@@ -53,8 +52,8 @@ header {
 
 .situacao {
     position: absolute;
-    top: 15px;
-    right: 200px;
+    top: 150px;
+    right: 210px;
 }
 
 .abertoFechado {
@@ -191,8 +190,10 @@ button[type="submit"] {
 table {
     margin: 15px auto;
     border-collapse: collapse;
-    width: 1000px;
+    width: 80%;
     box-shadow: 2px 2px 8px black;
+    overflow-x: auto;
+    display: block;
     }
 
 tr, th, td {
