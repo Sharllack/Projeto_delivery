@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include("./conexao/conexao.php");
 
@@ -9,18 +9,31 @@ if (!isset($_SESSION)) {
 $cell_error = $email_error = '';
 $userId = $_SESSION['idUsuario']; // Obtém o ID do usuário atual
 
+$stmt = $mysqli->prepare("SELECT idCarrinho FROM pedidos WHERE idUsuario = ?");
+$stmt->bind_param("i", $userId);
+$stmt->execute();
+$stmt->bind_result($idCarrinho);
+$stmt->fetch();
+$stmt->close();
+
+if (isset($_SESSION['pedido_finalizado'][$idCarrinho]) && $_SESSION['pedido_finalizado'][$idCarrinho] === true) {
+    // Redireciona para a página de acompanhamento do pedido
+    header('Location: ./situacao_pedido.php');
+    exit;
+};
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['nome'])
         && isset($_POST['sNome'])
-        && isset($_POST['cell']) 
-        && isset($_POST['cep']) 
-        && isset($_POST['estado']) 
-        && isset($_POST['cidade']) 
-        && isset($_POST['bairro']) 
-        && isset($_POST['rua']) 
-        && isset($_POST['numero']) 
-        && isset($_POST['complemento']) 
-        && isset($_POST['referencia']) 
+        && isset($_POST['cell'])
+        && isset($_POST['cep'])
+        && isset($_POST['estado'])
+        && isset($_POST['cidade'])
+        && isset($_POST['bairro'])
+        && isset($_POST['rua'])
+        && isset($_POST['numero'])
+        && isset($_POST['complemento'])
+        && isset($_POST['referencia'])
         && isset($_POST['email'])) {
 
         $nome = $_POST['nome'];
