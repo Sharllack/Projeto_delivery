@@ -28,7 +28,7 @@ while ($row = $result->fetch_assoc()) {
     $rows[] = $row;
     // Remove o símbolo da moeda e troca a vírgula por ponto para conversão
     $valorTotal = str_replace(['R$', '.'], ['', ','], $row['valorTotal']); // Remove 'R$', troca '.' por ',' se necessário
-    $total += (float) str_replace(',', '.', $valorTotal); // Converte o valor para float
+    $total = (float) str_replace(',', '.', $valorTotal); // Converte o valor para float
     $rua = $row['rua'];
     $numero = $row['numero'];
     $bairro = $row['bairro'];
@@ -116,13 +116,11 @@ while ($row = $result->fetch_assoc()) {
             <h2 class="taxaTitle">Taxa de Entrega</h2>
             <p style="margin-left: 15px; margin-bottom: 15px" class="valorTaxa"><strong><?php echo $taxa ?></strong></p>
             <?php
-
                     // Adicione a taxa ao total, se a taxa não estiver vazia
                 if (!empty($taxa)) {
                     $taxa = str_replace(['R$', '.'], ['', ','], $taxa); // Remove 'R$', troca '.' por ',' se necessário
                     $total += (float) str_replace(',', '.', $taxa); // Converte a taxa para float e adiciona ao total
                 }
-
             ?>
             <button type="submit" class="button" name="button" value="<?php echo $total?>">Finalizar Pedido <span class="valorTotal">R$ <?php echo number_format($total, 2, ',', '.');?></span></button>
         </form>
