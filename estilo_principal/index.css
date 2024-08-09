@@ -486,3 +486,31 @@ iframe {
 .devInfo a:hover {
     text-decoration: underline;
 }
+
+.qtdCar {
+    position: absolute;
+    bottom: 45px;
+    right: 15px;
+    background-color: white;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+}
+
+.qtdCar input {
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+#qtdCar:focus {
+    outline: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}

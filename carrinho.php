@@ -1,14 +1,14 @@
-<?php 
+<?php
 
 include('./conexao/conexao.php');
 
 if(!isset($_SESSION)) {
-    session_start(); 
+    session_start();
 };
 
 $usuario = $_SESSION['idUsuario'];
 
-$sql_query = "SELECT * FROM itenscarrinho 
+$sql_query = "SELECT * FROM itenscarrinho
               JOIN produtos ON itenscarrinho.idProduto = produtos.idProdutos
               JOIN carrinho ON itenscarrinho.idCarrinho = carrinho.idCarrinho
               JOIN usuarios ON itenscarrinho.idUsuario = usuarios.idUsuarios
@@ -48,16 +48,16 @@ $total = 0;
     <main>
     <h1 class="pratosTitle">FINALIZE O SEU PEDIDO</h1>
     <?php while($row = $result->fetch_assoc()) { ?>
-        <?php 
+        <?php
 
             $idCarrinho = $row['idCarrinho'];
-            
+
             if (isset($_SESSION['pedido_finalizado'][$idCarrinho]) && $_SESSION['pedido_finalizado'][$idCarrinho] === true) {
                 // Redireciona para a página de acompanhamento do pedido
                 header('Location: ./situacao_pedido.php');
                 exit;
             };
-        
+
         ?>
         <form action="./adicionar_total.php?finalizar=<?php echo $row['idProduto']; ?>" method="post">
             <section class="secPratos">
@@ -97,14 +97,14 @@ $total = 0;
                             </div>
                     </section>
                     <?php
-            
+
                     $total += $row['preco'];
-            
+
                     ?>
-                    <?php 
-                    
+                    <?php
+
                     $produtos = $row['idProduto'];
-                    
+
                     ?>
                     <?php } ?>
                 </div>
@@ -115,23 +115,13 @@ $total = 0;
         </form>
     </main>
     <div class="btns">
-        <?php if(isset($_SESSION['user'])):?>
-        <div class="shopCart">
-            <a href="./carrinho.php" class="carrinho">
-                <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
-            </a>
-        </div>
-        <?php else: ?>
-            <div class="shopCart">
-            <a href="./login_usuario.php" class="carrinho">
-                <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
-            </a>
-        </div>
-        <?php endif; ?>
         <div class="wpp">
             <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!" target="_blank"><img src="./imagens/whats_logo.png" alt="whatsapp" id="wpp"></a>
         </div>
     </div>
+    <div class="borda1"></div>
+    <div class="borda2"></div>
+    <div class="borda3"></div>
     <script>
         document.querySelector('form').addEventListener('submit', function(event) {
             let inputs = document.querySelectorAll('.qtd input[type="number"]');

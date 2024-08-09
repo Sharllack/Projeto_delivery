@@ -79,6 +79,11 @@
         justify-content: center;
     }
 
+    .wpp a {
+        width: 100%;
+        text-align: center;
+    }
+
     .wpp a img{
         height: 52px;
         width: 52px;

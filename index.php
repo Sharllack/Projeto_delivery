@@ -253,6 +253,39 @@ if (!empty($idUser)) {
         <div class="shopCart">
             <a href="./carrinho.php" class="carrinho">
                 <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
+                <div class="qtdCar">
+                    <input type="number" name="qtdCar" id="qtdCar" value="<?php
+
+                    // Prepare a consulta SQL
+                    $stmt = $mysqli->prepare('SELECT SUM(qtd) FROM itenscarrinho WHERE idUsuario = ?');
+
+                    if ($stmt) {
+                        // Bind o parâmetro
+                        $stmt->bind_param('i', $idUser);
+
+                        // Execute a consulta
+                        $stmt->execute();
+
+                        // Bind o resultado
+                        $stmt->bind_result($qtdCar);
+
+                        // Obtenha o valor
+                        $stmt->fetch();
+
+                        // Feche a declaração
+                        $stmt->close();
+
+                        // Se $qtdCar for NULL, define como 0
+                        $qtdCar = $qtdCar ?? 0;
+
+                        // Exiba o valor
+                        echo htmlspecialchars($qtdCar);
+                    } else {
+                        // Em caso de erro na preparação da consulta, exiba 0
+                        echo '0';
+                    }
+                    ?>">
+                </div>
             </a>
         </div>
         <?php else: ?>

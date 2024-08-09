@@ -54,15 +54,15 @@ main {
 
 .home {
     display: flex;
-    position: fixed; 
-    z-index: 9999; 
-    left: 15px; 
-    top: 5px; 
+    position: fixed;
+    z-index: 9999;
+    left: 15px;
+    top: 5px;
     transition: .3s;
 }
 
 .home a {
-    background-color: #5A3F2F; 
+    background-color: #5A3F2F;
     box-shadow: 2px 2px 10px black;
     padding: 5px 25px;
     border-radius: 5px;
@@ -77,28 +77,16 @@ main {
     display: flex;
     position: fixed;
     z-index: 9999;
-    right: 50px; 
+    right: 50px;
     bottom: 50px;
     border-radius: 50%;
     transition: .3s;
 }
 
-.shopCart a {
-    background-color: #5A3F;
-    box-shadow: 2px 2px 10px black;
-    border-radius: 50%;
-    padding: 25px;
-}
-
-.shopCart:hover {
-    box-shadow: 8px 8px 10px black;
-    transform: scale(1.05);
-}
-
 .openOrClosedDiv {
-    position: fixed; 
-    right:15px; 
-    top:20px; 
+    position: fixed;
+    right:15px;
+    top:20px;
     z-index: 9999;
 }
 
@@ -117,8 +105,8 @@ main {
     display: flex;
     position: fixed;
     z-index: 9999;
-    right: 50px; 
-    bottom: 170px;
+    right: 50px;
+    bottom: 80px;
     border-radius: 50%;
     transition: .3s;
 
@@ -299,4 +287,65 @@ main {
 
 ::-webkit-scrollbar-thumb {
     background-color: #5A3F2F;
+}
+
+.borda1, .borda2, .borda3 {
+    display: flex;
+    position: fixed;
+    z-index: 9998;
+    right: 50px;
+    bottom: 80px;
+    border-radius: 50%;
+    transition: .3s;
+    height: 80px;
+    width: 80px;
+    border: 2px solid #2AB318;
+}
+
+.borda1 {
+    animation: borda1 1s infinite linear;
+}
+
+.borda2 {
+    animation: borda2 2s infinite linear;
+}
+
+.borda3 {
+    animation: borda3 3s infinite linear;
+}
+
+@keyframes borda1 {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+@keyframes borda2 {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+@keyframes borda3 {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
 }

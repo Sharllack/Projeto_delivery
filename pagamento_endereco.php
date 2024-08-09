@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include('./conexao/conexao.php');
 
@@ -9,7 +9,7 @@ if (!isset($_SESSION)) {
 $usuario = $_SESSION['idUsuario'];
 
 // Usando consultas preparadas para evitar SQL Injection
-$sql_query = "SELECT * FROM itenscarrinho 
+$sql_query = "SELECT * FROM itenscarrinho
               JOIN carrinho ON itenscarrinho.idCarrinho = carrinho.idCarrinho
               JOIN produtos ON itenscarrinho.idProduto = produtos.idProdutos
               JOIN usuarios ON itenscarrinho.idUsuario = usuarios.idUsuarios
@@ -34,7 +34,7 @@ while ($row = $result->fetch_assoc()) {
     $bairro = $row['bairro'];
     $idUsuario = $row['idUsuarios'];
     $idCarrinho = $row['idCarrinho'];
-    $taxa = $row['taxa']; // Obtém a taxa, mas não adicione ainda        
+    $taxa = $row['taxa']; // Obtém a taxa, mas não adicione ainda
     if (isset($_SESSION['pedido_finalizado'][$idCarrinho]) && $_SESSION['pedido_finalizado'][$idCarrinho] === true) {
         // Redireciona para a página de acompanhamento do pedido
         header('Location: ./situacao_pedido.php');
@@ -116,7 +116,7 @@ while ($row = $result->fetch_assoc()) {
             <h2 class="taxaTitle">Taxa de Entrega</h2>
             <p style="margin-left: 15px; margin-bottom: 15px" class="valorTaxa"><strong><?php echo $taxa ?></strong></p>
             <?php
-            
+
                     // Adicione a taxa ao total, se a taxa não estiver vazia
                 if (!empty($taxa)) {
                     $taxa = str_replace(['R$', '.'], ['', ','], $taxa); // Remove 'R$', troca '.' por ',' se necessário
@@ -128,23 +128,13 @@ while ($row = $result->fetch_assoc()) {
         </form>
     </main>
     <div class="btns">
-        <?php if(isset($_SESSION['user'])):?>
-        <div class="shopCart">
-            <a href="./carrinho.php" class="carrinho">
-                <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
-            </a>
-        </div>
-        <?php else: ?>
-            <div class="shopCart">
-            <a href="./login_usuario.php" class="carrinho">
-                <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
-            </a>
-        </div>
-        <?php endif; ?>
         <div class="wpp">
             <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!" target="_blank"><img src="./imagens/whats_logo.png" alt="whatsapp" id="wpp"></a>
         </div>
     </div>
+    <div class="borda1"></div>
+    <div class="borda2"></div>
+    <div class="borda3"></div>
     <script src="./js_pagamento_endereço/script.js"></script>
 </body>
 </html>

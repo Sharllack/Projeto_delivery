@@ -35,7 +35,7 @@
         width: 100%;
         animation: tremeu 5s 1s infinite;
     }
-    
+
     @keyframes tremeu {
         0% {
             transform: translateX(0px);
@@ -73,12 +73,17 @@
         left: 0;
         bottom: 0;
         height: 54px;
-        width: 50%;
+        width: 100%;
         border-radius: 0;
         display: flex;
         justify-content: center;
     }
-    
+
+    .wpp a {
+        width: 100%;
+        text-align: center;
+    }
+
     .wpp a img{
         height: 52px;
         width: 52px;
@@ -101,7 +106,7 @@
     }
 
     #qtd {
-        width: 30px; 
+        width: 30px;
         height: 30px;
     }
 
@@ -119,5 +124,9 @@
         z-index: 9999;
         top: 5px;
         right: 40px;
+    }
+
+    .borda1, .borda2, .borda3 {
+        display: none;
     }
 }
