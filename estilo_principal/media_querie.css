@@ -214,10 +214,8 @@
     }
 
     .qtdCar {
-        bottom: 35px;
-        right: 150px;
-        height: 15px;
-        width: 15px;
+        top: 5px;
+        right: 50%;
     }
 
 }
