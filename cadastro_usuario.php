@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include('./conexao/conexao.php');
 
@@ -7,17 +7,17 @@ $usu_error = $cell_error = $email_error = '';
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST['nome'])
     && isset($_POST['sNome'])
-    && isset($_POST['cell']) 
-    && isset($_POST['cep']) 
-    && isset($_POST['estado']) 
-    && isset($_POST['cidade']) 
-    && isset($_POST['bairro']) 
-    && isset($_POST['rua']) 
-    && isset($_POST['numero']) 
-    && isset($_POST['complemento']) 
-    && isset($_POST['referencia']) 
-    && isset($_POST['user']) 
-    && isset($_POST['senha']) 
+    && isset($_POST['cell'])
+    && isset($_POST['cep'])
+    && isset($_POST['estado'])
+    && isset($_POST['cidade'])
+    && isset($_POST['bairro'])
+    && isset($_POST['rua'])
+    && isset($_POST['numero'])
+    && isset($_POST['complemento'])
+    && isset($_POST['referencia'])
+    && isset($_POST['user'])
+    && isset($_POST['senha'])
     && isset($_POST['cSenha'])
     && isset($_POST['email'])) {
 
@@ -134,11 +134,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="text" name="user" id="user" placeholder="Usuário" required value="<?php echo isset($_POST['user']) ? $_POST['user'] : ''; ?>">
                     <p style="font-size: .8em; color: red; margin-left: 15px;"><?php echo $usu_error?></p>
                 </div>
-                <div class="inpu">
+                <div class="inpu" id="bgSenha">
                     <input type="password" name="senha" id="senha" placeholder="Senha" required>
                     <span class="resPas"></span>
                 </div>
-                <div class="inpu">
+                <div class="inpu" id="bgCsenha">
                     <input type="password" name="cSenha" id="cSenha" placeholder="Confirme a Senha" required>
                     <span class="resPass"></span>
                 </div>

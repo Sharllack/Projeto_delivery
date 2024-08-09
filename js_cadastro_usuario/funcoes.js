@@ -1,8 +1,9 @@
 document.querySelector('#cSenha').addEventListener('keyup', function() {
-    let pass = document.querySelector('#senha').value;
-    let cPass = document.querySelector('#cSenha').value;
+    const pass = document.querySelector('#senha').value;
+    const cPass = document.querySelector('#cSenha');
 
-    if(pass != cPass) {
+    if(pass != cPass.value) {
+        cPass.style.border = '1px solid red';
         document.querySelector('.resPass').textContent = 'As senhas não são iguais!';
         document.querySelector('.resPass').style.color = 'red';
         document.querySelector('.resPass').style.textShadow = '2px 2px 8px rgba(255, 255, 255, 0.342)';
@@ -11,13 +12,15 @@ document.querySelector('#cSenha').addEventListener('keyup', function() {
     } else {
         document.querySelector('.resPass').textContent = '';
         document.querySelector('.resPass').style.color = '';
+        cPass.style.border = '';
     }
 })
 
 document.querySelector('#senha').addEventListener('keyup', function() {
-    let pass = document.querySelector('#senha').value;
+    let pass = document.querySelector('#senha');
 
-    if(pass.length < 8) {
+    if(pass.value.length < 8) {
+        pass.style.border = '1px solid red';
         document.querySelector('.resPas').textContent = 'A senha deve ter no mínimo 8 caracteres!';
         document.querySelector('.resPas').style.color = 'red';
         document.querySelector('.resPas').style.textShadow = '2px 2px 8px rgba(255, 255, 255, 0.342)';
@@ -26,6 +29,7 @@ document.querySelector('#senha').addEventListener('keyup', function() {
     } else {
         document.querySelector('.resPas').textContent = '';
         document.querySelector('.resPas').style.color = '';
+        pass.style.border = '';
     }
 })
 

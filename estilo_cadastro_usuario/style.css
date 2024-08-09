@@ -77,6 +77,10 @@ input {
     transition: .3s;
 }
 
+#bgSenha {
+    border-radius: 5px;
+}
+
 input:focus {
     border-bottom: 2px solid brown;
 }

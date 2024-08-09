@@ -35,7 +35,7 @@
         width: 100%;
         animation: tremeu 5s 1s infinite;
     }
-    
+
     @keyframes tremeu {
         0% {
             transform: translateX(0px);
@@ -78,7 +78,7 @@
         display: flex;
         justify-content: center;
     }
-    
+
     .wpp a img{
         height: 52px;
         width: 52px;
@@ -168,37 +168,37 @@
     footer {
         margin-bottom: 50px;
     }
-    
+
     iframe {
         padding: 2px;
         height: 100px;
         width: 100px;
     }
-    
+
     .outrasInfos a {
         font-size: .7em;
     }
-    
+
     .outrasInfos h1 {
         font-size: 1em;
     }
-    
+
     #logoWpp {
         width: 35px;
         height: 35px;
         margin-left: -15px;
     }
-    
+
     .logos {
         width: 25px;
         height: 25px;
         margin-left: -10px;
     }
-    
+
     .endereco h1 {
         font-size: 1em;
     }
-    
+
     .endereco p {
         font-size: .7em;
     }
@@ -234,10 +234,10 @@
     }
 
     .wpp {
-        right: 15px; 
+        right: 15px;
         bottom: 80px;
     }
-    
+
     .wpp a img{
         height: 52px;
         width: 52px;
@@ -325,7 +325,7 @@
 }
 
 @media screen and (min-width: 1015px) {
-    
+
     @keyframes treme {
         0% {
             transform: rotate(0deg);
@@ -365,6 +365,42 @@
         }
         5% {
             transform: rotate(0deg);
+        }
+    }
+
+    @keyframes borda1 {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        100% {
+            transform: scale(1.5);
+            opacity: 0;
+        }
+    }
+
+    @keyframes borda2 {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        100% {
+            transform: scale(1.5);
+            opacity: 0;
+        }
+    }
+
+    @keyframes borda3 {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        100% {
+            transform: scale(1.5);
+            opacity: 0;
         }
     }
 }

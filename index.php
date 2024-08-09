@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include('./conexao/conexao.php');
 
@@ -160,7 +160,7 @@ if (!empty($idUser)) {
     <main>
         <div class="infoPrincipal">
             <img src="./imagens/imagens_pincipal/comida-criolla-peru-peruvian-food-260nw-2191344515.webp" alt="Logo do Restaurante" class="logoRestaurante">
-            <p class="tempoDeEntrega">Restaurante • 20-90 min • 
+            <p class="tempoDeEntrega">Restaurante • 20-90 min •
                 <span class="sit">
                     <?php if($situacao === 1): ?>
                         <span class="situ">Aberto</span>
@@ -187,14 +187,14 @@ if (!empty($idUser)) {
             <h1 class="pratosTitle">ESCOLHA O SEU PRATO</h1>
             <div class="pratosContainer">
                 <?php while($row = $result->fetch_assoc()) { ?>
-                    <?php 
-                    
+                    <?php
+
                     if(!isset($_SESSION['idUsuario'])) {
                         $off = './login_usuario.php';
                     } else {
                         $off = './complemento_produto.php?comprar=' . $row["idProdutos"];
                     }
-                    
+
                     ?>
                     <a href="<?php echo $off; ?>" class="linkPratos">
                         <div class="pratos">
@@ -219,14 +219,14 @@ if (!empty($idUser)) {
             <h1 class="titleBebidas">ESCOLHA A SUA BEBIDA</h1>
                 <div class="pratosContainer">
                 <?php while($row = $result_bebibas->fetch_assoc()) { ?>
-                    <?php 
-                    
+                    <?php
+
                     if(!isset($_SESSION['idUsuario'])) {
                         $off = './login_usuario.php';
                     } else {
                         $off = './complemento_produto.php?comprar=' . $row["idProdutos"];
                     }
-                    
+
                     ?>
                     <a href="<?php echo $off; ?>" class="linkPratos">
                         <div class="pratos">
@@ -288,6 +288,9 @@ if (!empty($idUser)) {
             <p>Site desenvolvido por <a href="https://www.instagram.com/lucas_mnzs_/">Lucas M.</a></p>
         </div>
     </footer>
+    <div class="borda1"></div>
+    <div class="borda2"></div>
+    <div class="borda3"></div>
     <script src="./js_pincipal/funcoes.js"></script>
 </body>
 </html>

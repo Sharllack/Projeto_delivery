@@ -11,6 +11,7 @@
         margin-top: 15px;
         height: 100%;
         border-radius: 15px;
+        margin-bottom: 15px;
     }
 
     section {
@@ -34,7 +35,7 @@
     .btn {
         margin-top: 0px;
     }
-    
+
 }
 
 @media screen and (min-width: 600px) and (max-width: 1219px) {
