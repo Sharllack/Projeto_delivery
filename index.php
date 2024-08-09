@@ -254,7 +254,7 @@ if (!empty($idUser)) {
             <a href="./carrinho.php" class="carrinho">
                 <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
                 <div class="qtdCar">
-                    <input type="number" name="qtdCar" id="qtdCar" value="<?php
+                    <input type="number" readonly name="qtdCar" id="qtdCar" value="<?php
 
                     // Prepare a consulta SQL
                     $stmt = $mysqli->prepare('SELECT SUM(qtd) FROM itenscarrinho WHERE idUsuario = ?');
