@@ -237,19 +237,6 @@ main {
     margin-left: 15px;
 }
 
-.borda1, .borda2, .borda3 {
-    display: flex;
-    position: fixed;
-    z-index: 9998;
-    right: 50px;
-    bottom: 170px;
-    border-radius: 50%;
-    transition: .3s;
-    height: 80px;
-    width: 80px;
-    border: 2px solid #2AB318;
-}
-
 .borda1 {
     animation: borda1 1s infinite linear;
 }

@@ -243,6 +243,20 @@
         width: 52px;
     }
 
+
+    .borda1, .borda2, .borda3 {
+        display: flex;
+        position: fixed;
+        z-index: 9998;
+        right: 15px;
+        bottom: 82px;
+        border-radius: 50%;
+        transition: .3s;
+        height: 52px;
+        width: 52px;
+        border: 2px solid #2AB318;
+    }
+
     .shopCart {
         right: 5px;
         bottom: 15px;
@@ -320,6 +334,23 @@
     .darkMode {
         top: 1px;
         right: 150px;
+    }
+
+}
+
+@media screen and (min-width: 1360px) {
+
+    .borda1, .borda2, .borda3 {
+        display: flex;
+        position: fixed;
+        z-index: 9998;
+        right: 50px;
+        bottom: 170px;
+        border-radius: 50%;
+        transition: .3s;
+        height: 80px;
+        width: 80px;
+        border: 2px solid #2AB318;
     }
 
 }
