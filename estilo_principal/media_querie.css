@@ -213,6 +213,13 @@
         margin-top: 15px;
     }
 
+    .qtdCar {
+        bottom: 35px;
+        right: 150px;
+        height: 15px;
+        width: 15px;
+    }
+
 }
 
 @media screen and (max-width: 1360px) and (min-width: 1015px) {
@@ -339,6 +346,13 @@
     .darkMode {
         top: 1px;
         right: 150px;
+    }
+
+    .qtdCar {
+        bottom: 40px;
+        right: 10px;
+        height: 15px;
+        width: 15px;
     }
 
 }
