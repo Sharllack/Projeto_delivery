@@ -72,6 +72,16 @@ while($row = mysqli_fetch_assoc($result)) {
         if(situ.textContent != 'Pedido aguardando retirada!' & situ.textContent != 'O seu pedido está sendo preparado!' & situ.textContent != 'O seu pedido já saiu para a entrega!' & situ.textContent != 'Aguardando a confirmação do restaurante!'){
             link.href = './refresh_carrinho.php?idPedido=' + idPedido;
             load.style.display = 'none';
+
+            function liberar(){
+                window.location.href = './refresh_carrinho.php?idPedido=' + idPedido;
+            }
+
+            const time = 10000;
+
+            window.onload = () => {
+                setTimeout(liberar, time);
+            }
         }
     </script>
 </body>

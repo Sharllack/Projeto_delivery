@@ -87,8 +87,9 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
         <p>Olá, <?= $_SESSION['user']?>! Vamos Acompanhar os Pedidos!</p>
     </header>
     <main>
+    <h1 style="text-align: center;" class="titlePedidos">Pedidos</h1>
+    <?php while($row = $result->fetch_assoc()) { ?>
         <table>
-            <h1 style="text-align: center;" class="titlePedidos">Pedidos</h1>
             <thead>
                 <th>Situacao</th>
                 <th>Nº Pedido</th>
@@ -107,11 +108,10 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                 <th>Finalizar</th>
             </thead>
             <tbody>
-                <?php while($row = $result->fetch_assoc()) { ?>
                     <?php
-                        
+
                     $total = $row['valorTotal'];
-                        
+
                     ?>
                     <tr>
                         <td>
@@ -124,10 +124,10 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                             <?php echo date("d/m/Y H:i", strtotime($row['dataHora']))?>
                         </td>
                         <td>
-                            <?php 
+                            <?php
                             // Recuperar os IDs dos produtos
                             $ids = explode(',', $row['produtos_concatenados']);
-                            
+
                             // Exibir os nomes dos produtos
                             foreach ($ids as $id) {
                                 $stmt = $mysqli->prepare("SELECT qtd, obs FROM itenscarrinho WHERE idProduto = ?");
@@ -183,9 +183,9 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
                             <a href="./receber_pedido.php?finalizar=<?php echo $row['idPedido'] ?>" class="vermelho">Finalizar</a>
                         </td>
                     </tr>
-                <?php } ?>
             </tbody>
-        </table>
+        </table><br>
+        <?php } ?>
     </main>
     <div class="motivo" style="display:none;">
         <h1 style="text-align: center;">Motivo</h1>

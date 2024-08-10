@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 @media screen and (max-width: 1015px) {
+
     .nomeLoja {
         font-size: 1em;
     }
@@ -27,28 +28,6 @@
     .openOrClosedDiv {
         top: 9px;
         right: 5px;
-    }
-
-    .wpp {
-        background-color: #2AB318;
-        left: 0;
-        bottom: 0;
-        height: 40px;
-        width: 100%;
-        border-radius: 0;
-        display: flex;
-        justify-content: center;
-    }
-
-    .wpp a {
-        width: 100%;
-        text-align: center;
-    }
-
-    .wpp a img{
-        height: 38px;
-        width: 38px;
-        box-shadow: 0px 0px 0px;
     }
 
     .btns {
@@ -154,9 +133,5 @@
       .darkMode {
         top: 5px;
         right: 40px;
-    }
-
-    .borda1, .borda2, .borda3 {
-        display: none;
     }
 }

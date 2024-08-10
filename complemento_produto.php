@@ -94,14 +94,6 @@ $result_bebibas = $mysqli->query($sql);
             <button type="submit" class="btn">ADICIONAR</button>
         </form>
     </main>
-    <div class="btns">
-        <div class="wpp">
-            <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!" target="_blank"><img src="./imagens/whats_logo.png" alt="whatsapp" id="wpp"></a>
-        </div>
-    </div>
-    <div class="borda1"></div>
-    <div class="borda2"></div>
-    <div class="borda3"></div>
     <script src="./js_complemento_produto/funcoes.js"></script>
 </body>
 </html>

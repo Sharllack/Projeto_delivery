@@ -111,17 +111,11 @@ $total = 0;
             </section>
             <input type="hidden" name="idProduto" value="<?php echo $produtos ?>">
             <input type="hidden" name="total" value="<?php echo $total ?>">
-            <button type="submit" class="button">Forma de Pagamento <span class="valorTotal">R$<?php echo number_format($total, 2, ',', '.');?></span></button>
+            <div class="btn">
+                <button type="submit" class="button">Forma de Pagamento <span class="valorTotal">R$<?php echo number_format($total, 2, ',', '.');?></span></button>
+            </div>
         </form>
     </main>
-    <div class="btns">
-        <div class="wpp">
-            <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!" target="_blank"><img src="./imagens/whats_logo.png" alt="whatsapp" id="wpp"></a>
-        </div>
-    </div>
-    <div class="borda1"></div>
-    <div class="borda2"></div>
-    <div class="borda3"></div>
     <script>
         document.querySelector('form').addEventListener('submit', function(event) {
             let inputs = document.querySelectorAll('.qtd input[type="number"]');
