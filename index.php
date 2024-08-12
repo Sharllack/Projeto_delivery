@@ -178,8 +178,8 @@ if (!empty($idUser)) {
                 <a href="./login_usuario.php" class="logBtn">FAÇA LOGIN</a>
             <?php else: ?>
                 <div class="saudacao">
-                    <p class="nomeDoCliente"> Seja Bem-Vindo(a), <strong><?php echo $_SESSION['nome']?></strong>!</p>
-                    <a href="./perfil.php"><img src="./imagens/person_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" alt="Perfil"></a>
+                    <p class="nomeDoCliente">Seja Bem-Vindo(a), <strong><?php echo $_SESSION['nome']?></strong>!</p>
+                    <a href="./perfil.php" class="perfil"><img src="./imagens/person_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" alt="Perfil"></a>
                 </div>
             <?php endif; ?>
         </div>

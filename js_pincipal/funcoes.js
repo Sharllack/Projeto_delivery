@@ -26,7 +26,7 @@ toggle.addEventListener('change', function() {
       secPratos.style.color = "white";
 
       localStorage.setItem('darkMode', 'on');
-      
+
   } else {
       console.log('Toggle OFF');
       pratos.forEach(function(elemento) {
@@ -67,7 +67,7 @@ if (darkModePreference === 'on') {
       localStorage.setItem('darkMode', 'on');
 
     toggle.checked = true;
-    
+
 } else {
     pratos.forEach(function(elemento) {
         elemento.style.backgroundColor = "";
@@ -87,6 +87,7 @@ function atualizarSituacao() {
     const sit = document.querySelector('.sit');
     const carrinho = document.querySelector('.carrinho');
     const link = document.querySelectorAll('.linkPratos');
+    const perfil = document.querySelector('.perfil');
     const log = document.querySelector('.logBtn');
     const situ = document.querySelector('.situ').innerHTML;
     const hora = new Date().getHours();
@@ -102,6 +103,7 @@ function atualizarSituacao() {
             link.href = "#";
         })
         carrinho.href = '#';
+        perfil.href = '#';
         log.href = '#';
     }
 }
