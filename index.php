@@ -318,7 +318,7 @@ if (!empty($idUser)) {
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3678.8321513755886!2d-43.316062925162875!3d-22.771609533053063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997aa3bcff72fb%3A0x77d5c3defa357629!2sR.%20Dr.%20Furquim%20Mendes%2C%20990%20-%20Vila%20Centenario%2C%20Duque%20de%20Caxias%20-%20RJ%2C%2025030-170!5e0!3m2!1spt-BR!2sbr!4v1722418653219!5m2!1spt-BR!2sbr" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="devInfo">
-            <p>Site desenvolvido por <a href="https://www.instagram.com/lucas_mnzs_/">Lucas M.</a></p>
+            <p>Site desenvolvido por <a href="https://www.linkedin.com/in/lucas-menezes-962075314/">Lucas M.</a></p>
         </div>
     </footer>
     <div class="borda1"></div>
