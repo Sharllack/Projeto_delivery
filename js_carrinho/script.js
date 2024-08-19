@@ -85,7 +85,7 @@ toggle.addEventListener('change', function() {
     main.style.color = "white";
 
     localStorage.setItem('darkMode', 'on');
-      
+
   } else {
       console.log('Toggle OFF');
       pratos.forEach(function(elemento) {
@@ -120,7 +120,7 @@ if (darkModePreference === 'on') {
     localStorage.setItem('darkMode', 'on');
 
     toggle.checked = true;
-    
+
 } else {
     pratos.forEach(function(elemento) {
         elemento.style.backgroundColor = "";
@@ -134,7 +134,6 @@ if (darkModePreference === 'on') {
     main.style.color = "black";
 }
 
-
-
-
-
+document.querySelector('.button').addEventListener('click', () =>{
+    document.querySelector('.loading').style.display = 'block';
+})

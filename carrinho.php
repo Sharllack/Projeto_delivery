@@ -31,6 +31,12 @@ $total = 0;
 </head>
 <body>
 
+    <div class="loading">
+        <div class="load">
+
+        </div>
+    </div>
+
     <div class="home">
         <a href="./index.php">
             <img src="./imagens/imagens_pincipal/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Home">

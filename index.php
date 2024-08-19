@@ -129,12 +129,17 @@ if (!empty($idUser)) {
     <title>Página Inicial</title>
 </head>
 <body>
+    <div class="loading">
+        <div class="load">
+
+        </div>
+    </div>
 
     <?php if(!isset($_SESSION['user'])):?>
         <div class="logout" style="display: none;">
         </div>
     <?php else: ?>
-        <div class="logout" style=" position: fixed; z-index: 9999;">
+        <div class="logout" style=" position: fixed; z-index: 9998;">
             <a href="./logout_usuario.php">Sair</a>
         </div>
     <?php endif; ?>

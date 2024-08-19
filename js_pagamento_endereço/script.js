@@ -17,7 +17,7 @@ function validarTroco() {
     const trocoValue = parseFloat(troco.value.replace(',', '.')) || 0;
     const total = parseFloat(document.querySelector('.valorTotal').textContent.replace('R$', '').replace(',', '.')) || 0;
     const error = document.querySelector('.error');
-    
+
     // Verifica se o valor do troco é menor do que o valor total
     if (trocoValue <= total) {
         toggleError(error, true);
@@ -39,10 +39,11 @@ document.querySelector('form').addEventListener('submit', function(event) {
     var opcEntrega = document.querySelector('#opcEntrega').value;
     var selectError = document.querySelector('.selectError');
     var selectErro = document.querySelector('.selectErro');
-    
+
     // Verificação da forma de pagamento
     if(opc === '#') {
         toggleError(selectError, true);
+        document.querySelector('.loading').style.display = 'none';
         event.preventDefault();
         return;
     } else {
@@ -52,6 +53,7 @@ document.querySelector('form').addEventListener('submit', function(event) {
     // Verificação do tipo de entrega
     if(opcEntrega === '#') {
         toggleError(selectErro, true);
+        document.querySelector('.loading').style.display = 'none';
         event.preventDefault();
         return;
     } else {
@@ -62,6 +64,7 @@ document.querySelector('form').addEventListener('submit', function(event) {
     if (document.querySelector('input[name="opcTroco"]:checked')?.value === 'sim') {
         if (!validarTroco()) {
             event.preventDefault();
+            document.querySelector('.loading').style.display = 'none';
             return;
         }
     }
@@ -96,7 +99,7 @@ document.querySelectorAll('.askTroco').forEach(item => {
         } else {
             troco.style.display = 'none';
         }
-        
+
         // Atualiza o valor do botão após a mudança do tipo de troco
         updateButtonValue();
     });
@@ -134,7 +137,6 @@ document.querySelector('#opcEntrega').addEventListener('change', function() {
         bai.textContent = baiOri;
         trocar.style.display = 'block';
     }
-
     // Atualiza o valor do botão conforme o valor total atualizado
     updateButtonValue();
 });
@@ -180,3 +182,7 @@ if (darkModePreference === 'on') {
     img.src = './imagens/location_on_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png';
     toggle.checked = true;
 }
+
+document.querySelector('.button').addEventListener('click', () =>{
+    document.querySelector('.loading').style.display = 'block';
+})

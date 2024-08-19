@@ -48,6 +48,12 @@ $result_bebibas = $mysqli->query($sql);
 </head>
 <body>
 
+    <div class="loading">
+        <div class="load">
+
+        </div>
+    </div>
+
     <?php while($row = $resulta->fetch_assoc()) { ?>
             <?php
 

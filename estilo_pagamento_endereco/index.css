@@ -32,7 +32,7 @@ body {
 header {
     position: fixed;
     width: 100%;
-    z-index: 9998;
+    z-index: 9997;
     background-color: rgb(29, 48, 48);
     color: white;
     padding: 10px;
@@ -55,7 +55,7 @@ main {
 .home {
     display: flex;
     position: fixed;
-    z-index: 9999;
+    z-index: 9998;
     left: 15px;
     top: 5px;
     transition: .3s;
@@ -71,13 +71,6 @@ main {
 .home:hover {
     box-shadow: 8px 8px 10px black;
     transform: scale(1.05);
-}
-
-.openOrClosedDiv {
-    position: fixed;
-    right:15px;
-    top:20px;
-    z-index: 9999;
 }
 
 .pratosTitle {
@@ -304,4 +297,51 @@ main {
 
 .entTitle {
     margin-top: 15px;
+}
+
+.loading {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.295);
+    z-index: 9999;
+    position: fixed;
+
+    display: none;
+}
+
+.load {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    height: 80px;
+    width: 80px;
+
+    border-radius: 50%;
+    border-left: 2px solid white;
+    border-top: 2px solid white;
+
+    animation: load 5s infinite linear;
+}
+
+@keyframes load {
+    0% {
+        transform: rotate(360deg);
+    }
+
+    25% {
+        transform: rotate(720deg);
+    }
+
+    50% {
+        transform: rotate(1080deg);
+    }
+
+    75% {
+        transform: rotate(1440deg);
+    }
+
+    100% {
+        transform: rotate(1800deg);
+    }
 }

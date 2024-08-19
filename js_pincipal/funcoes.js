@@ -129,3 +129,7 @@ function atualizarTaxa() {
 }
 
 atualizarTaxa(); // Chama a função imediatamente ao carregar a página
+
+document.querySelector('.linkPratos').addEventListener('click', () =>{
+    document.querySelector('.loading').style.display = 'block';
+})

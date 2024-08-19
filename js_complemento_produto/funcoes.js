@@ -11,7 +11,7 @@ toggle.addEventListener('change', function() {
       main.style.color = "white";
 
       localStorage.setItem('darkMode', 'on');
-      
+
   } else {
       console.log('Toggle OFF');
       main.style.backgroundColor = "";
@@ -32,9 +32,13 @@ if (darkModePreference === 'on') {
       localStorage.setItem('darkMode', 'on');
 
     toggle.checked = true;
-    
+
 } else {
       main.style.backgroundColor = "";
       main.style.transition = '.5s';
       main.style.color = "black";
 }
+
+document.querySelector('.btn').addEventListener('click', () => {
+    document.querySelector('.loading').style.display = 'block';
+});
