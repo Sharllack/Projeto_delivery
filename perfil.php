@@ -119,6 +119,13 @@ $stmt->close();
     <title>Perfil</title>
 </head>
 <body>
+
+    <div class="loading">
+        <div class="load">
+
+        </div>
+    </div>
+
     <div class="voltar">
         <a href="./index.php">Voltar</a>
     </div>
@@ -185,7 +192,7 @@ $stmt->close();
                 </div>
                 <p class="resposta" style="color: white;"></p>
                 <div class="btn">
-                    <button type="submit">Editar</button>
+                    <button type="submit" class="edit">Editar</button>
                     <a href="./index.php">Cancelar</a>
                 </div>
             </form>

@@ -146,3 +146,49 @@ button[type="reset"]:hover, button[type="submit"]:hover{
 .voltar a:hover {
     text-decoration: underline;
 }
+
+.loading {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.295);
+    z-index: 9999;
+    position: fixed;
+
+    display: none;
+}
+
+.load {
+    margin: auto;
+    top: 50%;
+    position: relative;
+    height: 80px;
+    width: 80px;
+
+    border-radius: 50%;
+    border-left: 2px solid white;
+    border-top: 2px solid white;
+
+    animation: load 5s infinite linear;
+}
+
+@keyframes load {
+    0% {
+        transform: rotate(360deg);
+    }
+
+    25% {
+        transform: rotate(720deg);
+    }
+
+    50% {
+        transform: rotate(1080deg);
+    }
+
+    75% {
+        transform: rotate(1440deg);
+    }
+
+    100% {
+        transform: rotate(1800deg);
+    }
+}

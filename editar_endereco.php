@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include('./conexao/conexao.php');
 
@@ -23,44 +23,44 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Sua chave de API do Google Maps
         $apiKey = $_ENV['API_KEY'];
-    
+
         // Endereços de origem e destino
         $origin = 'Rua João Ribeiro, 40, Vila Centenário';
         $destination = $rua . ", " . $numero . ", " . $bairro;
-    
+
         // Codifica os endereços para uso na URL
         $originEncoded = urlencode($origin);
         $destinationEncoded = urlencode($destination);
-    
+
         // Monta a URL da requisição
         $url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=$originEncoded&destinations=$destinationEncoded&key=$apiKey";
-    
+
         // Inicializa o cURL
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    
+
         // Executa a requisição e obtém a resposta
         $response = curl_exec($ch);
-    
+
         // Fecha o cURL
         curl_close($ch);
-    
+
         // Decodifica a resposta JSON
         $data = json_decode($response, true);
-    
+
         // Verifica se a requisição foi bem-sucedida
         if ($data['status'] === 'OK') {
             // Obtém a distância
             $distance = $data['rows'][0]['elements'][0]['distance']['text'];
             $distanceKm = $data['rows'][0]['elements'][0]['distance']['value']/1000;
-    
+
             // Define a taxa por quilômetro
             $ratePerKm = 1.00; // $1.00 por quilômetro
-    
+
             // Calcula o custo
             $cost = $distanceKm * $ratePerKm;
-    
+
         }
 
         if($bairro != 'Vila Centenário') {
@@ -101,7 +101,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['estado'] = $estado;
             $_SESSION['complemento'] = $complemento;
             $_SESSION['referencia'] = $referencia;
-            
+
             $_SESSION['taxa'] = 'R$ 3,00';
 
             $stmt = $mysqli->prepare("UPDATE usuarios SET estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ?, referencia = ?, taxa = ? WHERE idUsuarios = ?");
@@ -130,10 +130,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Editar Endereço</title>
 </head>
 <body>
+
+    <div class="loading">
+        <div class="load">
+
+        </div>
+    </div>
+
     <div class="voltar">
         <a href="./pagamento_endereco.php">Voltar</a>
     </div>
-    
+
     <main>
         <section>
         <h1>Atualize o seu endereço</h1>
@@ -164,7 +171,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <p style="color: red; font-weight: bold;"><?php echo $error?></p>
                 <div class="btn">
-                    <button type="submit">Editar</button>
+                    <button type="submit" class="edit">Editar</button>
                     <a href="./pagamento_endereco.php"><button type="reset">Cancelar</button></a>
                 </div>
             </form>
@@ -175,6 +182,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </main>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script src="./js_editar_end/funcoes.js"></script>
     <script src="./js_editar_end/cep.js"></script>
     <script src="./js_editar_end/formatacao.js"></script>
 </body>

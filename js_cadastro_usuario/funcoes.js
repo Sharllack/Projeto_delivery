@@ -41,8 +41,14 @@ document.querySelector('form').addEventListener('submit', function(event) {
     let passwordsMatch = (pass === cPass);
 
     if(!passwordsMatch || !sPass) {
+        document.querySelector('.loading').style.display = 'none';
         event.preventDefault(); // Impede o envio do formulário
     } else {
         res.textContent = 'Cadastro Efetuado!';
+        document.querySelector('.loading').style.display = 'block';
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('.loading').style.display = 'none';
+})

@@ -47,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
        $result_email = $mysqli->query($sql_email);
 
        if($result_email->num_rows > 0) {
-        $email_error = "Celular já cadastrado.";
+        $email_error = "E-mail já cadastrado.";
        }
 
        $sql_user = "SELECT * FROM usuarios WHERE usuario = '$usuario' LIMIT 1";
@@ -84,6 +84,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Cadastre-se</title>
 </head>
 <body>
+
+    <div class="loading">
+        <div class="load">
+
+        </div>
+    </div>
 
     <div class="voltar">
         <a href="./login_usuario.php">Voltar</a>
@@ -144,7 +150,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <p class="resposta" style="color: white;"></p>
                 <div class="btn">
-                    <button type="submit">Cadastrar</button>
+                    <button type="submit" class="cadas">Cadastrar</button>
                     <button type="reset">Limpar</button>
                 </div>
             </form>
