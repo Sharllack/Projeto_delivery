@@ -56,6 +56,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
        if($result_user->num_rows > 0) {
         $usu_error = "Usuario já cadastrado.";
        }
+       
 
        if(empty($usu_error) && empty($cell_error) && empty($email_error)){
         $stmt = $mysqli->prepare("INSERT INTO usuarios (pnome, sobrenome, cell, email, estado, cidade, bairro, rua, numero, complemento, referencia, cep, usuario, senha) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
