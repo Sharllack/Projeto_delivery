@@ -1,4 +1,5 @@
 <?php
+include('./protect.php');
 include('./conexao.php');
 
 $mesSelecionado = isset($_GET['mes']) ? $_GET['mes'] : 'todos';
