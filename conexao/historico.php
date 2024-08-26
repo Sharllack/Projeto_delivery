@@ -161,7 +161,7 @@ if (isset($_GET['limpar'])) {
                 while ($row = $resultPedidos->fetch_assoc()) {
             ?>
             <div class="table-container">
-                <table>
+                <table class="tab">
                     <thead>
                         <tr>
                             <th>Nº Pedido</th>
@@ -289,6 +289,7 @@ if (isset($_GET['limpar'])) {
                         $stmt->fetch();
                         $stmt->close();
                         
+                        echo "<tr>";
                         echo "<tr>";
                         echo "<td>" . $quantidade . "</td>";
                         echo "<td>" . $nomeProduto . "</td>";
