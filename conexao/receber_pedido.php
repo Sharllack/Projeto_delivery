@@ -59,6 +59,11 @@ if (isset($_GET['recusar'])) {
     $stmt->bind_param("ssi", $situacao, $situ, $idPedido);
     $stmt->execute();
     $stmt->close();
+
+    $stmt = $mysqli->prepare("DELETE FROM historicopedidos WHERE idPedido = ?");
+    $stmt->bind_param('i', $idPedido);
+    $stmt->execute();
+    $stmt->close();
 }
 
 // Filtrar pedidos com base no filtro selecionado

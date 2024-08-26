@@ -2,13 +2,12 @@
 include('./protect.php');
 include('./conexao.php');
 
+// Variáveis de filtro
 $mesSelecionado = isset($_GET['mes']) ? $_GET['mes'] : 'todos';
 $pagamentoSelecionado = isset($_GET['pagamento']) ? $_GET['pagamento'] : 'todos';
 $classificacaoSelecionada = isset($_GET['classificacao']) ? $_GET['classificacao'] : 'todos';
 
-$valorTotal = 0;
-
-// Mapeamento dos meses para número de mês
+// Mapeamento dos meses
 $meses = [
     "janeiro" => "01",
     "fevereiro" => "02",
@@ -24,61 +23,69 @@ $meses = [
     "dezembro" => "12"
 ];
 
-$result = null; // Inicialize a variável $result para evitar erros
+// Consultar pedidos
+$queryPedidos = "SELECT * FROM historicopedidos WHERE 1=1";
+$paramsPedidos = [];
+$typesPedidos = '';
 
-// Defina a consulta SQL com base na seleção do mês e forma de pagamento
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    $query = "SELECT * FROM historicopedidos WHERE 1=1"; // Inicializa a consulta
-
-    // Adicionar condição para o mês, se selecionado
-    if ($mesSelecionado !== "todos") {
-        if (!array_key_exists($mesSelecionado, $meses)) {
-            echo "Mês selecionado é inválido.";
-            exit();
-        }
-
-        $mesNumero = $meses[$mesSelecionado];
-        $query .= " AND DATE_FORMAT(dataHora, '%m') = ?";
+// Condições para pedidos
+if ($mesSelecionado !== "todos") {
+    if (!array_key_exists($mesSelecionado, $meses)) {
+        echo "Mês selecionado é inválido.";
+        exit();
     }
+    $mesNumero = $meses[$mesSelecionado];
+    $queryPedidos .= " AND DATE_FORMAT(dataHora, '%m') = ?";
+    $paramsPedidos[] = $mesNumero;
+    $typesPedidos .= 's';
+}
 
-    // Adicionar condição para o tipo de pagamento, se selecionado
-    if ($pagamentoSelecionado !== "todos") {
-        $query .= " AND pagamento = ?";
+if ($pagamentoSelecionado !== "todos") {
+    $queryPedidos .= " AND pagamento = ?";
+    $paramsPedidos[] = $pagamentoSelecionado;
+    $typesPedidos .= 's';
+}
+
+// Preparar e executar a consulta para pedidos
+if ($stmt = $mysqli->prepare($queryPedidos)) {
+    if ($typesPedidos) {
+        $stmt->bind_param($typesPedidos, ...$paramsPedidos);
     }
+    $stmt->execute();
+    $resultPedidos = $stmt->get_result();
+    $stmt->close();
+} else {
+    echo "Erro ao preparar a consulta de pedidos: " . $mysqli->error;
+}
 
-    // Adicionar ordenação com base na classificação selecionada
-    if ($classificacaoSelecionada === "mais_vendidos") {
-        $query .= " ORDER BY (SELECT SUM(qtd) FROM historicopedidos WHERE FIND_IN_SET(idProdutos, historicopedidos.idProdutos) > 0 GROUP BY idProdutos) DESC";
-    } elseif ($classificacaoSelecionada === "menos_vendidos") {
-        $query .= " ORDER BY (SELECT SUM(qtd) FROM historicopedidos WHERE FIND_IN_SET(idProdutos, historicopedidos.idProdutos) > 0 GROUP BY idProdutos) ASC";
+// Consultar financeiro
+$queryFinanceiro = "SELECT idProdutos, qtd FROM historicopedidos WHERE 1=1";
+$paramsFinanceiro = [];
+$typesFinanceiro = '';
+
+// Condições para financeiro
+if ($mesSelecionado !== "todos") {
+    $queryFinanceiro .= " AND DATE_FORMAT(dataHora, '%m') = ?";
+    $paramsFinanceiro[] = $mesNumero;
+    $typesFinanceiro .= 's';
+}
+
+if ($pagamentoSelecionado !== "todos") {
+    $queryFinanceiro .= " AND pagamento = ?";
+    $paramsFinanceiro[] = $pagamentoSelecionado;
+    $typesFinanceiro .= 's';
+}
+
+// Preparar e executar a consulta para financeiro
+if ($stmt = $mysqli->prepare($queryFinanceiro)) {
+    if ($typesFinanceiro) {
+        $stmt->bind_param($typesFinanceiro, ...$paramsFinanceiro);
     }
-
-    // Preparar e executar a consulta
-    if ($stmt = $mysqli->prepare($query)) {
-        $types = '';
-        $params = [];
-
-        // Adicionar parâmetros, se necessário
-        if ($mesSelecionado !== "todos") {
-            $types .= 's';
-            $params[] = $mesNumero;
-        }
-
-        if ($pagamentoSelecionado !== "todos") {
-            $types .= 's';
-            $params[] = $pagamentoSelecionado;
-        }
-
-        if ($types) {
-            $stmt->bind_param($types, ...$params);
-        }
-
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
-    } else {
-        echo "Erro ao preparar a consulta: " . $mysqli->error;
-    }
+    $stmt->execute();
+    $resultFinanceiro = $stmt->get_result();
+    $stmt->close();
+} else {
+    echo "Erro ao preparar a consulta financeira: " . $mysqli->error;
 }
 
 if (isset($_GET['deletar'])) {
@@ -87,16 +94,16 @@ if (isset($_GET['deletar'])) {
     $stmt->bind_param('i', $idPedido);
     $stmt->execute();
     $stmt->close();
-
     header("Location: ./historico.php");
+    exit();
 }
 
 if (isset($_GET['limpar'])) {
     $stmt = $mysqli->prepare("DELETE FROM historicopedidos");
     $stmt->execute();
     $stmt->close();
-
     header("Location: ./historico.php");
+    exit();
 }
 ?>
 
@@ -123,7 +130,6 @@ if (isset($_GET['limpar'])) {
                 <select name="mes" id="mes">
                     <option value="todos" <?= ($mesSelecionado === 'todos') ? 'selected' : '' ?>>Todos</option>
                     <?php
-                    // Gerar opções com base no mapeamento dos meses
                     foreach ($meses as $nomeMes => $numeroMes) {
                         $selected = ($mesSelecionado === $nomeMes) ? 'selected' : '';
                         echo "<option value=\"$nomeMes\" $selected>" . ucfirst($nomeMes) . "</option>";
@@ -147,8 +153,8 @@ if (isset($_GET['limpar'])) {
         <section>
             <h1 class="ped">Pedidos</h1>
             <?php
-            if ($result && $result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
+            if ($resultPedidos && $resultPedidos->num_rows > 0) {
+                while ($row = $resultPedidos->fetch_assoc()) {
             ?>
             <div class="table-container">
                 <table>
@@ -183,14 +189,11 @@ if (isset($_GET['limpar'])) {
                                 <?php
                                     $idProdutos = $row['idProdutos'];
                                     $quantidades = $row['qtd'];
-
                                     $ids = explode(',', $idProdutos);
                                     $qtds = explode(',', $quantidades);
-
                                     for ($i = 0; $i < count($ids); $i++) {
                                         $id = $ids[$i];
                                         $qtd = $qtds[$i];
-
                                         $stmt = $mysqli->prepare("SELECT nome FROM produtos WHERE idProdutos = ?");
                                         $stmt->bind_param("i", $id);
                                         $stmt->execute();
@@ -240,28 +243,31 @@ if (isset($_GET['limpar'])) {
                 <tbody>
                     <?php
                     $produtosQuantidades = [];
-                    
-                    if ($result && $result->num_rows > 0) {
-                        $result->data_seek(0);
+                    $valorTotal = 0; // Inicializar a variável valorTotal
 
-                        while ($row = $result->fetch_assoc()) {
+                    if ($resultFinanceiro && $resultFinanceiro->num_rows > 0) {
+                        $resultFinanceiro->data_seek(0);
+                        while ($row = $resultFinanceiro->fetch_assoc()) {
                             $idProdutos = $row['idProdutos'];
-                            $quantidades = $row['qtd']; // Assumindo que o campo 'qtd' contém as quantidades
-
+                            $quantidades = $row['qtd'];
                             $ids = explode(',', $idProdutos);
                             $qtds = explode(',', $quantidades);
-
                             for ($i = 0; $i < count($ids); $i++) {
                                 $id = $ids[$i];
                                 $qtd = $qtds[$i];
-
                                 if (!isset($produtosQuantidades[$id])) {
                                     $produtosQuantidades[$id] = 0;
                                 }
-
                                 $produtosQuantidades[$id] += $qtd;
                             }
                         }
+                    }
+
+                    // Ordenar produtos conforme a classificação
+                    if ($classificacaoSelecionada === "mais_vendidos") {
+                        arsort($produtosQuantidades);
+                    } elseif ($classificacaoSelecionada === "menos_vendidos") {
+                        asort($produtosQuantidades);
                     }
 
                     foreach ($produtosQuantidades as $id => $quantidade) {
