@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    background-color: darkslategray;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+header h1 {
+    text-align: center;
+}
+
+.limparhist {
+    position: absolute;
+    top: 70px;
+    right: 15px;
+}
+
+.voltar {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+.voltar a  {
+    color: white;
+    text-decoration: none;
+}
+
+.voltar a:hover {
+    text-decoration: underline;
+}
+
+.periodo {
+    position: absolute;
+    right: 15px;
+}
+
+.periodo span {
+    font-weight: bold;
+    color: white;
+}
+
+button[type='submit'] {
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: .3s;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+button[type='submit']:hover {
+    transform: scale(1.03);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.26);
+}
+
+select {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+table {
+    width: 90%;
+    margin: 25px auto;
+    border-collapse: collapse;
+    box-shadow: 2px 2px 8px black;
+    font-size: .8em;
+    overflow-x: auto; /* Permite rolar horizontalmente se necessário */
+    display: block; /* Faz com que a tabela ocupe a largura disponível */
+}
+
+thead {
+    background-color: #f4f4f4;
+}
+
+th, td {
+    border: 2px solid #000;
+    text-align: center;
+    padding: 8px;
+    word-wrap: break-word; /* Garante que o texto longo será quebrado */
+}
+
+th {
+    background-color: #ddd;
+}
+
+h1 {
+    text-align: center;
+}
+
+.del {
+    display: block;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.308);
+    transition: .3s;
+}
+
+.del:hover {
+    transform: scale(1.03);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.308);
+}

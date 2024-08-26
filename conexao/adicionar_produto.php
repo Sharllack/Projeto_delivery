@@ -161,8 +161,10 @@ $result_bebida = $mysqli->query($sql);
             </div>
         </form>
 
+        <h1 style="text-align: center; margin-top: 15px;">Pratos</h1>
+        <?php while($row = $result->fetch_assoc()) { ?>
         <table>
-            <h1 style="text-align: center; margin-top: 15px;">Pratos</h1>
+
             <thead>
                 <th>Disponibilidade</th>
                 <th>id</th>
@@ -176,7 +178,6 @@ $result_bebida = $mysqli->query($sql);
                 <th>Indisponível</th>
             </thead>
             <tbody>
-                <?php while($row = $result->fetch_assoc()) { ?>
                     <tr>
                         <td><input type="checkbox" name="ativo" value="1" <?php echo ($row['ativo'] == 1) ? 'checked' : ''; ?>></td>
                         <td><?php echo $row['idProdutos'];?></td>
@@ -192,8 +193,10 @@ $result_bebida = $mysqli->query($sql);
                 <?php } ?>
             </tbody>
         </table>
+        <h1 style="text-align: center;">Bebidas</h1>
+
+        <?php while($row = $result_bebida->fetch_assoc()) { ?>
         <table>
-            <h1 style="text-align: center;">Bebidas</h1>
             <thead>
                 <th>Disponibilidade</th>
                 <th>id</th>
@@ -207,7 +210,6 @@ $result_bebida = $mysqli->query($sql);
                 <th>Indisponível</th>
             </thead>
             <tbody>
-                <?php while($row = $result_bebida->fetch_assoc()) { ?>
                     <tr>
                         <td><input type="checkbox" name="ativo" value="1" <?php echo ($row['ativo'] == 1) ? 'checked' : ''; ?>></td>
                         <td><?php echo $row['idProdutos'];?></td>

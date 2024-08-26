@@ -2,12 +2,13 @@
 include('./protect.php');
 require_once './conexao.php';
 
-if(!isset($_SESSION)){
+if (!isset($_SESSION)) {
     session_name('admin_session');
     session_start();
 }
 
-if(isset($_GET['preparando'])) {
+// Atualização do pedido conforme o estado
+if (isset($_GET['preparando'])) {
     $idPedido = intval($_GET['preparando']);
     $situacao = 'O seu pedido está sendo preparado!';
     $situ = 'Aceito!';
@@ -17,7 +18,7 @@ if(isset($_GET['preparando'])) {
     $stmt->close();
 }
 
-if(isset($_GET['rota'])) {
+if (isset($_GET['rota'])) {
     $idPedido = intval($_GET['rota']);
 
     $stmt = $mysqli->prepare("SELECT entrega FROM pedidos WHERE idPedido = ?");
@@ -27,7 +28,7 @@ if(isset($_GET['rota'])) {
     $stmt->fetch();
     $stmt->close();
 
-    if($entrega == 'retirada') {
+    if ($entrega == 'retirada') {
         $situacao = 'Pedido aguardando retirada!';
     } else {
         $situacao = 'O seu pedido já saiu para a entrega!';
@@ -39,7 +40,7 @@ if(isset($_GET['rota'])) {
     $stmt->close();
 }
 
-if(isset($_GET['finalizar'])) {
+if (isset($_GET['finalizar'])) {
     $idPedido = intval($_GET['finalizar']);
     $situacao = 'O seu pedido foi finalizado!';
     $situ = 'Finalizado!';
@@ -49,7 +50,7 @@ if(isset($_GET['finalizar'])) {
     $stmt->close();
 }
 
-if(isset($_GET['recusar'])) {
+if (isset($_GET['recusar'])) {
     $idPedido = intval($_GET['recusar']);
     $motivo = $_GET['motivo'];
     $situacao = 'O seu pedido não foi aceito!' . '<br> <br>' . ' MOTIVO: ' . $motivo;
@@ -60,12 +61,43 @@ if(isset($_GET['recusar'])) {
     $stmt->close();
 }
 
+// Filtrar pedidos com base no filtro selecionado
+$filter = isset($_GET['filter']) ? $_GET['filter'] : 'todos';
+$pesquisar = isset($_GET['pesquisar']) ? $mysqli->real_escape_string($_GET['pesquisar']) : '';
+
+// Base query for all cases
 $sql_query = "SELECT * FROM pedidos
-            JOIN carrinho ON pedidos.idCarrinho = carrinho.idCarrinho
-            JOIN produtos ON pedidos.idProduto = produtos.idProdutos
-            JOIN usuarios ON pedidos.idUsuario = usuarios.idUsuarios
-            JOIN itenscarrinho ON pedidos.idItens = itenscarrinho.idItens";
-$result = $mysqli->query($sql_query) or die ($mysqli->error);
+    JOIN carrinho ON pedidos.idCarrinho = carrinho.idCarrinho
+    JOIN produtos ON pedidos.idProduto = produtos.idProdutos
+    JOIN usuarios ON pedidos.idUsuario = usuarios.idUsuarios
+    JOIN itenscarrinho ON pedidos.idItens = itenscarrinho.idItens";
+
+// Append filter conditions
+switch ($filter) {
+    case 'aguardando':
+        $sql_query .= " WHERE situ = 'Aguardando!'";
+        break;
+    case 'aceito':
+        $sql_query .= " WHERE situ = 'Aceito!'";
+        break;
+    case 'rota':
+        $sql_query .= " WHERE situ = 'Em Rota!'";
+        break;
+    case 'recusado':
+        $sql_query .= " WHERE situ = 'Recusado!'";
+        break;
+    case 'finalizado':
+        $sql_query .= " WHERE situ = 'Finalizado!'";
+        break;
+}
+
+// Append search conditions
+if (!empty($pesquisar)) {
+    $sql_query .= ($filter != 'todos' ? ' AND ' : ' WHERE ') . "pedidos.idPedido = '$pesquisar'";
+}
+
+// Execute query
+$result = $mysqli->query($sql_query) or die($mysqli->error);
 
 ?>
 
@@ -80,11 +112,33 @@ $result = $mysqli->query($sql_query) or die ($mysqli->error);
 </head>
 <body>
     <div class="filter"></div>
-    <div style="position: absolute; left: 15px; margin: 15px 15px 0 0; font-size:1.2em;"><a href="./adicionar_produto.php" style="color: white;">Voltar</a></div>
+    <div style="position: absolute; left: 15px; margin: 15px 15px 0 0; font-size:1.2em;"><a href="./adicionar_produto.php" style="color: white;" class="back">Voltar</a></div>
     <div class="logout" style="position: absolute; right: 0; margin: 15px 15px 0 0; font-size:1.2em;"><a href="./logout.php" style="color: white;">Sair</a></div>
+    <div class="historico">
+        <a href="./historico.php" style="color: white;">Histórico de Pedidos</a>
+    </div>
     <header>
         <h1>Pedidos</h1>
         <p>Olá, <?= $_SESSION['user']?>! Vamos Acompanhar os Pedidos!</p>
+        <div class="filtro">
+        <form action="" method="get">
+            <select name="filter" id="filter">
+                <option value="#">-----FILTRAR-----</option>
+                <option value="todos" <?= $filter == 'todos' ? 'selected' : '' ?>>Todos</option>
+                <option value="aguardando" <?= $filter == 'aguardando' ? 'selected' : '' ?>>Aguardando</option>
+                <option value="aceito" <?= $filter == 'aceito' ? 'selected' : '' ?>>Aceitos</option>
+                <option value="rota" <?= $filter == 'rota' ? 'selected' : '' ?>>Em Rota</option>
+                <option value="recusado" <?= $filter == 'recusado' ? 'selected' : '' ?>>Recusados</option>
+                <option value="finalizado" <?= $filter == 'finalizado' ? 'selected' : '' ?>>Finalizados</option>
+            </select>
+            <button type="submit">Filtrar</button>
+        </form>
+        <form action="" method="get">
+            <input type="search" name="pesquisar" id="pesquisar" placeholder="Digite o número do pedido" value="<?= htmlspecialchars($pesquisar) ?>">
+            <input type="hidden" name="filter" value="<?= htmlspecialchars($filter) ?>">
+            <button type="submit">Pesquisar</button>
+        </form>
+    </div>
     </header>
     <main>
     <h1 style="text-align: center;" class="titlePedidos">Pedidos</h1>
