@@ -126,6 +126,8 @@ if (!empty($idUser)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./estilo_principal/index.css">
     <link rel="stylesheet" href="./estilo_principal/media_querie.css">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <link rel="stylesheet" href="./estilo_principal/swiper-bundle.min.css">
     <link rel="shortcut icon" href="./imagens/favicon.ico" type="image/x-icon">
     <title>Página Inicial</title>
 </head>
@@ -347,6 +349,9 @@ if (!empty($idUser)) {
     <div class="borda1"></div>
     <div class="borda2"></div>
     <div class="borda3"></div>
+    
+    <script src="./js_pincipal/swiper-bundle.min.js"></script>
+    <script src="./js_pincipal/animacao.js"></script>
     <script src="./js_pincipal/funcoes.js"></script>
 </body>
 
