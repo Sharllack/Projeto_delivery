@@ -46,6 +46,7 @@ while ($row = $result->fetch_assoc()) {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,6 +55,7 @@ while ($row = $result->fetch_assoc()) {
     <link rel="shortcut icon" href="./imagens/favicon.ico" type="image/x-icon">
     <title>Forma de Pagamento</title>
 </head>
+
 <body>
 
     <div class="loading">
@@ -64,7 +66,8 @@ while ($row = $result->fetch_assoc()) {
 
     <div class="home">
         <a href="./index.php">
-            <img src="./imagens/imagens_pincipal/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Home">
+            <img src="./imagens/imagens_pincipal/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px"
+                width="30px" alt="Home">
         </a>
     </div>
     <header>
@@ -77,7 +80,7 @@ while ($row = $result->fetch_assoc()) {
         </div>
     </header>
     <main>
-    <h1 class="pratosTitle">Finalize seu Pedido</h1>
+        <h1 class="pratosTitle">Finalize seu Pedido</h1>
         <form action="./cadastrar_pedido.php?finalizar=<?php echo $idCarrinho;?>" method="post">
             <h2 class="formaTitle">Formas de Pagamento</h2>
             <select name="opcoes" id="opcoes" style="font-weight: bold;">
@@ -104,7 +107,8 @@ while ($row = $result->fetch_assoc()) {
             <h2 class="enderecoTitle">Endereço Para Entrega</h2>
             <section class="enderecoCont">
                 <div class="end">
-                    <img src="./imagens/location_on_24dp_00000_FILL0_wght400_GRAD0_opsz24.png" alt="localização" class="location">
+                    <img src="./imagens/location_on_24dp_00000_FILL0_wght400_GRAD0_opsz24.png" alt="localização"
+                        class="location">
                     <div class="endereco">
                         <p class="logra"><strong><?php echo $rua?>, <?php echo $numero?></strong></p>
                         <p class="bai"><?php echo $bairro?></p>
@@ -116,7 +120,8 @@ while ($row = $result->fetch_assoc()) {
             <section class="pedido">
                 <?php
                 foreach($rows as $row): ?>
-                    <p><strong><?php echo $row['qtd'] . "x " . $row['nome'] . "<br>" . "Obs.:" . "<br>" . $row['obs'] . "<br> <br>"?></strong></p>
+                <p><strong><?php echo $row['qtd'] . "x " . $row['nome'] . "<br>" . "Obs.:" . "<br>" . $row['obs'] . "<br> <br>"?></strong>
+                </p>
                 <?php endforeach; ?>
             </section>
             <h2 class="taxaTitle">Taxa de Entrega</h2>
@@ -128,9 +133,11 @@ while ($row = $result->fetch_assoc()) {
                     $total += (float) str_replace(',', '.', $taxa); // Converte a taxa para float e adiciona ao total
                 }
             ?>
-            <button type="submit" class="button" name="button" value="<?php echo $total?>">Finalizar Pedido <span class="valorTotal">R$ <?php echo number_format($total, 2, ',', '.');?></span></button>
+            <button type="submit" class="button" name="button" value="<?php echo $total?>">Finalizar Pedido <span
+                    class="valorTotal">R$ <?php echo number_format($total, 2, ',', '.');?></span></button>
         </form>
     </main>
     <script src="./js_pagamento_endereço/script.js"></script>
 </body>
+
 </html>

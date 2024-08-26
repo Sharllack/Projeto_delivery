@@ -52,6 +52,7 @@ if($sql_query->num_rows > 0) {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,6 +61,7 @@ if($sql_query->num_rows > 0) {
     <link rel="shortcut icon" href="./imagens/favicon.ico" type="image/x-icon">
     <title>Login</title>
 </head>
+
 <body>
     <div class="voltar">
         <a href="./index.php">Voltar</a>
@@ -77,8 +79,10 @@ if($sql_query->num_rows > 0) {
             </div>
         </form>
         <div class="img">
-            <img src="./imagens/imagens_login/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.avif" alt="">
+            <img src="./imagens/imagens_login/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.avif"
+                alt="">
         </div>
     </main>
 </body>
+
 </html>

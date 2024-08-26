@@ -24,6 +24,7 @@ $result = $mysqli->query($sql_query);
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,6 +32,7 @@ $result = $mysqli->query($sql_query);
     <link rel="stylesheet" href="../estilo_adicionar/media_querie.css">
     <title>Editar Produtos</title>
 </head>
+
 <body>
     <header>
         <h1>Editar Produtos</h1>
@@ -38,9 +40,12 @@ $result = $mysqli->query($sql_query);
     <main>
         <form action="saveEdit.php" method="post" enctype="multipart/form-data">
             <h1>Faça a Edição</h1>
-            <input type="text" name="nome" id="nome" placeholder="Nome do Produto" value="<?php echo $nomeDoProduto ?>" required>
-            <input type="text" name="descricao" id="descricao" placeholder="Descrição do Produto" value="<?php echo $descricao ?>">
-            <input type="number" name="preco" id="preco" placeholder="Valor do Produto" step="0.01" value="<?php echo $preco ?>" required>
+            <input type="text" name="nome" id="nome" placeholder="Nome do Produto" value="<?php echo $nomeDoProduto ?>"
+                required>
+            <input type="text" name="descricao" id="descricao" placeholder="Descrição do Produto"
+                value="<?php echo $descricao ?>">
+            <input type="number" name="preco" id="preco" placeholder="Valor do Produto" step="0.01"
+                value="<?php echo $preco ?>" required>
             <label for="imagem" class="file">
                 <span class="span1">Selecione a Imagem</span>
                 <span class="span">SELECIONAR</span>
@@ -56,4 +61,5 @@ $result = $mysqli->query($sql_query);
     </main>
     <script src="../js_adicionar/script.js"></script>
 </body>
+
 </html>

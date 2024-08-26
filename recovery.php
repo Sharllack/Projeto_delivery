@@ -25,6 +25,7 @@ if(isset($_GET['usuario'])) {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,6 +34,7 @@ if(isset($_GET['usuario'])) {
     <link rel="shortcut icon" href="./imagens/favicon.ico" type="image/x-icon">
     <title>Nova Senha</title>
 </head>
+
 <body>
     <div class="voltar">
         <a href="./login_usuario.php">Voltar</a>
@@ -54,4 +56,5 @@ if(isset($_GET['usuario'])) {
 
     <script src="./js_recovery/recovery.js"></script>
 </body>
+
 </html>

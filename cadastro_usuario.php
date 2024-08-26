@@ -75,6 +75,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,6 +84,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="shortcut icon" href="./imagens/favicon.ico" type="image/x-icon">
     <title>Cadastre-se</title>
 </head>
+
 <body>
 
     <div class="loading">
@@ -96,48 +98,61 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <main>
         <section>
-        <h1 class="titleForm">Cadastre-se</h1>
+            <h1 class="titleForm">Cadastre-se</h1>
             <form action="" method="post">
                 <div class="inpu" id="in">
-                    <input type="text" name="nome" id="pNome" placeholder="Nome" required value="<?php echo isset($_POST['nome']) ? $_POST['nome'] : ''; ?>">
+                    <input type="text" name="nome" id="pNome" placeholder="Nome" required
+                        value="<?php echo isset($_POST['nome']) ? $_POST['nome'] : ''; ?>">
                 </div>
                 <div class="inpu">
-                    <input type="text" name="sNome" id="sNome" placeholder="Sobrenome" required value="<?php echo isset($_POST['sNome']) ? $_POST['sNome'] : ''; ?>">
+                    <input type="text" name="sNome" id="sNome" placeholder="Sobrenome" required
+                        value="<?php echo isset($_POST['sNome']) ? $_POST['sNome'] : ''; ?>">
                 </div>
                 <div class="inpu" id="im">
-                    <input type="text" name="cell" id="cell" placeholder="Número para Contato" required value="<?php echo isset($_POST['cell']) ? $_POST['cell'] : ''; ?>">
+                    <input type="text" name="cell" id="cell" placeholder="Número para Contato" required
+                        value="<?php echo isset($_POST['cell']) ? $_POST['cell'] : ''; ?>">
                     <p style="font-size: .8em; color: red; margin-left: 15px;"><?php echo $cell_error?></p>
                 </div>
                 <div class="inpu">
-                    <input type="text" name="email" id="email" placeholder="E-mail" required value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>">
+                    <input type="text" name="email" id="email" placeholder="E-mail" required
+                        value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>">
                     <p style="font-size: .8em; color: red; margin-left: 15px;"><?php echo $email_error?></p>
                 </div>
                 <div class="inpu">
-                    <input type="text" name="cep" id="cep" placeholder="CEP" required value="<?php echo isset($_POST['cep']) ? $_POST['cep'] : ''; ?>">
+                    <input type="text" name="cep" id="cep" placeholder="CEP" required
+                        value="<?php echo isset($_POST['cep']) ? $_POST['cep'] : ''; ?>">
                 </div>
                 <div class="inpu">
-                    <input type="text" name="estado" id="estado" placeholder="Estado" required value="<?php echo isset($_POST['estado']) ? $_POST['estado'] : ''; ?>">
+                    <input type="text" name="estado" id="estado" placeholder="Estado" required
+                        value="<?php echo isset($_POST['estado']) ? $_POST['estado'] : ''; ?>">
                 </div>
                 <div class="inpu">
-                    <input type="text" name="cidade" id="cidade" placeholder="Cidade" required value="<?php echo isset($_POST['cidade']) ? $_POST['cidade'] : ''; ?>">
+                    <input type="text" name="cidade" id="cidade" placeholder="Cidade" required
+                        value="<?php echo isset($_POST['cidade']) ? $_POST['cidade'] : ''; ?>">
                 </div>
                 <div class="inpu">
-                    <input type="text" name="bairro" id="bairro" placeholder="Bairro" required value="<?php echo isset($_POST['bairro']) ? $_POST['bairro'] : ''; ?>">
+                    <input type="text" name="bairro" id="bairro" placeholder="Bairro" required
+                        value="<?php echo isset($_POST['bairro']) ? $_POST['bairro'] : ''; ?>">
                 </div>
                 <div class="inpu">
-                    <input type="text" name="rua" id="rua" placeholder="Logradouro" required value="<?php echo isset($_POST['rua']) ? $_POST['rua'] : ''; ?>">
+                    <input type="text" name="rua" id="rua" placeholder="Logradouro" required
+                        value="<?php echo isset($_POST['rua']) ? $_POST['rua'] : ''; ?>">
                 </div>
                 <div class="inpu">
-                    <input type="text" name="numero" id="numero" placeholder="Número" required value="<?php echo isset($_POST['numero']) ? $_POST['numero'] : ''; ?>">
+                    <input type="text" name="numero" id="numero" placeholder="Número" required
+                        value="<?php echo isset($_POST['numero']) ? $_POST['numero'] : ''; ?>">
                 </div>
                 <div class="inpu">
-                    <input type="text" name="complemento" id="complemento" placeholder="Complemento(Opcional)" value="<?php echo isset($_POST['complemento']) ? $_POST['complemento'] : ''; ?>">
+                    <input type="text" name="complemento" id="complemento" placeholder="Complemento(Opcional)"
+                        value="<?php echo isset($_POST['complemento']) ? $_POST['complemento'] : ''; ?>">
                 </div>
                 <div class="inpu">
-                    <input type="text" name="referencia" id="referencia" placeholder="Ponto de Referência" required value="<?php echo isset($_POST['referencia']) ? $_POST['referencia'] : ''; ?>">
+                    <input type="text" name="referencia" id="referencia" placeholder="Ponto de Referência" required
+                        value="<?php echo isset($_POST['referencia']) ? $_POST['referencia'] : ''; ?>">
                 </div>
                 <div class="inpu">
-                    <input type="text" name="user" id="user" placeholder="Usuário" required value="<?php echo isset($_POST['user']) ? $_POST['user'] : ''; ?>">
+                    <input type="text" name="user" id="user" placeholder="Usuário" required
+                        value="<?php echo isset($_POST['user']) ? $_POST['user'] : ''; ?>">
                     <p style="font-size: .8em; color: red; margin-left: 15px;"><?php echo $usu_error?></p>
                 </div>
                 <div class="inpu" id="bgSenha">
@@ -156,7 +171,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </section>
         <div class="img">
-            <img src="./imagens/imagens_cadastro_usuario/comida-brasileira-simples-com-espaco-de-copia_23-2148739186.avif" alt="">
+            <img src="./imagens/imagens_cadastro_usuario/comida-brasileira-simples-com-espaco-de-copia_23-2148739186.avif"
+                alt="">
         </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -165,4 +181,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="./js_cadastro_usuario/formatacao.js"></script>
     <script src="./js_cadastro_usuario/funcoes.js"></script>
 </body>
+
 </html>

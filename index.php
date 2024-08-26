@@ -120,6 +120,7 @@ if (!empty($idUser)) {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -128,6 +129,7 @@ if (!empty($idUser)) {
     <link rel="shortcut icon" href="./imagens/favicon.ico" type="image/x-icon">
     <title>Página Inicial</title>
 </head>
+
 <body>
     <div class="loading">
         <div class="load">
@@ -136,12 +138,12 @@ if (!empty($idUser)) {
     </div>
 
     <?php if(!isset($_SESSION['user'])):?>
-        <div class="logout" style="display: none;">
-        </div>
+    <div class="logout" style="display: none;">
+    </div>
     <?php else: ?>
-        <div class="logout" style=" position: fixed; z-index: 9998;">
-            <a href="./logout_usuario.php">Sair</a>
-        </div>
+    <div class="logout" style=" position: fixed; z-index: 9998;">
+        <a href="./logout_usuario.php">Sair</a>
+    </div>
     <?php endif; ?>
 
     <header>
@@ -154,7 +156,8 @@ if (!empty($idUser)) {
         </div>
         <div class="home">
             <a href="./index.php">
-                <img src="./imagens/imagens_pincipal/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Home">
+                <img src="./imagens/imagens_pincipal/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px"
+                    width="30px" alt="Home">
             </a>
         </div>
     </header>
@@ -164,13 +167,14 @@ if (!empty($idUser)) {
     </section>
     <main>
         <div class="infoPrincipal">
-            <img src="./imagens/imagens_pincipal/comida-criolla-peru-peruvian-food-260nw-2191344515.webp" alt="Logo do Restaurante" class="logoRestaurante">
+            <img src="./imagens/imagens_pincipal/comida-criolla-peru-peruvian-food-260nw-2191344515.webp"
+                alt="Logo do Restaurante" class="logoRestaurante">
             <p class="tempoDeEntrega">Restaurante • 20-90 min •
                 <span class="sit">
                     <?php if($situacao == 1): ?>
-                        <span class="situ">Aberto</span>
+                    <span class="situ">Aberto</span>
                     <?php else :?>
-                        <span class="situ">Fechado</span>
+                    <span class="situ">Fechado</span>
                     <?php endif; ?>
                 </span>
             </p>
@@ -180,19 +184,20 @@ if (!empty($idUser)) {
             <p class="hora"><strong>11:00 às 15:00</strong></p>
             <hr class="hr">
             <?php if(!isset($_SESSION['user'])):?>
-                <a href="./login_usuario.php" class="logBtn">FAÇA LOGIN</a>
+            <a href="./login_usuario.php" class="logBtn">FAÇA LOGIN</a>
             <?php else: ?>
-                <div class="saudacao">
-                    <p class="nomeDoCliente">Seja Bem-Vindo(a), <strong><?php echo $_SESSION['nome']?></strong>!</p>
-                    <a href="./perfil.php" class="perfil"><img src="./imagens/person_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" alt="Perfil"></a>
-                </div>
+            <div class="saudacao">
+                <p class="nomeDoCliente">Seja Bem-Vindo(a), <strong><?php echo $_SESSION['nome']?></strong>!</p>
+                <a href="./perfil.php" class="perfil"><img
+                        src="./imagens/person_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" alt="Perfil"></a>
+            </div>
             <?php endif; ?>
         </div>
         <section style="padding: 15px;" class="secPratos">
             <h1 class="pratosTitle">ESCOLHA O SEU PRATO</h1>
             <div class="pratosContainer">
                 <?php while($row = $result->fetch_assoc()) { ?>
-                    <?php
+                <?php
 
                     if(!isset($_SESSION['idUsuario'])) {
                         $off = './login_usuario.php';
@@ -201,30 +206,31 @@ if (!empty($idUser)) {
                     }
 
                     ?>
-                    <a href="<?php echo $off; ?>" class="linkPratos">
-                        <div class="pratos">
-                            <div class="imgPrato">
-                                <img height="80px" width="80px" src="./conexao/<?php echo $row['imagem'];?>" alt="">
+                <a href="<?php echo $off; ?>" class="linkPratos">
+                    <div class="pratos">
+                        <div class="imgPrato">
+                            <img height="80px" width="80px" src="./conexao/<?php echo $row['imagem'];?>" alt="">
+                        </div>
+                        <div class="infoGeral">
+                            <div class="info">
+                                <h1 class="nomeDoPrato"><?php echo $row['nome']?></h1>
+                                <p style="color: rgb(119, 119, 119);" class="descricaoDoPrato">
+                                    (<?php echo $row['descricao']?>)</p>
                             </div>
-                            <div class="infoGeral">
-                                <div class="info">
-                                    <h1 class="nomeDoPrato"><?php echo $row['nome']?></h1>
-                                    <p style="color: rgb(119, 119, 119);" class="descricaoDoPrato">(<?php echo $row['descricao']?>)</p>
-                                </div>
-                                <div class="preco">
-                                    <p><?php echo "R$" . number_format($row['preco'], 2, "," , ".")?></p>
-                                </div>
+                            <div class="preco">
+                                <p><?php echo "R$" . number_format($row['preco'], 2, "," , ".")?></p>
                             </div>
                         </div>
-                    </a>
+                    </div>
+                </a>
                 <?php } ?>
             </div>
         </section>
         <section style="padding: 15px;" class="secBebidas">
             <h1 class="titleBebidas">ESCOLHA A SUA BEBIDA</h1>
-                <div class="pratosContainer">
+            <div class="pratosContainer">
                 <?php while($row = $result_bebibas->fetch_assoc()) { ?>
-                    <?php
+                <?php
 
                     if(!isset($_SESSION['idUsuario'])) {
                         $off = './login_usuario.php';
@@ -233,31 +239,33 @@ if (!empty($idUser)) {
                     }
 
                     ?>
-                    <a href="<?php echo $off; ?>" class="linkPratos">
-                        <div class="pratos">
-                            <div class="imgPrato">
-                                <img height="80px" width="80px" src="./conexao/<?php echo $row['imagem'];?>" alt="">
+                <a href="<?php echo $off; ?>" class="linkPratos">
+                    <div class="pratos">
+                        <div class="imgPrato">
+                            <img height="80px" width="80px" src="./conexao/<?php echo $row['imagem'];?>" alt="">
+                        </div>
+                        <div class="infoGeral">
+                            <div class="info">
+                                <h1 class="nomeDoPrato"><?php echo $row['nome']?></h1>
+                                <p style="color: rgb(119, 119, 119);" class="descricaoDoPrato">
+                                    (<?php echo $row['descricao']?>)</p>
                             </div>
-                            <div class="infoGeral">
-                                <div class="info">
-                                    <h1 class="nomeDoPrato"><?php echo $row['nome']?></h1>
-                                    <p style="color: rgb(119, 119, 119);" class="descricaoDoPrato">(<?php echo $row['descricao']?>)</p>
-                                </div>
-                                <div class="preco">
-                                    <p><?php echo "R$" . number_format($row['preco'], 2, "," , ".")?></p>
-                                </div>
+                            <div class="preco">
+                                <p><?php echo "R$" . number_format($row['preco'], 2, "," , ".")?></p>
                             </div>
                         </div>
-                    </a>
+                    </div>
+                </a>
                 <?php } ?>
-                </div>
+            </div>
         </section>
     </main>
     <div class="btns">
         <?php if(isset($_SESSION['user'])):?>
         <div class="shopCart">
             <a href="./carrinho.php" class="carrinho">
-                <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
+                <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png"
+                    height="30px" width="30px" alt="Carrinho">
                 <div class="qtdCar">
                     <input type="number" readonly name="qtdCar" id="qtdCar" value="<?php
 
@@ -294,36 +302,46 @@ if (!empty($idUser)) {
             </a>
         </div>
         <?php else: ?>
-            <div class="shopCart">
+        <div class="shopCart">
             <a href="./login_usuario.php" class="carrinho">
-                <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Carrinho">
+                <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png"
+                    height="30px" width="30px" alt="Carrinho">
             </a>
         </div>
         <?php endif; ?>
         <div class="wpp">
-            <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!" target="_blank"><img src="./imagens/whats_logo.png" alt="whatsapp" id="wpp"></a>
+            <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!" target="_blank"><img
+                    src="./imagens/whats_logo.png" alt="whatsapp" id="wpp"></a>
         </div>
     </div>
     <footer>
         <div class="infosFooter">
             <div class="outrasInfos">
-                <h1 >Contatos</h1>
+                <h1>Contatos</h1>
                 <div class="redes">
-                    <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!" target="_blank"><img src="./imagens/logos/sm_5b321c98efaa6.png" alt="logo WhatsApp" class="logos" id="logoWpp"></img>+55(21)99042-0932</a>
+                    <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!"
+                        target="_blank"><img src="./imagens/logos/sm_5b321c98efaa6.png" alt="logo WhatsApp"
+                            class="logos" id="logoWpp"></img>+55(21)99042-0932</a>
                 </div>
                 <div class="redes">
-                    <a href="https://www.instagram.com/lucas_mnzs_/" target="_blank"><img src="./imagens/logos/images-removebg-preview.png" alt="Logo instagram" class="logos" id="logoInsta"></img>Instagram</a>
+                    <a href="https://www.instagram.com/lucas_mnzs_/" target="_blank"><img
+                            src="./imagens/logos/images-removebg-preview.png" alt="Logo instagram" class="logos"
+                            id="logoInsta"></img>Instagram</a>
                 </div>
             </div>
             <div class="endereco">
-                <h1 >Endereço</h1>
+                <h1>Endereço</h1>
                 <p>Nos visite em nossa loja física no endereço:</p>
                 <p>Rua Dr. Furquim Mendes, 990/Vila Centenário, Duque de Caxias/RJ</p>
             </div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3678.8321513755886!2d-43.316062925162875!3d-22.771609533053063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997aa3bcff72fb%3A0x77d5c3defa357629!2sR.%20Dr.%20Furquim%20Mendes%2C%20990%20-%20Vila%20Centenario%2C%20Duque%20de%20Caxias%20-%20RJ%2C%2025030-170!5e0!3m2!1spt-BR!2sbr!4v1722418653219!5m2!1spt-BR!2sbr" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3678.8321513755886!2d-43.316062925162875!3d-22.771609533053063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997aa3bcff72fb%3A0x77d5c3defa357629!2sR.%20Dr.%20Furquim%20Mendes%2C%20990%20-%20Vila%20Centenario%2C%20Duque%20de%20Caxias%20-%20RJ%2C%2025030-170!5e0!3m2!1spt-BR!2sbr!4v1722418653219!5m2!1spt-BR!2sbr"
+                width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="devInfo">
-            <p>Site desenvolvido por <a href="https://www.linkedin.com/in/lucas-menezes-962075314/" target="_blank">Lucas M.</a></p>
+            <p>Site desenvolvido por <a href="https://www.linkedin.com/in/lucas-menezes-962075314/"
+                    target="_blank">Lucas M.</a></p>
         </div>
     </footer>
     <div class="borda1"></div>
@@ -331,4 +349,5 @@ if (!empty($idUser)) {
     <div class="borda3"></div>
     <script src="./js_pincipal/funcoes.js"></script>
 </body>
+
 </html>

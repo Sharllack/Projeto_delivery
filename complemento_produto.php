@@ -38,6 +38,7 @@ $result_bebibas = $mysqli->query($sql);
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,6 +47,7 @@ $result_bebibas = $mysqli->query($sql);
     <link rel="shortcut icon" href="./imagens/favicon.ico" type="image/x-icon">
     <title>Complemento</title>
 </head>
+
 <body>
 
     <div class="loading">
@@ -55,7 +57,7 @@ $result_bebibas = $mysqli->query($sql);
     </div>
 
     <?php while($row = $resulta->fetch_assoc()) { ?>
-            <?php
+    <?php
 
                 $idCarrinho = $row['idCarrinho'];
 
@@ -70,7 +72,8 @@ $result_bebibas = $mysqli->query($sql);
 
     <div class="home">
         <a href="./index.php">
-            <img src="./imagens/imagens_pincipal/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px" width="30px" alt="Home">
+            <img src="./imagens/imagens_pincipal/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" height="30px"
+                width="30px" alt="Home">
         </a>
     </div>
     <header>
@@ -102,4 +105,5 @@ $result_bebibas = $mysqli->query($sql);
     </main>
     <script src="./js_complemento_produto/funcoes.js"></script>
 </body>
+
 </html>

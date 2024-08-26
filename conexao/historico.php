@@ -109,6 +109,7 @@ if (isset($_GET['limpar'])) {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -116,6 +117,7 @@ if (isset($_GET['limpar'])) {
     <link rel="stylesheet" href="../estilo_historico/media_query.css">
     <title>Histórico</title>
 </head>
+
 <body>
     <div class="voltar">
         <a href="./receber_pedido.php">Voltar</a>
@@ -138,10 +140,12 @@ if (isset($_GET['limpar'])) {
                 </select>
 
                 <select name="pagamento" id="pagamento">
-                    <option value="todos" <?= ($pagamentoSelecionado === 'todos') ? 'selected' : '' ?>>Todas as formas</option>
+                    <option value="todos" <?= ($pagamentoSelecionado === 'todos') ? 'selected' : '' ?>>Todas as formas
+                    </option>
                     <option value="cartão" <?= ($pagamentoSelecionado === 'cartão') ? 'selected' : '' ?>>Cartão</option>
                     <option value="pix" <?= ($pagamentoSelecionado === 'pix') ? 'selected' : '' ?>>Pix</option>
-                    <option value="dinheiro" <?= ($pagamentoSelecionado === 'dinheiro') ? 'selected' : '' ?>>Dinheiro</option>
+                    <option value="dinheiro" <?= ($pagamentoSelecionado === 'dinheiro') ? 'selected' : '' ?>>Dinheiro
+                    </option>
                 </select>
 
                 <button type="submit">Filtrar</button>
@@ -206,7 +210,8 @@ if (isset($_GET['limpar'])) {
                             </td>
                             <td><?php echo $row['pagamento']?></td>
                             <td><?php echo "R$ " . number_format($row['valorTotal'], 2, "," , ".") . "<br>"?></td>
-                            <td><a href="./historico.php?deletar=<?php echo $row['idPedido']?>" class="del">Deletar</a></td>
+                            <td><a href="./historico.php?deletar=<?php echo $row['idPedido']?>" class="del">Deletar</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -225,9 +230,15 @@ if (isset($_GET['limpar'])) {
                 <form action="" method="get">
                     <label for="classificacao">Classificar por:</label>
                     <select name="classificacao" id="classificacao">
-                        <option value="todos" <?= (!isset($_GET['classificacao']) || $_GET['classificacao'] === 'todos') ? 'selected' : '' ?>>Todos</option>
-                        <option value="mais_vendidos" <?= (isset($_GET['classificacao']) && $_GET['classificacao'] === 'mais_vendidos') ? 'selected' : '' ?>>Mais Vendidos</option>
-                        <option value="menos_vendidos" <?= (isset($_GET['classificacao']) && $_GET['classificacao'] === 'menos_vendidos') ? 'selected' : '' ?>>Menos Vendidos</option>
+                        <option value="todos"
+                            <?= (!isset($_GET['classificacao']) || $_GET['classificacao'] === 'todos') ? 'selected' : '' ?>>
+                            Todos</option>
+                        <option value="mais_vendidos"
+                            <?= (isset($_GET['classificacao']) && $_GET['classificacao'] === 'mais_vendidos') ? 'selected' : '' ?>>
+                            Mais Vendidos</option>
+                        <option value="menos_vendidos"
+                            <?= (isset($_GET['classificacao']) && $_GET['classificacao'] === 'menos_vendidos') ? 'selected' : '' ?>>
+                            Menos Vendidos</option>
                     </select>
                     <button type="submit">Filtrar</button>
                 </form>
@@ -307,4 +318,5 @@ if (isset($_GET['limpar'])) {
         </section>
     </main>
 </body>
+
 </html>

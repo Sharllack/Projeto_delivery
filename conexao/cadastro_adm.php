@@ -24,6 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"); {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,8 +32,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"); {
     <link rel="stylesheet" href="../estilo_cadastro/media_querie.css">
     <title>Cadastre-se</title>
 </head>
+
 <body>
-    
+
     <main>
         <form action="" method="post">
             <h1>Cadastre-se</h1>
@@ -48,9 +50,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"); {
             </div>
         </form>
         <div class="img">
-            <img src="../imagens/imagens_login/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.avif" alt="">
+            <img src="../imagens/imagens_login/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.avif"
+                alt="">
         </div>
     </main>
     <script src="../js_cadastro/script.js"></script>
 </body>
+
 </html>

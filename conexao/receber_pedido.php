@@ -108,6 +108,7 @@ $result = $mysqli->query($sql_query) or die($mysqli->error);
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -115,10 +116,13 @@ $result = $mysqli->query($sql_query) or die($mysqli->error);
     <link rel="stylesheet" href="../estilo_receber/media_query.css">
     <title>Receber Pedidos</title>
 </head>
+
 <body>
     <div class="filter"></div>
-    <div style="position: absolute; left: 15px; margin: 15px 15px 0 0; font-size:1.2em;"><a href="./adicionar_produto.php" style="color: white;" class="back">Voltar</a></div>
-    <div class="logout" style="position: absolute; right: 0; margin: 15px 15px 0 0; font-size:1.2em;"><a href="./logout.php" style="color: white;">Sair</a></div>
+    <div style="position: absolute; left: 15px; margin: 15px 15px 0 0; font-size:1.2em;"><a
+            href="./adicionar_produto.php" style="color: white;" class="back">Voltar</a></div>
+    <div class="logout" style="position: absolute; right: 0; margin: 15px 15px 0 0; font-size:1.2em;"><a
+            href="./logout.php" style="color: white;">Sair</a></div>
     <div class="historico">
         <a href="./historico.php" style="color: white;">Histórico de Pedidos</a>
     </div>
@@ -126,28 +130,29 @@ $result = $mysqli->query($sql_query) or die($mysqli->error);
         <h1>Pedidos</h1>
         <p>Olá, <?= $_SESSION['user']?>! Vamos Acompanhar os Pedidos!</p>
         <div class="filtro">
-        <form action="" method="get">
-            <select name="filter" id="filter">
-                <option value="#">-----FILTRAR-----</option>
-                <option value="todos" <?= $filter == 'todos' ? 'selected' : '' ?>>Todos</option>
-                <option value="aguardando" <?= $filter == 'aguardando' ? 'selected' : '' ?>>Aguardando</option>
-                <option value="aceito" <?= $filter == 'aceito' ? 'selected' : '' ?>>Aceitos</option>
-                <option value="rota" <?= $filter == 'rota' ? 'selected' : '' ?>>Em Rota</option>
-                <option value="recusado" <?= $filter == 'recusado' ? 'selected' : '' ?>>Recusados</option>
-                <option value="finalizado" <?= $filter == 'finalizado' ? 'selected' : '' ?>>Finalizados</option>
-            </select>
-            <button type="submit">Filtrar</button>
-        </form>
-        <form action="" method="get">
-            <input type="search" name="pesquisar" id="pesquisar" placeholder="Digite o número do pedido" value="<?= htmlspecialchars($pesquisar) ?>">
-            <input type="hidden" name="filter" value="<?= htmlspecialchars($filter) ?>">
-            <button type="submit">Pesquisar</button>
-        </form>
-    </div>
+            <form action="" method="get">
+                <select name="filter" id="filter">
+                    <option value="#">-----FILTRAR-----</option>
+                    <option value="todos" <?= $filter == 'todos' ? 'selected' : '' ?>>Todos</option>
+                    <option value="aguardando" <?= $filter == 'aguardando' ? 'selected' : '' ?>>Aguardando</option>
+                    <option value="aceito" <?= $filter == 'aceito' ? 'selected' : '' ?>>Aceitos</option>
+                    <option value="rota" <?= $filter == 'rota' ? 'selected' : '' ?>>Em Rota</option>
+                    <option value="recusado" <?= $filter == 'recusado' ? 'selected' : '' ?>>Recusados</option>
+                    <option value="finalizado" <?= $filter == 'finalizado' ? 'selected' : '' ?>>Finalizados</option>
+                </select>
+                <button type="submit">Filtrar</button>
+            </form>
+            <form action="" method="get">
+                <input type="search" name="pesquisar" id="pesquisar" placeholder="Digite o número do pedido"
+                    value="<?= htmlspecialchars($pesquisar) ?>">
+                <input type="hidden" name="filter" value="<?= htmlspecialchars($filter) ?>">
+                <button type="submit">Pesquisar</button>
+            </form>
+        </div>
     </header>
     <main>
-    <h1 style="text-align: center;" class="titlePedidos">Pedidos</h1>
-    <?php while($row = $result->fetch_assoc()) { ?>
+        <h1 style="text-align: center;" class="titlePedidos">Pedidos</h1>
+        <?php while($row = $result->fetch_assoc()) { ?>
         <table>
             <thead>
                 <th>Situacao</th>
@@ -167,23 +172,23 @@ $result = $mysqli->query($sql_query) or die($mysqli->error);
                 <th>Finalizar</th>
             </thead>
             <tbody>
-                    <?php
+                <?php
 
                     $total = $row['valorTotal'];
 
                     ?>
-                    <tr>
-                        <td>
-                            <?php echo $row['situ']; ?>
-                        </td>
-                        <td>
-                            <?php echo $row['idPedido'];?>
-                        </td>
-                        <td>
-                            <?php echo date("d/m/Y H:i", strtotime($row['dataHora']))?>
-                        </td>
-                        <td>
-                            <?php
+                <tr>
+                    <td>
+                        <?php echo $row['situ']; ?>
+                    </td>
+                    <td>
+                        <?php echo $row['idPedido'];?>
+                    </td>
+                    <td>
+                        <?php echo date("d/m/Y H:i", strtotime($row['dataHora']))?>
+                    </td>
+                    <td>
+                        <?php
                             // Recuperar os IDs dos produtos
                             $ids = explode(',', $row['produtos_concatenados']);
 
@@ -207,41 +212,44 @@ $result = $mysqli->query($sql_query) or die($mysqli->error);
                                 $stmt->close();
                             }
                             ?>
-                        </td>
-                        <td>
-                            <?php echo $row['entrega'];?>
-                        </td>
-                        <td>
-                            <?php echo $row['pagamento']?>
-                        </td>
-                        <td>
-                            <?php echo "R$" . number_format($total, 2, "," , "." . "<br>")?> <?php echo "Troco:" . "R$" . number_format($row['troco'], 2, "," , ".")?>
-                        </td>
-                        <td>
-                            <?php echo $row['pnome']?> <?php echo $row[ 'sobrenome']?>
-                        </td>
-                        <td>
-                            <?php echo $row['cell']?>
-                        </td>
-                        <td>
-                            <?php echo $row['rua'] . ', ' . $row['numero'] . ', ' . $row['complemento']?>
-                        </td>
-                        <td>
-                            <?php echo $row['referencia']; ?>
-                        </td>
-                        <td>
-                            <a href="./receber_pedido.php?preparando=<?php echo $row['idPedido'] ?>" class="verde">Aceitar</a>
-                        </td>
-                        <td>
-                            <a href="./receber_pedido.php?rota=<?php echo $row['idPedido'] ?>" class="verde">Rota</a>
-                        </td>
-                        <td>
-                            <button class="recusar vermelho" data-id="<?php echo $row['idPedido'] ?>">Recusar</button>
-                        </td>
-                        <td>
-                            <a href="./receber_pedido.php?finalizar=<?php echo $row['idPedido'] ?>" class="vermelho">Finalizar</a>
-                        </td>
-                    </tr>
+                    </td>
+                    <td>
+                        <?php echo $row['entrega'];?>
+                    </td>
+                    <td>
+                        <?php echo $row['pagamento']?>
+                    </td>
+                    <td>
+                        <?php echo "R$" . number_format($total, 2, "," , "." . "<br>")?>
+                        <?php echo "Troco:" . "R$" . number_format($row['troco'], 2, "," , ".")?>
+                    </td>
+                    <td>
+                        <?php echo $row['pnome']?> <?php echo $row[ 'sobrenome']?>
+                    </td>
+                    <td>
+                        <?php echo $row['cell']?>
+                    </td>
+                    <td>
+                        <?php echo $row['rua'] . ', ' . $row['numero'] . ', ' . $row['complemento']?>
+                    </td>
+                    <td>
+                        <?php echo $row['referencia']; ?>
+                    </td>
+                    <td>
+                        <a href="./receber_pedido.php?preparando=<?php echo $row['idPedido'] ?>"
+                            class="verde">Aceitar</a>
+                    </td>
+                    <td>
+                        <a href="./receber_pedido.php?rota=<?php echo $row['idPedido'] ?>" class="verde">Rota</a>
+                    </td>
+                    <td>
+                        <button class="recusar vermelho" data-id="<?php echo $row['idPedido'] ?>">Recusar</button>
+                    </td>
+                    <td>
+                        <a href="./receber_pedido.php?finalizar=<?php echo $row['idPedido'] ?>"
+                            class="vermelho">Finalizar</a>
+                    </td>
+                </tr>
             </tbody>
         </table><br>
         <?php } ?>
@@ -252,33 +260,34 @@ $result = $mysqli->query($sql_query) or die($mysqli->error);
         <button onclick="enviarMotivo()" style="width: 100%;">Enviar</button>
     </div>
     <script>
-        setInterval(function() {
-            location.reload();
-        }, 30000);
+    setInterval(function() {
+        location.reload();
+    }, 30000);
 
-        document.querySelectorAll('.recusar').forEach(button => {
-            button.addEventListener('click', function() {
-                const filter = document.querySelector('.filter');
-                const motivoDiv = document.querySelector('.motivo');
-                motivoDiv.style.display = 'block';
-                filter.style.display = 'block';
-                motivoDiv.dataset.idPedido = this.dataset.id;
-                motivoDiv.classList.add('animated');
-            });
-        });
-
-        document.querySelector('.filter').addEventListener('click', function(){
+    document.querySelectorAll('.recusar').forEach(button => {
+        button.addEventListener('click', function() {
             const filter = document.querySelector('.filter');
             const motivoDiv = document.querySelector('.motivo');
-            motivoDiv.style.display = 'none';
-            filter.style.display = 'none';
-        })
+            motivoDiv.style.display = 'block';
+            filter.style.display = 'block';
+            motivoDiv.dataset.idPedido = this.dataset.id;
+            motivoDiv.classList.add('animated');
+        });
+    });
 
-        function enviarMotivo() {
-            const motivo = document.querySelector('#motivo').value;
-            const idPedido = document.querySelector('.motivo').dataset.idPedido;
-            window.location.href = './receber_pedido.php?recusar=' + idPedido + '&motivo=' + encodeURIComponent(motivo);
-        }
+    document.querySelector('.filter').addEventListener('click', function() {
+        const filter = document.querySelector('.filter');
+        const motivoDiv = document.querySelector('.motivo');
+        motivoDiv.style.display = 'none';
+        filter.style.display = 'none';
+    })
+
+    function enviarMotivo() {
+        const motivo = document.querySelector('#motivo').value;
+        const idPedido = document.querySelector('.motivo').dataset.idPedido;
+        window.location.href = './receber_pedido.php?recusar=' + idPedido + '&motivo=' + encodeURIComponent(motivo);
+    }
     </script>
 </body>
+
 </html>

@@ -110,6 +110,7 @@ $stmt->close();
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -118,6 +119,7 @@ $stmt->close();
     <link rel="shortcut icon" href="./imagens/favicon.ico" type="image/x-icon">
     <title>Perfil</title>
 </head>
+
 <body>
 
     <div class="loading">
@@ -137,58 +139,74 @@ $stmt->close();
     <div class="opcoes">
         <form action="./deletar_perfil.php" method="post" class="excl">
             <div class="close">
-                <p class="closeWindow"><img src="./imagens/close_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" alt="Fechar"></p>
+                <p class="closeWindow"><img src="./imagens/close_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png"
+                        alt="Fechar"></p>
             </div>
             <h1>Excluir Perfil</h1>
             <input type="password" name="pass" id="pass" placeholder="Confirme a Sua Senha" required>
-            <p style="color: red; font-weight: bold; font-size: .8em;"><?php echo htmlspecialchars($_SESSION['errorPass'] ?? '', ENT_QUOTES, 'UTF-8')?></p>
+            <p style="color: red; font-weight: bold; font-size: .8em;">
+                <?php echo htmlspecialchars($_SESSION['errorPass'] ?? '', ENT_QUOTES, 'UTF-8')?></p>
             <div class="btns">
                 <button type="submit">Excluir</button>
-                <p class="closeWindow" >Cancelar</p>
+                <p class="closeWindow">Cancelar</p>
             </div>
         </form>
     </div>
     <main>
         <section>
-        <h1 class="titleForm">Minhas Informações</h1>
+            <h1 class="titleForm">Minhas Informações</h1>
             <form action="" method="post">
                 <div class="inpu" id="in">
-                    <input type="text" name="nome" id="pNome" placeholder="Nome" required value="<?php echo htmlspecialchars($row['pnome'], ENT_QUOTES, 'UTF-8') ?>">
+                    <input type="text" name="nome" id="pNome" placeholder="Nome" required
+                        value="<?php echo htmlspecialchars($row['pnome'], ENT_QUOTES, 'UTF-8') ?>">
                 </div>
                 <div class="inpu">
-                    <input type="text" name="sNome" id="sNome" placeholder="Sobrenome" required value="<?php echo htmlspecialchars($row['sobrenome'], ENT_QUOTES, 'UTF-8') ?>">
+                    <input type="text" name="sNome" id="sNome" placeholder="Sobrenome" required
+                        value="<?php echo htmlspecialchars($row['sobrenome'], ENT_QUOTES, 'UTF-8') ?>">
                 </div>
                 <div class="inpu" id="im">
-                    <input type="text" name="cell" id="cell" placeholder="Número para Contato" required value="<?php echo htmlspecialchars($row['cell'], ENT_QUOTES, 'UTF-8') ?>">
-                    <p style="font-size: .8em; color: red; margin-left: 15px;"><?php echo htmlspecialchars($cell_error, ENT_QUOTES, 'UTF-8') ?></p>
+                    <input type="text" name="cell" id="cell" placeholder="Número para Contato" required
+                        value="<?php echo htmlspecialchars($row['cell'], ENT_QUOTES, 'UTF-8') ?>">
+                    <p style="font-size: .8em; color: red; margin-left: 15px;">
+                        <?php echo htmlspecialchars($cell_error, ENT_QUOTES, 'UTF-8') ?></p>
                 </div>
                 <div class="inpu">
-                    <input type="text" name="email" id="email" placeholder="E-mail" required value="<?php echo htmlspecialchars($row['email'], ENT_QUOTES, 'UTF-8') ?>">
-                    <p style="font-size: .8em; color: red; margin-left: 15px;"><?php echo htmlspecialchars($email_error, ENT_QUOTES, 'UTF-8') ?></p>
+                    <input type="text" name="email" id="email" placeholder="E-mail" required
+                        value="<?php echo htmlspecialchars($row['email'], ENT_QUOTES, 'UTF-8') ?>">
+                    <p style="font-size: .8em; color: red; margin-left: 15px;">
+                        <?php echo htmlspecialchars($email_error, ENT_QUOTES, 'UTF-8') ?></p>
                 </div>
                 <div class="inpu">
-                    <input type="text" name="cep" id="cep" placeholder="CEP" required value="<?php echo htmlspecialchars($row['cep'], ENT_QUOTES, 'UTF-8') ?>">
+                    <input type="text" name="cep" id="cep" placeholder="CEP" required
+                        value="<?php echo htmlspecialchars($row['cep'], ENT_QUOTES, 'UTF-8') ?>">
                 </div>
                 <div class="inpu">
-                    <input type="text" name="estado" id="estado" placeholder="Estado" required value="<?php echo htmlspecialchars($row['estado'], ENT_QUOTES, 'UTF-8') ?>">
+                    <input type="text" name="estado" id="estado" placeholder="Estado" required
+                        value="<?php echo htmlspecialchars($row['estado'], ENT_QUOTES, 'UTF-8') ?>">
                 </div>
                 <div class="inpu">
-                    <input type="text" name="cidade" id="cidade" placeholder="Cidade" required value="<?php echo htmlspecialchars($row['cidade'], ENT_QUOTES, 'UTF-8') ?>">
+                    <input type="text" name="cidade" id="cidade" placeholder="Cidade" required
+                        value="<?php echo htmlspecialchars($row['cidade'], ENT_QUOTES, 'UTF-8') ?>">
                 </div>
                 <div class="inpu">
-                    <input type="text" name="bairro" id="bairro" placeholder="Bairro" required value="<?php echo htmlspecialchars($row['bairro'], ENT_QUOTES, 'UTF-8') ?>">
+                    <input type="text" name="bairro" id="bairro" placeholder="Bairro" required
+                        value="<?php echo htmlspecialchars($row['bairro'], ENT_QUOTES, 'UTF-8') ?>">
                 </div>
                 <div class="inpu">
-                    <input type="text" name="rua" id="rua" placeholder="Logradouro" required value="<?php echo htmlspecialchars($row['rua'], ENT_QUOTES, 'UTF-8') ?>">
+                    <input type="text" name="rua" id="rua" placeholder="Logradouro" required
+                        value="<?php echo htmlspecialchars($row['rua'], ENT_QUOTES, 'UTF-8') ?>">
                 </div>
                 <div class="inpu">
-                    <input type="text" name="numero" id="numero" placeholder="Número" required value="<?php echo htmlspecialchars($row['numero'], ENT_QUOTES, 'UTF-8') ?>">
+                    <input type="text" name="numero" id="numero" placeholder="Número" required
+                        value="<?php echo htmlspecialchars($row['numero'], ENT_QUOTES, 'UTF-8') ?>">
                 </div>
                 <div class="inpu">
-                    <input type="text" name="complemento" id="complemento" placeholder="Complemento(Opcional)" value="<?php echo htmlspecialchars($row['complemento'], ENT_QUOTES, 'UTF-8') ?>">
+                    <input type="text" name="complemento" id="complemento" placeholder="Complemento(Opcional)"
+                        value="<?php echo htmlspecialchars($row['complemento'], ENT_QUOTES, 'UTF-8') ?>">
                 </div>
                 <div class="inpu">
-                    <input type="text" name="referencia" id="referencia" placeholder="Ponto de Referência" required value="<?php echo htmlspecialchars($row['referencia'], ENT_QUOTES, 'UTF-8') ?>">
+                    <input type="text" name="referencia" id="referencia" placeholder="Ponto de Referência" required
+                        value="<?php echo htmlspecialchars($row['referencia'], ENT_QUOTES, 'UTF-8') ?>">
                 </div>
                 <p class="resposta" style="color: white;"></p>
                 <div class="btn">
@@ -198,7 +216,8 @@ $stmt->close();
             </form>
         </section>
         <div class="img">
-            <img src="./imagens/imagens_cadastro_usuario/comida-brasileira-simples-com-espaco-de-copia_23-2148739186.avif" alt="">
+            <img src="./imagens/imagens_cadastro_usuario/comida-brasileira-simples-com-espaco-de-copia_23-2148739186.avif"
+                alt="">
         </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -207,4 +226,5 @@ $stmt->close();
     <script src="./js_perfil/cep.js"></script>
     <script src="./js_perfil/funcoes.js"></script>
 </body>
+
 </html>

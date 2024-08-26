@@ -111,6 +111,7 @@ $result_bebida = $mysqli->query($sql);
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -118,9 +119,12 @@ $result_bebida = $mysqli->query($sql);
     <link rel="stylesheet" href="../estilo_adicionar/media_querie.css">
     <title>Adicionar Produtos</title>
 </head>
+
 <body>
-    <div style="position: absolute; left: 15px; margin: 15px 15px 0 0; font-size:1.2em;"><a href="./receber_pedido.php" style="color: white;">Meus pedidos</a></div>
-    <div class="logout" style="position: absolute; right: 0; margin: 15px 15px 0 0; font-size:1.2em;"><a href="./logout.php" style="color: white;">Sair</a></div>
+    <div style="position: absolute; left: 15px; margin: 15px 15px 0 0; font-size:1.2em;"><a href="./receber_pedido.php"
+            style="color: white;">Meus pedidos</a></div>
+    <div class="logout" style="position: absolute; right: 0; margin: 15px 15px 0 0; font-size:1.2em;"><a
+            href="./logout.php" style="color: white;">Sair</a></div>
     <div class="openClose">
         <a href="./adicionar_produto.php?aberto=<?php echo $_SESSION['situacao']?>" class="abrir">Abrir</a>
         <a href="./adicionar_produto.php?fechado=<?php echo $_SESSION['situacao']?>" class="fechar">Fechar</a>
@@ -128,9 +132,9 @@ $result_bebida = $mysqli->query($sql);
     <div class="situacao">
         <span class="abertoFechado">
             <?php if($_SESSION['situacao'] == 1): ?>
-                <span class="aberto">Aberto</span>
+            <span class="aberto">Aberto</span>
             <?php else :?>
-                <span class="fechado">Fechado</span>
+            <span class="fechado">Fechado</span>
             <?php endif; ?>
         </span>
     </div>
@@ -141,7 +145,8 @@ $result_bebida = $mysqli->query($sql);
     <main>
         <form action="" method="post" enctype="multipart/form-data">
             <h1>Cadastre</h1>
-            <select name="opcoes" id="opcoes" style="padding: 15px; margin-bottom: 15px; border-radius: 25px; border: none; box-shadow: inset 2px 2px 10px lightgray; outline: none; font-weight: bold;">
+            <select name="opcoes" id="opcoes"
+                style="padding: 15px; margin-bottom: 15px; border-radius: 25px; border: none; box-shadow: inset 2px 2px 10px lightgray; outline: none; font-weight: bold;">
                 <option value="" style="text-align: center;">Selecione a Categoria</option>
                 <option value="prato">Pratos</option>
                 <option value="bebida">Bebidas</option>
@@ -178,18 +183,23 @@ $result_bebida = $mysqli->query($sql);
                 <th>Indisponível</th>
             </thead>
             <tbody>
-                    <tr>
-                        <td><input type="checkbox" name="ativo" value="1" <?php echo ($row['ativo'] == 1) ? 'checked' : ''; ?>></td>
-                        <td><?php echo $row['idProdutos'];?></td>
-                        <td><?php echo $row['nome'];?></td>
-                        <td><?php echo $row['descricao'];?></td>
-                        <td id="desc"><?php echo "R$" . number_format($row['preco'], 2, "," , ".")?></td>
-                        <td><img height="50px" src="<?php echo $row['imagem'];?>" alt=""></td>
-                        <td><a href="./editar_produto.php?editar=<?php echo $row['idProdutos'];?>" class="editar">Editar</a></td>
-                        <td><a href="./deletar_produto.php?deletar=<?php echo $row['idProdutos'];?>" class="deletar">Deletar</a></td>
-                        <td><a href="./ativar_produto.php?atualizar=<?php echo $row['idProdutos'];?>" class="editar">Disponível</a></td>
-                        <td><a href="./desativar_produto.php?atualizar=<?php echo $row['idProdutos'];?>" class="deletar">Indisponível</a></td>
-                    </tr>
+                <tr>
+                    <td><input type="checkbox" name="ativo" value="1"
+                            <?php echo ($row['ativo'] == 1) ? 'checked' : ''; ?>></td>
+                    <td><?php echo $row['idProdutos'];?></td>
+                    <td><?php echo $row['nome'];?></td>
+                    <td><?php echo $row['descricao'];?></td>
+                    <td id="desc"><?php echo "R$" . number_format($row['preco'], 2, "," , ".")?></td>
+                    <td><img height="50px" src="<?php echo $row['imagem'];?>" alt=""></td>
+                    <td><a href="./editar_produto.php?editar=<?php echo $row['idProdutos'];?>" class="editar">Editar</a>
+                    </td>
+                    <td><a href="./deletar_produto.php?deletar=<?php echo $row['idProdutos'];?>"
+                            class="deletar">Deletar</a></td>
+                    <td><a href="./ativar_produto.php?atualizar=<?php echo $row['idProdutos'];?>"
+                            class="editar">Disponível</a></td>
+                    <td><a href="./desativar_produto.php?atualizar=<?php echo $row['idProdutos'];?>"
+                            class="deletar">Indisponível</a></td>
+                </tr>
                 <?php } ?>
             </tbody>
         </table>
@@ -210,22 +220,28 @@ $result_bebida = $mysqli->query($sql);
                 <th>Indisponível</th>
             </thead>
             <tbody>
-                    <tr>
-                        <td><input type="checkbox" name="ativo" value="1" <?php echo ($row['ativo'] == 1) ? 'checked' : ''; ?>></td>
-                        <td><?php echo $row['idProdutos'];?></td>
-                        <td><?php echo $row['nome'];?></td>
-                        <td><?php echo $row['descricao'];?></td>
-                        <td id="desc"><?php echo "R$" . number_format($row['preco'], 2, "," , ".")?></td>
-                        <td><img height="50px" src="<?php echo $row['imagem'];?>" alt=""></td>
-                        <td><a href="./editar_produto.php?editar=<?php echo $row['idProdutos'];?>" class="editar">Editar</a></td>
-                        <td><a href="./deletar_produto.php?deletar=<?php echo $row['idProdutos'];?>" class="deletar">Deletar</a></td>
-                        <td><a href="./ativar_produto.php?atualizar=<?php echo $row['idProdutos'];?>" class="editar">Disponível</a></td>
-                        <td><a href="./desativar_produto.php?atualizar=<?php echo $row['idProdutos'];?>" class="deletar">Indisponível</a></td>
-                    </tr>
+                <tr>
+                    <td><input type="checkbox" name="ativo" value="1"
+                            <?php echo ($row['ativo'] == 1) ? 'checked' : ''; ?>></td>
+                    <td><?php echo $row['idProdutos'];?></td>
+                    <td><?php echo $row['nome'];?></td>
+                    <td><?php echo $row['descricao'];?></td>
+                    <td id="desc"><?php echo "R$" . number_format($row['preco'], 2, "," , ".")?></td>
+                    <td><img height="50px" src="<?php echo $row['imagem'];?>" alt=""></td>
+                    <td><a href="./editar_produto.php?editar=<?php echo $row['idProdutos'];?>" class="editar">Editar</a>
+                    </td>
+                    <td><a href="./deletar_produto.php?deletar=<?php echo $row['idProdutos'];?>"
+                            class="deletar">Deletar</a></td>
+                    <td><a href="./ativar_produto.php?atualizar=<?php echo $row['idProdutos'];?>"
+                            class="editar">Disponível</a></td>
+                    <td><a href="./desativar_produto.php?atualizar=<?php echo $row['idProdutos'];?>"
+                            class="deletar">Indisponível</a></td>
+                </tr>
                 <?php } ?>
             </tbody>
         </table>
     </main>
     <script src="../js_adicionar/script.js"></script>
 </body>
+
 </html>

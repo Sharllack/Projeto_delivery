@@ -28,6 +28,7 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,6 +36,7 @@
     <link rel="stylesheet" href="./estilo_pass_reco/media_query.css">
     <title>Recuperação de Senha</title>
 </head>
+
 <body>
     <div class="voltar">
         <a href="./login_usuario.php">Voltar</a>
@@ -42,8 +44,10 @@
     <form action="" method="post">
         <h1>Recuperação</h1>
         <div class="input">
-            <input type="text" name="user" id="user" placeholder="Digite o seu Usuário" value="<?php echo isset($_POST['user']) ? $_POST['user'] : '' ?>" style="margin-bottom: 10px;">
-            <input type="email" name="email" id="email" placeholder="Preencha o seu E-mail" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '' ?>">
+            <input type="text" name="user" id="user" placeholder="Digite o seu Usuário"
+                value="<?php echo isset($_POST['user']) ? $_POST['user'] : '' ?>" style="margin-bottom: 10px;">
+            <input type="email" name="email" id="email" placeholder="Preencha o seu E-mail"
+                value="<?php echo isset($_POST['email']) ? $_POST['email'] : '' ?>">
         </div>
         <p style="color: red; font-size: .9em;"><?php echo $error_tot?></p>
         <div class="btn">
@@ -52,4 +56,5 @@
         </div>
     </form>
 </body>
+
 </html>

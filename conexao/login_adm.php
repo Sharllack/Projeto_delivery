@@ -39,6 +39,7 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,8 +47,9 @@
     <link rel="stylesheet" href="../estilo_login/media_querie.css">
     <title>Login</title>
 </head>
+
 <body>
-    
+
     <main>
         <form action="" method="post">
             <h1>Login</h1>
@@ -59,8 +61,10 @@
             </div>
         </form>
         <div class="img">
-            <img src="../imagens/imagens_login/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.avif" alt="">
+            <img src="../imagens/imagens_login/variedade-plana-com-deliciosa-comida-brasileira_23-2148739179.avif"
+                alt="">
         </div>
     </main>
 </body>
+
 </html>
