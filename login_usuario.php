@@ -43,8 +43,10 @@ if($sql_query->num_rows > 0) {
     } else {
         $erro = 'Usuário ou senha incorretos!';
     }
+} elseif($_POST['user'] == '' || $_POST['pass'] == '') {
+    $erro = 'Preencha os dados corretamente!';
 } else {
-    $erro = 'Usuário não encontrado!';
+    $erro = 'Usuário não encontrado.';
 }
 
 }
@@ -69,7 +71,7 @@ if($sql_query->num_rows > 0) {
     <main>
         <form action="" method="post">
             <h1>Login</h1>
-            <input type="text" name="user" id="user" placeholder="Usuário">
+            <input type="text" name="user" id="user" placeholder="Usuário" value="<?php echo isset($_POST['user']) ? $_POST['user'] : ''; ?>">
             <input type="password" name="pass" id="pass" placeholder="Senha"><br>
             <p id="erro" style="color: red; font-size:.8em; text-align:center;"><?php echo $erro; ?></p>
             <a href="./pass_reco.php">Esqueci a senha</a>
