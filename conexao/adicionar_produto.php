@@ -2,6 +2,8 @@
 include('./protect.php');
 require_once './conexao.php';
 
+$idAdmin = $_SESSION['idUsuario'];
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_FILES['imagem']) && isset($_POST['nome']) && isset($_POST['preco']) && isset($_POST['descricao']) && isset($_POST['opcoes'])) {
         $categoria = $_POST['opcoes'];
@@ -53,10 +55,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Por favor, preencha todos os campos.";
     }
 }
+
+if(isset($_GET['aberto'])) {
+    $ativo = isset($_GET['aberto']) ? 1 : 0;
+    $_SESSION['situacao'] = 1;
+
+    $stmt = $mysqli->prepare('UPDATE host SET situacao = ? WHERE idAdmin = ?');
+    $stmt->bind_param('ii', $ativo, $idAdmin);
+    $stmt->execute();
+    $stmt->close();
+}
+
+if(isset($_GET['fechado'])) {
+    $ativo = isset($_GET['fechado']) ? 0 : 1;
+    $_SESSION['situacao'] = 0;
+
+    $stmt = $mysqli->prepare('UPDATE host SET situacao = ? WHERE idAdmin = ?');
+    $stmt->bind_param('ii', $ativo, $idAdmin);
+    $stmt->execute();
+    $stmt->close();
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -64,6 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../estilo_adicionar/media_querie.css">
     <title>Adicionar Produtos</title>
 </head>
+
 <body>
     <div style="position: absolute; left: 15px; margin: 15px 15px 0 0; font-size:1.2em;">
         <a href="./receber_pedido.php" style="color: white;">Meus pedidos</a>
@@ -91,7 +115,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <main>
         <form action="processar_produto.php" method="post" enctype="multipart/form-data" class="formu">
             <h1>Cadastre</h1>
-            <select name="opcoes" id="opcoes" style="padding: 15px; margin-bottom: 15px; border-radius: 25px; border: none; box-shadow: inset 2px 2px 10px lightgray; outline: none; font-weight: bold;">
+            <select name="opcoes" id="opcoes"
+                style="padding: 15px; margin-bottom: 15px; border-radius: 25px; border: none; box-shadow: inset 2px 2px 10px lightgray; outline: none; font-weight: bold;">
                 <option value="" style="text-align: center;">Selecione a Categoria</option>
                 <option value="prato">Pratos</option>
                 <option value="bebida">Bebidas</option>
@@ -118,4 +143,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="../js_adicionar/jquery.js"></script>
     <script src="../js_adicionar/script.js"></script>
 </body>
+
 </html>
