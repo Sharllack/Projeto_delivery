@@ -2,7 +2,7 @@
 
 include('./conexao/conexao.php');
 
-if(!isset($_SESSION)) {
+if (!isset($_SESSION)) {
     session_start();
 };
 
@@ -11,7 +11,7 @@ $idUser = '';
 $distanceKm = 0;
 $cost = 0;
 
-if(!isset($_SESSION['user'])) {
+if (!isset($_SESSION['user'])) {
     $bairro = '';
 } else {
     $idUser = $_SESSION['idUsuario'];
@@ -50,7 +50,7 @@ if(!isset($_SESSION['user'])) {
     if ($data['status'] === 'OK') {
         // Obtém a distância
         $distance = $data['rows'][0]['elements'][0]['distance']['text'];
-        $distanceKm = $data['rows'][0]['elements'][0]['distance']['value']/1000;
+        $distanceKm = $data['rows'][0]['elements'][0]['distance']['value'] / 1000;
 
         // Define a taxa por quilômetro
         $ratePerKm = 1.00; // $1.00 por quilômetro
@@ -139,13 +139,13 @@ if (!empty($idUser)) {
         </div>
     </div>
 
-    <?php if(!isset($_SESSION['user'])):?>
-    <div class="logout" style="display: none;">
-    </div>
+    <?php if (!isset($_SESSION['user'])): ?>
+        <div class="logout" style="display: none;">
+        </div>
     <?php else: ?>
-    <div class="logout" style=" position: fixed; z-index: 9998;">
-        <a href="./logout_usuario.php">Sair</a>
-    </div>
+        <div class="logout" style=" position: fixed; z-index: 9998;">
+            <a href="./logout_usuario.php">Sair</a>
+        </div>
     <?php endif; ?>
 
     <header>
@@ -173,143 +173,143 @@ if (!empty($idUser)) {
                 alt="Logo do Restaurante" class="logoRestaurante">
             <p class="tempoDeEntrega">Restaurante • 20-90 min •
                 <span class="sit">
-                    <?php if($situacao == 1): ?>
-                    <span class="situ">Aberto</span>
-                    <?php else :?>
-                    <span class="situ">Fechado</span>
+                    <?php if ($situacao == 1): ?>
+                        <span class="situ">Aberto</span>
+                    <?php else : ?>
+                        <span class="situ">Fechado</span>
                     <?php endif; ?>
                 </span>
             </p>
             <p class="taxa">Taxa de entrega: <strong id="taxa"><?php
-             echo $taxaAtual?></strong></p>
+                                                                echo $taxaAtual ?></strong></p>
             <p class="horarioDeFuncionamento"><strong>Horário de funcionamento hoje:</strong></p>
             <p class="hora"><strong>11:00 às 15:00</strong></p>
             <hr class="hr">
-            <?php if(!isset($_SESSION['user'])):?>
-            <a href="./login_usuario.php" class="logBtn">FAÇA LOGIN</a>
+            <?php if (!isset($_SESSION['user'])): ?>
+                <a href="./login_usuario.php" class="logBtn">FAÇA LOGIN</a>
             <?php else: ?>
-            <div class="saudacao">
-                <p class="nomeDoCliente">Seja Bem-Vindo(a), <strong><?php echo $_SESSION['nome']?></strong>!</p>
-                <a href="./perfil.php" class="perfil"><img
-                        src="./imagens/person_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" alt="Perfil"></a>
-            </div>
+                <div class="saudacao">
+                    <p class="nomeDoCliente">Seja Bem-Vindo(a), <strong><?php echo $_SESSION['nome'] ?></strong>!</p>
+                    <a href="./perfil.php" class="perfil"><img
+                            src="./imagens/person_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" alt="Perfil"></a>
+                </div>
             <?php endif; ?>
         </div>
         <section style="padding: 15px;" class="secPratos">
             <h1 class="pratosTitle">ESCOLHA O SEU PRATO</h1>
             <div class="pratosContainer">
-                <?php while($row = $result->fetch_assoc()) { ?>
-                <?php
+                <?php while ($row = $result->fetch_assoc()) { ?>
+                    <?php
 
-                    if(!isset($_SESSION['idUsuario'])) {
+                    if (!isset($_SESSION['idUsuario'])) {
                         $off = './login_usuario.php';
                     } else {
                         $off = './complemento_produto.php?comprar=' . $row["idProdutos"];
                     }
 
                     ?>
-                <a href="<?php echo $off; ?>" class="linkPratos">
-                    <div class="pratos">
-                        <div class="imgPrato">
-                            <img height="80px" width="80px" src="./conexao/<?php echo $row['imagem'];?>" alt="">
-                        </div>
-                        <div class="infoGeral">
-                            <div class="info">
-                                <h1 class="nomeDoPrato"><?php echo $row['nome']?></h1>
-                                <p style="color: rgb(119, 119, 119);" class="descricaoDoPrato">
-                                    (<?php echo $row['descricao']?>)</p>
+                    <a href="<?php echo $off; ?>" class="linkPratos">
+                        <div class="pratos">
+                            <div class="imgPrato">
+                                <img height="80px" width="80px" src="./conexao/<?php echo $row['imagem']; ?>" alt="">
                             </div>
-                            <div class="preco">
-                                <p><?php echo "R$" . number_format($row['preco'], 2, "," , ".")?></p>
+                            <div class="infoGeral">
+                                <div class="info">
+                                    <h1 class="nomeDoPrato"><?php echo $row['nome'] ?></h1>
+                                    <p style="color: rgb(119, 119, 119);" class="descricaoDoPrato">
+                                        (<?php echo $row['descricao'] ?>)</p>
+                                </div>
+                                <div class="preco">
+                                    <p><?php echo "R$" . number_format($row['preco'], 2, ",", ".") ?></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
                 <?php } ?>
             </div>
         </section>
         <section style="padding: 15px;" class="secBebidas">
             <h1 class="titleBebidas">ESCOLHA A SUA BEBIDA</h1>
             <div class="pratosContainer">
-                <?php while($row = $result_bebibas->fetch_assoc()) { ?>
-                <?php
+                <?php while ($row = $result_bebibas->fetch_assoc()) { ?>
+                    <?php
 
-                    if(!isset($_SESSION['idUsuario'])) {
+                    if (!isset($_SESSION['idUsuario'])) {
                         $off = './login_usuario.php';
                     } else {
                         $off = './complemento_produto.php?comprar=' . $row["idProdutos"];
                     }
 
                     ?>
-                <a href="<?php echo $off; ?>" class="linkPratos">
-                    <div class="pratos">
-                        <div class="imgPrato">
-                            <img height="80px" width="80px" src="./conexao/<?php echo $row['imagem'];?>" alt="">
-                        </div>
-                        <div class="infoGeral">
-                            <div class="info">
-                                <h1 class="nomeDoPrato"><?php echo $row['nome']?></h1>
-                                <p style="color: rgb(119, 119, 119);" class="descricaoDoPrato">
-                                    (<?php echo $row['descricao']?>)</p>
+                    <a href="<?php echo $off; ?>" class="linkPratos">
+                        <div class="pratos">
+                            <div class="imgPrato">
+                                <img height="80px" width="80px" src="./conexao/<?php echo $row['imagem']; ?>" alt="">
                             </div>
-                            <div class="preco">
-                                <p><?php echo "R$" . number_format($row['preco'], 2, "," , ".")?></p>
+                            <div class="infoGeral">
+                                <div class="info">
+                                    <h1 class="nomeDoPrato"><?php echo $row['nome'] ?></h1>
+                                    <p style="color: rgb(119, 119, 119);" class="descricaoDoPrato">
+                                        (<?php echo $row['descricao'] ?>)</p>
+                                </div>
+                                <div class="preco">
+                                    <p><?php echo "R$" . number_format($row['preco'], 2, ",", ".") ?></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
                 <?php } ?>
             </div>
         </section>
     </main>
     <div class="btns">
-        <?php if(isset($_SESSION['user'])):?>
-        <div class="shopCart">
-            <a href="./carrinho.php" class="carrinho">
-                <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png"
-                    height="30px" width="30px" alt="Carrinho">
-                <div class="qtdCar">
-                    <input type="number" readonly name="qtdCar" id="qtdCar" value="<?php
+        <?php if (isset($_SESSION['user'])): ?>
+            <div class="shopCart">
+                <a href="./carrinho.php" class="carrinho">
+                    <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png"
+                        height="30px" width="30px" alt="Carrinho">
+                    <div class="qtdCar">
+                        <input type="number" readonly name="qtdCar" id="qtdCar" value="<?php
 
-                    // Prepare a consulta SQL
-                    $stmt = $mysqli->prepare('SELECT SUM(qtd) FROM itenscarrinho WHERE idUsuario = ?');
+                                                                                        // Prepare a consulta SQL
+                                                                                        $stmt = $mysqli->prepare('SELECT SUM(qtd) FROM itenscarrinho WHERE idUsuario = ?');
 
-                    if ($stmt) {
-                        // Bind o parâmetro
-                        $stmt->bind_param('i', $idUser);
+                                                                                        if ($stmt) {
+                                                                                            // Bind o parâmetro
+                                                                                            $stmt->bind_param('i', $idUser);
 
-                        // Execute a consulta
-                        $stmt->execute();
+                                                                                            // Execute a consulta
+                                                                                            $stmt->execute();
 
-                        // Bind o resultado
-                        $stmt->bind_result($qtdCar);
+                                                                                            // Bind o resultado
+                                                                                            $stmt->bind_result($qtdCar);
 
-                        // Obtenha o valor
-                        $stmt->fetch();
+                                                                                            // Obtenha o valor
+                                                                                            $stmt->fetch();
 
-                        // Feche a declaração
-                        $stmt->close();
+                                                                                            // Feche a declaração
+                                                                                            $stmt->close();
 
-                        // Se $qtdCar for NULL, define como 0
-                        $qtdCar = $qtdCar ?? 0;
+                                                                                            // Se $qtdCar for NULL, define como 0
+                                                                                            $qtdCar = $qtdCar ?? 0;
 
-                        // Exiba o valor
-                        echo htmlspecialchars($qtdCar);
-                    } else {
-                        // Em caso de erro na preparação da consulta, exiba 0
-                        echo '0';
-                    }
-                    ?>">
-                </div>
-            </a>
-        </div>
+                                                                                            // Exiba o valor
+                                                                                            echo htmlspecialchars($qtdCar);
+                                                                                        } else {
+                                                                                            // Em caso de erro na preparação da consulta, exiba 0
+                                                                                            echo '0';
+                                                                                        }
+                                                                                        ?>">
+                    </div>
+                </a>
+            </div>
         <?php else: ?>
-        <div class="shopCart">
-            <a href="./login_usuario.php" class="carrinho">
-                <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png"
-                    height="30px" width="30px" alt="Carrinho">
-            </a>
-        </div>
+            <div class="shopCart">
+                <a href="./login_usuario.php" class="carrinho">
+                    <img src="./imagens/imagens_pincipal/shopping_cart_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png"
+                        height="30px" width="30px" alt="Carrinho">
+                </a>
+            </div>
         <?php endif; ?>
         <div class="wpp">
             <a href="https://wa.me/5521990420932?text=Olá! Eu gostaria de tirar uma dúvida!" target="_blank"><img
@@ -349,7 +349,7 @@ if (!empty($idUser)) {
     <div class="borda1"></div>
     <div class="borda2"></div>
     <div class="borda3"></div>
-    
+
     <script src="./js_pincipal/swiper-bundle.min.js"></script>
     <script src="./js_pincipal/animacao.js"></script>
     <script src="./js_pincipal/funcoes.js"></script>
