@@ -1,563 +1,568 @@
 @charset "UTF-8";
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-    background-image: url('../imagens/imagens_pincipal/comida-criolla-peru-peruvian-food-260nw-2191344515.webp');
-    background-attachment: fixed;
-    background-size: cover;
+  background-image: url("../imagens/imagens_pincipal/comida-criolla-peru-peruvian-food-260nw-2191344515.webp");
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .open {
-    background-color: #55AA33;
+  background-color: #55aa33;
 }
 
 .closed {
-    background-color: red;
+  background-color: red;
 }
 
-.open, .closed {
-    color: white;
-    padding: 10px 25px;
-    font-weight: bold;
-    box-shadow: 3px 3px 10px black;
-    border-radius: 5px;
+.open,
+.closed {
+  color: white;
+  padding: 10px 25px;
+  font-weight: bold;
+  box-shadow: 3px 3px 10px black;
+  border-radius: 5px;
 }
 
 header {
-    position: fixed;
-    width: 100%;
-    z-index: 9996;
-    background-color: rgb(29, 48, 48);
-    color: white;
-    padding: 10px;
-    text-align: center;
-    box-shadow: 2px 8px 10px black;
+  position: fixed;
+  width: 100%;
+  z-index: 9996;
+  background-color: rgb(29, 48, 48);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 2px 8px 10px black;
 }
 
 header h1 {
-    text-shadow: 2px 2px 8px black;
+  text-shadow: 2px 2px 8px black;
 }
 
 main {
-    background-color: white;
-    margin: auto;
-    max-width: 1000px;
-    box-shadow: 3px 3px 10px black;
+  background-color: white;
+  margin: auto;
+  max-width: 1000px;
+  box-shadow: 3px 3px 10px black;
 }
 
 .home {
-    display: flex;
-    position: fixed;
-    z-index: 9997;
-    left: 15px;
-    top: 5px;
-    transition: .3s;
+  display: flex;
+  position: fixed;
+  z-index: 9997;
+  left: 15px;
+  top: 5px;
+  transition: 0.3s;
 }
 
 .home a {
-    background-color: #5A3F2F;
-    box-shadow: 2px 2px 10px black;
-    padding: 5px 25px;
-    border-radius: 5px;
+  background-color: #5a3f2f;
+  box-shadow: 2px 2px 10px black;
+  padding: 5px 25px;
+  border-radius: 5px;
 }
 
 .home:hover {
-    box-shadow: 8px 8px 10px black;
-    transform: scale(1.05);
+  box-shadow: 8px 8px 10px black;
+  transform: scale(1.05);
 }
 
 .agarra {
-    margin: auto;
-    background-color: #5a3f2f86;
-    height: 200px;
-    max-width: 1000px;
-    box-shadow: 3px 8px 10px black;
+  margin: auto;
+  background-color: #5a3f2f86;
+  height: 200px;
+  max-width: 1000px;
+  box-shadow: 3px 8px 10px black;
 }
 
 .infoPrincipal {
-    width: 100%;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-    transform: translate(0, -80px);
+  transform: translate(0, -80px);
 }
 
 .logoRestaurante {
-    border-radius: 50%;
-    height: 150px;
-    width: 150px;
-    border: 1px solid white;
-    box-shadow: 2px 2px 8px black;
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  border: 1px solid white;
+  box-shadow: 2px 2px 8px black;
 }
 
-.tempoDeEntrega, .hora, .horarioDeFuncionamento, .taxa{
-    margin-top: 15px;
+.tempoDeEntrega,
+.hora,
+.horarioDeFuncionamento,
+.taxa {
+  margin-top: 15px;
 }
 
-.hr, .nomeDoCliente {
-    margin-top: 10px;
+.hr,
+.nomeDoCliente {
+  margin-top: 10px;
 }
 
 .hr {
-    width: 300px;
+  width: 300px;
 }
 
 .logBtn {
-    display: block;
-    background-color: #5A3F2F;
-    color: white;
-    text-decoration: none;
-    width: 130px;
-    padding: 10px 15px;
-    margin-top: 15px;
-    box-shadow: 3px 3px 10px black;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: .3s;
+  display: block;
+  background-color: #5a3f2f;
+  color: white;
+  text-decoration: none;
+  width: 130px;
+  padding: 10px 15px;
+  margin-top: 15px;
+  box-shadow: 3px 3px 10px black;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
 
-    text-align: center;
+  text-align: center;
 }
 
 .logBtn:hover {
-    background-color: #8d634a;
+  background-color: #8d634a;
 }
 
 .logout {
-    display: flex;
-    position: fixed;
-    right:20px;
-    top:10px;
-    transition: .3s;
+  display: flex;
+  position: fixed;
+  right: 20px;
+  top: 10px;
+  transition: 0.3s;
 }
 
 .logout a {
-    box-shadow: 3px 3px 8px black;
-    background-color: red;
-    color: white;
-    padding: 10px 25px;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 5px;
+  box-shadow: 3px 3px 8px black;
+  background-color: red;
+  color: white;
+  padding: 10px 25px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
 }
 
 .logout:hover {
-    box-shadow: 10px 10px 10px black;
-    transform: scale(1.05);
+  box-shadow: 10px 10px 10px black;
+  transform: scale(1.05);
 }
 
 .pratosTitle {
-    margin-top: -60px;
-    margin-bottom: 15px;
-    color: darkslategray;
-    margin-left: 15px;
+  margin-top: -60px;
+  margin-bottom: 15px;
+  color: darkslategray;
+  margin-left: 15px;
 }
 
 .linkPratos {
-    background-color: rgb(252, 252, 252);
-    border: 1px solid silver;
-    border-radius: 5px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-    width: 48%;
-    height: 30%;
-    display: flex;
-    padding: 15px;
-    margin-bottom: 15px;
-    transition: .3s;
+  background-color: rgb(252, 252, 252);
+  border: 1px solid silver;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  width: 48%;
+  height: 30%;
+  display: flex;
+  padding: 15px;
+  margin-bottom: 15px;
+  transition: 0.3s;
 }
 
 .linkPratos:hover {
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.397);
-    transform: scale(1.02);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.397);
+  transform: scale(1.02);
 }
 
 .pratos {
-    display: flex;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
-.linkPratos{
-    color: black;
-    text-decoration: none;
+.linkPratos {
+  color: black;
+  text-decoration: none;
 }
 
 .infoGeral {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .pratosContainer {
-    width: 100%;
-    height: 80%;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .imgPrato img {
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.336);
-    border: 1px solid rgb(168, 168, 168);
-    border-radius: 50%;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.336);
+  border: 1px solid rgb(168, 168, 168);
+  border-radius: 50%;
 }
 
 .info {
-    margin-left: 25px;
+  margin-left: 25px;
 }
 
 .preco {
-    display: block;
-    font-weight: bold;
-    color: #27A143;
-    font-size: 1.3em;
+  display: block;
+  font-weight: bold;
+  color: #27a143;
+  font-size: 1.3em;
 }
 
 .preco p {
-    float: right;
+  float: right;
 }
 
 .descricaoDoPrato {
-    width: 90%;
-    word-break: break-all;
-    text-align: justify;
+  width: 90%;
+  word-break: break-all;
+  text-align: justify;
 }
 
 .titleBebidas {
-    margin-bottom: 15px;
-    color: darkslategray;
-    margin-left: 15px;
+  margin-bottom: 15px;
+  color: darkslategray;
+  margin-left: 15px;
 }
 
 .borda1 {
-    animation: borda1 1s infinite linear;
+  animation: borda1 1s infinite linear;
 }
 
 .borda2 {
-    animation: borda2 2s infinite linear;
+  animation: borda2 2s infinite linear;
 }
 
 .borda3 {
-    animation: borda3 3s infinite linear;
+  animation: borda3 3s infinite linear;
 }
 
 .wpp {
-    display: flex;
-    position: fixed;
-    z-index: 9999;
-    right: 50px;
-    bottom: 170px;
-    border-radius: 50%;
-    transition: .3s;
-    background-color: #2AB318;
-    box-shadow: 2px 2px 10px black;
+  display: flex;
+  position: fixed;
+  z-index: 9999;
+  right: 50px;
+  bottom: 170px;
+  border-radius: 50%;
+  transition: 0.3s;
+  background-color: #2ab318;
+  box-shadow: 2px 2px 10px black;
 
-    animation: tremewpp 5s infinite;
+  animation: tremewpp 5s infinite;
 }
 
-.wpp a img{
-    height: 80px;
-    width: 80px;
-    border-radius: 50%;
+.wpp a img {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
 }
 
 .wpp:hover {
-    box-shadow: 8px 8px 10px black;
-    transform: scale(1.05);
+  box-shadow: 8px 8px 10px black;
+  transform: scale(1.05);
 }
 
 .shopCart {
-    display: flex;
-    position: fixed;
-    z-index: 9997;
-    right: 50px;
-    bottom: 50px;
-    border-radius: 50%;
-    transition: .3s;
+  display: flex;
+  position: fixed;
+  z-index: 9997;
+  right: 50px;
+  bottom: 50px;
+  border-radius: 50%;
+  transition: 0.3s;
 
-    animation: treme 5s infinite;
+  animation: treme 5s infinite;
 }
 
 .shopCart a {
-    background-color: #5A3F;
-    box-shadow: 2px 2px 10px black;
-    border-radius: 50%;
-    padding: 25px;
+  background-color: #5a3f;
+  box-shadow: 2px 2px 10px black;
+  border-radius: 50%;
+  padding: 25px;
 }
 
 .shopCart:hover {
-    box-shadow: 8px 8px 10px black;
-    transform: scale(1.05);
+  box-shadow: 8px 8px 10px black;
+  transform: scale(1.05);
 }
 
 .darkMode {
-    position: fixed;
-    top: 12.5px;
-    right: 200px;
+  position: fixed;
+  top: 12.5px;
+  right: 200px;
 }
 
 #toggle-button {
-    position: relative;
-    width: 60px;
-    height: 34px;
-    margin-left: 15px;
-    margin-right: 15px;
-  }
+  position: relative;
+  width: 60px;
+  height: 34px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
 
-  #toggle-button input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
+#toggle-button input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
 
-  .slider1 {
-    width: 59px;
-    height: 35px;
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('../imagens/pexels-francesco-ungaro-998641.jpg');
-    background-position: center center;
-    background-size: contain;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
+.slider1 {
+  width: 59px;
+  height: 35px;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("../imagens/pexels-francesco-ungaro-998641.jpg");
+  background-position: center center;
+  background-size: contain;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
 
-  .slider1:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background: url('../imagens/pexels-felixmittermeier-956981.jpg');
-    background-position: center center;
-    background-size: contain;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
+.slider1:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background: url("../imagens/pexels-felixmittermeier-956981.jpg");
+  background-position: center center;
+  background-size: contain;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
 
-  input:checked + .slider1 {
-    background: url('../imagens/pexels-felixmittermeier-956981.jpg');
-    background-position: center center;
-    background-size: contain;
-  }
+input:checked + .slider1 {
+  background: url("../imagens/pexels-felixmittermeier-956981.jpg");
+  background-position: center center;
+  background-size: contain;
+}
 
-  input:checked + .slider1:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-    background: url('../imagens/pexels-francesco-ungaro-998641.jpg');
-    background-position: center center;
-    background-size: contain;
-  }
+input:checked + .slider1:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+  background: url("../imagens/pexels-francesco-ungaro-998641.jpg");
+  background-position: center center;
+  background-size: contain;
+}
 
-  /* Estilo adicional para o slider */
-  .slider1.round {
-    border-radius: 34px;
-  }
+/* Estilo adicional para o slider */
+.slider1.round {
+  border-radius: 34px;
+}
 
-  .slider1.round:before {
-    border-radius: 50%;
-  }
+.slider1.round:before {
+  border-radius: 50%;
+}
 
-  ::-webkit-scrollbar {
-    width: 10px;
+::-webkit-scrollbar {
+  width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #5A3F2F;
+  background-color: #5a3f2f;
 }
 
 footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    background-color: #5A3F2F;
-    box-shadow: inset 2px 2px 10px black;
-    padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: #5a3f2f;
+  box-shadow: inset 2px 2px 10px black;
+  padding: 15px;
 }
 
 iframe {
-    box-shadow: inset 2px 2px 10px black;
-    padding: 5px;
-    border-radius: 10px;
+  box-shadow: inset 2px 2px 10px black;
+  padding: 5px;
+  border-radius: 10px;
 }
 
 .outrasInfos {
-    text-align: center;
+  text-align: center;
 }
 
 .outrasInfos a {
-    text-decoration: none;
-    color: white;
-    font-weight: bolder;
-    margin-left: 10px;
+  text-decoration: none;
+  color: white;
+  font-weight: bolder;
+  margin-left: 10px;
 }
 
 .outrasInfos a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .outrasInfos h1 {
-    font-size: 2em;
-    color: white;
+  font-size: 2em;
+  color: white;
 }
 
 .redes a {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 #logoWpp {
-    width: 60px;
-    height: 60px;
-    margin-right: 0;
+  width: 60px;
+  height: 60px;
+  margin-right: 0;
 }
 
 .logos {
-    width: 50px;
-    height: 50px;
-    margin-right: 15px;
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
 }
 
 .endereco {
-    text-align: center;
-    width: 250px;
-    color: white;
+  text-align: center;
+  width: 250px;
+  color: white;
 }
 
 .endereco h1 {
-    font-size: 2em;
-    color: white;
+  font-size: 2em;
+  color: white;
 }
 
 .saudacao {
-    display: flex;
-    align-items: center;
-    margin-top: 5px;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
 }
 
 .saudacao a {
-    background-color: #5A3F2F;
-    margin-left: 5px;
-    border-radius: 10px;
-    box-shadow: 1px 1px 5px black;
-    transition: .3s;
+  background-color: #5a3f2f;
+  margin-left: 5px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px black;
+  transition: 0.3s;
 }
 
 .saudacao a:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .saudacao a img {
-    width: 30px;
+  width: 30px;
 }
 
 .infosFooter {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .devInfo {
-    text-align: center;
-    color: white;
-    font-size: .8em;
+  text-align: center;
+  color: white;
+  font-size: 0.8em;
 }
 
 .devInfo a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .devInfo a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .qtdCar {
-    position: absolute;
-    bottom: 50px;
-    right: 15px;
-    background-color: white;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    display: flex;
+  position: absolute;
+  bottom: 50px;
+  right: 15px;
+  background-color: white;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  display: flex;
 }
 
 .qtdCar input {
-    cursor: pointer;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    border: none;
-    font-weight: bold;
-    text-align: center;
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: none;
+  font-weight: bold;
+  text-align: center;
 }
 
 #qtdCar:focus {
-    outline: none;
+  outline: none;
 }
 
 input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
+  -webkit-appearance: none;
 }
 
 .loading {
-    height: 100vh;
-    width: 100vw;
-    background-color: rgba(0, 0, 0, 0.295);
-    z-index: 9999;
-    position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.295);
+  z-index: 9999;
+  position: fixed;
 
-    display: none;
+  display: none;
 }
 
 .load {
-    margin: auto;
-    top: 50%;
-    position: relative;
-    height: 80px;
-    width: 80px;
+  margin: auto;
+  top: 50%;
+  position: relative;
+  height: 80px;
+  width: 80px;
 
-    border-radius: 50%;
-    border-left: 2px solid white;
-    border-top: 2px solid white;
+  border-radius: 50%;
+  border-left: 2px solid white;
+  border-top: 2px solid white;
 
-    animation: load 5s infinite linear;
+  animation: load 5s infinite linear;
 }
 
 @keyframes load {
-    0% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(360deg);
+  }
 
-    25% {
-        transform: rotate(720deg);
-    }
+  25% {
+    transform: rotate(720deg);
+  }
 
-    50% {
-        transform: rotate(1080deg);
-    }
+  50% {
+    transform: rotate(1080deg);
+  }
 
-    75% {
-        transform: rotate(1440deg);
-    }
+  75% {
+    transform: rotate(1440deg);
+  }
 
-    100% {
-        transform: rotate(1800deg);
-    }
+  100% {
+    transform: rotate(1800deg);
+  }
 }

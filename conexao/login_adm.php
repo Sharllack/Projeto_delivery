@@ -1,33 +1,32 @@
-<?php 
-    require_once './conexao.php';
+<?php
+require_once './conexao.php';
 
-    $erro = '';
+$erro = '';
 
-    if(isset($_POST['user']) || isset($_POST['pass'])) { //Verificar se existe a variável.
+if (isset($_POST['user']) || isset($_POST['pass'])) { //Verificar se existe a variável.
 
-        $usu = $mysqli->real_escape_string($_POST['user']);
-        $sen = $mysqli->real_escape_string($_POST['pass']);
+    $usu = $mysqli->real_escape_string($_POST['user']);
+    $sen = $mysqli->real_escape_string($_POST['pass']);
 
-        $usu = $_POST['user'];
-        $sen = $_POST['pass'];
+    $usu = $_POST['user'];
+    $sen = $_POST['pass'];
 
-        $sql_code = "SELECT * FROM host WHERE user = '$usu' LIMIT 1";
-        $sql_query = $mysqli->query($sql_code) or die ("Falha na execução do código SQL: " . $mysqli->error);
-    
-    if($sql_query -> num_rows > 0) {
+    $sql_code = "SELECT * FROM host WHERE user = '$usu' LIMIT 1";
+    $sql_query = $mysqli->query($sql_code) or die("Falha na execução do código SQL: " . $mysqli->error);
+
+    if ($sql_query->num_rows > 0) {
         $usuario = $sql_query->fetch_assoc();
-        if(password_verify($sen, $usuario['pass'])) {
-            if(!isset($_SESSION)) {
+        if (password_verify($sen, $usuario['pass'])) {
+            if (!isset($_SESSION)) {
                 session_name('admin_session');
                 session_start();
             }
 
-            $_SESSION['user'] = $usuario['user']; // session é uma variável que continua válida em mais de uma tela.
+            $_SESSION['user'] = $usuario['user'];
             $_SESSION['idUsuario'] = $usuario['idAdmin'];
             $_SESSION['situacao'] = $usuario['situacao'];
 
-            header("Location: adicionar_produto.php"); //para redirecionar a pág.
-
+            header("Location: adicionar_produto.php");
         } else {
             $erro = 'Usuário ou senha incorretos!';
         }

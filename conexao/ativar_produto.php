@@ -20,4 +20,3 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         echo "Erro ao atualizar: " . $mysqli->error;
     }
 }
-?>

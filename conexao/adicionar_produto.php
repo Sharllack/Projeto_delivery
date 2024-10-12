@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-if(isset($_GET['aberto'])) {
+if (isset($_GET['aberto'])) {
     $ativo = isset($_GET['aberto']) ? 1 : 0;
     $_SESSION['situacao'] = 1;
 
@@ -66,7 +66,7 @@ if(isset($_GET['aberto'])) {
     $stmt->close();
 }
 
-if(isset($_GET['fechado'])) {
+if (isset($_GET['fechado'])) {
     $ativo = isset($_GET['fechado']) ? 0 : 1;
     $_SESSION['situacao'] = 0;
 
@@ -96,21 +96,21 @@ if(isset($_GET['fechado'])) {
         <a href="./logout.php" style="color: white;">Sair</a>
     </div>
     <div class="openClose">
-        <a href="./adicionar_produto.php?aberto=<?php echo $_SESSION['situacao']?>" class="abrir">Abrir</a>
-        <a href="./adicionar_produto.php?fechado=<?php echo $_SESSION['situacao']?>" class="fechar">Fechar</a>
+        <a href="./adicionar_produto.php?aberto=<?php echo $_SESSION['situacao'] ?>" class="abrir">Abrir</a>
+        <a href="./adicionar_produto.php?fechado=<?php echo $_SESSION['situacao'] ?>" class="fechar">Fechar</a>
     </div>
     <div class="situacao">
         <span class="abertoFechado">
-            <?php if($_SESSION['situacao'] == 1): ?>
-            <span class="aberto">Aberto</span>
-            <?php else :?>
-            <span class="fechado">Fechado</span>
+            <?php if ($_SESSION['situacao'] == 1): ?>
+                <span class="aberto">Aberto</span>
+            <?php else : ?>
+                <span class="fechado">Fechado</span>
             <?php endif; ?>
         </span>
     </div>
     <header>
         <h1>Adicionar Produtos</h1>
-        <p>Olá, <?= $_SESSION['user']?>! Vamos adicionar novos produtos!</p>
+        <p>Olá, <?= $_SESSION['user'] ?>! Vamos adicionar novos produtos!</p>
     </header>
     <main>
         <form action="processar_produto.php" method="post" enctype="multipart/form-data" class="formu">
