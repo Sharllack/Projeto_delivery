@@ -31,15 +31,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->close();
 
             // Fetch updated product list
-            $sql_query = "SELECT * FROM produtos WHERE categoria = 'prato' AND idAdmin = ?";
+            $sql_query = "SELECT * FROM produtos WHERE categoria = 'prato'";
             $stmt = $mysqli->prepare($sql_query);
-            $stmt->bind_param("i", $_SESSION['idUsuario']);
             $stmt->execute();
             $result = $stmt->get_result();
 
-            $sql = "SELECT * FROM produtos WHERE categoria = 'bebida' AND idAdmin = ?";
+            $sql = "SELECT * FROM produtos WHERE categoria = 'bebida'";
             $stmt = $mysqli->prepare($sql);
-            $stmt->bind_param("i", $_SESSION['idUsuario']);
             $stmt->execute();
             $result_bebida = $stmt->get_result();
 
@@ -91,6 +89,12 @@ if (isset($_GET['fechado'])) {
 <body>
     <div style="position: absolute; left: 15px; margin: 15px 15px 0 0; font-size:1.2em;">
         <a href="./receber_pedido.php" style="color: white;">Meus pedidos</a>
+    </div>
+    <div style="position: absolute; left: 15px; margin: 140px 140px 0 0; font-size:1.2em;">
+        <?php if ($_SESSION['user'] == "Lucas"): ?>
+            <a href="./adicionar_funcionario.php" style="color: white;">Adicionar Funcionário</a>
+        <?php else: ?>
+        <?php endif; ?>
     </div>
     <div class="logout" style="position: absolute; right: 0; margin: 15px 15px 0 0; font-size:1.2em;">
         <a href="./logout.php" style="color: white;">Sair</a>

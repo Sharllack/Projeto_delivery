@@ -1,307 +1,308 @@
 @charset "UTF-8";
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-    background-image: url('../imagens/imagens_pincipal/comida-criolla-peru-peruvian-food-260nw-2191344515.webp');
-    background-attachment: fixed;
-    background-size: cover;
+  background-image: url("../imagens/imagens_pincipal/comida-criolla-peru-peruvian-food-260nw-2191344515.webp");
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .open {
-    background-color: #55AA33;
+  background-color: #55aa33;
 }
 
 .closed {
-    background-color: red;
+  background-color: red;
 }
 
-.open, .closed {
-    color: white;
-    padding: 10px 25px;
-    font-weight: bold;
-    box-shadow: 3px 3px 10px black;
-    border-radius: 5px;
+.open,
+.closed {
+  color: white;
+  padding: 10px 25px;
+  font-weight: bold;
+  box-shadow: 3px 3px 10px black;
+  border-radius: 5px;
 }
 
 header {
-    position: fixed;
-    width: 100%;
-    z-index: 9997;
-    background-color: rgb(29, 48, 48);
-    color: white;
-    padding: 10px;
-    text-align: center;
-    box-shadow: 2px 8px 10px black;
+  position: fixed;
+  width: 100%;
+  z-index: 9997;
+  background-color: rgb(29, 48, 48);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 2px 8px 10px black;
 }
 
 header h1 {
-    text-shadow: 2px 2px 8px black;
+  text-shadow: 2px 2px 8px black;
 }
 
 main {
-    background-color: white;
-    margin: auto;
-    max-width: 1000px;
-    box-shadow: 3px 3px 10px black;
-    padding: 15px;
+  background-color: white;
+  margin: auto;
+  max-width: 1000px;
+  box-shadow: 3px 3px 10px black;
+  padding: 15px;
 }
 
 .home {
-    display: flex;
-    position: fixed;
-    z-index: 9998;
-    left: 15px;
-    top: 5px;
-    transition: .3s;
+  display: flex;
+  position: fixed;
+  z-index: 9998;
+  left: 15px;
+  top: 5px;
+  transition: 0.3s;
 }
 
 .home a {
-    background-color: #5A3F2F;
-    box-shadow: 2px 2px 10px black;
-    padding: 5px 25px;
-    border-radius: 5px;
+  background-color: #5a3f2f;
+  box-shadow: 2px 2px 10px black;
+  padding: 5px 25px;
+  border-radius: 5px;
 }
 
 .home:hover {
-    box-shadow: 8px 8px 10px black;
-    transform: scale(1.05);
+  box-shadow: 8px 8px 10px black;
+  transform: scale(1.05);
 }
 
 .openOrClosedDiv {
-    position: fixed;
-    right:15px;
-    top:20px;
-    z-index: 9999;
+  position: fixed;
+  right: 15px;
+  top: 20px;
+  z-index: 9999;
 }
 
 .produtoInfo {
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 50px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
 }
 
 .produtoInfo img {
-    width: 300px;
-    height: 300px;
-    border: 1px silver solid;
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.404);
+  width: 200px;
+  height: 200px;
+  border: 1px silver solid;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.404);
 }
 
 .nome {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .descricao {
-    margin-top: 10px;
-    color: rgb(119, 119, 119);
+  margin-top: 10px;
+  color: rgb(119, 119, 119);
 }
 
 .preco {
-    margin-top: 10px;
-    font-weight: bold;
-    color: #27A143;
-    font-size: 1.3em;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #27a143;
+  font-size: 1.3em;
 }
 
 .text {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 #obs {
-    padding: 15px;
-    font-size: 1.2em;
-    width: 100%;
-    height: 150px;
-    resize: none;
+  padding: 15px;
+  font-size: 1.2em;
+  width: 100%;
+  height: 150px;
+  resize: none;
 }
 
 .btn {
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    margin-top: 15px;
-    width: 100%;
-    padding: 15px;
-    font-size: 1.3em;
-    font-weight: bold;
-    border-radius: 10px;
-    border: none;
-    background-color: #27A143;
-    color: white;
-    box-shadow: 2px 2px 10px black;
-    transition: .3s;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 15px;
+  width: 100%;
+  padding: 15px;
+  font-size: 1.3em;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  background-color: #27a143;
+  color: white;
+  box-shadow: 2px 2px 10px black;
+  transition: 0.3s;
 
-    animation: treme 5s 1s infinite;
+  animation: treme 5s 1s infinite;
 }
 
 @keyframes treme {
-    0% {
-        transform: translateX(0px);
-    }
-    1% {
-        transform: translateX(10px);
-    }
-    3% {
-        transform: translateX(-10px);
-    }
-    5% {
-        transform: translateX(10px);
-    }
-    7% {
-        transform: translateX(0px);
-    }
+  0% {
+    transform: translateX(0px);
+  }
+  1% {
+    transform: translateX(10px);
+  }
+  3% {
+    transform: translateX(-10px);
+  }
+  5% {
+    transform: translateX(10px);
+  }
+  7% {
+    transform: translateX(0px);
+  }
 }
 
 .btn:hover {
-    transform: scale(1.01);
-    box-shadow: 10px 10px 10px black;
+  transform: scale(1.01);
+  box-shadow: 10px 10px 10px black;
 }
 
-.btn:active{
-    transform: scale(.95);
-    box-shadow: 1px 1px 10px black;
+.btn:active {
+  transform: scale(0.95);
+  box-shadow: 1px 1px 10px black;
 }
 
 .titleText {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .darkMode {
-    position: fixed;
-    top: 12.5px;
-    right: 200px;
+  position: fixed;
+  top: 12.5px;
+  right: 200px;
 }
 
 #toggle-button {
-    position: relative;
-    width: 60px;
-    height: 34px;
-    margin-left: 15px;
-    margin-right: 15px;
-  }
+  position: relative;
+  width: 60px;
+  height: 34px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
 
-  #toggle-button input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
+#toggle-button input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
 
-  .slider1 {
-    width: 59px;
-    height: 35px;
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('../imagens/pexels-francesco-ungaro-998641.jpg');
-    background-position: center center;
-    background-size: contain;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
+.slider1 {
+  width: 59px;
+  height: 35px;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("../imagens/pexels-francesco-ungaro-998641.jpg");
+  background-position: center center;
+  background-size: contain;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
 
-  .slider1:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background: url('../imagens/pexels-felixmittermeier-956981.jpg');
-    background-position: center center;
-    background-size: contain;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
+.slider1:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background: url("../imagens/pexels-felixmittermeier-956981.jpg");
+  background-position: center center;
+  background-size: contain;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
 
-  input:checked + .slider1 {
-    background: url('../imagens/pexels-felixmittermeier-956981.jpg');
-    background-position: center center;
-    background-size: contain;
-  }
+input:checked + .slider1 {
+  background: url("../imagens/pexels-felixmittermeier-956981.jpg");
+  background-position: center center;
+  background-size: contain;
+}
 
-  input:checked + .slider1:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-    background: url('../imagens/pexels-francesco-ungaro-998641.jpg');
-    background-position: center center;
-    background-size: contain;
-  }
+input:checked + .slider1:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+  background: url("../imagens/pexels-francesco-ungaro-998641.jpg");
+  background-position: center center;
+  background-size: contain;
+}
 
-  /* Estilo adicional para o slider */
-  .slider1.round {
-    border-radius: 34px;
-  }
+/* Estilo adicional para o slider */
+.slider1.round {
+  border-radius: 34px;
+}
 
-  .slider1.round:before {
-    border-radius: 50%;
-  }
+.slider1.round:before {
+  border-radius: 50%;
+}
 
-  ::-webkit-scrollbar {
-    width: 10px;
+::-webkit-scrollbar {
+  width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #5A3F2F;
+  background-color: #5a3f2f;
 }
 
 .loading {
-    height: 100vh;
-    width: 100vw;
-    background-color: rgba(0, 0, 0, 0.295);
-    z-index: 9999;
-    position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.295);
+  z-index: 9999;
+  position: fixed;
 
-    display: none;
+  display: none;
 }
 
 .load {
-    margin: auto;
-    top: 50%;
-    position: relative;
-    height: 80px;
-    width: 80px;
+  margin: auto;
+  top: 50%;
+  position: relative;
+  height: 80px;
+  width: 80px;
 
-    border-radius: 50%;
-    border-left: 2px solid white;
-    border-top: 2px solid white;
+  border-radius: 50%;
+  border-left: 2px solid white;
+  border-top: 2px solid white;
 
-    animation: load 5s infinite linear;
+  animation: load 5s infinite linear;
 }
 
 @keyframes load {
-    0% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(360deg);
+  }
 
-    25% {
-        transform: rotate(720deg);
-    }
+  25% {
+    transform: rotate(720deg);
+  }
 
-    50% {
-        transform: rotate(1080deg);
-    }
+  50% {
+    transform: rotate(1080deg);
+  }
 
-    75% {
-        transform: rotate(1440deg);
-    }
+  75% {
+    transform: rotate(1440deg);
+  }
 
-    100% {
-        transform: rotate(1800deg);
-    }
+  100% {
+    transform: rotate(1800deg);
+  }
 }
