@@ -92,7 +92,7 @@ if (isset($_GET['fechado'])) {
     </div>
     <div style="position: absolute; left: 15px; margin: 140px 140px 0 0; font-size:1.2em;">
         <?php if ($_SESSION['user'] == "Lucas"): ?>
-            <a href="./adicionar_funcionario.php" style="color: white;">Adicionar Funcionário</a>
+        <a href="./adicionar_funcionario.php" style="color: white;">Adicionar Funcionário</a>
         <?php else: ?>
         <?php endif; ?>
     </div>
@@ -106,9 +106,9 @@ if (isset($_GET['fechado'])) {
     <div class="situacao">
         <span class="abertoFechado">
             <?php if ($_SESSION['situacao'] == 1): ?>
-                <span class="aberto">Aberto</span>
+            <span class="aberto">Aberto</span>
             <?php else : ?>
-                <span class="fechado">Fechado</span>
+            <span class="fechado">Fechado</span>
             <?php endif; ?>
         </span>
     </div>

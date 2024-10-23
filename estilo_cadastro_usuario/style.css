@@ -1,183 +1,203 @@
 @charset "UTF-8";
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-    background-attachment: fixed;
-    background-image: linear-gradient(45deg, #5A3F2F, darkslategray);
+  background-attachment: fixed;
+  background-image: linear-gradient(45deg, #5a3f2f, darkslategray);
 }
 
 .voltar {
-    padding: 15px;
+  padding: 15px;
 }
 
 .voltar a {
-    color: white;
-    font-size: 1.2em;
-    text-decoration: none;
+  color: white;
+  font-size: 1.2em;
+  text-decoration: none;
 }
 
 .voltar a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 main {
-    margin: auto;
-    margin-top: 35px;
+  margin: auto;
+  margin-top: 35px;
 
-    height: 550px;
-    width: 1200px;
-    background-color: #5A3F2F;
-    display: flex;
+  height: 550px;
+  width: 1200px;
+  background-color: #5a3f2f;
+  display: flex;
 
-    border-radius: 15px;
-    box-shadow: 2px 2px 8px black;
+  border-radius: 15px;
+  box-shadow: 2px 2px 8px black;
 }
 
 section {
-    background-color: darkslategray;
-    width: 50%;
-    height: 100%;
-    padding: 15px;
+  background-color: darkslategray;
+  width: 50%;
+  height: 100%;
+  padding: 15px;
 
-    border-radius: 15px 0 0 15px;
+  border-radius: 15px 0 0 15px;
 }
 
 section h1 {
-    text-align: center;
-    color: white;
+  text-align: center;
+  color: white;
 }
 
-form {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-wrap: wrap;
+#principal {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .inpu {
-    width: 48%;
-    margin: auto;
-    margin-bottom: 5px;
+  width: 48%;
+  margin: auto;
+  margin-bottom: 5px;
 }
 
-input {
-    width: 100%;
-    padding: 15px;
-    border-radius: 15px;
-    border: none;
-    border-bottom: 2px solid darkslategray;
-    outline: none;
-    box-shadow: inset 2px 2px 8px rgb(36, 36, 36);
-    transition: .3s;
+input,
+.label select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 15px;
+  border: none;
+  border-bottom: 2px solid darkslategray;
+  outline: none;
+  box-shadow: inset 2px 2px 8px rgb(36, 36, 36);
+  transition: 0.3s;
 }
 
 #bgSenha {
-    border-radius: 5px;
+  border-radius: 5px;
 }
 
 input:focus {
-    border-bottom: 2px solid brown;
+  border-bottom: 2px solid brown;
 }
 
 .btn {
-    width: 100%;
-    padding-bottom: 30px;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 5px;
+  width: 100%;
+  padding-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
 }
 
-button[type="submit"] {
-    cursor: pointer;
-    background-color: blue;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    box-shadow: 3px 3px 0px rgb(0, 0, 0);
-    transition: .3s
+button[type="submit"],
+#prox {
+  cursor: pointer;
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  box-shadow: 3px 3px 0px rgb(0, 0, 0);
+  transition: 0.3s;
 }
 
-button[type="reset"] {
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    box-shadow: 3px 3px 0px rgb(0, 0, 0);
-    transition: .3s
+button[type="reset"],
+#voltar {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  box-shadow: 3px 3px 0px rgb(0, 0, 0);
+  transition: 0.3s;
 }
 
-button[type="reset"]:hover, button[type="submit"]:hover{
-    transform: scale(1.05);
-    box-shadow: 5px 5px 0px rgb(0, 0, 0);
+button[type="reset"]:hover,
+button[type="submit"]:hover,
+#prox:hover,
+#voltar:hover {
+  transform: scale(1.03);
+  box-shadow: 5px 5px 0px rgb(0, 0, 0);
 }
 
 .img {
-    width: 50%;
+  width: 50%;
 }
 
 .img img {
-    width: 100%;
-    height: 100%;
-    border-radius: 0 15px 15px 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0 15px 15px 0;
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #5A3F2F;
+  background-color: #5a3f2f;
 }
 
 .loading {
-    height: 100vh;
-    width: 100vw;
-    background-color: rgba(0, 0, 0, 0.295);
-    z-index: 9999;
-    position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.295);
+  z-index: 9999;
+  position: fixed;
 
-    display: none;
+  display: none;
 }
 
 .load {
-    margin: auto;
-    top: 50%;
-    position: relative;
-    height: 80px;
-    width: 80px;
+  margin: auto;
+  top: 50%;
+  position: relative;
+  height: 80px;
+  width: 80px;
 
-    border-radius: 50%;
-    border-left: 2px solid white;
-    border-top: 2px solid white;
+  border-radius: 50%;
+  border-left: 2px solid white;
+  border-top: 2px solid white;
 
-    animation: load 5s infinite linear;
+  animation: load 5s infinite linear;
 }
 
 @keyframes load {
-    0% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(360deg);
+  }
 
-    25% {
-        transform: rotate(720deg);
-    }
+  25% {
+    transform: rotate(720deg);
+  }
 
-    50% {
-        transform: rotate(1080deg);
-    }
+  50% {
+    transform: rotate(1080deg);
+  }
 
-    75% {
-        transform: rotate(1440deg);
-    }
+  75% {
+    transform: rotate(1440deg);
+  }
 
-    100% {
-        transform: rotate(1800deg);
-    }
+  100% {
+    transform: rotate(1800deg);
+  }
+}
+
+.label {
+  width: 50%;
+}
+
+.label select {
+  width: 95%;
+  margin-left: 8px;
+}
+
+.autenticacao {
+  width: 98%;
+  margin-left: 8px;
 }

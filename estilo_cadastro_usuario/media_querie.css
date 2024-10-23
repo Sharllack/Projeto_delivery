@@ -1,67 +1,80 @@
 @charset "UTF-8";
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 600px) {
+  .img {
+    display: none;
+  }
 
-    .img {
-        display: none;
-    }
+  main {
+    width: 90%;
+    margin-top: 15px;
+    height: 100%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+  }
 
-    main {
-        width: 90%;
-        margin-top: 15px;
-        height: 100%;
-        border-radius: 15px;
-        margin-bottom: 15px;
-    }
+  section {
+    width: 100%;
+    border-radius: 15px;
+  }
 
-    section {
-        width: 100%;
-        border-radius: 15px;
-    }
+  form {
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
 
-    form {
-        flex-wrap: nowrap;
-        flex-direction: column;
-    }
+  .inpu {
+    width: 100%;
+  }
 
-    .inpu {
-        width: 100%;
-    }
+  input {
+    margin-bottom: 5px;
+  }
 
-    input {
-        margin-bottom: 5px;
-    }
+  .btn {
+    margin-top: 0px;
+  }
 
-    .btn {
-        margin-top: 0px;
-    }
+  .label {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 
+  .label select {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .autenticacao {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 @media screen and (min-width: 600px) and (max-width: 1219px) {
-    .img {
-        display: none;
-    }
+  .img {
+    display: none;
+  }
 
-    main {
-        width: 100%;
-        margin-top: 15px;
-        height: 100%;
-    }
+  main {
+    width: 100%;
+    margin-top: 15px;
+    height: 100%;
+  }
 
-    section {
-        width: 100%;
-    }
+  section {
+    width: 100%;
+  }
 
-    form {
-        flex-wrap: wrap;
-    }
+  form {
+    flex-wrap: wrap;
+  }
 
-    .inpu {
-        width: 48%;
-    }
+  .inpu {
+    width: 48%;
+  }
 
-    input {
-        margin-bottom: 5px;
-    }
+  input {
+    margin-bottom: 5px;
+  }
 }

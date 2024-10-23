@@ -270,7 +270,6 @@ if (!empty($idUser)) {
                         height="30px" width="30px" alt="Carrinho">
                     <div class="qtdCar">
                         <input type="number" readonly name="qtdCar" id="qtdCar" value="<?php
-
                                                                                         // Prepare a consulta SQL
                                                                                         $stmt = $mysqli->prepare('SELECT SUM(qtd) FROM itenscarrinho WHERE idUsuario = ?');
 

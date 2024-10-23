@@ -4,22 +4,25 @@ include('./conexao/conexao.php');
 
 $usu_error = $cell_error = $email_error = '';
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-    if(isset($_POST['nome'])
-    && isset($_POST['sNome'])
-    && isset($_POST['cell'])
-    && isset($_POST['cep'])
-    && isset($_POST['estado'])
-    && isset($_POST['cidade'])
-    && isset($_POST['bairro'])
-    && isset($_POST['rua'])
-    && isset($_POST['numero'])
-    && isset($_POST['complemento'])
-    && isset($_POST['referencia'])
-    && isset($_POST['user'])
-    && isset($_POST['senha'])
-    && isset($_POST['cSenha'])
-    && isset($_POST['email'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (
+        isset($_POST['nome'])
+        && isset($_POST['sNome'])
+        && isset($_POST['cell'])
+        && isset($_POST['cep'])
+        && isset($_POST['estado'])
+        && isset($_POST['cidade'])
+        && isset($_POST['bairro'])
+        && isset($_POST['rua'])
+        && isset($_POST['numero'])
+        && isset($_POST['complemento'])
+        && isset($_POST['referencia'])
+        && isset($_POST['user'])
+        && isset($_POST['senha'])
+        && isset($_POST['cSenha'])
+        && isset($_POST['email'])
+        && isset($_POST['resAuten'])
+    ) {
 
         $nome = $_POST['nome'];
         $sNome = $_POST['sNome'];
@@ -35,39 +38,42 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $referencia = $_POST['referencia'];
         $usuario = $_POST['user'];
         $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+        $autenticacao = password_hash($_POST['resAuten'], PASSWORD_DEFAULT);
 
-       $sql_cell = "SELECT * FROM usuarios WHERE cell = '$cell' LIMIT 1";
-       $result_cell = $mysqli->query($sql_cell);
+        $sql_cell = "SELECT * FROM usuarios WHERE cell = '$cell' LIMIT 1";
+        $result_cell = $mysqli->query($sql_cell);
 
-       if($result_cell->num_rows > 0) {
-        $cell_error = "Celular já cadastrado.";
-       }
+        if ($result_cell->num_rows > 0) {
+            $cell_error = "Celular já cadastrado.";
+        }
 
-       $sql_email = "SELECT * FROM usuarios WHERE email = '$email' LIMIT 1";
-       $result_email = $mysqli->query($sql_email);
+        $sql_email = "SELECT * FROM usuarios WHERE email = '$email' LIMIT 1";
+        $result_email = $mysqli->query($sql_email);
 
-       if($result_email->num_rows > 0) {
-        $email_error = "E-mail já cadastrado.";
-       }
+        if ($result_email->num_rows > 0) {
+            $email_error = "E-mail já cadastrado.";
+        }
 
-       $sql_user = "SELECT * FROM usuarios WHERE usuario = '$usuario' LIMIT 1";
-       $result_user = $mysqli->query($sql_user);
+        $sql_user = "SELECT * FROM usuarios WHERE usuario = '$usuario' LIMIT 1";
+        $result_user = $mysqli->query($sql_user);
 
-       if($result_user->num_rows > 0) {
-        $usu_error = "Usuario já cadastrado.";
-       }
+        if ($result_user->num_rows > 0) {
+            $usu_error = "Usuario já cadastrado.";
+        }
 
-       if(empty($usu_error) && empty($cell_error) && empty($email_error)){
-        $stmt = $mysqli->prepare("INSERT INTO usuarios (pnome, sobrenome, cell, email, estado, cidade, bairro, rua, numero, complemento, referencia, cep, usuario, senha) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssssssssssss",$nome, $sNome, $cell, $email, $estado, $cidade, $bairro, $rua, $numero, $complemento, $referencia, $cep, $usuario, $senha);
-        $stmt->execute();
-        $stmt->close();
+        if (empty($usu_error) && empty($cell_error) && empty($email_error)) {
+            $stmt = $mysqli->prepare("INSERT INTO usuarios (pnome, sobrenome, cell, email, estado, cidade, bairro, rua, numero, complemento, referencia, cep, usuario, senha, autenticacao) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssssssssssss", $nome, $sNome, $cell, $email, $estado, $cidade, $bairro, $rua, $numero, $complemento, $referencia, $cep, $usuario, $senha, $autenticacao);
+            $stmt->execute();
+            $stmt->close();
+        }
+
 
         sleep(2);
 
         header("Location: ./login_usuario.php");
+
         exit;
-       }
     }
 }
 
@@ -99,7 +105,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <main>
         <section>
             <h1 class="titleForm">Cadastre-se</h1>
-            <form action="" method="post">
+            <form action="" method="post" id="principal">
                 <div class="inpu" id="in">
                     <input type="text" name="nome" id="pNome" placeholder="Nome" required
                         value="<?php echo isset($_POST['nome']) ? $_POST['nome'] : ''; ?>">
@@ -110,13 +116,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="inpu" id="im">
                     <input type="text" name="cell" id="cell" placeholder="Número para Contato" required
-                        value="<?php echo isset($_POST['cell']) ? $_POST['cell'] : ''; ?>">
-                    <p style="font-size: .8em; color: red; margin-left: 15px;"><?php echo $cell_error?></p>
+                        value="<?php echo isset($_POST['cell']) ? $_POST['cell'] : '+55'; ?>">
+                    <p style="font-size: .8em; color: red; margin-left: 15px;"><?php echo $cell_error ?></p>
                 </div>
                 <div class="inpu">
                     <input type="text" name="email" id="email" placeholder="E-mail" required
                         value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>">
-                    <p style="font-size: .8em; color: red; margin-left: 15px;"><?php echo $email_error?></p>
+                    <p style="font-size: .8em; color: red; margin-left: 15px;"><?php echo $email_error ?></p>
                 </div>
                 <div class="inpu">
                     <input type="text" name="cep" id="cep" placeholder="CEP" required
@@ -153,7 +159,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="inpu">
                     <input type="text" name="user" id="user" placeholder="Usuário" required
                         value="<?php echo isset($_POST['user']) ? $_POST['user'] : ''; ?>">
-                    <p style="font-size: .8em; color: red; margin-left: 15px;"><?php echo $usu_error?></p>
+                    <p style="font-size: .8em; color: red; margin-left: 15px;"><?php echo $usu_error ?></p>
                 </div>
                 <div class="inpu" id="bgSenha">
                     <input type="password" name="senha" id="senha" placeholder="Senha" required>
@@ -163,9 +169,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" name="cSenha" id="cSenha" placeholder="Confirme a Senha" required>
                     <span class="resPass"></span>
                 </div>
+                <div class="label">
+                    <select name="autentica" id="autentica" required>
+                        <option value="#" style="text-align: center;">-----Esolha uma pergunta chave-----</option>
+                        <option value="animal">Nome do animal de estimação favorito</option>
+                        <option value="professora">Nome da professora favorito</option>
+                        <option value="escola">Nome da escola favorita</option>
+                        <option value="trabalho">Nome da empresa favorita</option>
+                    </select>
+                </div>
+                <div class="autenticacao">
+                    <input type="text" name="resAuten" id="resAuten" placeholder="Digite a sua resposta" required>
+                </div>
                 <p class="resposta" style="color: white;"></p>
                 <div class="btn">
-                    <button type="submit" class="cadas">Cadastrar</button>
+                    <button id="prox">Próximo</button>
                     <button type="reset">Limpar</button>
                 </div>
             </form>
