@@ -2,12 +2,15 @@
 
 include('./conexao/conexao.php');
 
-$usu_error = $cell_error = $email_error = '';
+$usu_error = $cell_error = $email_error = $cpf_error = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (
         isset($_POST['nome'])
         && isset($_POST['sNome'])
+        && isset($_POST['nomeMae'])
+        && isset($_POST['dataNascimento'])
+        && isset($_POST['cpf'])
         && isset($_POST['cell'])
         && isset($_POST['cep'])
         && isset($_POST['estado'])
@@ -26,6 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $nome = $_POST['nome'];
         $sNome = $_POST['sNome'];
+        $nomeMae = $_POST['nomeMae'];
+        $dataNascimento = $_POST['dataNascimento'];
+        $cpf = $_POST['cpf'];
         $cell = $_POST['cell'];
         $email = $_POST['email'];
         $cep = $_POST['cep'];
@@ -59,6 +65,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($result_user->num_rows > 0) {
             $usu_error = "Usuario já cadastrado.";
+        }
+
+        $sql_cpf = "SELECT * FROM usuarios WHERE usuario = '$usuario' LIMIT 1";
+        $result_cpf = $mysqli->query($sql_cpf);
+
+        if ($result_cpf->num_rows > 0) {
+            $cpf_error = "CPF já cadastrado.";
         }
 
         if (empty($usu_error) && empty($cell_error) && empty($email_error)) {
@@ -113,6 +126,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="inpu">
                     <input type="text" name="sNome" id="sNome" placeholder="Sobrenome" required
                         value="<?php echo isset($_POST['sNome']) ? $_POST['sNome'] : ''; ?>">
+                </div>
+                <div class="inpu">
+                    <input type="text" name="nomeMae" id="nomeMae" placeholder="Nome completo da Mãe" required
+                        value="<?php echo isset($_POST['nomeMae']) ? $_POST['nomeMae'] : ''; ?>">
+                </div>
+                <div class="inpu">
+                    <input type="date" name="dataNascimento" id="dataNascimento" required
+                        value="<?php echo isset($_POST['dataNascimento']) ? $_POST['dataNascimento'] : ''; ?>">
+                </div>
+                <div class="inpu">
+                    <input type="text" name="cpf" id="cpf" placeholder="CPF" onblur="verificarCPF()" required
+                        value="<?php echo isset($_POST['cpf']) ? $_POST['cpf'] : ''; ?>">
+                    <p style="font-size: .8em; color: red; margin-left: 15px;"><?php echo $cpf_error ?></p>
                 </div>
                 <div class="inpu" id="im">
                     <input type="text" name="cell" id="cell" placeholder="Número para Contato" required
@@ -196,6 +222,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
     <script src="./js_cadastro_usuario/cep.js"></script>
+    <script src="./js_cadastro_usuario/cpf.js"></script>
     <script src="./js_cadastro_usuario/formatacao.js"></script>
     <script src="./js_cadastro_usuario/funcoes.js"></script>
 </body>

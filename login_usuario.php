@@ -9,9 +9,7 @@ ini_set('session.cookie_httponly', 1); // Apenas acessível via HTTP
 ini_set('session.cookie_secure', 1);   // Apenas em conexões HTTPS
 
 // Inicia a sessão (se ainda não estiver iniciada)
-if (!isset($_SESSION)) {
-    session_start();
-}
+
 
 if (isset($_POST['user']) && isset($_POST['pass'])) {
     $usu = $mysqli->real_escape_string($_POST['user']);
@@ -23,6 +21,9 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
     if ($sql_query->num_rows > 0) {
         $usuario = $sql_query->fetch_assoc();
         if (password_verify($sen, $usuario['senha'])) {
+            if (!isset($_SESSION)) {
+                session_start();
+            }
 
             header("Location: ./autenticacao.php?user=$usu");
             exit();

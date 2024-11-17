@@ -60,14 +60,16 @@ section h1 {
   flex-wrap: wrap;
 }
 
-.inpu {
+.inpu,
+.label,
+.autenticacao {
   width: 48%;
   margin: auto;
   margin-bottom: 5px;
 }
 
 input,
-.label select {
+select {
   width: 100%;
   padding: 10px;
   border-radius: 15px;
@@ -186,18 +188,4 @@ button[type="submit"]:hover,
   100% {
     transform: rotate(1800deg);
   }
-}
-
-.label {
-  width: 50%;
-}
-
-.label select {
-  width: 95%;
-  margin-left: 8px;
-}
-
-.autenticacao {
-  width: 98%;
-  margin-left: 8px;
 }

@@ -92,7 +92,7 @@ if (isset($_GET['fechado'])) {
     </div>
     <div style="position: absolute; left: 15px; margin: 140px 140px 0 0; font-size:1.2em;">
         <?php if ($_SESSION['user'] == "Lucas"): ?>
-        <a href="./adicionar_funcionario.php" style="color: white;">Adicionar Funcionário</a>
+            <a href="./adicionar_funcionario.php" style="color: white;">Adicionar Funcionário</a>
         <?php else: ?>
         <?php endif; ?>
     </div>
@@ -106,9 +106,9 @@ if (isset($_GET['fechado'])) {
     <div class="situacao">
         <span class="abertoFechado">
             <?php if ($_SESSION['situacao'] == 1): ?>
-            <span class="aberto">Aberto</span>
+                <span class="aberto">Aberto</span>
             <?php else : ?>
-            <span class="fechado">Fechado</span>
+                <span class="fechado">Fechado</span>
             <?php endif; ?>
         </span>
     </div>
@@ -117,7 +117,7 @@ if (isset($_GET['fechado'])) {
         <p>Olá, <?= $_SESSION['user'] ?>! Vamos adicionar novos produtos!</p>
     </header>
     <main>
-        <form action="processar_produto.php" method="post" enctype="multipart/form-data" class="formu">
+        <form action="" method="post" enctype="multipart/form-data" class="formu">
             <h1>Cadastre</h1>
             <select name="opcoes" id="opcoes"
                 style="padding: 15px; margin-bottom: 15px; border-radius: 25px; border: none; box-shadow: inset 2px 2px 10px lightgray; outline: none; font-weight: bold;">

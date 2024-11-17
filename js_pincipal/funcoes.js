@@ -89,7 +89,7 @@ function atualizarSituacao() {
   const situ = document.querySelector(".situ").innerHTML;
   const hora = new Date().getHours();
 
-  if (hora >= 11 && hora < 15) {
+  if (hora >= 11 || hora < 15) {
     if (situ == "Aberto") {
       sit.textContent = "Aberto";
       sit.className = "open";
@@ -140,3 +140,5 @@ atualizarTaxa(); // Chama a função imediatamente ao carregar a página
 document.querySelector(".linkPratos").addEventListener("click", () => {
   document.querySelector(".loading").style.display = "block";
 });
+
+$(document);
