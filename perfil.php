@@ -23,9 +23,11 @@ if (isset($_SESSION['pedido_finalizado'][$idCarrinho]) && $_SESSION['pedido_fina
 };
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['nome'])
+    if (
+        isset($_POST['nome'])
         && isset($_POST['sNome'])
         && isset($_POST['cell'])
+        && isset($_POST['email'])
         && isset($_POST['cep'])
         && isset($_POST['estado'])
         && isset($_POST['cidade'])
@@ -34,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         && isset($_POST['numero'])
         && isset($_POST['complemento'])
         && isset($_POST['referencia'])
-        && isset($_POST['email'])) {
+    ) {
 
         $nome = $_POST['nome'];
         $sNome = $_POST['sNome'];
@@ -88,6 +90,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Atualiza o registro do usuário
             $stmt = $mysqli->prepare("UPDATE usuarios SET pnome = ?, sobrenome = ?, cell = ?, email = ?, estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ?, referencia = ?, cep = ? WHERE idUsuarios = ?");
             $stmt->bind_param("ssssssssssssi", $nome, $sNome, $cell, $email, $estado, $cidade, $bairro, $rua, $numero, $complemento, $referencia, $cep, $userId);
+            $stmt->execute();
+            $stmt->close();
+
+            $acao = "Alteração feita no perfil.";
+            $stmt = $mysqli->prepare("INSERT INTO logs (id_cliente, acao) VALUES (?, ?)");
+            $stmt->bind_param("is", $userId, $acao);
             $stmt->execute();
             $stmt->close();
 
@@ -145,7 +153,7 @@ $stmt->close();
             <h1>Excluir Perfil</h1>
             <input type="password" name="pass" id="pass" placeholder="Confirme a Sua Senha" required>
             <p style="color: red; font-weight: bold; font-size: .8em;">
-                <?php echo htmlspecialchars($_SESSION['errorPass'] ?? '', ENT_QUOTES, 'UTF-8')?></p>
+                <?php echo htmlspecialchars($_SESSION['errorPass'] ?? '', ENT_QUOTES, 'UTF-8') ?></p>
             <div class="btns">
                 <button type="submit">Excluir</button>
                 <p class="closeWindow">Cancelar</p>

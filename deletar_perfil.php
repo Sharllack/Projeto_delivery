@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include('./conexao/conexao.php');
 
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pass'])) {
         $result = $stmt->get_result();
         $stmt->close();
 
-        if($result->num_rows > 0) {
+        if ($result->num_rows > 0) {
             $_SESSION['errorPass'] = "Você possui um pedido ativo, por conta disso, não será possível fazer a exclusão da conta!";
             header('Location: ./perfil.php');
         } else {
@@ -45,8 +45,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pass'])) {
             $stmt->execute();
             $stmt->close();
 
-            $stmt = $mysqli->prepare("DELETE FROM usuarios WHERE idUsuarios = ?");
+            $stmt = $mysqli->prepare("UPDATE usuarios SET ativo = 'não' WHERE idUsuarios = ?");
             $stmt->bind_param("i", $idUsuario);
+            $stmt->execute();
+            $stmt->close();
+
+            $acao = 'Usuário excluído.';
+            $stmt = $mysqli->prepare("INSERT INTO logs (id_cliente, acao) VALUES (?, ?)");
+            $stmt->bind_param("is", $idUsuario, $acao);
             $stmt->execute();
             $stmt->close();
 
@@ -54,12 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pass'])) {
             header('Location: ./index.php');
             exit;
         }
-
     } else {
         $_SESSION['errorPass'] = "Senha incorreta, tente novamente!";
         header('Location: ./perfil.php');
         exit;
     }
 }
-
-?>

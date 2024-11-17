@@ -2,16 +2,16 @@
 
 include('./conexao/conexao.php');
 
-if(!isset($_SESSION)) {
+if (!isset($_SESSION)) {
     session_start();
 };
 
 $idUsuario = $_SESSION['idUsuario'];
 
 $sql_query = "SELECT * FROM pedidos WHERE idUsuario = $idUsuario";
-$result = $mysqli->query($sql_query) or die ($mysqli->error);
+$result = $mysqli->query($sql_query) or die($mysqli->error);
 
-while($row = mysqli_fetch_assoc($result)) {
+while ($row = mysqli_fetch_assoc($result)) {
     $situacao = $row['situacao'];
     $idCarrinho = $row['idCarrinho'];
     $idPedido = $row['idPedido'];
@@ -68,27 +68,27 @@ while($row = mysqli_fetch_assoc($result)) {
     <div class="borda3"></div>
     <script src="./js_situacao_produto/funcoes.js"></script>
     <script>
-    const link = document.querySelector('.inicio');
-    const situ = document.querySelector('.situProd');
-    const load = document.querySelector('.load');
-    const idPedido = <?php echo $idPedido; ?>;
+        const link = document.querySelector('.inicio');
+        const situ = document.querySelector('.situProd');
+        const load = document.querySelector('.load');
+        const idPedido = <?php echo $idPedido; ?>;
 
-    if (situ.textContent != 'Pedido aguardando retirada!' & situ.textContent != 'O seu pedido está sendo preparado!' &
-        situ.textContent != 'O seu pedido já saiu para a entrega!' & situ.textContent !=
-        'Aguardando a confirmação do restaurante!') {
-        link.href = './refresh_carrinho.php?idPedido=' + idPedido;
-        load.style.display = 'none';
+        if (situ.textContent != 'Pedido aguardando retirada!' & situ.textContent != 'O seu pedido está sendo preparado!' &
+            situ.textContent != 'O seu pedido já saiu para a entrega!' & situ.textContent !=
+            'Aguardando a confirmação do restaurante!') {
+            link.href = './refresh_carrinho.php?idPedido=' + idPedido;
+            load.style.display = 'none';
 
-        function liberar() {
-            window.location.href = './refresh_carrinho.php?idPedido=' + idPedido;
+            function liberar() {
+                window.location.href = './refresh_carrinho.php?idPedido=' + idPedido;
+            }
+
+            const time = 2500;
+
+            window.onload = () => {
+                setTimeout(liberar, time);
+            }
         }
-
-        const time = 10000;
-
-        window.onload = () => {
-            setTimeout(liberar, time);
-        }
-    }
     </script>
 </body>
 

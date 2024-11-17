@@ -16,7 +16,7 @@ $result_bebida = $stmt->get_result();
 
 <div id="produtos">
     <h1 style="text-align: center; margin-top: 15px;">Pratos</h1>
-    <?php while ($row = $result->fetch_assoc()) { ?>
+
     <table>
         <thead>
             <th>Disponibilidade</th>
@@ -31,29 +31,30 @@ $result_bebida = $stmt->get_result();
             <th>Indisponível</th>
         </thead>
         <tbody>
-            <tr>
-                <td><input type="checkbox" name="ativo" value="1" <?php echo ($row['ativo'] == 1) ? 'checked' : ''; ?>>
-                </td>
-                <td><?php echo $row['idProdutos']; ?></td>
-                <td><?php echo $row['nome']; ?></td>
-                <td><?php echo $row['descricao']; ?></td>
-                <td id="desc"><?php echo "R$" . number_format($row['preco'], 2, ",", ".") ?></td>
-                <td><img height="50px" src="<?php echo $row['imagem']; ?>" alt=""></td>
-                <td><a href="./editar_produto.php?editar=<?php echo $row['idProdutos']; ?>" class="editar">Editar</a>
-                </td>
-                <td><a href="./deletar_produto.php?deletar=<?php echo $row['idProdutos']; ?>"
-                        class="deletar">Deletar</a>
-                </td>
-                <td><a href="./ativar_produto.php?atualizar=<?php echo $row['idProdutos']; ?>"
-                        class="editar">Disponível</a></td>
-                <td><a href="./desativar_produto.php?atualizar=<?php echo $row['idProdutos']; ?>"
-                        class="deletar">Indisponível</a></td>
-            </tr>
+            <?php while ($row = $result->fetch_assoc()) { ?>
+                <tr>
+                    <td><input type="checkbox" name="ativo" value="1" <?php echo ($row['ativo'] == 1) ? 'checked' : ''; ?>>
+                    </td>
+                    <td><?php echo $row['idProdutos']; ?></td>
+                    <td><?php echo $row['nome']; ?></td>
+                    <td><?php echo $row['descricao']; ?></td>
+                    <td id="desc"><?php echo "R$" . number_format($row['preco'], 2, ",", ".") ?></td>
+                    <td><img height="50px" src="<?php echo $row['imagem']; ?>" alt=""></td>
+                    <td><a href="./editar_produto.php?editar=<?php echo $row['idProdutos']; ?>" class="editar">Editar</a>
+                    </td>
+                    <td><a href="./deletar_produto.php?deletar=<?php echo $row['idProdutos']; ?>"
+                            class="deletar">Deletar</a>
+                    </td>
+                    <td><a href="./ativar_produto.php?atualizar=<?php echo $row['idProdutos']; ?>"
+                            class="editar">Disponível</a></td>
+                    <td><a href="./desativar_produto.php?atualizar=<?php echo $row['idProdutos']; ?>"
+                            class="deletar">Indisponível</a></td>
+                </tr>
             <?php } ?>
         </tbody>
     </table>
     <h1 style="text-align: center;">Bebidas</h1>
-    <?php while ($row = $result_bebida->fetch_assoc()) { ?>
+
     <table>
         <thead>
             <th>Disponibilidade</th>
@@ -68,24 +69,25 @@ $result_bebida = $stmt->get_result();
             <th>Indisponível</th>
         </thead>
         <tbody>
-            <tr>
-                <td><input type="checkbox" name="ativo" value="1" <?php echo ($row['ativo'] == 1) ? 'checked' : ''; ?>>
-                </td>
-                <td><?php echo $row['idProdutos']; ?></td>
-                <td><?php echo $row['nome']; ?></td>
-                <td><?php echo $row['descricao']; ?></td>
-                <td id="desc"><?php echo "R$" . number_format($row['preco'], 2, ",", ".") ?></td>
-                <td><img height="50px" src="<?php echo $row['imagem']; ?>" alt=""></td>
-                <td><a href="./editar_produto.php?editar=<?php echo $row['idProdutos']; ?>" class="editar">Editar</a>
-                </td>
-                <td><a href="./deletar_produto.php?deletar=<?php echo $row['idProdutos']; ?>"
-                        class="deletar">Deletar</a>
-                </td>
-                <td><a href="./ativar_produto.php?atualizar=<?php echo $row['idProdutos']; ?>"
-                        class="editar">Disponível</a></td>
-                <td><a href="./desativar_produto.php?atualizar=<?php echo $row['idProdutos']; ?>"
-                        class="deletar">Indisponível</a></td>
-            </tr>
+            <?php while ($row = $result_bebida->fetch_assoc()) { ?>
+                <tr>
+                    <td><input type="checkbox" name="ativo" value="1" <?php echo ($row['ativo'] == 1) ? 'checked' : ''; ?>>
+                    </td>
+                    <td><?php echo $row['idProdutos']; ?></td>
+                    <td><?php echo $row['nome']; ?></td>
+                    <td><?php echo $row['descricao']; ?></td>
+                    <td id="desc"><?php echo "R$" . number_format($row['preco'], 2, ",", ".") ?></td>
+                    <td><img height="50px" src="<?php echo $row['imagem']; ?>" alt=""></td>
+                    <td><a href="./editar_produto.php?editar=<?php echo $row['idProdutos']; ?>" class="editar">Editar</a>
+                    </td>
+                    <td><a href="./deletar_produto.php?deletar=<?php echo $row['idProdutos']; ?>"
+                            class="deletar">Deletar</a>
+                    </td>
+                    <td><a href="./ativar_produto.php?atualizar=<?php echo $row['idProdutos']; ?>"
+                            class="editar">Disponível</a></td>
+                    <td><a href="./desativar_produto.php?atualizar=<?php echo $row['idProdutos']; ?>"
+                            class="deletar">Indisponível</a></td>
+                </tr>
             <?php } ?>
         </tbody>
     </table>

@@ -2,7 +2,7 @@
 
 include('./conexao/conexao.php');
 
-$usu_error = $cell_error = $email_error = $cpf_error = '';
+$usu_error = $cell_error = $email_error = $cpf_error = $senha_error = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (
@@ -46,51 +46,64 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
         $autenticacao = password_hash($_POST['resAuten'], PASSWORD_DEFAULT);
 
-        $sql_cell = "SELECT * FROM usuarios WHERE cell = '$cell' LIMIT 1";
-        $result_cell = $mysqli->query($sql_cell);
+        // Validações
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $email_error = "E-mail inválido.";
+        }
+        if ($_POST['senha'] !== $_POST['cSenha']) {
+            $senha_error = "As senhas não correspondem.";
+        }
 
-        if ($result_cell->num_rows > 0) {
+        // Verificações de duplicidade
+        $stmt = $mysqli->prepare("SELECT * FROM usuarios WHERE cell = ? LIMIT 1");
+        $stmt->bind_param("s", $cell);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
             $cell_error = "Celular já cadastrado.";
         }
+        $stmt->close();
 
-        $sql_email = "SELECT * FROM usuarios WHERE email = '$email' LIMIT 1";
-        $result_email = $mysqli->query($sql_email);
-
-        if ($result_email->num_rows > 0) {
+        $stmt = $mysqli->prepare("SELECT * FROM usuarios WHERE email = ? LIMIT 1");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
             $email_error = "E-mail já cadastrado.";
         }
+        $stmt->close();
 
-        $sql_user = "SELECT * FROM usuarios WHERE usuario = '$usuario' LIMIT 1";
-        $result_user = $mysqli->query($sql_user);
-
-        if ($result_user->num_rows > 0) {
-            $usu_error = "Usuario já cadastrado.";
+        $stmt = $mysqli->prepare("SELECT * FROM usuarios WHERE usuario = ? LIMIT 1");
+        $stmt->bind_param("s", $usuario);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $usu_error = "Usuário já cadastrado.";
         }
+        $stmt->close();
 
-        $sql_cpf = "SELECT * FROM usuarios WHERE usuario = '$usuario' LIMIT 1";
-        $result_cpf = $mysqli->query($sql_cpf);
-
-        if ($result_cpf->num_rows > 0) {
+        $stmt = $mysqli->prepare("SELECT * FROM usuarios WHERE cpf = ? LIMIT 1");
+        $stmt->bind_param("s", $cpf);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
             $cpf_error = "CPF já cadastrado.";
         }
+        $stmt->close();
 
-        if (empty($usu_error) && empty($cell_error) && empty($email_error)) {
-            $stmt = $mysqli->prepare("INSERT INTO usuarios (pnome, sobrenome, cell, email, estado, cidade, bairro, rua, numero, complemento, referencia, cep, usuario, senha, autenticacao) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssssssssssssss", $nome, $sNome, $cell, $email, $estado, $cidade, $bairro, $rua, $numero, $complemento, $referencia, $cep, $usuario, $senha, $autenticacao);
+        // Inserção no banco
+        if (empty($usu_error) && empty($cell_error) && empty($email_error) && empty($cpf_error) && empty($senha_error)) {
+            $stmt = $mysqli->prepare("INSERT INTO usuarios (pnome, nomeMae, dataNascimento, cpf, sobrenome, cell, email, estado, cidade, bairro, rua, numero, complemento, referencia, cep, usuario, senha, autenticacao) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssssssssssssssss", $nome, $nomeMae, $dataNascimento, $cpf, $sNome, $cell, $email, $estado, $cidade, $bairro, $rua, $numero, $complemento, $referencia, $cep, $usuario, $senha, $autenticacao);
             $stmt->execute();
             $stmt->close();
+            header("Location: ./login_usuario.php");
+            exit;
         }
-
-
-        sleep(2);
-
-        header("Location: ./login_usuario.php");
-
-        exit;
     }
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -186,6 +199,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="text" name="user" id="user" placeholder="Usuário" required
                         value="<?php echo isset($_POST['user']) ? $_POST['user'] : ''; ?>">
                     <p style="font-size: .8em; color: red; margin-left: 15px;"><?php echo $usu_error ?></p>
+                    <span class="resUser"></span>
                 </div>
                 <div class="inpu" id="bgSenha">
                     <input type="password" name="senha" id="senha" placeholder="Senha" required>

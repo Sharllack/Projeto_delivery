@@ -2,7 +2,7 @@
 
 include('./conexao/conexao.php');
 
-if(isset($_GET['idPedido'])) {
+if (isset($_GET['idPedido'])) {
     $idPedido = intval($_GET['idPedido']);
 
     $stmt = $mysqli->prepare("SELECT idUsuario FROM pedidos WHERE idPedido = ?");
@@ -28,7 +28,4 @@ if(isset($_GET['idPedido'])) {
     $stmt->close();
 
     header('Location: ./unset.php?idPedido=' . $idPedido);
-
 }
-
-?>

@@ -58,8 +58,8 @@ if (isset($_GET['aberto'])) {
     $ativo = isset($_GET['aberto']) ? 1 : 0;
     $_SESSION['situacao'] = 1;
 
-    $stmt = $mysqli->prepare('UPDATE host SET situacao = ? WHERE idAdmin = ?');
-    $stmt->bind_param('ii', $ativo, $idAdmin);
+    $stmt = $mysqli->prepare('UPDATE host SET situacao = ?');
+    $stmt->bind_param('i', $ativo);
     $stmt->execute();
     $stmt->close();
 }
@@ -68,8 +68,8 @@ if (isset($_GET['fechado'])) {
     $ativo = isset($_GET['fechado']) ? 0 : 1;
     $_SESSION['situacao'] = 0;
 
-    $stmt = $mysqli->prepare('UPDATE host SET situacao = ? WHERE idAdmin = ?');
-    $stmt->bind_param('ii', $ativo, $idAdmin);
+    $stmt = $mysqli->prepare('UPDATE host SET situacao = ?');
+    $stmt->bind_param('i', $ativo);
     $stmt->execute();
     $stmt->close();
 }
@@ -90,8 +90,9 @@ if (isset($_GET['fechado'])) {
     <div style="position: absolute; left: 15px; margin: 15px 15px 0 0; font-size:1.2em;">
         <a href="./receber_pedido.php" style="color: white;">Meus pedidos</a>
     </div>
-    <div style="position: absolute; left: 15px; margin: 140px 140px 0 0; font-size:1.2em;">
+    <div style="position: absolute; left: 15px; margin: 120px 140px 0 0; font-size:1.2em;">
         <?php if ($_SESSION['user'] == "Lucas"): ?>
+            <a href="./tela_de_logs.php" style="color: white;">Últimas atividades</a> <br>
             <a href="./adicionar_funcionario.php" style="color: white;">Adicionar Funcionário</a>
         <?php else: ?>
         <?php endif; ?>

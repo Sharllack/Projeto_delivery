@@ -124,11 +124,14 @@ $result = $mysqli->query($sql_query) or die($mysqli->error);
     <div class="logout" style="position: absolute; right: 0; margin: 15px 15px 0 0; font-size:1.2em;"><a
             href="./logout.php" style="color: white;">Sair</a></div>
     <div class="historico">
-        <a href="./historico.php" style="color: white;">Histórico de Pedidos</a>
+        <?php if ($_SESSION['user'] == "Lucas"): ?>
+            <a href="./historico.php" style="color: white;">Histórico de Pedidos</a>
+        <?php else: ?>
+        <?php endif; ?>
     </div>
     <header>
         <h1>Pedidos</h1>
-        <p>Olá, <?= $_SESSION['user']?>! Vamos Acompanhar os Pedidos!</p>
+        <p>Olá, <?= $_SESSION['user'] ?>! Vamos Acompanhar os Pedidos!</p>
         <div class="filtro">
             <form action="" method="get">
                 <select name="filter" id="filter">
@@ -152,43 +155,43 @@ $result = $mysqli->query($sql_query) or die($mysqli->error);
     </header>
     <main>
         <h1 style="text-align: center;" class="titlePedidos">Pedidos</h1>
-        <?php while($row = $result->fetch_assoc()) { ?>
-        <table>
-            <thead>
-                <th>Situacao</th>
-                <th>Nº Pedido</th>
-                <th>Data/Hora</th>
-                <th>Pedido</th>
-                <th>Entrega</th>
-                <th>Pagamento</th>
-                <th>Total</th>
-                <th>Cliente</th>
-                <th>Contato</th>
-                <th>Endereço</th>
-                <th>Referência</th>
-                <th>Aceitar</th>
-                <th>Rota</th>
-                <th>Recusar</th>
-                <th>Finalizar</th>
-            </thead>
-            <tbody>
-                <?php
+        <?php while ($row = $result->fetch_assoc()) { ?>
+            <table>
+                <thead>
+                    <th>Situacao</th>
+                    <th>Nº Pedido</th>
+                    <th>Data/Hora</th>
+                    <th>Pedido</th>
+                    <th>Entrega</th>
+                    <th>Pagamento</th>
+                    <th>Total</th>
+                    <th>Cliente</th>
+                    <th>Contato</th>
+                    <th>Endereço</th>
+                    <th>Referência</th>
+                    <th>Aceitar</th>
+                    <th>Rota</th>
+                    <th>Recusar</th>
+                    <th>Finalizar</th>
+                </thead>
+                <tbody>
+                    <?php
 
                     $total = $row['valorTotal'];
 
                     ?>
-                <tr>
-                    <td>
-                        <?php echo $row['situ']; ?>
-                    </td>
-                    <td>
-                        <?php echo $row['idPedido'];?>
-                    </td>
-                    <td>
-                        <?php echo date("d/m/Y H:i", strtotime($row['dataHora']))?>
-                    </td>
-                    <td>
-                        <?php
+                    <tr>
+                        <td>
+                            <?php echo $row['situ']; ?>
+                        </td>
+                        <td>
+                            <?php echo $row['idPedido']; ?>
+                        </td>
+                        <td>
+                            <?php echo date("d/m/Y H:i", strtotime($row['dataHora'])) ?>
+                        </td>
+                        <td>
+                            <?php
                             // Recuperar os IDs dos produtos
                             $ids = explode(',', $row['produtos_concatenados']);
 
@@ -212,46 +215,46 @@ $result = $mysqli->query($sql_query) or die($mysqli->error);
                                 $stmt->close();
                             }
                             ?>
-                    </td>
-                    <td>
-                        <?php echo $row['entrega'];?>
-                    </td>
-                    <td>
-                        <?php echo $row['pagamento']?>
-                    </td>
-                    <td>
-                        <?php echo "R$" . number_format($total, 2, "," , "." . "<br>")?>
-                        <?php echo "Troco:" . "R$" . number_format($row['troco'], 2, "," , ".")?>
-                    </td>
-                    <td>
-                        <?php echo $row['pnome']?> <?php echo $row[ 'sobrenome']?>
-                    </td>
-                    <td>
-                        <?php echo $row['cell']?>
-                    </td>
-                    <td>
-                        <?php echo $row['rua'] . ', ' . $row['numero'] . ', ' . $row['complemento']?>
-                    </td>
-                    <td>
-                        <?php echo $row['referencia']; ?>
-                    </td>
-                    <td>
-                        <a href="./receber_pedido.php?preparando=<?php echo $row['idPedido'] ?>"
-                            class="verde">Aceitar</a>
-                    </td>
-                    <td>
-                        <a href="./receber_pedido.php?rota=<?php echo $row['idPedido'] ?>" class="verde">Rota</a>
-                    </td>
-                    <td>
-                        <button class="recusar vermelho" data-id="<?php echo $row['idPedido'] ?>">Recusar</button>
-                    </td>
-                    <td>
-                        <a href="./receber_pedido.php?finalizar=<?php echo $row['idPedido'] ?>"
-                            class="vermelho">Finalizar</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table><br>
+                        </td>
+                        <td>
+                            <?php echo $row['entrega']; ?>
+                        </td>
+                        <td>
+                            <?php echo $row['pagamento'] ?>
+                        </td>
+                        <td>
+                            <?php echo "R$" . number_format($total, 2, ",", "." . "<br>") ?>
+                            <?php echo "Troco:" . "R$" . number_format($row['troco'], 2, ",", ".") ?>
+                        </td>
+                        <td>
+                            <?php echo $row['pnome'] ?> <?php echo $row['sobrenome'] ?>
+                        </td>
+                        <td>
+                            <?php echo $row['cell'] ?>
+                        </td>
+                        <td>
+                            <?php echo $row['rua'] . ', ' . $row['numero'] . ', ' . $row['complemento'] ?>
+                        </td>
+                        <td>
+                            <?php echo $row['referencia']; ?>
+                        </td>
+                        <td>
+                            <a href="./receber_pedido.php?preparando=<?php echo $row['idPedido'] ?>"
+                                class="verde">Aceitar</a>
+                        </td>
+                        <td>
+                            <a href="./receber_pedido.php?rota=<?php echo $row['idPedido'] ?>" class="verde">Rota</a>
+                        </td>
+                        <td>
+                            <button class="recusar vermelho" data-id="<?php echo $row['idPedido'] ?>">Recusar</button>
+                        </td>
+                        <td>
+                            <a href="./receber_pedido.php?finalizar=<?php echo $row['idPedido'] ?>"
+                                class="vermelho">Finalizar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table><br>
         <?php } ?>
     </main>
     <div class="motivo" style="display:none;">
@@ -260,33 +263,33 @@ $result = $mysqli->query($sql_query) or die($mysqli->error);
         <button onclick="enviarMotivo()" style="width: 100%;">Enviar</button>
     </div>
     <script>
-    setInterval(function() {
-        location.reload();
-    }, 30000);
+        setInterval(function() {
+            location.reload();
+        }, 30000);
 
-    document.querySelectorAll('.recusar').forEach(button => {
-        button.addEventListener('click', function() {
+        document.querySelectorAll('.recusar').forEach(button => {
+            button.addEventListener('click', function() {
+                const filter = document.querySelector('.filter');
+                const motivoDiv = document.querySelector('.motivo');
+                motivoDiv.style.display = 'block';
+                filter.style.display = 'block';
+                motivoDiv.dataset.idPedido = this.dataset.id;
+                motivoDiv.classList.add('animated');
+            });
+        });
+
+        document.querySelector('.filter').addEventListener('click', function() {
             const filter = document.querySelector('.filter');
             const motivoDiv = document.querySelector('.motivo');
-            motivoDiv.style.display = 'block';
-            filter.style.display = 'block';
-            motivoDiv.dataset.idPedido = this.dataset.id;
-            motivoDiv.classList.add('animated');
-        });
-    });
+            motivoDiv.style.display = 'none';
+            filter.style.display = 'none';
+        })
 
-    document.querySelector('.filter').addEventListener('click', function() {
-        const filter = document.querySelector('.filter');
-        const motivoDiv = document.querySelector('.motivo');
-        motivoDiv.style.display = 'none';
-        filter.style.display = 'none';
-    })
-
-    function enviarMotivo() {
-        const motivo = document.querySelector('#motivo').value;
-        const idPedido = document.querySelector('.motivo').dataset.idPedido;
-        window.location.href = './receber_pedido.php?recusar=' + idPedido + '&motivo=' + encodeURIComponent(motivo);
-    }
+        function enviarMotivo() {
+            const motivo = document.querySelector('#motivo').value;
+            const idPedido = document.querySelector('.motivo').dataset.idPedido;
+            window.location.href = './receber_pedido.php?recusar=' + idPedido + '&motivo=' + encodeURIComponent(motivo);
+        }
     </script>
 </body>
 

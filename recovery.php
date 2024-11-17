@@ -1,22 +1,34 @@
-<?php 
+<?php
 
 include('./conexao/conexao.php');
 
-if(isset($_GET['usuario'])) {
+if (isset($_GET['usuario'])) {
     $user = $mysqli->real_escape_string($_GET['usuario']);
 
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $senha = password_hash($_POST['sen'], PASSWORD_DEFAULT);
-    
+
         $stmt = $mysqli->prepare("UPDATE usuarios SET senha = ? WHERE usuario = ?");
         $stmt->bind_param("ss", $senha, $user);
         $stmt->execute();
         $stmt->close();
-    
+
+        $stmt = $mysqli->prepare("SELECT idUsuarios FROM usuarios WHERE usuario = ?");
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+        $stmt->bind_result($id_cliente);
+        $stmt->fetch();
+        $stmt->close();
+
+        $acao = "Senha alterada.";
+        $stmt = $mysqli->prepare("INSERT INTO logs (id_cliente, acao) VALUES (?, ?)");
+        $stmt->bind_param("is", $id_cliente, $acao);
+        $stmt->execute();
+        $stmt->close();
+
         sleep(2);
-    
+
         header("Location: ./login_usuario.php");
-    
     }
 }
 

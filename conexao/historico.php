@@ -2,6 +2,8 @@
 include('./protect.php');
 include('./conexao.php');
 
+$idAdmin = $_SESSION['idUsuario'];
+
 // Variáveis de filtro
 $mesSelecionado = isset($_GET['mes']) ? $_GET['mes'] : 'todos';
 $pagamentoSelecionado = isset($_GET['pagamento']) ? $_GET['pagamento'] : 'todos';
@@ -24,7 +26,7 @@ $meses = [
 ];
 
 // Consultar pedidos
-$queryPedidos = "SELECT * FROM historicopedidos WHERE 1=1";
+$queryPedidos = "SELECT * FROM historicopedidos WHERE 1=1 AND ativo = 'sim'";
 $paramsPedidos = [];
 $typesPedidos = '';
 
@@ -59,7 +61,7 @@ if ($stmt = $mysqli->prepare($queryPedidos)) {
 }
 
 // Consultar financeiro
-$queryFinanceiro = "SELECT idProdutos, qtd FROM historicopedidos WHERE 1=1";
+$queryFinanceiro = "SELECT idProdutos, qtd FROM historicopedidos WHERE 1=1 AND ativo = 'sim'";
 $paramsFinanceiro = [];
 $typesFinanceiro = '';
 
@@ -90,8 +92,14 @@ if ($stmt = $mysqli->prepare($queryFinanceiro)) {
 
 if (isset($_GET['deletar'])) {
     $idPedido = intval($_GET['deletar']);
-    $stmt = $mysqli->prepare("DELETE FROM historicopedidos WHERE idPedido = ?");
+    $stmt = $mysqli->prepare("UPDATE historicopedidos SET ativo = 'não' WHERE idPedido = ?");
     $stmt->bind_param('i', $idPedido);
+    $stmt->execute();
+    $stmt->close();
+
+    $acao = "Deletou o Pedido de id: " . $idPedido;
+    $stmt = $mysqli->prepare("INSERT INTO logs (id_host, acao) VALUES (?, ?)");
+    $stmt->bind_param("is", $idAdmin, $acao);
     $stmt->execute();
     $stmt->close();
     header("Location: ./historico.php");
@@ -99,7 +107,13 @@ if (isset($_GET['deletar'])) {
 }
 
 if (isset($_GET['limpar'])) {
-    $stmt = $mysqli->prepare("DELETE FROM historicopedidos");
+    $stmt = $mysqli->prepare("UPDATE historicopedidos SET ativo = 'não'");
+    $stmt->execute();
+    $stmt->close();
+
+    $acao = "Limpou o Histórico de Pedidos";
+    $stmt = $mysqli->prepare("INSERT INTO logs (id_host, acao) VALUES (?, ?)");
+    $stmt->bind_param("is", $idAdmin, $acao);
     $stmt->execute();
     $stmt->close();
     header("Location: ./historico.php");
@@ -160,62 +174,62 @@ if (isset($_GET['limpar'])) {
             if ($resultPedidos && $resultPedidos->num_rows > 0) {
                 while ($row = $resultPedidos->fetch_assoc()) {
             ?>
-            <div class="table-container">
-                <table class="tab">
-                    <thead>
-                        <tr>
-                            <th>Nº Pedido</th>
-                            <th>Cliente</th>
-                            <th>Data/Hora</th>
-                            <th>Pedido</th>
-                            <th>Pagamento</th>
-                            <th>Total</th>
-                            <th>Excluir</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><?php echo $row['idPedido']; ?></td>
-                            <td>
-                                <?php
-                                    $nomeUsu = $row['idUsuario'];
-                                    $stmt = $mysqli->prepare("SELECT pnome, sobrenome FROM usuarios WHERE idUsuarios = ?");
-                                    $stmt->bind_param('i', $nomeUsu);
-                                    $stmt->execute();
-                                    $stmt->bind_result($nome, $sobrenome);
-                                    $stmt->fetch();
-                                    $stmt->close();
-                                    echo $nome . ' ' . $sobrenome;
-                                ?>
-                            </td>
-                            <td><?php echo date("d/m/Y H:i", strtotime($row['dataHora']))?></td>
-                            <td>
-                                <?php
-                                    $idProdutos = $row['idProdutos'];
-                                    $quantidades = $row['qtd'];
-                                    $ids = explode(',', $idProdutos);
-                                    $qtds = explode(',', $quantidades);
-                                    for ($i = 0; $i < count($ids); $i++) {
-                                        $id = $ids[$i];
-                                        $qtd = $qtds[$i];
-                                        $stmt = $mysqli->prepare("SELECT nome FROM produtos WHERE idProdutos = ?");
-                                        $stmt->bind_param("i", $id);
+                    <div class="table-container">
+                        <table class="tab">
+                            <thead>
+                                <tr>
+                                    <th>Nº Pedido</th>
+                                    <th>Cliente</th>
+                                    <th>Data/Hora</th>
+                                    <th>Pedido</th>
+                                    <th>Pagamento</th>
+                                    <th>Total</th>
+                                    <th>Excluir</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><?php echo $row['idPedido']; ?></td>
+                                    <td>
+                                        <?php
+                                        $nomeUsu = $row['idUsuario'];
+                                        $stmt = $mysqli->prepare("SELECT pnome, sobrenome FROM usuarios WHERE idUsuarios = ?");
+                                        $stmt->bind_param('i', $nomeUsu);
                                         $stmt->execute();
-                                        $stmt->bind_result($nomeProduto);
+                                        $stmt->bind_result($nome, $sobrenome);
                                         $stmt->fetch();
-                                        echo $qtd . " X " . $nomeProduto . "<br>";
                                         $stmt->close();
-                                    }
-                                ?>
-                            </td>
-                            <td><?php echo $row['pagamento']?></td>
-                            <td><?php echo "R$ " . number_format($row['valorTotal'], 2, "," , ".") . "<br>"?></td>
-                            <td><a href="./historico.php?deletar=<?php echo $row['idPedido']?>" class="del">Deletar</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div><br>
+                                        echo $nome . ' ' . $sobrenome;
+                                        ?>
+                                    </td>
+                                    <td><?php echo date("d/m/Y H:i", strtotime($row['dataHora'])) ?></td>
+                                    <td>
+                                        <?php
+                                        $idProdutos = $row['idProdutos'];
+                                        $quantidades = $row['qtd'];
+                                        $ids = explode(',', $idProdutos);
+                                        $qtds = explode(',', $quantidades);
+                                        for ($i = 0; $i < count($ids); $i++) {
+                                            $id = $ids[$i];
+                                            $qtd = $qtds[$i];
+                                            $stmt = $mysqli->prepare("SELECT nome FROM produtos WHERE idProdutos = ?");
+                                            $stmt->bind_param("i", $id);
+                                            $stmt->execute();
+                                            $stmt->bind_result($nomeProduto);
+                                            $stmt->fetch();
+                                            echo $qtd . " X " . $nomeProduto . "<br>";
+                                            $stmt->close();
+                                        }
+                                        ?>
+                                    </td>
+                                    <td><?php echo $row['pagamento'] ?></td>
+                                    <td><?php echo "R$ " . number_format($row['valorTotal'], 2, ",", ".") . "<br>" ?></td>
+                                    <td><a href="./historico.php?deletar=<?php echo $row['idPedido'] ?>" class="del">Deletar</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div><br>
             <?php
                 }
             } else {
@@ -288,7 +302,7 @@ if (isset($_GET['limpar'])) {
                         $stmt->bind_result($nomeProduto);
                         $stmt->fetch();
                         $stmt->close();
-                        
+
                         echo "<tr>";
                         echo "<tr>";
                         echo "<td>" . $quantidade . "</td>";
