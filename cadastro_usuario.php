@@ -24,7 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         && isset($_POST['senha'])
         && isset($_POST['cSenha'])
         && isset($_POST['email'])
-        && isset($_POST['resAuten'])
     ) {
 
         $nome = $_POST['nome'];
@@ -44,7 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $referencia = $_POST['referencia'];
         $usuario = $_POST['user'];
         $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
-        $autenticacao = password_hash($_POST['resAuten'], PASSWORD_DEFAULT);
 
         // Validações
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -93,8 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Inserção no banco
         if (empty($usu_error) && empty($cell_error) && empty($email_error) && empty($cpf_error) && empty($senha_error)) {
-            $stmt = $mysqli->prepare("INSERT INTO usuarios (pnome, nomeMae, dataNascimento, cpf, sobrenome, cell, email, estado, cidade, bairro, rua, numero, complemento, referencia, cep, usuario, senha, autenticacao) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("ssssssssssssssssss", $nome, $nomeMae, $dataNascimento, $cpf, $sNome, $cell, $email, $estado, $cidade, $bairro, $rua, $numero, $complemento, $referencia, $cep, $usuario, $senha, $autenticacao);
+            $stmt = $mysqli->prepare("INSERT INTO usuarios (pnome, nomeMae, dataNascimento, cpf, sobrenome, cell, email, estado, cidade, bairro, rua, numero, complemento, referencia, cep, usuario, senha) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssssssssssssss", $nome, $nomeMae, $dataNascimento, $cpf, $sNome, $cell, $email, $estado, $cidade, $bairro, $rua, $numero, $complemento, $referencia, $cep, $usuario, $senha);
             $stmt->execute();
             $stmt->close();
             header("Location: ./login_usuario.php");
@@ -208,18 +206,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="inpu" id="bgCsenha">
                     <input type="password" name="cSenha" id="cSenha" placeholder="Confirme a Senha" required>
                     <span class="resPass"></span>
-                </div>
-                <div class="label">
-                    <select name="autentica" id="autentica" required>
-                        <option value="#" style="text-align: center;">-----Esolha uma pergunta chave-----</option>
-                        <option value="animal">Nome do animal de estimação favorito</option>
-                        <option value="professora">Nome da professora favorito</option>
-                        <option value="escola">Nome da escola favorita</option>
-                        <option value="trabalho">Nome da empresa favorita</option>
-                    </select>
-                </div>
-                <div class="autenticacao">
-                    <input type="text" name="resAuten" id="resAuten" placeholder="Digite a sua resposta" required>
                 </div>
                 <p class="resposta" style="color: white;"></p>
                 <div class="btn">

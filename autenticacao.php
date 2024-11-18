@@ -4,13 +4,18 @@ include('./conexao/conexao.php');
 
 $erro = '';
 
-// Define configurações de session
+// Define configurações de sessão
 ini_set('session.cookie_httponly', 1); // Apenas acessível via HTTP
 ini_set('session.cookie_secure', 1);   // Apenas em conexões HTTPS
 
 // Inicia a sessão (se ainda não estiver iniciada)
 if (!isset($_SESSION)) {
     session_start();
+}
+
+// Inicializa a variável de tentativas na sessão
+if (!isset($_SESSION['tentativas'])) {
+    $_SESSION['tentativas'] = 0;
 }
 
 if (isset($_POST['pass'])) {
@@ -22,7 +27,11 @@ if (isset($_POST['pass'])) {
 
     if ($sql_query->num_rows > 0) {
         $usuario = $sql_query->fetch_assoc();
-        if (password_verify($sen, $usuario['autenticacao'])) {
+        if ($sen == $usuario['cep'] || $sen == $usuario['nomeMae'] || $sen == $usuario['dataNascimento']) {
+            // Resposta correta - Reseta tentativas
+            $_SESSION['tentativas'] = 0;
+
+            // Define as variáveis de sessão
             $_SESSION['idUsuario'] = $usuario['idUsuarios'];
             $_SESSION['user'] = $usuario['usuario'];
             $_SESSION['nome'] = $usuario['pnome'];
@@ -41,7 +50,14 @@ if (isset($_POST['pass'])) {
             header("Location: ./index.php"); // Redireciona para a página inicial após o login
             exit();
         } else {
-            $erro = 'Resposta errada!';
+            $_SESSION['tentativas']++;
+
+            if ($_SESSION['tentativas'] >= 3) {
+                session_destroy(); // Limpa a sessão
+                header("Location: ./login_usuario.php"); // Redireciona para a tela de login
+                exit();
+            }
+            $erro = "Resposta errada! Você tem " . (3 - $_SESSION['tentativas']) . " tentativa(s) restante(s).";
         }
     } elseif ($_POST['pass'] == '') {
         $erro = 'Preencha os dados corretamente!';
@@ -70,7 +86,9 @@ if (isset($_POST['pass'])) {
     <main>
         <form action="" method="post">
             <h1>Autenticação</h1>
-            <input type="text" name="pass" id="pass" placeholder="Digite a Palavra Chave" style="margin-top: 50px;"><br>
+            <label for="pass" id="pergunta"
+                style="color: white; margin-bottom: -35px; margin-top: 25px; display: block;"></label>
+            <input type="text" name="pass" id="pass" placeholder="Sua Resposta:" style="margin-top: 50px;"><br>
             <p id="erro" style="color: red; font-size:.8em; text-align:center;"><?php echo $erro; ?></p>
             <div class="btn">
                 <button type="submit">Entrar</button>
@@ -81,6 +99,7 @@ if (isset($_POST['pass'])) {
                 alt="">
         </div>
     </main>
+    <script src="./js_a2f/script.js"></script>
 </body>
 
 </html>
